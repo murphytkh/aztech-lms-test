@@ -662,7 +662,7 @@ function Dashboard(props)
                 </div>
             </div>
             {/* default, non-config page */}
-            {location.pathname !== "/dashboard/config" && defaultTemplate}
+            {(location.pathname !== "/dashboard/config" && location.pathname !== "/dashboard/photosensor") && defaultTemplate}
             {/* config or photosensor */}
             {(location.pathname === "/dashboard/config" || location.pathname === "/dashboard/photosensor")
              && configTemplate}

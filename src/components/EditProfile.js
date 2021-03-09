@@ -12,7 +12,6 @@ class UserObject
     }
 }
 
-
 function EditProfile(props)
 {
     function handleCancel()
