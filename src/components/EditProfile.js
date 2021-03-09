@@ -14,6 +14,7 @@ class UserObject
 
 function EditProfile(props)
 {
+    const [image, setImage] = useState(null);
     const [name, setName] = useState("");
     const [position, setPosition] = useState("");
     const [email, setEmail] = useState("");
@@ -34,6 +35,8 @@ function EditProfile(props)
 
     function handleSubmit()
     {
+        let user = new UserObject(name, position, props.currUser.image);
+        props.setCurrUser(user);
         props.setEditProfile();
         console.log("submitted profile edit");
     }
