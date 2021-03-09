@@ -71,5 +71,5 @@ user dropdown hover icons
 ====================================================
 
 running steps:
-npm start in lms/react/lms
+npm start in aztech-lms
 http-server -p 8080 --cors -c10 in http-server folder
