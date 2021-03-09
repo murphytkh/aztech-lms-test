@@ -557,7 +557,7 @@ function Dashboard(props)
     }
 
     return(
-        <div className = "dashboard-page" style = {editProfile ? {overflow: "hidden"} : {overflow: "visible"}}>
+        <div className = "dashboard-page" style = {editProfile ? {overflow: "hidden"} : {overflow: "overlay"}}>
             {editProfile && 
                 <EditProfile
                     setEditProfile = {setEditProfileHelper}
