@@ -33,6 +33,9 @@ current task:
   - display component from dashboard.js
   - 
 
+  87.667 of height
+  
+
 list of npm packages installed (other than the
 usual react stuff)
 - moment

@@ -557,11 +557,12 @@ function Dashboard(props)
     }
 
     return(
-        <div className = "dashboard-page">
+        <div className = "dashboard-page" style = {editProfile ? {overflow: "hidden"} : {overflow: "visible"}}>
             {editProfile && 
                 <EditProfile
-                    editProfile = {editProfile}
                     setEditProfile = {setEditProfileHelper}
+                    currUser = {currUser}
+                    setCurrUser = {setCurrUser}
                 />
             }
             <div className = "dashboard-page-header">
