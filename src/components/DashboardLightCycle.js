@@ -6,7 +6,7 @@ function DashboardLightCycle(props)
 {
     return(
         <div className = "dashboard-page-lightcycle">
-            IDK WHAT THIS IS
+            PLACEHOLDER
         </div>
     );
 }

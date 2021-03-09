@@ -39,6 +39,7 @@ usual react stuff)
 - react-circular-input
 - react-router-dom
 - recharts
+- react helmet
 
 - don't let calendar card make any changes for now
   - radio buttons will do nothing

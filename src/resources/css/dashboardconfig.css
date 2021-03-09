@@ -54,7 +54,7 @@
 {
     z-index: 1;
     position: absolute;
-    top: 2%;
+    top: 2.75%;
     left: 3%;
     width: 5.5%;
     height: auto;
@@ -374,10 +374,12 @@
 
 .dashboard-page-config-schedule-day-button
 {
+    position: relative;
     color: #005570;
     font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
+    top: 10%;
     margin-right: 7.1%;
     cursor: pointer;
 }

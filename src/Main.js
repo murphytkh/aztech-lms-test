@@ -2,6 +2,8 @@ import "./resources/css/fonts.css";
 
 import React, {useEffect} from "react";
 import {Route, HashRouter, Redirect} from "react-router-dom";
+import {Helmet} from "react-helmet";
+
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
 import Dashboard from "./components/Dashboard";
@@ -16,6 +18,9 @@ function Main(props)
     return (
         <HashRouter>
             <div className = "main-page">
+                <Helmet>
+                    <title>Aztech LMS</title>
+                </Helmet>
                 <div className = "pages">
                     <Route exact path = "/"><Redirect to = "/login" /></Route>
                     <Route path = "/login" component = {LoginForm}></Route>

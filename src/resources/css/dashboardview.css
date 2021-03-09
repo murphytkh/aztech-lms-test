@@ -949,7 +949,7 @@
     font-weight: 400;
     font-size: max(0.8vw, 11.52px);
     width: 89%;
-    margin-top: 11%;
+    margin-top: 10.5%;
     margin-left: 5.5%;
     margin-right: 5.5%;
 }
@@ -994,7 +994,7 @@
 {
     position: absolute;
     border: 1px solid #E0E0E0;
-    top: 89%;
+    top: 90%;
     width: 89%;
     height: 0%;
     opacity: 0.8
@@ -1369,7 +1369,7 @@
     font-weight: 400;
     font-size: max(0.8vw, 11.52px);
     width: 93%;
-    margin-top: 7%;
+    margin-top: 6.75%;
     margin-left: 3.55%;
     margin-right: 3.55%;
 }

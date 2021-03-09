@@ -6,7 +6,7 @@ function DashboardAdd(props)
 {
     return(
         <div className = "dashboard-page-add">
-            THIS IS DASHBOARD ADD
+            PLACEHOLDER
         </div>
     );
 }
