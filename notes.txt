@@ -14,7 +14,6 @@ do GET for configs
 So web will send a get request, server will respond with 
 get_ack, with the values requested
 
-highlight technical document by end of month
 cpu overheating issue??????
 
 ====================================================
@@ -30,7 +29,9 @@ current task:
 - figure out solution for showing blocks
   - radio buttons?
   - fuck filtering the view for now
-- hosting site on github for demo purposes
+- edit profile
+  - display component from dashboard.js
+  - 
 
 list of npm packages installed (other than the
 usual react stuff)

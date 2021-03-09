@@ -38,6 +38,7 @@ import DashboardDatacharts from "./DashboardDatacharts";
 import DashboardLightCycle from "./DashboardLightCycle";
 import DashboardUserManagement from "./DashboardUserManagement";
 import DashboardAdd from "./DashboardAdd";
+import EditProfile from "./EditProfile";
 
 class NotificationObject
 {
@@ -86,6 +87,9 @@ function Dashboard(props)
     const [selectedBlock, setSelectedBlock] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
     const [selectedLight, setSelectedLight] = useState("");
+
+    // bool for displaying edit profile
+    const [editProfile, setEditProfile] = useState(false);
 
     // simulate getting data
     useEffect(() =>
@@ -241,9 +245,9 @@ function Dashboard(props)
         goToPath("/dashboard/usermanagement");
     }
 
-    function userSettings(str)
+    function userSettings()
     {
-        console.log("DO SOME USER SETTINGS STUFF");
+        setEditProfile(!editProfile);
     }
 
     function logout()
@@ -549,6 +553,7 @@ function Dashboard(props)
 
     return(
         <div className = "dashboard-page">
+            {editProfile && <EditProfile />}
             <div className = "dashboard-page-header">
                 <SearchBar handleSearch = {handleSearch}/>
                 {alerts != null && <Notification ref = {notificationRef} notifications = {alerts}/>}
@@ -651,10 +656,12 @@ function Dashboard(props)
             {(location.pathname === "/dashboard/config" || location.pathname === "/dashboard/photosensor")
              && configTemplate}
             {/* footer */}
-            <div className = {location.pathname !== "/dashboard/view" ? 
-                                (location.pathname !== "/dashboard/config" ? 
-                                    "dashboard-page-footer" : "dashboard-page-config-footer") : 
-                                        "dashboard-page-view-footer"}>
+            <div className = {(location.pathname === "/dashboard/view" && selectedBlock) ? ("dashboard-page-view-footer") :
+                                (location.pathname === "/dashboard/config" ? "dashboard-page-config-footer" : "dashboard-page-footer") }>
+            {/*</div><div className = {location.pathname !== "/dashboard/view" ? 
+            </div>                    (location.pathname !== "/dashboard/config" ? 
+            </div>                        "dashboard-page-footer" : "dashboard-page-config-footer") : 
+            </div>                            "dashboard-page-view-footer"}>*/}
                 <h1 className = "dashboard-page-footer-copyright">COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.</h1>
                 <h2 className = "dashboard-page-footer-privacy">PRIVACY POLICY · TERMS & CONDITIONS</h2>
             </div> :
