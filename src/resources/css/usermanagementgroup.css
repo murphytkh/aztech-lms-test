@@ -1,0 +1,215 @@
+.dashboard-usermanagement-group-container
+{
+    position: relative;
+    display: inline-block;
+    margin-right: 2%;
+    width: 25%;
+    height: 20%;
+}
+
+.dashboard-usermanagement-group-header
+{
+    position: relative;
+    border-radius: 6px 6px 0px 0px;
+    padding-top: 30%;
+    width: 100%;
+    height: 2em;
+}
+
+.dashboard-usermanagement-group-header-icon
+{
+    position: absolute;
+    top: 8%;
+    left: 4.5%;
+    width: 15%;
+    height: auto;
+}
+
+.dashboard-usermanagement-group-header-title
+{
+    position: absolute;
+    color: #333132;
+    font-family: "work sans", sans-serif;
+    font-weight: 600;
+    font-size: max(1.2vw, 17.28px);
+    top: 15%;
+    left: 25%;
+}
+
+.dashboard-usermanagement-group-header-text
+{
+    position: absolute;
+    color: #333132;
+    font-family: "work sans", sans-serif;
+    font-weight: 400;
+    font-size: max(0.7vw, 10.08px);
+    top: 30%;
+    left: 25%;
+}
+
+.dashboard-usermanagement-group-header-delete
+{
+    position: absolute;
+    top: -2%;
+    left: 85%;
+    width: 14%;
+    height: auto;
+    cursor: pointer;
+}
+
+.dashboard-usermanagement-group-header-delete:hover
+{
+    transform: scale(1.2);
+}
+
+.dashboard-usermanagement-group-header-blocks-container
+{
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    text-align: bottom;
+    bottom: 10%;
+    left: 25%;
+    width: 60%;
+    height: 38%;
+}
+
+.dashboard-usermanagement-group-header-block
+{
+    position: relative;
+    margin-top: 5%;
+}
+
+.dashboard-usermanagement-group-header-block-text
+{
+    margin-left: 8%;
+    color: #333132;
+    font-family: "work sans", sans-serif;
+    font-weight: 500;
+    font-size: max(0.75vw, 10.85px);
+}
+
+.dashboard-usermanagement-group-header-block-radio
+{
+    position: absolute;
+    top: 15%;
+    width: 5%;
+    height: auto;
+    cursor: pointer;
+}
+
+.dashboard-usermanagement-group-user-container
+{
+    position: absolute;
+    background-color: #F7F7F7;
+    border-radius: 0px 0px 6px 6px;
+    width: 100%;
+}
+
+.dashboard-usermanagement-group-user
+{
+    position: relative;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 6px #00000029;
+    border-radius: 7px;
+    margin-top: 5%;
+    left: 4.95%;
+    width: 90.1%;
+    height: 3.5em;
+}
+
+.dashboard-usermanagement-group-user-icon
+{
+    position: absolute;
+    top: 14.8%;
+    left: 4%;
+    width: 15%;
+    height: auto;
+}
+
+.dashboard-usermanagement-group-user-name
+{
+    position: absolute;
+    color: #333132;
+    font-family: "work sans", sans-serif;
+    font-weight: 500;
+    font-size: max(0.91vw, 13.175px);
+    top: 25%;
+    left: 24%;
+}
+
+.dashboard-usermanagement-group-user-type
+{
+    position: absolute;
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-weight: 400;
+    font-size: max(0.7vw, 10.08px);
+    top: 57%;
+    left: 24%;
+}
+
+.dashboard-usermanagement-group-user-date
+{
+    position: absolute;
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-weight: 400;
+    font-size: max(0.7vw, 10.08px);
+    top: 30%;
+    left: 77%;
+}
+
+.dashboard-usermanagement-group-user-time
+{
+    position: absolute;
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-weight: 400;
+    font-size: max(0.7vw, 10.08px);
+    top: 55%;
+    left: 77%;
+    width: 17.6%;
+    text-align: right;
+}
+
+.dashboard-usermanagement-group-user-active
+{
+    position: absolute;
+    top: 9%;
+    left: 96%;
+    width: 1.715%;
+    height: 8.046%;
+    border-radius : 50%;
+}
+
+.dashboard-usermanagement-group-newmember
+{
+    position: relative;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 6px #00000029;
+    border-radius: 7px;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    left: 4.95%;
+    width: 90.1%;
+    height: 3.5em;
+    cursor: pointer;
+}
+
+.dashboard-usermanagement-group-newmember:hover
+{
+    background-color: #E7E7E7;
+}
+
+.dashboard-usermanagement-group-newmember-text
+{
+    position: absolute;
+    color: #333132;
+    font-family: "work sans", sans-serif;
+    font-weight: 500;
+    font-size: max(0.91vw, 13.175px);
+    top: 36.67%;
+    left: 24%;
+}
