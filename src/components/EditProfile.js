@@ -1,6 +1,6 @@
 import "../resources/css/editprofile.css";
 
-import React from "react";
+import React, {useState} from "react";
 
 class UserObject
 {
@@ -14,6 +14,19 @@ class UserObject
 
 function EditProfile(props)
 {
+    const [name, setName] = useState("");
+    const [position, setPosition] = useState("");
+    const [email, setEmail] = useState("");
+    const [contactNumber, setContactNumber] = useState("");
+    const [currPassword, setCurrPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    function handleImageChange()
+    {
+        console.log("image select clicked");
+    }
+
     function handleCancel()
     {
         props.setEditProfile();
@@ -22,6 +35,7 @@ function EditProfile(props)
     function handleSubmit()
     {
         props.setEditProfile();
+        console.log("submitted profile edit");
     }
 
     return(

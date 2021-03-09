@@ -175,6 +175,10 @@ body, ul
   padding-right: 1%;
   width: 89%;
   height: 9%;
+  font-family: "work sans", sans-serif;
+  font-size: max(1.05vw, 15.12px);
+  font-weight: 400;
+  text-align: center;
 }
 
 .login-page-form-password
@@ -189,6 +193,10 @@ body, ul
   padding-right: 1%;
   width: 89%;
   height: 9%;
+  font-family: "work sans", sans-serif;
+  font-size: max(1.05vw, 15.12px);
+  font-weight: 400;
+  text-align: center;
 }
 
 .login-page-form-nextbtn
@@ -355,6 +363,10 @@ body, ul
   padding-right: 1%;
   width: 89%;
   height: 8.045%;
+  font-family: "work sans", sans-serif;
+  font-size: max(1.05vw, 15.12px);
+  font-weight: 400;
+  text-align: center;
 }
 
 .signup-page-form-password
@@ -369,6 +381,10 @@ body, ul
   padding-right: 1%;
   width: 89%;
   height: 8.045%;
+  font-family: "work sans", sans-serif;
+  font-size: max(1.05vw, 15.12px);
+  font-weight: 400;
+  text-align: center;
 }
 
 .signup-page-form-verifypassword
@@ -383,6 +399,10 @@ body, ul
   padding-right: 1%;
   width: 89%;
   height: 8.045%;
+  font-family: "work sans", sans-serif;
+  font-size: max(1.05vw, 15.12px);
+  font-weight: 400;
+  text-align: center;
 }
 
 .signup-page-form-nextbtn
