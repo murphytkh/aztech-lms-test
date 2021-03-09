@@ -6,8 +6,20 @@ function EditProfile(props)
 {
     return(
         <div className = "dashboard-page-editprofile" style = {{zIndex: 15}}>
-            <div className = "dashboard-page-editprofile-bg" style = {{zIndex: -1}}></div>
-            <h1 style = {{zIndex: 10, color: "#FFFFFF"}} onClick = {props.setEditProfile}>EEDIT PROFILE</h1>
+            {/* bg colour */}
+            <div className = "dashboard-page-editprofile-bg" style = {{zIndex: 0}}></div>
+            <div className = "dashboard-page-editprofile-container" style = {{zIndex: 16}}>
+                {/* header */}
+                <div onClick = {props.setEditProfile} className = "dashboard-page-editprofile-header">
+
+                </div>
+                {/* inputs */}
+
+                {/* buttons */}
+
+            </div>
+
+
         </div>
     );
 }
