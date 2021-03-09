@@ -370,6 +370,7 @@
     height: 8%;
     display: inline-block;
     padding-left: 3%;
+    padding-top: 1%;
 }
 
 .dashboard-page-config-schedule-day-button
@@ -379,7 +380,6 @@
     font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
-    top: 10%;
     margin-right: 7.1%;
     cursor: pointer;
 }
