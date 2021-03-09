@@ -247,7 +247,7 @@ function Dashboard(props)
 
     function userSettings()
     {
-        setEditProfile(!editProfile);
+        setEditProfile(true);
     }
 
     function logout()
@@ -551,9 +551,19 @@ function Dashboard(props)
         }
     }
 
+    function setEditProfileHelper()
+    {
+        setEditProfile(!editProfile);
+    }
+
     return(
         <div className = "dashboard-page">
-            {editProfile && <EditProfile />}
+            {editProfile && 
+                <EditProfile
+                    editProfile = {editProfile}
+                    setEditProfile = {setEditProfileHelper}
+                />
+            }
             <div className = "dashboard-page-header">
                 <SearchBar handleSearch = {handleSearch}/>
                 {alerts != null && <Notification ref = {notificationRef} notifications = {alerts}/>}
@@ -658,10 +668,6 @@ function Dashboard(props)
             {/* footer */}
             <div className = {(location.pathname === "/dashboard/view" && selectedBlock) ? ("dashboard-page-view-footer") :
                                 (location.pathname === "/dashboard/config" ? "dashboard-page-config-footer" : "dashboard-page-footer") }>
-            {/*</div><div className = {location.pathname !== "/dashboard/view" ? 
-            </div>                    (location.pathname !== "/dashboard/config" ? 
-            </div>                        "dashboard-page-footer" : "dashboard-page-config-footer") : 
-            </div>                            "dashboard-page-view-footer"}>*/}
                 <h1 className = "dashboard-page-footer-copyright">COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.</h1>
                 <h2 className = "dashboard-page-footer-privacy">PRIVACY POLICY · TERMS & CONDITIONS</h2>
             </div> :

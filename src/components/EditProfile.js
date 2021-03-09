@@ -6,7 +6,8 @@ function EditProfile(props)
 {
     return(
         <div className = "dashboard-page-editprofile" style = {{zIndex: 15}}>
-            EEDIT PROFILE
+            <div className = "dashboard-page-editprofile-bg" style = {{zIndex: -1}}></div>
+            <h1 style = {{zIndex: 10, color: "#FFFFFF"}} onClick = {props.setEditProfile}>EEDIT PROFILE</h1>
         </div>
     );
 }
