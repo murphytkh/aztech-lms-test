@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.dbe2c768.chunk.css",
-    "main.js": "/static/js/main.3c5374ed.chunk.js",
-    "main.js.map": "/static/js/main.3c5374ed.chunk.js.map",
+    "main.css": "/static/css/main.eccfe195.chunk.css",
+    "main.js": "/static/js/main.3cc498a0.chunk.js",
+    "main.js.map": "/static/js/main.3cc498a0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.88f0382b.js",
     "runtime-main.js.map": "/static/js/runtime-main.88f0382b.js.map",
-    "static/js/2.f2e6041e.chunk.js": "/static/js/2.f2e6041e.chunk.js",
-    "static/js/2.f2e6041e.chunk.js.map": "/static/js/2.f2e6041e.chunk.js.map",
+    "static/js/2.08e9aa21.chunk.js": "/static/js/2.08e9aa21.chunk.js",
+    "static/js/2.08e9aa21.chunk.js.map": "/static/js/2.08e9aa21.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.dbe2c768.chunk.css.map": "/static/css/main.dbe2c768.chunk.css.map",
-    "static/js/2.f2e6041e.chunk.js.LICENSE.txt": "/static/js/2.f2e6041e.chunk.js.LICENSE.txt",
+    "static/css/main.eccfe195.chunk.css.map": "/static/css/main.eccfe195.chunk.css.map",
+    "static/js/2.08e9aa21.chunk.js.LICENSE.txt": "/static/js/2.08e9aa21.chunk.js.LICENSE.txt",
     "static/media/Aztech logo 2020-WH.b9f3cf06.svg": "/static/media/Aztech logo 2020-WH.b9f3cf06.svg",
     "static/media/Aztech logo 2020.b88e08a7.svg": "/static/media/Aztech logo 2020.b88e08a7.svg",
     "static/media/Group 2403.8de371e4.svg": "/static/media/Group 2403.8de371e4.svg",
@@ -92,8 +92,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.88f0382b.js",
-    "static/js/2.f2e6041e.chunk.js",
-    "static/css/main.dbe2c768.chunk.css",
-    "static/js/main.3c5374ed.chunk.js"
+    "static/js/2.08e9aa21.chunk.js",
+    "static/css/main.eccfe195.chunk.css",
+    "static/js/main.3cc498a0.chunk.js"
   ]
 }
