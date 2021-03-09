@@ -30,8 +30,8 @@ current task:
   - radio buttons?
   - fuck filtering the view for now
 - edit profile
-
-  87.667 of height
+- edit profile background doesnt work on mobile
+  landscape mode
 
 
 list of npm packages installed (other than the
