@@ -27,10 +27,18 @@ what in the fucks going on
                      FRONT END
 ====================================================
 current task:
-- figure out how to reduce size of calendar
-  highlight
-    - possible to reduce size of tiles and add
-      padding/margin?
+- figure out solution for showing blocks
+  - radio buttons?
+  - fuck filtering the view for now
+- hosting site on github for demo purposes
+
+list of npm packages installed (other than the
+usual react stuff)
+- moment
+- react-calendar
+- react-circular-input
+- react-router-dom
+- recharts
 
 - don't let calendar card make any changes for now
   - radio buttons will do nothing
@@ -51,12 +59,6 @@ current task:
     - end time (string)
     - days active (array of bools)
     - active/inactive (bool)
-
-TODO:
-  - figure out solution for showing blocks
-    - radio buttons?
-    - fuck filtering the view for now
-  - work on photosensor page
 
 scrollable dropdownbox:
 ul.dropdown-menu {
