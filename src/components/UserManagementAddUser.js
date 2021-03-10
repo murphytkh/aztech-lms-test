@@ -203,7 +203,7 @@ function UserManagementAddUser(props)
                             {/* show/hide password button */}
                             <img 
                                 alt = "" 
-                                src = {showPassword ? EyeOffIcon : EyeIcon} 
+                                src = {showPassword ? EyeIcon : EyeOffIcon} 
                                 className = "dashboard-usermanagement-addbox-hide"
                                 onClick = {handleTogglePasswordHide}
                             ></img>
@@ -222,7 +222,7 @@ function UserManagementAddUser(props)
                             {/* show/hide password button */}
                             <img 
                                 alt = "" 
-                                src = {showConfirmPassword ? EyeOffIcon : EyeIcon} 
+                                src = {showConfirmPassword ? EyeIcon : EyeOffIcon} 
                                 className = "dashboard-usermanagement-addbox-hide"
                                 onClick = {handleToggleConfirmPasswordHide}
                             ></img>

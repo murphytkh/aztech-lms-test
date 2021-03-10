@@ -37,6 +37,7 @@
     top: 0%;
     width: 100%;
     height: 21.13%;
+    text-align: center;
 }
 
 .dashboard-page-editprofile-header-text0
@@ -61,7 +62,80 @@
     left: 8.904%;
 }
 
+.dashboard-page-editprofile-header-img
+{
+    position: relative;
+    top: 12.72%;
+    width: 15%;
+    height: auto;
+}
+
+.dashboard-page-editprofile-header-button
+{
+    position: absolute;
+    top: 63%;
+    left: 53.75%;
+    width: 5.087%;
+    height: auto;
+    cursor: pointer;
+}
+
+.dashboard-page-editprofile-header-button:hover
+{
+    transform: scale(1.1);
+}
+
 /* input */
+
+.dashboard-editprofile-input
+{
+    position: absolute;
+    color: #005570;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.64vw, 10px);
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    top: 25%;
+    left: 8.905%;
+    width: 82.19%;
+    height: 3.5em;
+}
+
+/* input placeholders */
+
+.dashboard-editprofile-input::placeholder /* Chrome, Firefox, Opera, Safari 10.1+ */
+{ 
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.64vw, 10px);
+    font-weight: 400;
+    opacity: 0.5;
+    text-align: center;
+}
+  
+.dashboard-editprofile-input::-ms-input-placeholder /* Internet Explorer 10-11 */
+{ 
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.64vw, 10px);
+    font-weight: 400;
+    opacity: 0.5;
+    text-align: center;
+}
+  
+.dashboard-editprofile-input::-ms-input-placeholder /* Microsoft Edge */
+{ 
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.64vw, 10px);
+    font-weight: 400;
+    opacity: 0.5;
+    text-align: center;
+}
+
+/* ------------------ */
 
 /* cancel and submit buttons */
 
