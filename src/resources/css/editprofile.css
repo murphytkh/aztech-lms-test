@@ -24,6 +24,7 @@
     margin-left: 31%;
     width: 38.02%;
     height: 65.74%;
+    text-align: center;
 }
 
 /* header */
@@ -87,9 +88,8 @@
 
 /* input */
 
-.dashboard-editprofile-input
+.dashboard-editprofile-input-first
 {
-    position: absolute;
     color: #005570;
     font-family: "work sans", sans-serif;
     font-size: max(0.64vw, 10px);
@@ -97,13 +97,102 @@
     text-align: center;
     border: 1px solid #E0E0E0;
     border-radius: 6px;
-    top: 25%;
-    left: 8.905%;
+    margin-top: 23%;
+    width: 82.19%;
+    height: 6.75%;
+}
+
+.dashboard-editprofile-input
+{
+    color: #005570;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.64vw, 10px);
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    margin-top: 1.5%;
     width: 82.19%;
     height: 3.5em;
 }
 
+.dashboard-editprofile-input-up
+{
+    position: absolute;
+    top: 40%;
+    left: 87.5%;
+    width: 2%;
+    height: auto;
+    cursor: pointer;
+}
+
+.dashboard-editprofile-input-up:hover
+{
+    transform: scale(1.2);
+}
+
+.dashboard-editprofile-input-down
+{
+    position: absolute;
+    top: 65%;
+    left: 87.5%;
+    width: 2%;
+    height: auto;
+    cursor: pointer;
+}
+
+.dashboard-editprofile-input-down:hover
+{
+    transform: scale(1.2);
+}
+
+.dashboard-editprofile-hide
+{
+    position: absolute;
+    filter: invert(48%) sepia(0%) saturate(1159%) hue-rotate(148deg) brightness(92%) contrast(99%);
+    top: 43%;
+    right: 10.2%;
+    width: 2.5%;
+    height: auto;
+    cursor: pointer;
+}
+
+.dashboard-editprofile-hide:hover
+{
+    transform: scale(1.2);
+}
+
 /* input placeholders */
+
+.dashboard-editprofile-input-first::placeholder /* Chrome, Firefox, Opera, Safari 10.1+ */
+{ 
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.64vw, 10px);
+    font-weight: 400;
+    opacity: 0.5;
+    text-align: center;
+}
+  
+.dashboard-editprofile-input-first::-ms-input-placeholder /* Internet Explorer 10-11 */
+{ 
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.64vw, 10px);
+    font-weight: 400;
+    opacity: 0.5;
+    text-align: center;
+}
+  
+.dashboard-editprofile-input-first::-ms-input-placeholder /* Microsoft Edge */
+{ 
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.64vw, 10px);
+    font-weight: 400;
+    opacity: 0.5;
+    text-align: center;
+}
 
 .dashboard-editprofile-input::placeholder /* Chrome, Firefox, Opera, Safari 10.1+ */
 { 

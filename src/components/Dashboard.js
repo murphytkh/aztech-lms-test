@@ -563,6 +563,7 @@ function Dashboard(props)
                     setEditProfile = {setEditProfileHelper}
                     currUser = {currUser}
                     setCurrUser = {setCurrUser}
+                    userTypes = {["Project Manager", "Operator", "Area Admin"]}
                 />
             }
             <div className = "dashboard-page-header">
