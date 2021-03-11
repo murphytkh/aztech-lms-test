@@ -26,15 +26,15 @@ function EnergyConsumption(props)
         ];
         
         const data1 = [
-             {t: 59400, Past: 0.005},
-             {t: 73800, Past: 0.019},
-             {t: 88200, Past: 0.018},
-             {t: 102600, Past: 0.021},
-             {t: 117000, Past: 0.017},
-             {t: 131400, Past: 0.042},
-             {t: 145800, Past: 0.048},
+            {t: 59400, Past: 0.005},
+            {t: 73800, Past: 0.019},
+            {t: 88200, Past: 0.018},
+            {t: 102600, Past: 0.021},
+            {t: 117000, Past: 0.017},
+            {t: 131400, Past: 0.042},
+            {t: 145800, Past: 0.048},
         ];
-        // 0.35 for a day estimated
+
         const data2 = [
             {t: 1, Present: 0.29},
             {t: 2, Present: 0.31},
@@ -44,13 +44,13 @@ function EnergyConsumption(props)
         ];
     
         const data3 = [
-             {t: 1, Past: 0.25},
-             {t: 2, Past: 0.31},
-             {t: 3, Past: 0.29},
-             {t: 4, Past: 0.23},
-             {t: 5, Past: 0.17},
+            {t: 1, Past: 0.25},
+            {t: 2, Past: 0.31},
+            {t: 3, Past: 0.29},
+            {t: 4, Past: 0.23},
+            {t: 5, Past: 0.17},
         ];
-        // 2.45 for a week estimated
+
         const data4 = [
             {t: 1, Present: 1.9},
             {t: 2, Present: 2.34},
@@ -59,12 +59,12 @@ function EnergyConsumption(props)
         ];
     
         const data5 = [
-             {t: 1, Past: 2.6},
-             {t: 2, Past: 2.5},
-             {t: 3, Past: 1.79},
-             {t: 4, Past: 2.22},
+            {t: 1, Past: 2.6},
+            {t: 2, Past: 2.5},
+            {t: 3, Past: 1.79},
+            {t: 4, Past: 2.22},
         ];
-        // 8.87 for a month estimated
+
         const data6 = [
             {t: 1, Present: 8.79},
             {t: 2, Present: 6.98},
@@ -79,20 +79,20 @@ function EnergyConsumption(props)
             {t: 11, Present: 9.3},
             {t: 12, Present: 8.87},
         ];
-        // 94.46 for a year estimated
+
         const data7 = [
-             {t: 1, Past: 7.45},
-             {t: 2, Past: 7.5},
-             {t: 3, Past: 7.32},
-             {t: 4, Past: 6.89},
-             {t: 5, Past: 8.72},
-             {t: 6, Past: 8.21},
-             {t: 7, Past: 9.02},
-             {t: 8, Past: 9.1},
-             {t: 9, Past: 7.923},
-             {t: 10, Past: 6.89},
-             {t: 11, Past: 6.93},
-             {t: 12, Past: 8.64},
+            {t: 1, Past: 7.45},
+            {t: 2, Past: 7.5},
+            {t: 3, Past: 7.32},
+            {t: 4, Past: 6.89},
+            {t: 5, Past: 8.72},
+            {t: 6, Past: 8.21},
+            {t: 7, Past: 9.02},
+            {t: 8, Past: 9.1},
+            {t: 9, Past: 7.923},
+            {t: 10, Past: 6.89},
+            {t: 11, Past: 6.93},
+            {t: 12, Past: 8.64},
         ];
 
         const data8 = [
@@ -102,9 +102,9 @@ function EnergyConsumption(props)
         ];
     
         const data9 = [
-             {t: 1, Past: 85.23},
-             {t: 2, Past: 92.21},
-             {t: 3, Past: 89.59},
+            {t: 1, Past: 85.23},
+            {t: 2, Past: 92.21},
+            {t: 3, Past: 89.59},
         ];
 
         setEnergyData([data0, data1, data2, data3, data4, data5, data6, data7,
