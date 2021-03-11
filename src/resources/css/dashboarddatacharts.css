@@ -62,6 +62,7 @@
 .dashboard-page-datacharts-energyconsumption-container
 {
     position: absolute;
+    z-index: 2;
     border: 1px solid #E0E0E0;
     border-radius: 3px;
     top: 10.5%;
@@ -72,7 +73,7 @@
 
 .dashboard-page-datacharts-energyconsumption-header
 {
-    z-index: 0;
+    z-index: -1;
     position: absolute;
     width: 100%;
     height: 13.5%;
@@ -109,7 +110,133 @@
     height: auto;
 }
 
+/* graph */
 
+.dashboard-page-datacharts-options-container
+{
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    width: 18%;
+    height: 7.7%
+}
+
+.dashboard-page-datacharts-options-btn
+{
+    display: inline-block;
+    cursor: pointer;
+    color: #333132;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 600;
+    border-radius: 3px;
+    text-align: center;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.dashboard-page-datacharts-options-btn:hover
+{
+    background: #F5F2F2;
+}
+
+.dashboard-page-datacharts-options-btn-selected
+{
+    display: inline-block;
+    cursor: pointer;
+    color: #333132;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 600;
+    border-radius: 3px;
+    text-align: center;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    padding-left: 6%;
+    padding-right: 6%;
+    background: #E0E0E0;
+}
+
+.dashboard-page-datacharts-options-btn-selected:hover
+{
+    background: #E6E4E4;
+}
+
+.dashboard-page-datacharts-graph-container
+{
+    position: absolute;
+    top: 27%;
+    left: 4%;
+    width: 92%;
+    height: 70%;
+}
+
+.dashboard-page-datacharts-yaxis
+{
+    position: absolute;
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 500;
+    top: 54.4%;
+    left: 3%;
+}
+
+.dashboard-page-datacharts-xaxis
+{
+    display: inline-block;
+    position: absolute;
+    color: #6D6E71;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 500;
+    top: 93%;
+    left: 52.15%;
+}
+
+.dashboard-page-datacharts-present
+{
+    position: absolute;
+    color: #212529;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 400;
+    top: 18%;
+    left: 80%;
+}
+
+.dashboard-page-datacharts-present-img
+{
+    position: absolute;
+    border: 1px solid #2CD9C5;
+    top: 20%;
+    left: 77%;
+    width: 2%;
+    height: 0%;
+}
+
+.dashboard-page-datacharts-past
+{
+    position: absolute;
+    color: #212529;
+    font-family: "work sans", sans-serif;
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 400;
+    top: 18%;
+    left: 91.5%;
+}
+
+.dashboard-page-datacharts-past-img
+{
+    position: absolute;
+    border: 1px solid #826AF9;
+    top: 20%;
+    left: 88.5%;
+    width: 2%;
+    height: 0%;
+}
 
 .dashboard-page-datacharts-cancel
 {

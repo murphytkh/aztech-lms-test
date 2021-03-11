@@ -138,33 +138,77 @@ function DatachartsEnergyConsumption(props)
 
     const displayOptions = 
     (
-        <div className = "dashboard-page-view-energy-options-container">
-            <EnergyConsumptionOption click = {handleOneDClick} text = "1D" curr = {currDisplayOption} />
-            <EnergyConsumptionOption click = {handleFiveDClick} text = "5D" curr = {currDisplayOption} />
-            <EnergyConsumptionOption click = {handleOneMClick} text = "1M" curr = {currDisplayOption} />
-            <EnergyConsumptionOption click = {handleOneYClick} text = "1Y" curr = {currDisplayOption} />
-            <EnergyConsumptionOption click = {handleThreeYClick} text = "3Y" curr = {currDisplayOption} />
+        <div className = "dashboard-page-datacharts-options-container">
+            <EnergyConsumptionOption 
+                click = {handleOneDClick} 
+                text = "1D" 
+                curr = {currDisplayOption}
+                class = "dashboard-page-datacharts-options-btn"
+                classSelected = "dashboard-page-datacharts-options-btn-selected"
+            />
+            <EnergyConsumptionOption 
+                click = {handleFiveDClick} 
+                text = "5D" 
+                curr = {currDisplayOption}
+                class = "dashboard-page-datacharts-options-btn"
+                classSelected = "dashboard-page-datacharts-options-btn-selected"
+            />
+            <EnergyConsumptionOption 
+                click = {handleOneMClick} 
+                text = "1M" 
+                curr = {currDisplayOption}
+                class = "dashboard-page-datacharts-options-btn"
+                classSelected = "dashboard-page-datacharts-options-btn-selected"
+            />
+            <EnergyConsumptionOption 
+                click = {handleOneYClick} 
+                text = "1Y" 
+                curr = {currDisplayOption}
+                class = "dashboard-page-datacharts-options-btn"
+                classSelected = "dashboard-page-datacharts-options-btn-selected"
+            />
+            <EnergyConsumptionOption 
+                click = {handleThreeYClick} 
+                text = "3Y" 
+                curr = {currDisplayOption}
+                class = "dashboard-page-datacharts-options-btn"
+                classSelected = "dashboard-page-datacharts-options-btn-selected"
+            />
         </div>
     );
 
     const displayGraph =
     (
-        <EnergyConsumptionGraph data = {energyData} option = {currDisplayOption}/>
+        <EnergyConsumptionGraph 
+            data = {energyData} 
+            option = {currDisplayOption} 
+            class = "dashboard-page-datacharts-graph-container"
+        />
     );
 
     return(
         <div className = "dashboard-page-datacharts-energyconsumption-container">
             {/* header */}
             <div className = "dashboard-page-datacharts-energyconsumption-header">
-                <img alt = "" src = {HeaderIcon} className = "dashboard-page-energyconsumption-energyconsumption-icon"></img>
-                <h1 className = "dashboard-page-datacharts-energyconsumption-header-text">ENERGY CONSUMPTION (kwH)</h1>
-                <img alt = "" src = {HeaderImg} className = "dashboard-page-datacharts-energyconsumption-headerimg"></img>
+                <img 
+                    alt = "" 
+                    src = {HeaderIcon} 
+                    className = "dashboard-page-energyconsumption-energyconsumption-icon"
+                ></img>
+                <h1 className = "dashboard-page-datacharts-energyconsumption-header-text">
+                    ENERGY CONSUMPTION (kwH)
+                    </h1>
+                <img 
+                    alt = "" 
+                    src = {HeaderImg} 
+                    className = "dashboard-page-datacharts-energyconsumption-headerimg"
+                ></img>
             </div>
             {/* axis labels */}
-            <div className = "dashboard-page-view-energy-yaxis">
+            <div className = "dashboard-page-datacharts-yaxis">
                 (KwH)
             </div>
-            <div className = "dashboard-page-view-energy-xaxis">
+            <div className = "dashboard-page-datacharts-xaxis">
                 {currDisplayOption === "1D" && "(Hours)"}
                 {currDisplayOption === "5D" && "(Days)"}
                 {currDisplayOption === "1M" && "(Weeks)"}
@@ -172,14 +216,14 @@ function DatachartsEnergyConsumption(props)
                 {currDisplayOption === "3Y" && "(Years)"}
             </div>
             {/* present, past labels */}
-            <div className = "dashboard-page-view-energy-present">
+            <div className = "dashboard-page-datacharts-present">
                 Present
             </div>
-            <div className = "dashboard-page-view-energy-present-img"></div>
-            <div className = "dashboard-page-view-energy-past">
+            <div className = "dashboard-page-datacharts-present-img"></div>
+            <div className = "dashboard-page-datacharts-past">
                 Past
             </div>
-            <div className = "dashboard-page-view-energy-past-img"></div>
+            <div className = "dashboard-page-datacharts-past-img"></div>
             {/* graph */}
             {displayOptions}
             {displayGraph}

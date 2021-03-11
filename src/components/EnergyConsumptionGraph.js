@@ -336,7 +336,7 @@ function EnergyConsumptionGraph(props)
     );
 
     return(
-        <div className = "dashboard-page-view-energy-graph-container">
+        <div className = {props.class}>
             {props.data && props.option === "1D" && oneDTemplate}
             {props.data && props.option === "5D" && fiveDTemplate}
             {props.data && props.option === "1M" && oneMTemplate}

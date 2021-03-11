@@ -139,17 +139,51 @@ function EnergyConsumption(props)
     const displayOptions = 
     (
         <div className = "dashboard-page-view-energy-options-container">
-            <EnergyConsumptionOption click = {handleOneDClick} text = "1D" curr = {currDisplayOption} />
-            <EnergyConsumptionOption click = {handleFiveDClick} text = "5D" curr = {currDisplayOption} />
-            <EnergyConsumptionOption click = {handleOneMClick} text = "1M" curr = {currDisplayOption} />
-            <EnergyConsumptionOption click = {handleOneYClick} text = "1Y" curr = {currDisplayOption} />
-            <EnergyConsumptionOption click = {handleThreeYClick} text = "3Y" curr = {currDisplayOption} />
+            <EnergyConsumptionOption 
+                click = {handleOneDClick} 
+                text = "1D" 
+                curr = {currDisplayOption}
+                class = "dashboard-page-view-energy-options-btn"
+                classSelected = "dashboard-page-view-energy-options-btn-selected"
+            />
+            <EnergyConsumptionOption 
+                click = {handleFiveDClick} 
+                text = "5D" 
+                curr = {currDisplayOption} 
+                class = "dashboard-page-view-energy-options-btn"
+                classSelected = "dashboard-page-view-energy-options-btn-selected"
+            />
+            <EnergyConsumptionOption 
+                click = {handleOneMClick} 
+                text = "1M" 
+                curr = {currDisplayOption}
+                class = "dashboard-page-view-energy-options-btn"
+                classSelected = "dashboard-page-view-energy-options-btn-selected"
+            />
+            <EnergyConsumptionOption 
+                click = {handleOneYClick} 
+                text = "1Y" 
+                curr = {currDisplayOption} 
+                class = "dashboard-page-view-energy-options-btn"
+                classSelected = "dashboard-page-view-energy-options-btn-selected"
+            />
+            <EnergyConsumptionOption 
+                click = {handleThreeYClick} 
+                text = "3Y" 
+                curr = {currDisplayOption}
+                class = "dashboard-page-view-energy-options-btn"
+                classSelected = "dashboard-page-view-energy-options-btn-selected"
+            />
         </div>
     );
 
     const displayGraph =
     (
-        <EnergyConsumptionGraph data = {energyData} option = {currDisplayOption}/>
+        <EnergyConsumptionGraph 
+            data = {energyData} 
+            option = {currDisplayOption} 
+            class = "dashboard-page-view-energy-graph-container"
+        />
     );
 
     return(

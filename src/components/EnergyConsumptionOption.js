@@ -6,13 +6,13 @@ function EnergyConsumptionOption(props)
         <span>
             {props.text === props.curr ?
             <div
-                className = "dashboard-page-view-energy-options-btn-selected"
+                className = {props.classSelected}
                 onClick = {props.click}
             >
                 {props.text}
             </div> :
             <div
-                className = "dashboard-page-view-energy-options-btn"
+                className = {props.class}
                 onClick = {props.click}
             >
                 {props.text}
