@@ -29,7 +29,10 @@ current task:
 - figure out solution for showing blocks
   - radio buttons?
   - fuck filtering the view for now
-
+- data charts
+  - change dropdown boxes
+  - change paths?
+  - check what do the buttons do with viola
 
 list of npm packages installed (other than the
 usual react stuff)

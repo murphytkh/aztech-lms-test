@@ -447,35 +447,29 @@ function Dashboard(props)
                 ></Dropdown>
             </div>
             {selectedLocation && 
-                <div>
-                    <div className = "dashboard-page-selector-1" style = {{zIndex: 10}}>
-                        <Dropdown
-                            ref = {areaDDRef}
-                            title = "AREA"
-                            options = {["GEYLANG"]}
-                            initial = {selectedArea}
-                            selectOption = {setSelectedAreaHelper}
-                        ></Dropdown>
-                    </div>
+                <div className = "dashboard-page-selector-1" style = {{zIndex: 10}}>
+                    <Dropdown
+                        ref = {areaDDRef}
+                        title = "AREA"
+                        options = {["GEYLANG"]}
+                        initial = {selectedArea}
+                        selectOption = {setSelectedAreaHelper}
+                    ></Dropdown>
                 </div>
             }
             {selectedLocation && selectedArea &&
-                <div>
-                    <div className = "dashboard-page-selector-2" style = {{zIndex: 10}}>
-                        <Dropdown
-                            ref = {blockDDRef}
-                            title = "BLOCK"
-                            options = {["Office_Lights"]}
-                            initial = {selectedBlock}
-                            selectOption = {setSelectedBlockHelper}
-                        ></Dropdown>
-                    </div>
+                <div className = "dashboard-page-selector-2" style = {{zIndex: 10}}>
+                    <Dropdown
+                        ref = {blockDDRef}
+                        title = "BLOCK"
+                        options = {["Office_Lights"]}
+                        initial = {selectedBlock}
+                        selectOption = {setSelectedBlockHelper}
+                    ></Dropdown>
                 </div>
             }
             {location.pathname === "/dashboard" && selectedLocation &&
-                <div>
-                    <img alt = "" src = {Map} className = "dashboard-page-selector-sgmapimg"></img>
-                </div>
+                <img alt = "" src = {Map} className = "dashboard-page-selector-sgmapimg"></img>
             }
         </div>
     );
@@ -493,42 +487,36 @@ function Dashboard(props)
                 ></Dropdown>
             </div>
             {selectedArea &&
-                <div>
-                    <div className = "dashboard-page-selector-1" style = {{zIndex: 10}}>
-                        <Dropdown
-                            ref = {blockDDRef}
-                            title = "BLOCK(S)"
-                            options = {["Office_Lights"]}
-                            initial = {selectedBlock}
-                            selectOption = {setSelectedBlockHelper}
-                        ></Dropdown>
-                    </div>
+                <div className = "dashboard-page-selector-1" style = {{zIndex: 10}}>
+                    <Dropdown
+                        ref = {blockDDRef}
+                        title = "BLOCK(S)"
+                        options = {["Office_Lights"]}
+                        initial = {selectedBlock}
+                        selectOption = {setSelectedBlockHelper}
+                    ></Dropdown>
                 </div>
             }
             {selectedArea && selectedBlock &&
-                <div>
-                    <div className = "dashboard-page-selector-2" style = {{zIndex: 10}}>
-                        <Dropdown
-                            ref = {levelDDRef}
-                            title = "LEVEL"
-                            options = {["ALL SELECTED"]}
-                            initial = {selectedLevel}
-                            selectOption = {setSelectedLevelHelper}
-                        ></Dropdown>
-                    </div>
+                <div className = "dashboard-page-selector-2" style = {{zIndex: 10}}>
+                    <Dropdown
+                        ref = {levelDDRef}
+                        title = "LEVEL"
+                        options = {["ALL SELECTED"]}
+                        initial = {selectedLevel}
+                        selectOption = {setSelectedLevelHelper}
+                    ></Dropdown>
                 </div>
             }
             {selectedArea && selectedBlock && selectedLevel &&
-                <div>
-                    <div className = "dashboard-page-selector-3" style = {{zIndex: 10}}>
-                        <Dropdown
-                            ref = {lightDDRef}
-                            title = "LIGHT(S)"
-                            options = {["ALL SELECTED"]}
-                            initial = {selectedLight}
-                            selectOption = {setSelectedLightHelper}
-                        ></Dropdown>
-                    </div>
+                <div className = "dashboard-page-selector-3" style = {{zIndex: 10}}>
+                    <Dropdown
+                        ref = {lightDDRef}
+                        title = "LIGHT(S)"
+                        options = {["ALL SELECTED"]}
+                        initial = {selectedLight}
+                        selectOption = {setSelectedLightHelper}
+                    ></Dropdown>
                 </div>
             }
         </div>
@@ -663,9 +651,14 @@ function Dashboard(props)
                 </div>
             </div>
             {/* default, non-config page */}
-            {(location.pathname !== "/dashboard/config" && location.pathname !== "/dashboard/photosensor") && defaultTemplate}
-            {/* config or photosensor */}
-            {(location.pathname === "/dashboard/config" || location.pathname === "/dashboard/photosensor")
+            {(location.pathname !== "/dashboard/config" && 
+              location.pathname !== "/dashboard/photosensor" && 
+              location.pathname !== "/dashboard/datacharts") 
+            && defaultTemplate}
+            {/* config, photosensor datacharts */}
+            {(location.pathname === "/dashboard/config" || 
+              location.pathname === "/dashboard/photosensor" || 
+              location.pathname === "/dashboard/datacharts")
              && configTemplate}
             {/* footer */}
             <div className = {(location.pathname === "/dashboard/view" && selectedBlock) ? ("dashboard-page-view-footer") :
@@ -710,7 +703,15 @@ function Dashboard(props)
                     </Route>
                     <Route 
                         path = "/dashboard/datacharts" 
-                        render = {(props) => <DashboardDatacharts {...props} />}>
+                        render = {(props) => <DashboardDatacharts 
+                                                location = {selectedLocation}
+                                                area = {selectedArea}
+                                                block = {selectedBlock}
+                                                level = {selectedLevel}
+                                                lights = {selectedLight}
+                                                cancel = {handleConfigCancel}
+                                                {...props} />}
+                                            >
                     </Route>
                     <Route 
                         path = "/dashboard/lightcycle" 
