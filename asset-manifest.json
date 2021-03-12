@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.0582f3a6.chunk.css",
-    "main.js": "/static/js/main.a8e4bc6e.chunk.js",
-    "main.js.map": "/static/js/main.a8e4bc6e.chunk.js.map",
+    "main.css": "/static/css/main.65c9069d.chunk.css",
+    "main.js": "/static/js/main.6d142e68.chunk.js",
+    "main.js.map": "/static/js/main.6d142e68.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.88f0382b.js",
     "runtime-main.js.map": "/static/js/runtime-main.88f0382b.js.map",
     "static/js/2.b44353d7.chunk.js": "/static/js/2.b44353d7.chunk.js",
     "static/js/2.b44353d7.chunk.js.map": "/static/js/2.b44353d7.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.0582f3a6.chunk.css.map": "/static/css/main.0582f3a6.chunk.css.map",
+    "static/css/main.65c9069d.chunk.css.map": "/static/css/main.65c9069d.chunk.css.map",
     "static/js/2.b44353d7.chunk.js.LICENSE.txt": "/static/js/2.b44353d7.chunk.js.LICENSE.txt",
     "static/media/Aztech logo 2020-WH.b9f3cf06.svg": "/static/media/Aztech logo 2020-WH.b9f3cf06.svg",
     "static/media/Aztech logo 2020.b88e08a7.svg": "/static/media/Aztech logo 2020.b88e08a7.svg",
@@ -48,6 +48,7 @@
     "static/media/configheader-top.cb035516.svg": "/static/media/configheader-top.cb035516.svg",
     "static/media/darkness-icon.d0856ffb.svg": "/static/media/darkness-icon.d0856ffb.svg",
     "static/media/dashboard header.7c2cadff.svg": "/static/media/dashboard header.7c2cadff.svg",
+    "static/media/datacharts-arrow-divider.1124bdfe.svg": "/static/media/datacharts-arrow-divider.1124bdfe.svg",
     "static/media/datacharts-calendar-icon.1c76c8d9.svg": "/static/media/datacharts-calendar-icon.1c76c8d9.svg",
     "static/media/edit-photo.19e418f8.svg": "/static/media/edit-photo.19e418f8.svg",
     "static/media/gateway header.ee5bf805.svg": "/static/media/gateway header.ee5bf805.svg",
@@ -95,7 +96,7 @@
   "entrypoints": [
     "static/js/runtime-main.88f0382b.js",
     "static/js/2.b44353d7.chunk.js",
-    "static/css/main.0582f3a6.chunk.css",
-    "static/js/main.a8e4bc6e.chunk.js"
+    "static/css/main.65c9069d.chunk.css",
+    "static/js/main.6d142e68.chunk.js"
   ]
 }
