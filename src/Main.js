@@ -17,7 +17,7 @@ function Main(props)
 
     return (
         <HashRouter>
-            <div className = "main-page">
+            <div className = "main">
                 <Helmet>
                     <title>Aztech LMS</title>
                 </Helmet>
