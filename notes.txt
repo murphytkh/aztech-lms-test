@@ -30,6 +30,7 @@ current task:
   - fuck filtering the view for now
 - data charts
   - place arrow buttons on top right of card
+  - figure out empty chart display?
 
 list of npm packages installed (other than the
 usual react stuff)
