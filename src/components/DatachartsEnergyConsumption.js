@@ -5,6 +5,8 @@ import EnergyConsumptionGraph from "../components/EnergyConsumptionGraph";
 
 import HeaderImg from "../resources/dashboard/status header.svg";
 import HeaderIcon from "../resources/dashboard/chart-area-solid.svg";
+import ArrowDivider from "../resources/dashboard/datacharts-arrow-divider.svg";
+import Arrow from "../resources/dashboard/chevron-down-outline.png";
 
 function DatachartsEnergyConsumption(props)
 {
@@ -177,6 +179,23 @@ function DatachartsEnergyConsumption(props)
         </div>
     );
 
+    // hard-coded for now until i figure out what they actually do
+    const displayArrows =
+    (
+        <div>
+            <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
+            <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
+            <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
+            <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
+            <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
+            <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
+            <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
+            <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
+            <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
+            <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
+        </div>
+    );
+
     const displayGraph =
     (
         <EnergyConsumptionGraph 
@@ -226,6 +245,7 @@ function DatachartsEnergyConsumption(props)
             <div className = "dashboard-page-datacharts-past-img"></div>
             {/* graph */}
             {displayOptions}
+            {displayArrows}
             {displayGraph}
         </div>
     )

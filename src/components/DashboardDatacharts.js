@@ -22,7 +22,8 @@ function DashboardDatacharts(props)
         <div 
             ref = {node} 
             className = "dashboard-page-datacharts-dropdown"
-            onClick = {handleCalendarDropdown}>
+            onClick = {handleCalendarDropdown}
+        >
             <h1 className = "dashboard-page-datacharts-dropdown-titletext">
                 DATE
             </h1>

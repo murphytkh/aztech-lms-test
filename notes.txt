@@ -27,12 +27,9 @@ what in the fucks going on
 ====================================================
 current task:
 - figure out solution for showing blocks
-  - radio buttons?
   - fuck filtering the view for now
 - data charts
-  - change dropdown boxes
-  - change paths?
-  - check what do the buttons do with viola
+  - place arrow buttons on top right of card
 
 list of npm packages installed (other than the
 usual react stuff)
@@ -42,6 +39,8 @@ usual react stuff)
 - react-router-dom
 - recharts
 - react helmet
+- custom three folder in node_modules
+  - list out exact changes perhaps?
 
 - don't let calendar card make any changes for now
   - radio buttons will do nothing
