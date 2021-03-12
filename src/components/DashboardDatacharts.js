@@ -27,7 +27,7 @@ function DashboardDatacharts(props)
                 DATE
             </h1>
             <h1 className = "dashboard-page-datacharts-dropdown-choicetext">
-                211111111111
+                2021-02-23
             </h1>
             <img
                 alt = ""
