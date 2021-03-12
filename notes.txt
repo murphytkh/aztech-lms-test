@@ -31,6 +31,11 @@ current task:
 - data charts
   - place arrow buttons on top right of card
   - figure out empty chart display?
+- it's probably time to do code refactoring
+  - css names
+  - organise img files
+  - organise directories
+  - react structure
 
 list of npm packages installed (other than the
 usual react stuff)
