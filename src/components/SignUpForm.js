@@ -6,7 +6,7 @@ import BG from "../resources/login/main-bg.png";
 import LoginRect from "../resources/login/signup-form-bg.svg";
 import Line from "../resources/login/Path 1.svg";
 import Logo from "../resources/login/Aztech logo 2020-WH.svg";
-import Button from "../resources/login/next-btn.png";
+import Button from "../resources/login/next-btn.svg";
 
 function SignUpForm(props)
 {
