@@ -36,6 +36,13 @@ const Notification = forwardRef((props, ref) =>
         }
     }));
 
+    useEffect(() => 
+    {    
+        document.addEventListener("mousedown", handleClickOutside);
+    
+        return () => {document.removeEventListener("mousedown", handleClickOutside);};
+    }, []);
+
     const handleClickOutside = e => 
     {
         if (node.current)
@@ -60,21 +67,10 @@ const Notification = forwardRef((props, ref) =>
         console.log("CHECK");
     }
 
-    useEffect(() => 
-    {    
-        document.addEventListener("mousedown", handleClickOutside);
-    
-        return () => {document.removeEventListener("mousedown", handleClickOutside);};
-    }, []);
-
     const openTemplate =
     (
         <div className = "dashboard-notification-dd">
-            <img 
-                alt = ""
-                src = {NotificationPoylgon}
-                className = "polygon"
-            ></img>
+            <img alt = "" src = {NotificationPoylgon} className = "polygon" ></img>
             {/* top of dropdown list (notification text) */}
             <div className = "top">
                 <h1>NOTIFICATIONS</h1>
