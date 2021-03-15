@@ -1,11 +1,11 @@
-import "../resources/css/loginsignup.css";
+import "../resources/css/login-signup-page.css";
 
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 import BG from "../resources/login/main-bg.png";
 import LoginRect from "../resources/login/signup-form-bg.svg";
-import Line from "../resources/login/Path 1.svg";
-import Logo from "../resources/login/Aztech logo 2020-WH.svg";
+import Line from "../resources/login/login-form-divider.svg";
+import Logo from "../resources/login/main-logo.svg";
 import Button from "../resources/login/next-btn.svg";
 
 function SignUpForm(props)
