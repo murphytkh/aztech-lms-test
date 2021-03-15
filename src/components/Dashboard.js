@@ -1,4 +1,4 @@
-import "../resources/css/dashboard.css";
+import "../resources/css/dashboard-landing.css";
 
 import React, {useState, useRef, useEffect} from "react";
 import {Route, HashRouter, useHistory, useLocation} from "react-router-dom";
@@ -40,6 +40,8 @@ import DashboardUserManagement from "./DashboardUserManagement";
 import DashboardAdd from "./DashboardAdd";
 import EditProfile from "./EditProfile";
 
+const arrowVar = ">";
+
 class NotificationObject
 {
     constructor(title, description, rectified)
@@ -72,8 +74,6 @@ function Dashboard(props)
     const lightDDRef = useRef();
 
     const notificationRef = useRef();
-
-    const arrowVar = ">";
 
     const [darkMode, setDarkMode] = useState(false);
     const [version, setVersion] = useState(null);
