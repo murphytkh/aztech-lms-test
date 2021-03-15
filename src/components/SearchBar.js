@@ -1,5 +1,7 @@
+import "../resources/css/searchbar.css";
+
 import React, {useState} from "react";
-import SearchIcon from "../resources/dashboard/search icon.svg";
+import SearchIcon from "../resources/dashboard/search-icon.svg";
 
 function SearchBar(props)
 {
@@ -12,12 +14,13 @@ function SearchBar(props)
     }
 
     return(
-        <div>
-            <img alt = "" src = {SearchIcon} className = "dashboard-page-header-searchiconimg"></img>
+        <div className = "searchbar">
+            {/* icon */}
+            <img alt = "" src = {SearchIcon}></img>
+            {/* input */}
             <input
                 type = "text"
                 id = "searchbar"
-                className = "dashboard-page-header-searchbar"
                 name = "search"
                 defaultValue = {search}
                 placeholder = "SEARCH"

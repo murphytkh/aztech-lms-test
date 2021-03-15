@@ -44,11 +44,11 @@ const arrowVar = ">";
 
 class NotificationObject
 {
-    constructor(title, description, rectified)
+    constructor(title, description, rectify)
     {
         this.title = title;
         this.description = description;
-        this.rectified = rectified;
+        this.rectify = rectify;
     }
 }
 
@@ -415,7 +415,6 @@ function Dashboard(props)
         </div>
     );
 
-
     const umPaths =
     (        
         <div className = "dashboard-page-header-paths">
@@ -545,7 +544,9 @@ function Dashboard(props)
     }
 
     return(
-        <div className = "dashboard-page" style = {editProfile ? {overflow: "hidden"} : {overflow: "overlay"}}>
+        // enable/disable scrollbar
+        <div className = "dashboard" style = {editProfile ? {overflow: "hidden"} : {overflow: "overlay"}}>
+            {/* edit profile popup */}
             {editProfile && 
                 <EditProfile
                     setEditProfile = {setEditProfileHelper}
@@ -554,10 +555,15 @@ function Dashboard(props)
                     userTypes = {["Project Manager", "Operator", "Area Admin"]}
                 />
             }
-            <div className = "dashboard-page-header">
+            {/* page header */}
+            <div className = "header">
+                {/* search bar */}
                 <SearchBar handleSearch = {handleSearch}/>
+                {/* notification dropdown button */}
                 {alerts != null && <Notification ref = {notificationRef} notifications = {alerts}/>}
-                <div className = "dashboard-page-header-divider"></div>
+                {/* header divider */}
+                <div className = "divider"></div>
+                {/* user dropdown button */}
                 {currUser != null && userList != null && 
                 <UserDropdown 
                     currUser = {currUser} 
@@ -568,6 +574,7 @@ function Dashboard(props)
                     logout = {logout}
                 />}
             </div>
+            {/* sidebar */}
             <div className = "dashboard-page-sidebar">
                 {/* path buttons */}
                 {pathHelper()}

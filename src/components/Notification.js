@@ -1,11 +1,11 @@
 import "../resources/css/notification.css";
 
 import React, {useState, useEffect, useRef, useImperativeHandle, forwardRef} from "react";
-import NotificationIcon from "../resources/dashboard/Component 14 – 3(plain)@2x.png";
-import NotificationIconAlert from "../resources/dashboard/Component 14 – 3(no number)@2x.png"
-import NotificationPoylgon from "../resources/dashboard/polygon.png";
-import NotificationNotRectifiedIcon from "../resources/dashboard/icon-mateiral-perm-scan-wifi.png";
-import NotificationRectifiedIcon from "../resources/dashboard/icon-material-security.png";
+import DefaultIcon from "../resources/dashboard/notification-icon.png";
+import AlertIcon from "../resources/dashboard/notification-alert-icon.png";
+import NotificationPoylgon from "../resources/dashboard/notification-polygon.png";
+import ClearIcon from "../resources/dashboard/icon-security.svg";
+import RectifyIcon from "../resources/dashboard/icon-wifi.svg";
 
 const Notification = forwardRef((props, ref) =>
 {
@@ -13,36 +13,20 @@ const Notification = forwardRef((props, ref) =>
     const [notifications, setNotifications] = useState(props.notifications);
     const [isOpen, setIsOpen] = useState(false);
 
+    function placeholder() {}
+    
     const notificationsList = notifications.map(notif =>
-        <div key = {notif.title}>
-            {notif.rectified === "true" ?
-                <li>
-                    <img 
-                        alt = ""
-                        src = {NotificationNotRectifiedIcon}
-                        className = "dashboard-page-header-notification-dropdown-li-icon"
-                    ></img>
-                    <div className = "dashboard-page-header-notification-dropdown-li-title">{notif.title}</div>
-                    <div className = "dashboard-page-header-notification-dropdown-li-description">{notif.description}</div>
-                    <div 
-                        className =  "dashboard-page-header-notification-dropdown-li-button"
-                        onClick = {handleNotificationCheckButton}
-                    >CHECK</div>
-                </li> :
-                <li style={{backgroundColor: "#FF6A1B", border: "1px solid #FF6A1B"}}>
-                    <img 
-                        alt = ""
-                        src = {NotificationRectifiedIcon}
-                        className = "dashboard-page-header-notification-dropdown-li-icon"
-                    ></img>
-                    <div className = "dashboard-page-header-notification-dropdown-li-title">{notif.title}</div>
-                    <div className = "dashboard-page-header-notification-dropdown-li-description">{notif.description}</div>
-                    <div 
-                        className =  "dashboard-page-header-notification-dropdown-li-button"
-                    >RECTIFIED</div>
-                </li>
-            }
-        </div>
+        <li key = {notif.title} className = {notif.rectify === "true" ? "default" : "clear"}>
+            {/* icon */}
+            <img alt = "" src = {notif.rectify === "true" ? RectifyIcon : ClearIcon}></img>
+            {/* text */}
+            <h1>{notif.title}</h1>
+            <h2>{notif.description}</h2>
+            {/* button */}
+            <div className = "btn" onClick = {notif.rectify === "true" ? handleCheckButton : placeholder}>
+                {notif.rectify === "true" ? "CHECK" : "RECTIFIED"}
+            </div>
+        </li>
     );
 
     useImperativeHandle(ref, () => ({
@@ -66,12 +50,12 @@ const Notification = forwardRef((props, ref) =>
         setIsOpen(!isOpen);
     }
 
-    function handleNotificationClearButton()
+    function handleClearButton()
     {
         setNotifications([]);
     }
 
-    function handleNotificationCheckButton()
+    function handleCheckButton()
     {
         console.log("CHECK");
     }
@@ -85,48 +69,37 @@ const Notification = forwardRef((props, ref) =>
 
     const openTemplate =
     (
-        <div>
+        <div className = "dashboard-notification-dd">
             <img 
                 alt = ""
                 src = {NotificationPoylgon}
-                className = "dashboard-page-header-notification-polygon"
+                className = "polygon"
             ></img>
-            <div className = "dashboard-page-header-notification-toprect">
-                <h1 className = "dashboard-page-header-notification-text">NOTIFICATIONS</h1>
-                <div 
-                    className =  "dashboard-page-header-notification-clearbtn"
-                    onClick = {handleNotificationClearButton}
-                >CLEAR</div>
+            {/* top of dropdown list (notification text) */}
+            <div className = "top">
+                <h1>NOTIFICATIONS</h1>
+                <div className = "btn" onClick = {handleClearButton}>CLEAR</div>
             </div>
-            <div className = "dashboard-page-header-notification-dropdown-list">
-                <ul className = "dashboard-page-header-notification-dropdown-ul">
-                    {notificationsList}
-                </ul>
-            </div>
+            {/* list of items */}
+            <ul>
+                {notificationsList}
+            </ul>
         </div>
     );
 
     return(
         <div ref = {node}>
-            {notifications.length ?
-                <div className = "dashboard-page-header-notification">
-                    <img 
-                        alt = "" 
-                        src = {NotificationIconAlert} 
-                        className = "dashboard-page-header-notification-img"
-                        onClick = {handleNotificationClick}
-                    ></img>
-                    <div className = "dashboard-page-header-notification-number">{notifications.length}</div>
-                </div> :
-                <div className = "dashboard-page-header-notification">
-                    <img 
-                        alt = "" 
-                        src = {NotificationIcon} 
-                        className = "dashboard-page-header-notification-img"
-                        onClick = {handleNotificationClick}
-                    ></img>
-                </div>
-            }
+            {/* main button */}
+            <div className = "dashboard-notification">
+                <img
+                    alt = ""
+                    src = {notifications.length ? AlertIcon : DefaultIcon}
+                    onClick = {handleNotificationClick}
+                ></img>
+                {/* number of pending notifications */}
+                {notifications.length > 0 && <div className = "number">{notifications.length}</div>}
+            </div>
+            {/* dropdown */}
             {isOpen && openTemplate}
         </div>
     );
