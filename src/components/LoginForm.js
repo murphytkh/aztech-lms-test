@@ -2,11 +2,11 @@ import "../resources/css/loginsignup.css";
 
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
-import BG from "../resources/login/nastuh-abootalebi-284883-unsplash@2x.png";
-import LoginRect from "../resources/login/Rectangle 2@2x.png";
+import BG from "../resources/login/main-bg.png";
+import LoginRect from "../resources/login/login-form-bg.svg";
 import Line from "../resources/login/Path 1.svg";
 import Logo from "../resources/login/Aztech logo 2020-WH.svg";
-import Button from "../resources/login/NEXT button@2x.png";
+import Button from "../resources/login/next-btn.png";
 
 function LoginForm(props)
 {
@@ -61,7 +61,7 @@ function LoginForm(props)
                     By clicking on next, you acknowledge that you have read and accepted the Terms of Service and 
                     the Privacy Policy.
                 </h6>
-                
+
                 {/* inputs */}
                 <input
                     type = "text"

@@ -70,8 +70,6 @@ body, ul
     top: 10%;
 }
 
-/* ------------------ */
-
 /* input placeholders */
 
 ::placeholder /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -82,8 +80,6 @@ body, ul
     font-weight: 400;
     text-align: center;
 }
-
-/* ----------------- */
 
 /* --- login form -- */
 
@@ -139,7 +135,7 @@ body, ul
     color: #C6C6C6;
     font-size: max(0.85vw, 12.2px);
     font-weight: 500;
-    top: 79.2%;
+    top: 81.3%;
     left: 4.8%;
 }
 
@@ -148,7 +144,7 @@ body, ul
     color: #009BA7;
     font-size: max(0.85vw, 12.2px);
     font-weight: 600;
-    top: 81.8%;
+    top: 83.9%;
     left: 4.8%;
     cursor: pointer;
 }
@@ -165,7 +161,7 @@ body, ul
     font-size: max(0.76vw, 11px);
     font-weight: 400;
     text-align: center;
-    top: 91%;
+    top: 94.7%;
     left: 5%;
     width: 90%;
 }
@@ -175,7 +171,7 @@ body, ul
 .login-form .bg
 {
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 .login-form .logo
@@ -192,7 +188,7 @@ body, ul
 {
     position: absolute;
     opacity: 0.7;
-    top: 90%;
+    top: 93.9%;
     left: 0%;
     width: 100%;
     height: 1px;
@@ -210,28 +206,25 @@ body, ul
     font-size: max(1.05vw, 15.12px);
     font-weight: 400;
     text-align: center;
+    left: 50%;
+    width: 89%; 
+    height: 9%;
 }
 
 .login-form .input0
 {
     top: 49.6%;
-    left: 50%;
-    width: 89%;
-    height: 9%;
 }
 
 .login-form .input1
 {
     top: 61%;
-    left: 50%;
-    width: 89%;
-    height: 9%;
 }
 
 .login-form .btn
 {
     position: absolute;
-    top: 80%;
+    top: 82.1%;
     left: 63%;
     width: 32.5%;
     cursor: pointer;
@@ -241,8 +234,6 @@ body, ul
 {
     filter: brightness(120%);
 }
-
-/* ----------------- */
 
 /* -- signup form -- */
 
@@ -324,7 +315,7 @@ body, ul
     font-size: max(0.76vw, 11px);
     font-weight: 400;
     text-align: center;
-    top: 92%;
+    top: 91.7%;
     left: 5%;
     width: 90%;
 }
@@ -334,7 +325,7 @@ body, ul
 .signup-form .bg
 {
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 .signup-form .logo
@@ -369,30 +360,24 @@ body, ul
     font-size: max(1.05vw, 15.12px);
     font-weight: 400;
     text-align: center;
+    left: 50%;
+    width: 89%;
+    height: 8.045%;
 }
 
 .signup-form .input0
 {
     top: 46%;
-    left: 50%;
-    width: 89%;
-    height: 8.045%;
 }
 
 .signup-form .input1
 {
     top: 56.5%;
-    left: 50%;
-    width: 89%;
-    height: 8.045%;
 }
 
 .signup-form .input2
 {
     top: 67%;
-    left: 50%;
-    width: 89%;
-    height: 8.045%;
 }
 
 .signup-form .btn
@@ -408,5 +393,3 @@ body, ul
 {
     filter: brightness(120%);
 }
-
-/* ----------------- */
