@@ -450,38 +450,21 @@ function Dashboard(props)
         </div>
     );
 
-    //<div className = {(location.pathname === "/dashboard/view" && selectedBlock) ? ("dashboard-page-view-footer") :
-    //    (location.pathname === "/dashboard/config" ? "dashboard-page-config-footer" : "dashboard-page-footer") }>
-    //    <h1 className = "dashboard-page-footer-copyright">{copyright}</h1>
-    //    <h2 className = "dashboard-page-footer-privacy">{privacy}</h2>
-    //</div>
-
     function footerDisplayHelper()
     {
-        switch(location.pathname)
-        {
-            case("/dashboard/view"):
-                return (
-                    <div className = "dashboard-page-view-footer">
-                        <h1 className = "center">{copyright}</h1>
-                        <h1 className = "right">{privacy}</h1>
-                    </div>
-                );
-            case("/dashboard/config"):
-                return (
-                    <div className = "dashboard-page-config-footer">
-                        <h1 className = "center">{copyright}</h1>
-                        <h1 className = "right">{privacy}</h1>
-                    </div>
-                );
-            default:
-                return (
-                    <div className = "main-footer">
-                        <h1 className = "center">{copyright}</h1>
-                        <h1 className = "right">{privacy}</h1>
-                    </div>
-                );
-        }
+        var page = "main-footer";
+
+        if (location.pathname === "/dashboard/view")
+            page = "dashboard-page-view-footer";
+        else if (location.pathname === "/dashboard/config")
+            page = "dashboard-page-config-footer";
+
+        return(
+            <div className = {page}>
+                <h1 className = "center">{copyright}</h1>
+                <h1 className = "right">{privacy}</h1>
+            </div>
+        );
     }
 
     function setEditProfileHelper()
