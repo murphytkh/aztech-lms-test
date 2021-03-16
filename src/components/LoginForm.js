@@ -8,6 +8,10 @@ import Line from "../resources/login/login-form-divider.svg";
 import Logo from "../resources/login/main-logo.svg";
 import Button from "../resources/login/next-btn.svg";
 
+const copyright = "COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.";
+const privacy = "PRIVACY POLICY · TERMS & CONDITIONS";
+const agree = "By clicking on next, you acknowledge that you have read and accepted the Terms of Service and the Privacy Policy."
+
 function LoginForm(props)
 {
     const history = useHistory();
@@ -42,8 +46,8 @@ function LoginForm(props)
             <img alt = "" src = {BG} className = "main-bg"></img>
             {/* footer */}
             <div className = "main-footer">
-                <h1 className = "center">COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.</h1>
-                <h1 className = "right">PRIVACY POLICY · TERMS & CONDITIONS</h1>
+                <h1 className = "center">{copyright}</h1>
+                <h1 className = "right">{privacy}</h1>
             </div>
             {/* login form */}
             <div className = "login-form">
@@ -57,10 +61,7 @@ function LoginForm(props)
                 <h3>Lighting Management System (LMS)</h3>
                 <h4>FORGOT PASSWORD?</h4>
                 <h5 onClick = {handleForgotPW}>CHECK HERE</h5>
-                <h6>
-                    By clicking on next, you acknowledge that you have read and accepted the Terms of Service and 
-                    the Privacy Policy.
-                </h6>
+                <h6>{agree}</h6>
 
                 {/* inputs */}
                 <input

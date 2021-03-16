@@ -22,6 +22,23 @@
     bottom: -82%;
 }
 
+.dashboard-page-view-footer .center
+{
+    position: absolute;
+    text-align: center;
+    font: inherit;
+    width: 100%;
+    top: 10%;
+}
+
+.dashboard-page-view-footer .right
+{
+    position: absolute;
+    font: inherit;
+    left: 82%;
+    top: 10%;
+}
+
 .dashboard-page-view-exportbtn
 {
     font-family: "work sans", sans-serif;

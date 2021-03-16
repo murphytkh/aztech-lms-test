@@ -84,7 +84,7 @@
     top: 0%;
     left: 0%;
     width: 6.7%;
-    height: 99.8%;
+    height: 99.85%;
     
     transition-property: transform;
     transition-timing-function: cubic-bezier(.42, 0, .58, 1);
@@ -259,7 +259,7 @@
     margin-left: 12.1%;
 }
 
-.dashboard-page-selector-sgmapimg
+.dashboard .map
 {
     position: absolute;
     top: 17.5%;
@@ -272,7 +272,7 @@
 .dashboard-page-footer
 {
     position: absolute;
-    background: #F7F7F7 0% 0% no-repeat padding-box;
+    background: #F7F7F7;
     color: #6D6E71;
     font-size: max(0.7vw, 10.08px);
     font-weight: 500;

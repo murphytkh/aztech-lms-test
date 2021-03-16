@@ -75,7 +75,7 @@ function DashboardView(props)
                     ></img>
                 </div> :
                 <div>
-                    <img alt = "" src = {Map} className = "dashboard-page-selector-sgmapimg"></img>
+                    {props.location && <img alt = "" src = {Map} className = "map"></img>}
                 </div>
             }
         </div>

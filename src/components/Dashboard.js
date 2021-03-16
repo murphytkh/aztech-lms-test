@@ -41,6 +41,8 @@ import DashboardAdd from "./DashboardAdd";
 import EditProfile from "./EditProfile";
 
 const arrowVar = ">";
+const copyright = "COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.";
+const privacy = "PRIVACY POLICY · TERMS & CONDITIONS";
 
 class NotificationObject
 {
@@ -375,37 +377,49 @@ function Dashboard(props)
         </div>
     );
 
+    {/* selector helper blocks */}
+    const locationDropdown =
+    (
+        <SelectorDropdown 
+            ref = {locationDDRef}
+            title = "LOCATION"
+            options = {["SINGAPORE"]}
+            initial = {selectedLocation}
+            selectOption = {setSelectedLocationHelper}
+        ></SelectorDropdown>
+    );
+
+    const areaDropdown =
+    (
+        <SelectorDropdown
+            ref = {areaDDRef}
+            title = "AREA"
+            options = {["GEYLANG"]}
+            initial = {selectedArea}
+            selectOption = {setSelectedAreaHelper}
+        ></SelectorDropdown>
+    );
+
+    const blockDropdown =
+    (
+        <SelectorDropdown
+            ref = {blockDDRef}
+            title = "BLOCK"
+            options = {["Office_Lights"]}
+            initial = {selectedBlock}
+            selectOption = {setSelectedBlockHelper}
+        ></SelectorDropdown>
+    );
+
     {/* selector dropdown templates */}
     const defaultTemplate =
     (
         <div className = "dropdown-container">
-            <SelectorDropdown 
-                ref = {locationDDRef}
-                title = "LOCATION"
-                options = {["SINGAPORE"]}
-                initial = {selectedLocation}
-                selectOption = {setSelectedLocationHelper}
-            ></SelectorDropdown>
-            {selectedLocation && 
-                <SelectorDropdown
-                    ref = {areaDDRef}
-                    title = "AREA"
-                    options = {["GEYLANG"]}
-                    initial = {selectedArea}
-                    selectOption = {setSelectedAreaHelper}
-                ></SelectorDropdown>
-            }
-            {selectedLocation && selectedArea &&
-                <SelectorDropdown
-                    ref = {blockDDRef}
-                    title = "BLOCK"
-                    options = {["Office_Lights"]}
-                    initial = {selectedBlock}
-                    selectOption = {setSelectedBlockHelper}
-                ></SelectorDropdown>
-            }
+            {locationDropdown}
+            {selectedLocation && areaDropdown}
+            {selectedLocation && selectedArea && blockDropdown}
             {location.pathname === "/dashboard" && selectedLocation &&
-                <img alt = "" src = {Map} className = "dashboard-page-selector-sgmapimg"></img>
+                <img alt = "" src = {Map} className = "map"></img>
             }
         </div>
     );
@@ -413,22 +427,8 @@ function Dashboard(props)
     const configTemplate =
     (
         <div className = "dropdown-container">
-            <SelectorDropdown 
-                ref = {areaDDRef}
-                title = "AREA"
-                options = {["GEYLANG"]}
-                initial = {selectedArea}
-                selectOption = {setSelectedAreaHelper}
-            ></SelectorDropdown>
-            {selectedArea &&
-                <SelectorDropdown
-                    ref = {blockDDRef}
-                    title = "BLOCK(S)"
-                    options = {["Office_Lights"]}
-                    initial = {selectedBlock}
-                    selectOption = {setSelectedBlockHelper}
-                ></SelectorDropdown>
-            }
+            {areaDropdown}
+            {selectedArea && blockDropdown}
             {selectedArea && selectedBlock &&
                 <SelectorDropdown
                     ref = {levelDDRef}
@@ -449,6 +449,40 @@ function Dashboard(props)
             }
         </div>
     );
+
+    //<div className = {(location.pathname === "/dashboard/view" && selectedBlock) ? ("dashboard-page-view-footer") :
+    //    (location.pathname === "/dashboard/config" ? "dashboard-page-config-footer" : "dashboard-page-footer") }>
+    //    <h1 className = "dashboard-page-footer-copyright">{copyright}</h1>
+    //    <h2 className = "dashboard-page-footer-privacy">{privacy}</h2>
+    //</div>
+
+    function footerDisplayHelper()
+    {
+        switch(location.pathname)
+        {
+            case("/dashboard/view"):
+                return (
+                    <div className = "dashboard-page-view-footer">
+                        <h1 className = "center">{copyright}</h1>
+                        <h1 className = "right">{privacy}</h1>
+                    </div>
+                );
+            case("/dashboard/config"):
+                return (
+                    <div className = "dashboard-page-config-footer">
+                        <h1 className = "center">{copyright}</h1>
+                        <h1 className = "right">{privacy}</h1>
+                    </div>
+                );
+            default:
+                return (
+                    <div className = "main-footer">
+                        <h1 className = "center">{copyright}</h1>
+                        <h1 className = "right">{privacy}</h1>
+                    </div>
+                );
+        }
+    }
 
     function setEditProfileHelper()
     {
@@ -572,19 +606,15 @@ function Dashboard(props)
             {/* default, non-config page */}
             {(location.pathname !== "/dashboard/config" && 
               location.pathname !== "/dashboard/photosensor" && 
-              location.pathname !== "/dashboard/datacharts") 
-            && defaultTemplate}
+              location.pathname !== "/dashboard/datacharts") && 
+              defaultTemplate}
             {/* config, photosensor datacharts */}
             {(location.pathname === "/dashboard/config" || 
               location.pathname === "/dashboard/photosensor" || 
-              location.pathname === "/dashboard/datacharts")
-             && configTemplate}
+              location.pathname === "/dashboard/datacharts") && 
+              configTemplate}
             {/* footer */}
-            <div className = {(location.pathname === "/dashboard/view" && selectedBlock) ? ("dashboard-page-view-footer") :
-                                (location.pathname === "/dashboard/config" ? "dashboard-page-config-footer" : "dashboard-page-footer") }>
-                <h1 className = "dashboard-page-footer-copyright">COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.</h1>
-                <h2 className = "dashboard-page-footer-privacy">PRIVACY POLICY · TERMS & CONDITIONS</h2>
-            </div>
+            {footerDisplayHelper()}
             {/* routing and passing of data to children */}
             <HashRouter>
                 <Route 
