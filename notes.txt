@@ -40,6 +40,8 @@ current task:
   - status: - cleaning sidebar now
             - redo sidebar icons by rendering
               the bg separately?
+            - figure out efficient way to pass
+              all data at once (for routes)
 
 list of npm packages installed (other than the
 usual react stuff)
