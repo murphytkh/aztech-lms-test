@@ -2,6 +2,7 @@ import "../resources/css/main-login.css";
 
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
+
 import BG from "../resources/login/main-bg.png";
 import LoginRect from "../resources/login/login-form-bg.svg";
 import Line from "../resources/login/login-form-divider.svg";

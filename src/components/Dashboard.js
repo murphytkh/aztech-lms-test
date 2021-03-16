@@ -4,34 +4,15 @@ import React, {useState, useRef, useEffect} from "react";
 import {Route, HashRouter, useHistory, useLocation} from "react-router-dom";
 
 import Map from "../resources/dashboard/map@2x.png";
-import SidebarLogo from "../resources/dashboard/Aztech logo 2020.svg";
-import SidebarToggleButton from "../resources/dashboard/menu_icon.svg";
-
-import DashboardIcon from "../resources/dashboard/icon-dashboard.svg";
-import DashboardSelectedIcon from "../resources/dashboard/icon-dashboard-selected.svg";
-import ConfigIcon from "../resources/dashboard/icon-config.svg";
-import ConfigSelectedIcon from "../resources/dashboard/icon-config-selected.svg";
-import PhotosensorIcon from "../resources/dashboard/icon-photosensor.svg";
-import PhotosensorSelectedIcon from "../resources/dashboard/icon-photosensor-selected.svg";
-import DatachartsIcon from "../resources/dashboard/icon-datacharts.svg";
-import DatachartsSelectedIcon from "../resources/dashboard/icon-datacharts-selected.svg";
-import LightCycleIcon from "../resources/dashboard/icon-lightcycle.svg";
-import LightCycleSelectedIcon from "../resources/dashboard/icon-lightcycle-selected.svg";
-import UsersIcon from "../resources/dashboard/icon-users.svg";
-import UsersSelectedIcon from "../resources/dashboard/icon-users-selected.svg";
-import LibraryAddIcon from "../resources/dashboard/icon-add.svg";
-import LibraryAddSelectedIcon from "../resources/dashboard/icon-add-selected.svg";
 
 import AdminProfile from "../resources/dashboard/office-admin-profile.png";
 import DefaultUser from "../resources/dashboard/icon-userdropdown-default.svg";
 
-import Timestamp from "./Timestamp";
 import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
 import UserDropdown from "./UserDropdown";
 import Sidebar from "./Sidebar";
-import SidebarIcon from "./SidebarIcon";
 import DashboardView from "./DashboardView";
 import DashboardConfig from "./DashboardConfig";
 import DashboardPhotosensor from "./DashboardPhotosensor";
@@ -78,7 +59,6 @@ function Dashboard(props)
 
     const notificationRef = useRef();
 
-    const [darkMode, setDarkMode] = useState(false);
     const [version, setVersion] = useState(null);
     const [alerts, setAlerts] = useState(null);
     const [currUser, setCurrUser] = useState(null);
@@ -93,6 +73,8 @@ function Dashboard(props)
 
     // bool for displaying edit profile
     const [editProfile, setEditProfile] = useState(false);
+
+    const [darkMode, setDarkMode] = useState(false);
 
     // simulate getting data
     useEffect(() =>
@@ -120,16 +102,6 @@ function Dashboard(props)
     {
         if(location.pathname !== path)
             history.push(path);
-    }
-
-    function sidebarToggle()
-    {
-        var sb = document.getElementsByClassName("sidebar");
-
-        if (sb[0].style.transform === "translate3d(-100%, 0px, 0px)")
-            sb[0].style.transform = "translate3d(0%, 0px, 0px)";
-        else
-            sb[0].style.transform = "translate3d(-100%, 0px, 0px)";
     }
 
     function handleDashboardButton()
@@ -256,23 +228,6 @@ function Dashboard(props)
     function logout()
     {
         history.push("/login");
-    }
-
-    function handleSidebarButton(path)
-    {
-        goToPath(path);
-    }
-
-    function handleSidebarDarkModeToggle()
-    {
-        setDarkMode(!darkMode);
-
-        var dm = document.getElementsByClassName("dashboard-page-sidebar-icon-darkmode-circle");
-
-        if (dm[0].style.transform === "translate(70%, -35%)")
-            dm[0].style.transform = "translate(-25%, -35%)";
-        else
-            dm[0].style.transform = "translate(70%, -35%)";
     }
 
     function handleConfigCancel()
@@ -455,7 +410,7 @@ function Dashboard(props)
     {
         var page = "main-footer";
 
-        if (location.pathname === "/dashboard/view")
+        if (location.pathname === "/dashboard/view" && selectedBlock)
             page = "dashboard-page-view-footer";
         else if (location.pathname === "/dashboard/config")
             page = "dashboard-page-config-footer";
@@ -505,85 +460,12 @@ function Dashboard(props)
                 />}
             </div>
             {/* sidebar */}
-            <Sidebar pathHelper = {pathHelper}></Sidebar>
-            <div className = "sidebar">
-                {/* path buttons */}
-                {pathHelper()}
-                {/* sidebar toggle button */}
-                <button 
-                    onClick = {sidebarToggle} 
-                    className = "toggle">
-                    <img alt = "" src = {SidebarToggleButton} ></img>
-                </button>
-                {/* logo */}
-                <img alt = "" src = {SidebarLogo} className = "logo"></img>
-                {/* sidebar buttons */}
-                <div className = "icon-container">
-                    <SidebarIcon 
-                        onClick = {handleSidebarButton}
-                        path = "/dashboard/view" 
-                        icon = {DashboardIcon} 
-                        selectedicon = {DashboardSelectedIcon} 
-                        tooltip = "Dashboard"
-                    ></SidebarIcon>
-                    <SidebarIcon 
-                        onClick = {handleSidebarButton} 
-                        path = "/dashboard/config" 
-                        icon = {ConfigIcon}
-                        selectedicon = {ConfigSelectedIcon}
-                        tooltip = "Configuration"
-                    ></SidebarIcon>
-                    <SidebarIcon 
-                        onClick = {handleSidebarButton} 
-                        path = "/dashboard/photosensor" 
-                        icon = {PhotosensorIcon}
-                        selectedicon = {PhotosensorSelectedIcon}
-                        tooltip = "Photosensor"
-                    ></SidebarIcon>
-                    <SidebarIcon 
-                        onClick = {handleSidebarButton} 
-                        path = "/dashboard/datacharts" 
-                        icon = {DatachartsIcon}
-                        selectedicon = {DatachartsSelectedIcon} 
-                        tooltip = "Data charts"
-                    ></SidebarIcon>
-                    <SidebarIcon 
-                        onClick = {handleSidebarButton} 
-                        path = "/dashboard/lightcycle" 
-                        icon = {LightCycleIcon}
-                        selectedicon = {LightCycleSelectedIcon} 
-                        tooltip = "LightCycle"
-                    ></SidebarIcon>
-                    <SidebarIcon 
-                        onClick = {handleSidebarButton} 
-                        path = "/dashboard/usermanagement" 
-                        icon = {UsersIcon}
-                        selectedicon = {UsersSelectedIcon} 
-                        tooltip = "Users"
-                    ></SidebarIcon>
-                    <SidebarIcon 
-                        onClick = {handleSidebarButton} 
-                        path = "/dashboard/add" 
-                        icon = {LibraryAddIcon}
-                        selectedicon = {LibraryAddSelectedIcon}
-                        tooltip = "Add"
-                    ></SidebarIcon>
-                    {/* dark mode toggle button */}
-                    <div
-                        title = "Dark Mode"
-                        className = "dashboard-page-sidebar-darkmode-container"
-                        onClick = {handleSidebarDarkModeToggle}
-                    >
-                        <div className = "dashboard-page-sidebar-icon-darkmode-circle"></div>
-                    </div>
-                </div>
-                {/* bottom text */}
-                <div className = "dashboard-page-sidebar-bottomtext">
-                    <Timestamp />
-                    {version != null && 
-                    <h1 className = "dashboard-page-sidebar-bottomtext-versiontext">VER {version}</h1>}
-                </div>
-            </div>
+            <Sidebar 
+                pathHelper = {pathHelper} 
+                version = {version} 
+                darkMode = {darkMode}
+                setDarkMode = {setDarkMode}
+            ></Sidebar>
             {/* default, non-config page */}
             {(location.pathname !== "/dashboard/config" && 
               location.pathname !== "/dashboard/photosensor" && 
