@@ -37,8 +37,9 @@ current task:
   - organise directories
   - react structure
 - code refactoring progress
-  - status: - just finished search and notification
-            - cleaning sidebar now
+  - status: - cleaning sidebar now
+            - redo sidebar icons by rendering
+              the bg separately?
 
 list of npm packages installed (other than the
 usual react stuff)

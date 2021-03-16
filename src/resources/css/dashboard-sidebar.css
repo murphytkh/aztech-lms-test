@@ -1,0 +1,37 @@
+.sidebar .icon
+{
+    margin-top: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35.4%;
+    height: 5.4%;
+
+    transition: inherit;
+    cursor: pointer;
+}
+
+.sidebar .icon:hover
+{
+    transform: scale(1.2);
+}
+
+.sidebar .icon img
+{
+    z-index: 1;
+    position: relative;
+    height: auto;
+}
+
+.sidebar .icon .default
+{
+    top: 18%;
+    left: 15%;
+    width: 70%;
+}
+
+.sidebar .icon .active
+{
+    top: 2%;
+    left: -2%;
+    width: 99%;
+}

@@ -1,3 +1,5 @@
+import "../resources/css/dashboard-sidebar.css";
+
 import React from "react";
 import {useLocation} from "react-router-dom";
 
@@ -13,11 +15,12 @@ function SidebarIcon(props)
     return(
         <div
             title = {props.tooltip}
-            className = "dashboard-page-sidebar-icon"
-            onClick = {handleClick}>
+            className = "icon"
+            onClick = {handleClick}
+        >
             {location.pathname === props.path ?
-            <img alt = "" src = {props.selectedicon} className = "dashboard-page-sidebar-icon-selected"></img> :
-            <img alt = "" src = {props.icon} className = "dashboard-page-sidebar-icon-image"></img>}
+            <img alt = "" src = {props.selectedicon} className = "active"></img> :
+            <img alt = "" src = {props.icon} className = "default"></img>}
         </div>
     );
 }

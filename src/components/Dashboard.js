@@ -30,6 +30,7 @@ import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
 import UserDropdown from "./UserDropdown";
+import Sidebar from "./Sidebar";
 import SidebarIcon from "./SidebarIcon";
 import DashboardView from "./DashboardView";
 import DashboardConfig from "./DashboardConfig";
@@ -504,23 +505,20 @@ function Dashboard(props)
                 />}
             </div>
             {/* sidebar */}
+            <Sidebar pathHelper = {pathHelper}></Sidebar>
             <div className = "sidebar">
                 {/* path buttons */}
                 {pathHelper()}
                 {/* sidebar toggle button */}
                 <button 
                     onClick = {sidebarToggle} 
-                    className = "dashboard-page-sidebar-togglebtn">
-                    <img
-                        alt = ""
-                        src = {SidebarToggleButton} 
-                        className = "dashboard-page-sidebar-togglebtnimg">
-                    </img>
+                    className = "toggle">
+                    <img alt = "" src = {SidebarToggleButton} ></img>
                 </button>
                 {/* logo */}
-                <img alt = "" src = {SidebarLogo} className = "dashboard-page-sidebar-logo"></img>
+                <img alt = "" src = {SidebarLogo} className = "logo"></img>
                 {/* sidebar buttons */}
-                <div className = "dashboard-page-sidebar-icon-container">
+                <div className = "icon-container">
                     <SidebarIcon 
                         onClick = {handleSidebarButton}
                         path = "/dashboard/view" 
