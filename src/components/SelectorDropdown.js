@@ -1,10 +1,10 @@
-import "../resources/css/dashboarddropdown.css";
+import "../resources/css/selector-dropdown.css";
 
 import React, {useState, useEffect, useRef, useImperativeHandle, forwardRef} from "react";
-import DownArrow from "../resources/dashboard/chevron-down-outline.png";
-import UpArrow from "../resources/dashboard/chevron-up-outline.png";
+import DownArrow from "../resources/dashboard/icon-dropdown-down.svg";
+import UpArrow from "../resources/dashboard/icon-dropdown-up.svg";
 
-const Dropdown = forwardRef((props, ref) =>
+const SelectorDropdown = forwardRef((props, ref) =>
 {
     const node = useRef();
     const [choice, setChoice] = useState(props.initial);
@@ -49,31 +49,14 @@ const Dropdown = forwardRef((props, ref) =>
         return () => {document.removeEventListener("mousedown", handleClickOutside);};
     }, []);
 
-    const openMenuTemplate =
-    (
-        <div className = "dashboard-page-dropdown-list">
-            <ul className = "dashboard-page-dropdown-ul">
-                {optionsList}
-            </ul>
-        </div>
-    );
-
     return(
-        <div ref = {node} className = "dashboard-page-dropdown" onClick = {handleDropdownClick}>
-            <h1 className = "dashboard-page-dropdown-titletext">
-                {props.title}
-            </h1>
-            <h1 className = "dashboard-page-dropdown-choicetext">
-                {choice}
-            </h1>
-            <img 
-                alt = ""
-                src = {isOpen ? UpArrow : DownArrow} 
-                className = "dashboard-page-dropdown-arrow">
-            </img>
-            {isOpen && openMenuTemplate}
+        <div ref = {node} className = "selector-container" onClick = {handleDropdownClick}>
+            <h1 className = "title">{props.title}</h1>
+            <h1 className = "choice">{choice}</h1>
+            <img  alt = ""src = {isOpen ? UpArrow : DownArrow} className = "arrow"></img>
+            {isOpen && <ul>{optionsList}</ul>}
         </div>
     );
 })
 
-export default Dropdown;
+export default SelectorDropdown;

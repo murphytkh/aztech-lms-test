@@ -1,4 +1,4 @@
-import "../resources/css/login-signup.css";
+import "../resources/css/main-login.css";
 
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";

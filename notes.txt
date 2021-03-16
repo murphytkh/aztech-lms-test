@@ -37,10 +37,8 @@ current task:
   - organise directories
   - react structure
 - code refactoring progress
-  - currently almost done with login page
-  - stop after login and signup
-    - have to reorganise assets as well
-      (leave this for later)
+  - status: - just finished search and notification
+            - cleaning sidebar now
 
 list of npm packages installed (other than the
 usual react stuff)

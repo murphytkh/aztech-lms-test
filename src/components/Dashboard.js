@@ -26,7 +26,7 @@ import AdminProfile from "../resources/dashboard/office-admin-profile.png";
 import DefaultUser from "../resources/dashboard/icon-userdropdown-default.svg";
 
 import Timestamp from "./Timestamp";
-import Dropdown from "./Dropdown";
+import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
 import UserDropdown from "./UserDropdown";
@@ -121,7 +121,7 @@ function Dashboard(props)
 
     function sidebarToggle()
     {
-        var sb = document.getElementsByClassName("dashboard-page-sidebar");
+        var sb = document.getElementsByClassName("sidebar");
 
         if (sb[0].style.transform === "translate3d(-100%, 0px, 0px)")
             sb[0].style.transform = "translate3d(0%, 0px, 0px)";
@@ -277,249 +277,40 @@ function Dashboard(props)
         goToPath("/dashboard/view");
     }
 
-    const defaultPaths =
+    {/* path helper blocks */}
+
+    const showLocation =
     (
-        <div className = "dashboard-page-header-paths">
-            <div className = "dashboard-page-header-dashboardtext"
-                 onClick = {handleDashboardButton}>
-                DASHBOARD
-            </div>
-            {selectedLocation &&
-                <span>
-                    <span className = "dashboard-page-header-patharrows">
-                        {arrowVar}
-                    </span>
-                    <div className = {!selectedArea ? "dashboard-page-header-buttontext-selected" :
-                                        "dashboard-page-header-buttontext"}
-                         onClick = {handleLocationButton}>
-                         {selectedLocation}
-                    </div>
-                </span>
-            }
-            {selectedArea &&
-                <span>
-                    <span className = "dashboard-page-header-patharrows">
-                        {arrowVar}
-                    </span>
-                    <div className = {!selectedBlock ? "dashboard-page-header-buttontext-selected" :
-                                        "dashboard-page-header-buttontext"}
-                         onClick = {handleAreaButton}>
-                        {selectedArea}
-                    </div>
-                </span>
-            }
-            {selectedBlock &&
-                <span>
-                    <span className = "dashboard-page-header-patharrows">
-                        {arrowVar}
-                    </span>
-                    <div className = "dashboard-page-header-buttontext-selected"
-                         onClick = {handleBlockButton}>
-                        {selectedBlock.toUpperCase()}
-                    </div>
-                </span>
-            }
-        </div>
+        <span>
+            <h1 className = "arrow">{arrowVar}</h1>
+            <h1 onClick = {handleLocationButton}>{selectedLocation}</h1>
+        </span>
     );
 
-    const configPaths =
+    const showArea =
+    (   <span>
+            <h1 className = "arrow">{arrowVar}</h1>
+            <h1 onClick = {handleAreaButton}>{selectedArea}</h1>
+        </span>
+    )
+
+    const showBlock =
     (
-        <div className = "dashboard-page-header-paths">
-            <div className = "dashboard-page-header-dashboardtext">
-                CONFIGURATIONS
-            </div>
-            {selectedArea &&
-                <span>
-                    <span className = "dashboard-page-header-patharrows">
-                        {arrowVar}
-                    </span>
-                    <div className = {!selectedArea ? "dashboard-page-header-buttontext-selected" :
-                                        "dashboard-page-header-buttontext"}>
-                         {selectedArea}
-                    </div>
-                </span>
-            }
-            {selectedArea &&
-                <span>
-                    <span className = "dashboard-page-header-patharrows">
-                        {arrowVar}
-                    </span>
-                    <div className = {!selectedArea ? "dashboard-page-header-buttontext" : 
-                                        "dashboard-page-header-buttontext-selected"}>
-                         GENERAL
-                    </div>
-                </span>
-            }
-        </div>
+        <span>
+            <h1 className = "arrow">{arrowVar}</h1>
+            <h1 onClick = {handleBlockButton}>{selectedBlock.toUpperCase()}</h1>
+        </span>
     );
 
-    const photosensorPaths =
-    (
-        <div className = "dashboard-page-header-paths">
-            <div className = "dashboard-page-header-dashboardtext">
-                CONFIGURATIONS
-            </div>
-            {selectedArea &&
-                <span>
-                    <span className = "dashboard-page-header-patharrows">
-                        {arrowVar}
-                    </span>
-                    <div className = {!selectedArea ? "dashboard-page-header-buttontext-selected" :
-                                        "dashboard-page-header-buttontext"}>
-                         {selectedArea}
-                    </div>
-                </span>
-            }
-            {selectedArea &&
-                <span>
-                    <span className = "dashboard-page-header-patharrows">
-                        {arrowVar}
-                    </span>
-                    <div className = {!selectedArea ? "dashboard-page-header-buttontext" : 
-                                        "dashboard-page-header-buttontext-selected"}>
-                         PHOTOSENSOR
-                    </div>
-                </span>
-            }
-        </div>
-    );
-
-    const datachartsPaths =
-    (
-        <div className = "dashboard-page-header-paths">
-            <div className = "dashboard-page-header-dashboardtext">
-                DATA CHARTS
-            </div>
-            {selectedArea &&
-                <span>
-                    <span className = "dashboard-page-header-patharrows">
-                        {arrowVar}
-                    </span>
-                    <div className = {!selectedArea ? "dashboard-page-header-buttontext-selected" :
-                                        "dashboard-page-header-buttontext"}>
-                         ENERGY CONSUMPTION
-                    </div>
-                </span>
-            }
-            {selectedArea &&
-                <span>
-                    <span className = "dashboard-page-header-patharrows">
-                        {arrowVar}
-                    </span>
-                    <div className = {!selectedArea ? "dashboard-page-header-buttontext" : 
-                                        "dashboard-page-header-buttontext-selected"}>
-                         MOTION DETECTION
-                    </div>
-                </span>
-            }
-        </div>
-    );
-
-    const umPaths =
-    (        
-        <div className = "dashboard-page-header-paths">
-            <div className = "dashboard-page-header-dashboardtext"
-                 onClick = {handleDashboardButton}>
-                DASHBOARD
-            </div>
+    function showText(text)
+    {
+        return(
             <span>
-                <span className = "dashboard-page-header-patharrows">
-                    {arrowVar}
-                </span>
-                <div className = "dashboard-page-header-buttontext-selected">
-                     USER MANAGEMENT
-                </div>
+                <h1 className = "arrow">{arrowVar}</h1>
+                <h1>{text}</h1>
             </span>
-        </div>
-    );
-
-    const defaultTemplate =
-    (
-        <div className = "dashboard-page-selector">
-            <div className = "dashboard-page-selector-0" style = {{zIndex: 10}}>
-                <Dropdown 
-                    ref = {locationDDRef}
-                    title = "LOCATION"
-                    options = {["SINGAPORE"]}
-                    initial = {selectedLocation}
-                    selectOption = {setSelectedLocationHelper}
-                ></Dropdown>
-            </div>
-            {selectedLocation && 
-                <div className = "dashboard-page-selector-1" style = {{zIndex: 10}}>
-                    <Dropdown
-                        ref = {areaDDRef}
-                        title = "AREA"
-                        options = {["GEYLANG"]}
-                        initial = {selectedArea}
-                        selectOption = {setSelectedAreaHelper}
-                    ></Dropdown>
-                </div>
-            }
-            {selectedLocation && selectedArea &&
-                <div className = "dashboard-page-selector-2" style = {{zIndex: 10}}>
-                    <Dropdown
-                        ref = {blockDDRef}
-                        title = "BLOCK"
-                        options = {["Office_Lights"]}
-                        initial = {selectedBlock}
-                        selectOption = {setSelectedBlockHelper}
-                    ></Dropdown>
-                </div>
-            }
-            {location.pathname === "/dashboard" && selectedLocation &&
-                <img alt = "" src = {Map} className = "dashboard-page-selector-sgmapimg"></img>
-            }
-        </div>
-    );
-
-    const configTemplate =
-    (
-        <div className = "dashboard-page-selector">
-            <div className = "dashboard-page-selector-0" style = {{zIndex: 10}}>
-                <Dropdown 
-                    ref = {areaDDRef}
-                    title = "AREA"
-                    options = {["GEYLANG"]}
-                    initial = {selectedArea}
-                    selectOption = {setSelectedAreaHelper}
-                ></Dropdown>
-            </div>
-            {selectedArea &&
-                <div className = "dashboard-page-selector-1" style = {{zIndex: 10}}>
-                    <Dropdown
-                        ref = {blockDDRef}
-                        title = "BLOCK(S)"
-                        options = {["Office_Lights"]}
-                        initial = {selectedBlock}
-                        selectOption = {setSelectedBlockHelper}
-                    ></Dropdown>
-                </div>
-            }
-            {selectedArea && selectedBlock &&
-                <div className = "dashboard-page-selector-2" style = {{zIndex: 10}}>
-                    <Dropdown
-                        ref = {levelDDRef}
-                        title = "LEVEL"
-                        options = {["ALL SELECTED"]}
-                        initial = {selectedLevel}
-                        selectOption = {setSelectedLevelHelper}
-                    ></Dropdown>
-                </div>
-            }
-            {selectedArea && selectedBlock && selectedLevel &&
-                <div className = "dashboard-page-selector-3" style = {{zIndex: 10}}>
-                    <Dropdown
-                        ref = {lightDDRef}
-                        title = "LIGHT(S)"
-                        options = {["ALL SELECTED"]}
-                        initial = {selectedLight}
-                        selectOption = {setSelectedLightHelper}
-                    ></Dropdown>
-                </div>
-            }
-        </div>
-    );
+        );
+    }
 
     function pathHelper()
     {
@@ -537,6 +328,127 @@ function Dashboard(props)
                 return defaultPaths;
         }
     }
+
+    {/* header paths */}
+    const defaultPaths =
+    (
+        <div className = "path-container">
+            <h1 className = "left" onClick = {handleDashboardButton}>DASHBOARD</h1>
+            {selectedLocation && showLocation}
+            {selectedArea && showArea}
+            {selectedBlock && showBlock}
+        </div>
+    );
+
+    const configPaths =
+    (
+        <div className = "path-container">
+            <h1 className = "left">CONFIGURATIONS</h1>
+            {selectedArea && showArea}
+            {selectedArea && showText("GENERAL")}
+        </div>
+    );
+
+    const photosensorPaths =
+    (
+        <div className = "path-container">
+            <h1 className = "left">CONFIGURATIONS</h1>
+            {selectedArea && showArea}
+            {selectedArea && showText("PHOTOSENSOR")}
+        </div>
+    );
+
+    const datachartsPaths =
+    (
+        <div className = "path-container">
+            <h1 className = "left">DATA CHARTS</h1>
+            {selectedArea && showText("ENERGY CONSUMPTION")}
+            {selectedArea && showText("MOTION DETECTION")}
+        </div>
+    );
+
+    const umPaths =
+    (        
+        <div className = "path-container">
+            <h1 className = "left" onClick = {handleDashboardButton}>DASHBOARD</h1>
+            {selectedArea && showText("USER MANAGEMENT")}
+        </div>
+    );
+
+    {/* selector dropdown templates */}
+    const defaultTemplate =
+    (
+        <div className = "dropdown-container">
+            <SelectorDropdown 
+                ref = {locationDDRef}
+                title = "LOCATION"
+                options = {["SINGAPORE"]}
+                initial = {selectedLocation}
+                selectOption = {setSelectedLocationHelper}
+            ></SelectorDropdown>
+            {selectedLocation && 
+                <SelectorDropdown
+                    ref = {areaDDRef}
+                    title = "AREA"
+                    options = {["GEYLANG"]}
+                    initial = {selectedArea}
+                    selectOption = {setSelectedAreaHelper}
+                ></SelectorDropdown>
+            }
+            {selectedLocation && selectedArea &&
+                <SelectorDropdown
+                    ref = {blockDDRef}
+                    title = "BLOCK"
+                    options = {["Office_Lights"]}
+                    initial = {selectedBlock}
+                    selectOption = {setSelectedBlockHelper}
+                ></SelectorDropdown>
+            }
+            {location.pathname === "/dashboard" && selectedLocation &&
+                <img alt = "" src = {Map} className = "dashboard-page-selector-sgmapimg"></img>
+            }
+        </div>
+    );
+
+    const configTemplate =
+    (
+        <div className = "dropdown-container">
+            <SelectorDropdown 
+                ref = {areaDDRef}
+                title = "AREA"
+                options = {["GEYLANG"]}
+                initial = {selectedArea}
+                selectOption = {setSelectedAreaHelper}
+            ></SelectorDropdown>
+            {selectedArea &&
+                <SelectorDropdown
+                    ref = {blockDDRef}
+                    title = "BLOCK(S)"
+                    options = {["Office_Lights"]}
+                    initial = {selectedBlock}
+                    selectOption = {setSelectedBlockHelper}
+                ></SelectorDropdown>
+            }
+            {selectedArea && selectedBlock &&
+                <SelectorDropdown
+                    ref = {levelDDRef}
+                    title = "LEVEL"
+                    options = {["ALL SELECTED"]}
+                    initial = {selectedLevel}
+                    selectOption = {setSelectedLevelHelper}
+                ></SelectorDropdown>
+            }
+            {selectedArea && selectedBlock && selectedLevel &&
+                <SelectorDropdown
+                    ref = {lightDDRef}
+                    title = "LIGHT(S)"
+                    options = {["ALL SELECTED"]}
+                    initial = {selectedLight}
+                    selectOption = {setSelectedLightHelper}
+                ></SelectorDropdown>
+            }
+        </div>
+    );
 
     function setEditProfileHelper()
     {
@@ -575,7 +487,7 @@ function Dashboard(props)
                 />}
             </div>
             {/* sidebar */}
-            <div className = "dashboard-page-sidebar">
+            <div className = "sidebar">
                 {/* path buttons */}
                 {pathHelper()}
                 {/* sidebar toggle button */}
@@ -672,71 +584,70 @@ function Dashboard(props)
                                 (location.pathname === "/dashboard/config" ? "dashboard-page-config-footer" : "dashboard-page-footer") }>
                 <h1 className = "dashboard-page-footer-copyright">COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.</h1>
                 <h2 className = "dashboard-page-footer-privacy">PRIVACY POLICY · TERMS & CONDITIONS</h2>
-            </div> :
+            </div>
+            {/* routing and passing of data to children */}
             <HashRouter>
-                <div className = "pages">
-                    <Route 
-                        path = "/dashboard/view" 
-                        render = {(props) => <DashboardView 
-                                                location = {selectedLocation}
-                                                area = {selectedArea}
-                                                block = {selectedBlock} 
-                                                {...props} />}
-                                            >
-                    </Route>
-                    <Route 
-                        path = "/dashboard/config" 
-                        render = {(props) => <DashboardConfig 
-                                                location = {selectedLocation}
-                                                area = {selectedArea}
-                                                block = {selectedBlock}
-                                                level = {selectedLevel}
-                                                lights = {selectedLight}
-                                                cancel = {handleConfigCancel}
-                                                {...props} />}
-                                            >
-                    </Route>
-                    <Route 
-                        path = "/dashboard/photosensor" 
-                        render = {(props) => <DashboardPhotosensor 
-                                                location = {selectedLocation}
-                                                area = {selectedArea}
-                                                block = {selectedBlock}
-                                                level = {selectedLevel}
-                                                lights = {selectedLight}
-                                                cancel = {handleConfigCancel}
-                                                {...props} />}
-                                            >
-                    </Route>
-                    <Route 
-                        path = "/dashboard/datacharts" 
-                        render = {(props) => <DashboardDatacharts 
-                                                location = {selectedLocation}
-                                                area = {selectedArea}
-                                                block = {selectedBlock}
-                                                level = {selectedLevel}
-                                                lights = {selectedLight}
-                                                cancel = {handleConfigCancel}
-                                                {...props} />}
-                                            >
-                    </Route>
-                    <Route 
-                        path = "/dashboard/lightcycle" 
-                        render = {(props) => <DashboardLightCycle {...props} />}>
-                    </Route>
-                    <Route 
-                        path = "/dashboard/usermanagement" 
-                        render = {(props) => <DashboardUserManagement 
-                                                location = {selectedLocation}
-                                                area = {selectedArea}
-                                                block = {selectedBlock}
-                                                {...props} />}>
-                    </Route>
-                    <Route 
-                        path = "/dashboard/add" 
-                        render = {(props) => <DashboardAdd {...props} />}>
-                    </Route>
-                </div>
+                <Route 
+                    path = "/dashboard/view" 
+                    render = {(props) => <DashboardView 
+                                            location = {selectedLocation}
+                                            area = {selectedArea}
+                                            block = {selectedBlock} 
+                                            {...props} />}
+                                        >
+                </Route>
+                <Route 
+                    path = "/dashboard/config" 
+                    render = {(props) => <DashboardConfig 
+                                            location = {selectedLocation}
+                                            area = {selectedArea}
+                                            block = {selectedBlock}
+                                            level = {selectedLevel}
+                                            lights = {selectedLight}
+                                            cancel = {handleConfigCancel}
+                                            {...props} />}
+                                        >
+                </Route>
+                <Route 
+                    path = "/dashboard/photosensor" 
+                    render = {(props) => <DashboardPhotosensor 
+                                            location = {selectedLocation}
+                                            area = {selectedArea}
+                                            block = {selectedBlock}
+                                            level = {selectedLevel}
+                                            lights = {selectedLight}
+                                            cancel = {handleConfigCancel}
+                                            {...props} />}
+                                        >
+                </Route>
+                <Route 
+                    path = "/dashboard/datacharts" 
+                    render = {(props) => <DashboardDatacharts 
+                                            location = {selectedLocation}
+                                            area = {selectedArea}
+                                            block = {selectedBlock}
+                                            level = {selectedLevel}
+                                            lights = {selectedLight}
+                                            cancel = {handleConfigCancel}
+                                            {...props} />}
+                                        >
+                </Route>
+                <Route 
+                    path = "/dashboard/lightcycle" 
+                    render = {(props) => <DashboardLightCycle {...props} />}>
+                </Route>
+                <Route 
+                    path = "/dashboard/usermanagement" 
+                    render = {(props) => <DashboardUserManagement 
+                                            location = {selectedLocation}
+                                            area = {selectedArea}
+                                            block = {selectedBlock}
+                                            {...props} />}>
+                </Route>
+                <Route 
+                    path = "/dashboard/add" 
+                    render = {(props) => <DashboardAdd {...props} />}>
+                </Route>
             </HashRouter>
         </div>
     );

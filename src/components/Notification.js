@@ -1,4 +1,4 @@
-import "../resources/css/notification.css";
+import "../resources/css/dashboard-notification.css";
 
 import React, {useState, useEffect, useRef, useImperativeHandle, forwardRef} from "react";
 import DefaultIcon from "../resources/dashboard/notification-icon.png";

@@ -1,0 +1,75 @@
+.selector-container
+{
+    position: absolute;
+    background: #FCFCFC;
+    box-shadow: 0px 2px 3px #00000029;
+    border-radius: 3px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.selector-container h1
+{
+    z-index: 0;
+    position: absolute;
+    left: 5%;
+}
+
+.selector-container .title
+{
+    color: #333132;
+    font-size: max(0.75vw, 10.8px);
+    font-weight: 400;
+}
+
+.selector-container .choice
+{
+    color: #005570;
+    font-size: max(1.2vw, 17.28px);
+    font-weight: 500;
+    top: 20%;
+}
+
+.selector-container .arrow
+{
+    position: absolute;
+    top: 38%;
+    right: 8%;
+    width: 7%;
+    height: auto;
+}
+
+.selector-container ul
+{
+    z-index: 1;
+    position: absolute;
+    background: #FCFCFC;
+    box-shadow: 0px 2px 3px #00000029;
+    border-radius: 3px;
+    top: 100%;
+    width: 100%;
+    max-height: 700%;
+    overflow-y: auto;
+    list-style: none;
+}
+
+.selector-container ul:empty
+{
+    width: 100px;
+    height: 100px;
+    border: 10px solid #000000;
+}
+
+.selector-container ul li 
+{
+    color: #6D6E71;
+    font-weight: 500;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.selector-container ul li:hover 
+{
+    background-color: rgba(0, 0, 0, 0.14);
+}

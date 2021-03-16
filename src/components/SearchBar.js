@@ -1,4 +1,4 @@
-import "../resources/css/searchbar.css";
+import "../resources/css/dashboard-searchbar.css";
 
 import React, {useState} from "react";
 import SearchIcon from "../resources/dashboard/search-icon.svg";
