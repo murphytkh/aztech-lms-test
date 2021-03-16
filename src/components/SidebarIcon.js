@@ -1,5 +1,3 @@
-import "../resources/css/dashboard-sidebar.css";
-
 import React from "react";
 import {useLocation} from "react-router-dom";
 
