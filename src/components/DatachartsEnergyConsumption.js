@@ -6,7 +6,7 @@ import EnergyConsumptionGraph from "../components/EnergyConsumptionGraph";
 import HeaderImg from "../resources/dashboard/status header.svg";
 import HeaderIcon from "../resources/dashboard/chart-area-solid.svg";
 import ArrowDivider from "../resources/dashboard/datacharts-arrow-divider.svg";
-import Arrow from "../resources/dashboard/chevron-down-outline.png";
+import Arrow from "../resources/dashboard/icon-dropdown-down.svg";
 
 function DatachartsEnergyConsumption(props)
 {

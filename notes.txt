@@ -37,6 +37,8 @@ current task:
   - react structure
 - code refactoring progress
   - status: - clean userdropdown
+            - userdropdown last place that uses
+              chevron images
 
 list of npm packages installed (other than the
 usual react stuff)
