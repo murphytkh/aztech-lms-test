@@ -30,13 +30,10 @@ current task:
   - fuck filtering the view for now
 - data charts
   - figure out empty chart display?
-- it's probably time to do code refactoring
-  - css names
-  - organise img files
-  - organise directories
-  - react structure
 - code refactoring progress
-  - status: - clean userdropdown
+  - status: - clean dashboard view
+- light status - add button to table for
+                 relocation
 
 list of npm packages installed (other than the
 usual react stuff)

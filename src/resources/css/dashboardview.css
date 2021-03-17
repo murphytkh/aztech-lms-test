@@ -13,7 +13,7 @@
 .dashboard-page-view-footer
 {
     position: absolute;
-    background: #F7F7F7 0% 0% no-repeat padding-box;
+    background: #F7F7F7;
     color: #6D6E71;
     font-size: max(0.7vw, 10.08px);
     font-weight: 500;
