@@ -97,6 +97,20 @@ function Dashboard(props)
             history.push(path);
     }
 
+    function clearLocation()
+    {
+        setSelectedLocation("");
+        if (locationDDRef.current) 
+            locationDDRef.current.clearChoice();
+    }
+
+    function clearArea()
+    {
+        setSelectedArea("");
+        if (areaDDRef.current)
+            areaDDRef.current.clearChoice();
+    }
+
     function handleDashboardButton()
     {
         setSelectedLocation("");
