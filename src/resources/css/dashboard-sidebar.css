@@ -110,17 +110,17 @@
     width: 20%;
     height: 0.55%;
     cursor: pointer;
+    transition: inherit;
 }
 
 .sidebar .darkmode-circle
 {
-    z-index: 1;
     position: absolute;
     background-color: #005570;
     border-radius: 50%;
     width: 75%;
     height: 320%;
-
+    transform: translate(-25%, -35%);
     transition: inherit;
 }
 

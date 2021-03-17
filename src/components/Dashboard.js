@@ -3,7 +3,7 @@ import "../resources/css/dashboard-landing.css";
 import React, {useState, useRef, useEffect} from "react";
 import {useHistory, useLocation} from "react-router-dom";
 
-import Map from "../resources/dashboard/map@2x.png";
+import Map from "../resources/dashboard/map-sg.png";
 import AdminProfile from "../resources/dashboard/office-admin-profile.png";
 import DefaultUser from "../resources/dashboard/icon-userdropdown-default.svg";
 

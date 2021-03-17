@@ -36,5 +36,3 @@ function Main(props)
 }
 
 export default Main;
-
-//  render = {(props) => <LoginForm changePage = {changePage} {...props} />}>

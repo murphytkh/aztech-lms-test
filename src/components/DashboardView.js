@@ -3,7 +3,7 @@ import "../resources/css/dashboardview.css";
 import React, {useEffect} from "react";
 
 import ExportButton from "../resources/dashboard/export button@2x.png";
-import Map from "../resources/dashboard/map@2x.png";
+import Map from "../resources/dashboard/map-sg.png";
 
 import BlockLights from "./BlockLights";
 import ActiveLights from "./ActiveLights";
