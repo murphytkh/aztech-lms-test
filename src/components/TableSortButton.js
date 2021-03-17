@@ -1,7 +1,7 @@
 import "../resources/css/tablesortbutton.css";
 
-import DownArrow from "../resources/dashboard/chevron-down-outline.png";
-import UpArrow from "../resources/dashboard/chevron-up-outline.png";
+import DownArrow from "../resources/dashboard/icon-dropdown-down.svg";
+import UpArrow from "../resources/dashboard/icon-dropdown-up.svg";
 
 import React from "react";
 

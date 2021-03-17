@@ -4,8 +4,8 @@ import React, {useState, useRef, useEffect} from "react";
 import {useHistory, useLocation} from "react-router-dom";
 
 import Map from "../resources/dashboard/map-sg.png";
-import AdminProfile from "../resources/dashboard/office-admin-profile.png";
-import DefaultUser from "../resources/dashboard/icon-userdropdown-default.svg";
+import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png";
+import DefaultUser from "../resources/dashboard/user-profile-default.svg";
 
 import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
@@ -81,7 +81,7 @@ function Dashboard(props)
         let notification2 = new NotificationObject("Alert For Light 1.2.11", 
                                                    "Light 1.2.11 AC Failure",
                                                    "false");
-        let curruser = new UserObject("office_admin", "Project Manager", AdminProfile);
+        let curruser = new UserObject("office_admin", "Project Manager", PlaceholderUser);
         let user0 = new UserObject("VIOLA CHAN", "Design Manager", DefaultUser);
         let user1 = new UserObject("MANNMO WONG", "Designer", DefaultUser);
 
