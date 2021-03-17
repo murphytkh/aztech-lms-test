@@ -19,7 +19,7 @@ const arrowVar = ">";
 const copyright = "COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.";
 const privacy = "PRIVACY POLICY · TERMS & CONDITIONS";
 
-{/* data objects */}
+// data objects
 class NotificationObject
 {
     constructor(title, description, rectify)
@@ -228,8 +228,7 @@ function Dashboard(props)
         goToPath("/dashboard/view");
     }
 
-    {/* path helper blocks */}
-
+    // path helper blocks
     const showLocation =
     (
         <span>
@@ -281,7 +280,7 @@ function Dashboard(props)
         }
     }
 
-    {/* header paths */}
+    // header paths
     const defaultPaths =
     (
         <div className = "path-container">
@@ -327,7 +326,7 @@ function Dashboard(props)
         </div>
     );
 
-    {/* selector helper blocks */}
+    // selector helper blocks
     const locationDropdown =
     (
         <SelectorDropdown 
@@ -361,7 +360,7 @@ function Dashboard(props)
         ></SelectorDropdown>
     );
 
-    {/* selector dropdown templates */}
+    // selector dropdown templates
     const defaultTemplate =
     (
         <div className = "dropdown-container">
