@@ -28,7 +28,7 @@ function Sidebar(props)
     const history = useHistory();
     const location = useLocation();
 
-    {/* sliding animations */}
+    // sliding animations
     function sidebarToggle()
     {
         var sb = document.getElementsByClassName("sidebar");

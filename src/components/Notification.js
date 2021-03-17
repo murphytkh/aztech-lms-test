@@ -1,11 +1,11 @@
 import "../resources/css/dashboard-notification.css";
 
 import React, {useState, useEffect, useRef, useImperativeHandle, forwardRef} from "react";
-import DefaultIcon from "../resources/dashboard/notification-icon.png";
-import AlertIcon from "../resources/dashboard/notification-alert-icon.png";
-import NotificationPoylgon from "../resources/dashboard/notification-polygon.png";
-import ClearIcon from "../resources/dashboard/icon-security.svg";
-import RectifyIcon from "../resources/dashboard/icon-wifi.svg";
+import DefaultIcon from "../resources/notifications/notification-icon.png";
+import AlertIcon from "../resources/notifications/notification-alert-icon.png";
+import NotificationPoylgon from "../resources/notifications/notification-polygon.png";
+import ClearIcon from "../resources/notifications/notification-cleared.svg";
+import RectifyIcon from "../resources/notifications/notification-rectify.svg";
 
 const Notification = forwardRef((props, ref) =>
 {
@@ -77,9 +77,7 @@ const Notification = forwardRef((props, ref) =>
                 <div className = "btn" onClick = {handleClearButton}>CLEAR</div>
             </div>
             {/* list of items */}
-            <ul>
-                {notificationsList}
-            </ul>
+            <ul>{notificationsList}</ul>
         </div>
     );
 

@@ -1,7 +1,7 @@
 import "../resources/css/dashboard-landing.css";
 
 import React, {useState, useRef, useEffect} from "react";
-import {Route, HashRouter, useHistory, useLocation} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 
 import Map from "../resources/dashboard/map@2x.png";
 import AdminProfile from "../resources/dashboard/office-admin-profile.png";
@@ -12,14 +12,8 @@ import SearchBar from "./SearchBar";
 import Notification from "./Notification";
 import UserDropdown from "./UserDropdown";
 import Sidebar from "./Sidebar";
-import DashboardView from "./DashboardView";
-import DashboardConfig from "./DashboardConfig";
-import DashboardPhotosensor from "./DashboardPhotosensor";
-import DashboardDatacharts from "./DashboardDatacharts";
-import DashboardLightCycle from "./DashboardLightCycle";
-import DashboardUserManagement from "./DashboardUserManagement";
-import DashboardAdd from "./DashboardAdd";
 import EditProfile from "./EditProfile";
+import RouteManager from "./RouteManager";
 
 const arrowVar = ">";
 const copyright = "COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.";
@@ -326,7 +320,7 @@ function Dashboard(props)
     );
 
     const umPaths =
-    (        
+    (
         <div className = "path-container">
             <h1 className = "left" onClick = {handleDashboardButton}>DASHBOARD</h1>
             {selectedArea && showText("USER MANAGEMENT")}
@@ -479,69 +473,14 @@ function Dashboard(props)
             {/* footer */}
             {footerDisplayHelper()}
             {/* routing and passing of data to children */}
-            <HashRouter>
-                <Route 
-                    path = "/dashboard/view" 
-                    render = {(props) => <DashboardView 
-                                            location = {selectedLocation}
-                                            area = {selectedArea}
-                                            block = {selectedBlock} 
-                                            {...props} />}
-                                        >
-                </Route>
-                <Route 
-                    path = "/dashboard/config" 
-                    render = {(props) => <DashboardConfig 
-                                            location = {selectedLocation}
-                                            area = {selectedArea}
-                                            block = {selectedBlock}
-                                            level = {selectedLevel}
-                                            lights = {selectedLight}
-                                            cancel = {handleConfigCancel}
-                                            {...props} />}
-                                        >
-                </Route>
-                <Route 
-                    path = "/dashboard/photosensor" 
-                    render = {(props) => <DashboardPhotosensor 
-                                            location = {selectedLocation}
-                                            area = {selectedArea}
-                                            block = {selectedBlock}
-                                            level = {selectedLevel}
-                                            lights = {selectedLight}
-                                            cancel = {handleConfigCancel}
-                                            {...props} />}
-                                        >
-                </Route>
-                <Route 
-                    path = "/dashboard/datacharts" 
-                    render = {(props) => <DashboardDatacharts 
-                                            location = {selectedLocation}
-                                            area = {selectedArea}
-                                            block = {selectedBlock}
-                                            level = {selectedLevel}
-                                            lights = {selectedLight}
-                                            cancel = {handleConfigCancel}
-                                            {...props} />}
-                                        >
-                </Route>
-                <Route 
-                    path = "/dashboard/lightcycle" 
-                    render = {(props) => <DashboardLightCycle {...props} />}>
-                </Route>
-                <Route 
-                    path = "/dashboard/usermanagement" 
-                    render = {(props) => <DashboardUserManagement 
-                                            location = {selectedLocation}
-                                            area = {selectedArea}
-                                            block = {selectedBlock}
-                                            {...props} />}>
-                </Route>
-                <Route 
-                    path = "/dashboard/add" 
-                    render = {(props) => <DashboardAdd {...props} />}>
-                </Route>
-            </HashRouter>
+            <RouteManager 
+                location = {selectedLocation}
+                area = {selectedArea}
+                block = {selectedBlock}
+                level = {selectedLevel}
+                lights = {selectedLight}
+                cancel = {handleConfigCancel}
+            ></RouteManager>
         </div>
     );
 }
