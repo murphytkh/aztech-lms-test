@@ -3,22 +3,22 @@ import "../resources/css/dashboard-sidebar.css";
 import React from "react";
 import {useHistory, useLocation} from "react-router-dom";
 
-import SidebarToggleButton from "../resources/dashboard/menu_icon.svg";
-import SidebarLogo from "../resources/dashboard/Aztech logo 2020.svg";
-import DashboardIcon from "../resources/dashboard/icon-dashboard.svg";
-import DashboardSelectedIcon from "../resources/dashboard/icon-dashboard-selected.svg";
-import ConfigIcon from "../resources/dashboard/icon-config.svg";
-import ConfigSelectedIcon from "../resources/dashboard/icon-config-selected.svg";
-import PhotosensorIcon from "../resources/dashboard/icon-photosensor.svg";
-import PhotosensorSelectedIcon from "../resources/dashboard/icon-photosensor-selected.svg";
-import DatachartsIcon from "../resources/dashboard/icon-datacharts.svg";
-import DatachartsSelectedIcon from "../resources/dashboard/icon-datacharts-selected.svg";
-import LightCycleIcon from "../resources/dashboard/icon-lightcycle.svg";
-import LightCycleSelectedIcon from "../resources/dashboard/icon-lightcycle-selected.svg";
-import UsersIcon from "../resources/dashboard/icon-users.svg";
-import UsersSelectedIcon from "../resources/dashboard/icon-users-selected.svg";
-import LibraryAddIcon from "../resources/dashboard/icon-add.svg";
-import LibraryAddSelectedIcon from "../resources/dashboard/icon-add-selected.svg";
+import Toggle from "../resources/sidebar/sidebar-toggle.svg";
+import SidebarLogo from "../resources/sidebar/sidebar-logo.svg";
+import Dashboard from "../resources/sidebar/sidebar-dashboard.svg";
+import DashboardActive from "../resources/sidebar/sidebar-dashboard-active.svg";
+import Config from "../resources/sidebar/sidebar-config.svg";
+import ConfigActive from "../resources/sidebar/sidebar-config-active.svg";
+import Photosensor from "../resources/sidebar/sidebar-photosensor.svg";
+import PhotosensorActive from "../resources/sidebar/sidebar-photosensor-active.svg";
+import Datacharts from "../resources/sidebar/sidebar-datacharts.svg";
+import DatachartsActive from "../resources/sidebar/sidebar-datacharts-active.svg";
+import LightCycle from "../resources/sidebar/sidebar-lightcycle.svg";
+import LightCycleActive from "../resources/sidebar/sidebar-lightcycle-active.svg";
+import UserManagement from "../resources/sidebar/sidebar-usermanagement.svg";
+import UserManagementActive from "../resources/sidebar/sidebar-usermanagement-active.svg";
+import Add from "../resources/sidebar/sidebar-add.svg";
+import AddActive from "../resources/sidebar/sidebar-add-active.svg";
 
 import Timestamp from "./Timestamp";
 import SidebarIcon from "./SidebarIcon";
@@ -28,6 +28,7 @@ function Sidebar(props)
     const history = useHistory();
     const location = useLocation();
 
+    {/* sliding animations */}
     function sidebarToggle()
     {
         var sb = document.getElementsByClassName("sidebar");
@@ -42,7 +43,7 @@ function Sidebar(props)
     {
         props.setDarkMode(!props.darkMode);
 
-        var dm = document.getElementsByClassName("dashboard-page-sidebar-icon-darkmode-circle");
+        var dm = document.getElementsByClassName("darkmode-circle");
 
         if (dm[0].style.transform === "translate(70%, -35%)")
             dm[0].style.transform = "translate(-25%, -35%)";
@@ -69,7 +70,7 @@ function Sidebar(props)
             <button 
                 onClick = {sidebarToggle} 
                 className = "toggle">
-                <img alt = "" src = {SidebarToggleButton}></img>
+                <img alt = "" src = {Toggle}></img>
             </button>
             {/* logo */}
             <img alt = "" src = {SidebarLogo} className = "logo"></img>
@@ -78,66 +79,66 @@ function Sidebar(props)
                 <SidebarIcon 
                     onClick = {handleSidebarButton}
                     path = "/dashboard/view" 
-                    icon = {DashboardIcon} 
-                    selectedicon = {DashboardSelectedIcon} 
+                    default = {Dashboard} 
+                    active = {DashboardActive} 
                     tooltip = "Dashboard"
                 ></SidebarIcon>
                 <SidebarIcon 
                     onClick = {handleSidebarButton} 
                     path = "/dashboard/config" 
-                    icon = {ConfigIcon}
-                    selectedicon = {ConfigSelectedIcon}
+                    default = {Config}
+                    active = {ConfigActive}
                     tooltip = "Configuration"
                 ></SidebarIcon>
                 <SidebarIcon 
                     onClick = {handleSidebarButton} 
                     path = "/dashboard/photosensor" 
-                    icon = {PhotosensorIcon}
-                    selectedicon = {PhotosensorSelectedIcon}
+                    default = {Photosensor}
+                    active = {PhotosensorActive}
                     tooltip = "Photosensor"
                 ></SidebarIcon>
                 <SidebarIcon 
                     onClick = {handleSidebarButton} 
                     path = "/dashboard/datacharts" 
-                    icon = {DatachartsIcon}
-                    selectedicon = {DatachartsSelectedIcon} 
+                    default = {Datacharts}
+                    active = {DatachartsActive} 
                     tooltip = "Data charts"
                 ></SidebarIcon>
                 <SidebarIcon 
                     onClick = {handleSidebarButton} 
                     path = "/dashboard/lightcycle" 
-                    icon = {LightCycleIcon}
-                    selectedicon = {LightCycleSelectedIcon} 
+                    default = {LightCycle}
+                    active = {LightCycleActive} 
                     tooltip = "LightCycle"
                 ></SidebarIcon>
                 <SidebarIcon 
                     onClick = {handleSidebarButton} 
                     path = "/dashboard/usermanagement" 
-                    icon = {UsersIcon}
-                    selectedicon = {UsersSelectedIcon} 
+                    default = {UserManagement}
+                    active = {UserManagementActive} 
                     tooltip = "Users"
                 ></SidebarIcon>
                 <SidebarIcon 
                     onClick = {handleSidebarButton} 
                     path = "/dashboard/add" 
-                    icon = {LibraryAddIcon}
-                    selectedicon = {LibraryAddSelectedIcon}
+                    default = {Add}
+                    active = {AddActive}
                     tooltip = "Add"
                 ></SidebarIcon>
             </div>
             {/* dark mode toggle button */}
             <div
                 title = "Dark Mode"
-                className = "dashboard-page-sidebar-darkmode-container"
+                className = "darkmode-container"
                 onClick = {handleSidebarDarkModeToggle}
             >
-                <div className = "dashboard-page-sidebar-icon-darkmode-circle"></div>
+                <div className = "darkmode-circle"></div>
             </div>
             {/* bottom text */}
-            <div className = "dashboard-page-sidebar-bottomtext">
+            <div className = "text-container">
                 <Timestamp />
                 {props.version != null && 
-                <h1 className = "dashboard-page-sidebar-bottomtext-versiontext">VER {props.version}</h1>}
+                <h1 className = "version">VER {props.version}</h1>}
             </div>
         </div>
     );

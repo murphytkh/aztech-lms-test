@@ -29,7 +29,6 @@ current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
 - data charts
-  - place arrow buttons on top right of card
   - figure out empty chart display?
 - it's probably time to do code refactoring
   - css names
@@ -38,8 +37,6 @@ current task:
   - react structure
 - code refactoring progress
   - status: - cleaning sidebar now
-            - redo sidebar icons by rendering
-              the bg separately?
             - figure out efficient way to pass
               all data at once (for routes)
 

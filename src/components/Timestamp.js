@@ -43,12 +43,8 @@ class Timestamp extends React.Component
     {
       return (
         <div>
-            <h1 className = "dashboard-page-sidebar-bottomtext-timestamptext">
-                {this.state.day.slice(-2)}-{this.state.month.slice(-2)}-{this.state.year.slice(-2)}
-            </h1>
-            <h1 className = "dashboard-page-sidebar-bottomtext-timestamptext">
-                {this.state.hour.slice(-2)}:{this.state.minute.slice(-2)}:{this.state.second.slice(-2)}
-            </h1>
+            <h1>{this.state.day.slice(-2)}-{this.state.month.slice(-2)}-{this.state.year.slice(-2)}</h1>
+            <h1>{this.state.hour.slice(-2)}:{this.state.minute.slice(-2)}:{this.state.second.slice(-2)}</h1>
         </div>
       );
     }
