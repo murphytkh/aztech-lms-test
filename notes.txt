@@ -36,8 +36,7 @@ current task:
   - organise directories
   - react structure
 - code refactoring progress
-  - status: - cleaning sidebar now
-            - figure out efficient way to pass
+  - status: - figure out efficient way to pass
               all data at once (for routes)
 
 list of npm packages installed (other than the

@@ -4,7 +4,6 @@ import React, {useState, useRef, useEffect} from "react";
 import {Route, HashRouter, useHistory, useLocation} from "react-router-dom";
 
 import Map from "../resources/dashboard/map@2x.png";
-
 import AdminProfile from "../resources/dashboard/office-admin-profile.png";
 import DefaultUser from "../resources/dashboard/icon-userdropdown-default.svg";
 
@@ -26,6 +25,7 @@ const arrowVar = ">";
 const copyright = "COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.";
 const privacy = "PRIVACY POLICY · TERMS & CONDITIONS";
 
+{/* data objects */}
 class NotificationObject
 {
     constructor(title, description, rectify)
@@ -56,7 +56,6 @@ function Dashboard(props)
     const blockDDRef = useRef();
     const levelDDRef = useRef();
     const lightDDRef = useRef();
-
     const notificationRef = useRef();
 
     const [version, setVersion] = useState(null);
@@ -64,7 +63,7 @@ function Dashboard(props)
     const [currUser, setCurrUser] = useState(null);
     const [userList, setUserList] = useState(null);
 
-    // dropdown
+    // selectors
     const [selectedLocation, setSelectedLocation] = useState("");
     const [selectedArea, setSelectedArea] = useState("");
     const [selectedBlock, setSelectedBlock] = useState("");
@@ -246,7 +245,8 @@ function Dashboard(props)
     );
 
     const showArea =
-    (   <span>
+    (   
+        <span>
             <h1 className = "arrow">{arrowVar}</h1>
             <h1 onClick = {handleAreaButton}>{selectedArea}</h1>
         </span>
