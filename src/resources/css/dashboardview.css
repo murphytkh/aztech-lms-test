@@ -1,6 +1,6 @@
 /* width is 1166 */
 
-.dashboard-page-view
+.view-page
 {
   position: absolute;
   top: 17%;
@@ -9,39 +9,8 @@
   height: 150%;
 }
 
-/* footer */
-.dashboard-page-view-footer
+.view-page .export-btn
 {
-    position: absolute;
-    background: #F7F7F7;
-    color: #6D6E71;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 500;
-    width: 100%;
-    height: 4%;
-    bottom: -82%;
-}
-
-.dashboard-page-view-footer .center
-{
-    position: absolute;
-    text-align: center;
-    font: inherit;
-    width: 100%;
-    top: 10%;
-}
-
-.dashboard-page-view-footer .right
-{
-    position: absolute;
-    font: inherit;
-    left: 82%;
-    top: 10%;
-}
-
-.dashboard-page-view-exportbtn
-{
-    font-family: "work sans", sans-serif;
     position: absolute;
     top: -3.26%;
     left: 90.22%;
@@ -50,7 +19,7 @@
     cursor: pointer;
 }
 
-.dashboard-page-view-exportbtn:hover
+.view-page .export-btn:hover
 {
     filter: brightness(120%);
 }
@@ -68,7 +37,6 @@
     z-index: 1;
     position: absolute;
     color: #FFFFFF;
-    font-family: "work sans", sans-serif;
     background: none;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
@@ -81,7 +49,6 @@
     z-index: 1;
     position: absolute;
     color: #000000;
-    font-family: "work sans", sans-serif;
     background: none;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
@@ -215,7 +182,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
     top: 21.5%;
@@ -227,7 +193,6 @@
     z-index: -1;
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
     top: 21.5%;
@@ -238,7 +203,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
     top: 60.2%;
@@ -249,7 +213,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
     top: 60.2%;
@@ -260,7 +223,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
     top: 60.2%;
@@ -355,7 +317,6 @@
 .dashboard-page-view-blocklights-value
 {
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(2.4vw, 34.56px);
 }
@@ -394,7 +355,6 @@
 
 .dashboard-page-view-activelights-table-container
 {
-    font-family: "work sans", sans-serif;
     font-weight: 400;
     font-size: max(0.8vw, 11.52px);
     width: 90%;
@@ -406,7 +366,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     left: 7.9%;
@@ -417,7 +376,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     left: 33.7%;
@@ -428,7 +386,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     left: 54.4%;
@@ -439,7 +396,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     left: 73.1%;
@@ -471,7 +427,6 @@
 .dashboard-page-view-activelights-table-id
 {
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
     width: 13.9%;
@@ -482,7 +437,6 @@
 .dashboard-page-view-activelights-table-date
 {
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
     width: 10.2%;
@@ -492,7 +446,6 @@
 .dashboard-page-view-activelights-table-time
 {
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
     width: 9.2%;
@@ -502,7 +455,6 @@
 .dashboard-page-view-activelights-table-stats
 {
     color: #009BA7;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 600;
     width: 10%;
@@ -541,7 +493,6 @@
     display: inline-block;
     cursor: pointer;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.7vw, 10.08px);
     font-weight: 600;
     border-radius: 3px;
@@ -562,7 +513,6 @@
     display: inline-block;
     cursor: pointer;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.7vw, 10.08px);
     font-weight: 600;
     border-radius: 3px;
@@ -592,7 +542,6 @@
 {
     position: absolute;
     color: #6D6E71;
-    font-family: "work sans", sans-serif;
     font-size: max(0.7vw, 10.08px);
     font-weight: 500;
     top: 54.4%;
@@ -604,7 +553,6 @@
     display: inline-block;
     position: absolute;
     color: #6D6E71;
-    font-family: "work sans", sans-serif;
     font-size: max(0.7vw, 10.08px);
     font-weight: 500;
     top: 93%;
@@ -615,7 +563,6 @@
 {
     position: absolute;
     color: #212529;
-    font-family: "work sans", sans-serif;
     font-size: max(0.7vw, 10.08px);
     font-weight: 400;
     top: 18%;
@@ -636,7 +583,6 @@
 {
     position: absolute;
     color: #212529;
-    font-family: "work sans", sans-serif;
     font-size: max(0.7vw, 10.08px);
     font-weight: 400;
     top: 18%;
@@ -679,7 +625,6 @@
     z-index: -2;
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     top: 20%;
@@ -691,7 +636,6 @@
     z-index: -2;
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     top: 42.5%;
@@ -703,7 +647,6 @@
     z-index: -2;
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     top: 65%;
@@ -715,7 +658,6 @@
     z-index: -2;
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     top: 65%;
@@ -834,7 +776,6 @@
 {
     position: absolute;
     color: #FFFFFF;
-    font-family: "work sans", sans-serif;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
     top: 34%;
@@ -845,7 +786,6 @@
 {
     position: absolute;
     color: #FFFFFF;
-    font-family: "work sans", sans-serif;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
     top: 34%;
@@ -885,7 +825,6 @@
     z-index: 1;
     position: absolute;
     color: #000000;
-    font-family: "work sans", sans-serif;
     background: none;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
@@ -936,7 +875,6 @@
 .dashboard-page-view-activity-show
 {
     position: absolute;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 600;
     top: 1.5%;
@@ -946,7 +884,6 @@
 .dashboard-page-view-activity-entries
 {
     position: absolute;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 600;
     top: 1.5%;
@@ -964,7 +901,6 @@
 
 .dashboard-page-view-activity-table-container
 {
-    font-family: "work sans", sans-serif;
     font-weight: 400;
     font-size: max(0.8vw, 11.52px);
     width: 89%;
@@ -977,7 +913,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     left: 8.3%;
@@ -990,7 +925,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     left: 57.1%;
@@ -1034,7 +968,6 @@
 .dashboard-page-view-activity-table-user
 {
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
     width: 13.9%;
@@ -1045,7 +978,6 @@
 .dashboard-page-view-activity-table-action
 {
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
     width: 10.2%;
@@ -1056,7 +988,6 @@
 {
     position: absolute;
     color: #6D6E71;
-    font-family: "work sans", sans-serif;
     font-weight: 500;
     font-size: max(0.8vw, 11.52px);
     top: 93%;
@@ -1075,7 +1006,6 @@
 .dashboard-page-view-activity-prev
 {
     color: #C6C6C6;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
     cursor: default;
@@ -1086,7 +1016,6 @@
 .dashboard-page-view-activity-prev-active
 {
     color: #005570;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
     cursor: pointer;
@@ -1102,7 +1031,6 @@
 .dashboard-page-view-activity-next
 {
     color: #C6C6C6;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
     cursor: default;
@@ -1114,7 +1042,6 @@
 .dashboard-page-view-activity-next-active
 {
     color: #005570;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
     cursor: pointer;
@@ -1126,7 +1053,6 @@
 .dashboard-page-view-activity-page
 {
     color: #005570;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
     cursor: pointer;
@@ -1138,7 +1064,6 @@
 .dashboard-page-view-activity-page-current
 {
     color: #C6C6C6;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
 
@@ -1186,7 +1111,6 @@
     z-index: 1;
     position: absolute;
     color: #000000;
-    font-family: "work sans", sans-serif;
     background: none;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
@@ -1209,7 +1133,6 @@
     position: absolute;
     overflow-wrap: break-word;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
     margin-top: 15%;
@@ -1254,7 +1177,6 @@
 {
     position: absolute;
     color: #FFFFFF;
-    font-family: "work sans", sans-serif;
     font-size: max(0.8vw, 11.52px);
     font-weight: 400;
     top: 25%;
@@ -1266,7 +1188,6 @@
 {
     position: absolute;
     color: #6D6E71;
-    font-family: "work sans", sans-serif;
     font-size: max(0.7vw, 10.08px);
     font-weight: 500;
     top: 90%;
@@ -1305,7 +1226,6 @@
     z-index: 1;
     position: absolute;
     color: #000000;
-    font-family: "work sans", sans-serif;
     background: none;
     font-size: max(1vw, 14.4px);
     font-weight: 500;
@@ -1356,7 +1276,6 @@
 .dashboard-page-view-status-show
 {
     position: absolute;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 600;
     top: 0.9%;
@@ -1366,7 +1285,6 @@
 .dashboard-page-view-status-entries
 {
     position: absolute;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 600;
     top: 0.9%;
@@ -1384,7 +1302,6 @@
 
 .dashboard-page-view-status-table-container
 {
-    font-family: "work sans", sans-serif;
     font-weight: 400;
     font-size: max(0.8vw, 11.52px);
     width: 93%;
@@ -1397,7 +1314,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     top: 17%;
@@ -1410,7 +1326,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     top: 17%;
@@ -1423,7 +1338,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     top: 17%;
@@ -1436,7 +1350,6 @@
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
     top: 17%;
@@ -1480,7 +1393,6 @@
 .dashboard-page-view-status-table-name
 {
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
     width: 10%;
@@ -1491,7 +1403,6 @@
 .dashboard-page-view-status-table-date
 {
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
     width: 10.2%;
@@ -1501,7 +1412,6 @@
 .dashboard-page-view-status-table-time
 {
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
     width: 10.2%;
@@ -1511,7 +1421,6 @@
 .dashboard-page-view-status-table-status
 {
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
     width: 10.2%;
@@ -1522,7 +1431,6 @@
 {
     position: absolute;
     color: #6D6E71;
-    font-family: "work sans", sans-serif;
     font-weight: 500;
     font-size: max(0.8vw, 11.52px);
     top: 93.4%;
@@ -1541,7 +1449,6 @@
 .dashboard-page-view-status-prev
 {
     color: #C6C6C6;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
 
@@ -1553,7 +1460,6 @@
 .dashboard-page-view-status-prev-active
 {
     color: #005570;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
 
@@ -1570,7 +1476,6 @@
 .dashboard-page-view-status-next
 {
     color: #C6C6C6;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
 
@@ -1583,7 +1488,6 @@
 .dashboard-page-view-status-next-active
 {
     color: #005570;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
 
@@ -1601,7 +1505,6 @@
 .dashboard-page-view-status-page
 {
     color: #005570;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
     
@@ -1614,7 +1517,6 @@
 .dashboard-page-view-status-page-current
 {
     color: #C6C6C6;
-    font-family: "work sans", sans-serif;
     font-weight: 600;
     font-size: max(0.91vw, 13.17px);
     

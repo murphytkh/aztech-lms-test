@@ -415,17 +415,17 @@ function Dashboard(props)
 
     function footerDisplayHelper()
     {
-        var page = "main-footer";
+        var page = "footer";
 
         if (location.pathname === "/dashboard/view" && selectedBlock)
-            page = "dashboard-page-view-footer";
+            page = "view";
         else if (location.pathname === "/dashboard/config")
-            page = "dashboard-page-config-footer";
+            page = "config";
 
         return(
-            <div className = {page}>
-                <h1 className = "center">{copyright}</h1>
-                <h1 className = "right">{privacy}</h1>
+            <div className = "footer" id = {page}>
+                <h1 className = "footer-center">{copyright}</h1>
+                <h1 className = "footer-right">{privacy}</h1>
             </div>
         );
     }

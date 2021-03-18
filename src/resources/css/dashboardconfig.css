@@ -8,37 +8,6 @@
     text-align: left;
 }
 
-/* footer */
-
-.dashboard-page-config-footer
-{
-    position: absolute;
-    background: #F7F7F7 0% 0% no-repeat padding-box;
-    color: #6D6E71;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 500;
-    width: 100%;
-    height: 4%;
-    bottom: -38%;
-}
-
-.dashboard-page-config-footer .center
-{
-    position: absolute;
-    text-align: center;
-    font: inherit;
-    width: 100%;
-    top: 10%;
-}
-
-.dashboard-page-config-footer .right
-{
-    position: absolute;
-    font: inherit;
-    left: 82%;
-    top: 10%;
-}
-
 /* top row headers */
 
 .dashboard-page-config-header-top

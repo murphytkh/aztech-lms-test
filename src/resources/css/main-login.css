@@ -41,19 +41,19 @@ body, ul
     margin-top: -10.95%;
 }
 
-.main-footer
+.footer
 {
     position: absolute;
-    background: #F7F7F7 0% 0% no-repeat padding-box;
+    background: #F7F7F7;
     color: #6D6E71;
     font-size: max(0.7vw, 10.08px);
     font-weight: 500;
     width: 100%;
-    height: 4vh;
-    bottom: 0vh;
+    height: 4%;
+    bottom: 0%;
 }
 
-.main-footer .center
+.footer-center
 {
     position: absolute;
     text-align: center;
@@ -62,7 +62,7 @@ body, ul
     top: 10%;
 }
 
-.main-footer .right
+.footer-right
 {
     position: absolute;
     font: inherit;

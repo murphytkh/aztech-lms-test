@@ -52,9 +52,9 @@ function SignUpForm(props)
             {/* backgorund image */}
             <img alt = "" src = {BG} className = "main-bg"></img>
             {/* footer */}
-            <div className = "main-footer">
-                <h1 className = "center">{copyright}</h1>
-                <h1 className = "right">{privacy}</h1>
+            <div className = "footer">
+                <h1 className = "footer-center">{copyright}</h1>
+                <h1 className = "footer-right">{privacy}</h1>
             </div>
             {/* signup form */}
             <div className = "signup-form">

@@ -2,7 +2,7 @@ import "../resources/css/dashboardview.css";
 
 import React, {useEffect} from "react";
 
-import ExportButton from "../resources/dashboard/export button@2x.png";
+import ExportButton from "../resources/view/view-export.svg";
 import Map from "../resources/dashboard/map-sg.png";
 
 import BlockLights from "./BlockLights";
@@ -29,7 +29,7 @@ function DashboardView(props)
     return(
         <div>
             {props.block ?
-                <div className = "dashboard-page-view">
+                <div className = "view-page">
                     {/* cards */}
                     <BlockLights    
                         location = {props.location}
@@ -70,7 +70,7 @@ function DashboardView(props)
                     <img 
                         alt = "" 
                         src = {ExportButton} 
-                        className = "dashboard-page-view-exportbtn"
+                        className = "export-btn"
                         onClick = {handleExportClick}
                     ></img>
                 </div> :

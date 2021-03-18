@@ -107,31 +107,14 @@
     height: 78.175%;
 }
 
-.dashboard-page-footer
+/* footer variants */
+
+#view
 {
-    position: absolute;
-    background: #F7F7F7;
-    color: #6D6E71;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 500;
-    width: 100%;
-    height: 4vh;
-    bottom: 0vh;
+    bottom: -82%;
 }
 
-.dashboard-page-footer-copyright
+#config
 {
-    position: absolute;
-    text-align: center;
-    font: inherit;
-    width: 100%;
-    top: 10%;
-}
-
-.dashboard-page-footer-privacy
-{
-    position: absolute;
-    font: inherit;
-    left: 82%;
-    top: 10%;
+    bottom: -38%;
 }
