@@ -60,7 +60,7 @@ function EnergyConsumption(props)
     return(
         <div className = "dashboard-page-view-control-container">
             <img alt = "" src = {ControlIcon} className = "dashboard-page-view-control-icon"></img>
-            <div className = "dashboard-page-view-header-default">
+            <div className = "medium-header">
                 <h1 className = "dashboard-page-view-header-text">LIGHT CONTROL</h1>
                 <img alt = "" src = {Header} className = "dashboard-page-view-headerimg-default"></img>
             </div>

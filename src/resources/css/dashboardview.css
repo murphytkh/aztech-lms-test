@@ -1,4 +1,4 @@
-/* width is 1166 */
+{/* common elements */}
 
 .view-page
 {
@@ -24,13 +24,163 @@
     filter: brightness(120%);
 }
 
-.dashboard-page-view-header-default
+.view-page .medium-container
+{
+    z-index: 0;
+    position: absolute;
+    top: 0%;
+    width: 49.2%;
+    height: 22.667%;
+    display: block;
+}
+
+.view-page .small-header
+{
+    
+}
+
+.view-page .medium-header
 {
     z-index: -1;
     position: absolute;
     width: 100%;
     height: 15.3%;
 }
+
+.view-page .large-header
+{
+
+}
+
+.view-page .full-header
+{
+
+}
+
+.view-page .medium-header .bg
+{
+    position: absolute;
+    top: -4%;
+    left: -0.55%;
+    width: 101.502%;
+}
+
+.dashboard-page-view-headerimg-default
+{
+    z-index: -10;
+    position: absolute;
+    top: -4%;
+    left: -0.55%;
+    width: 101.502%;
+}
+
+.view-page .icon
+{
+    z-index: 1;
+    position: absolute;
+    top: 20%;
+    left: 2.5%;
+    width: 2.3%;
+    height: auto;
+}
+
+.view-page .medium-container#top-right .icon
+{
+    width: 3.5%;
+}
+
+.view-page .header-text
+{
+    z-index: 1;
+    position: absolute;
+    color: #000000;
+    font-size: max(1vw, 14.4px);
+    font-weight: 500;
+    padding-top: 0.3%;
+    left: 8%;
+}
+
+.medium-container#top-left .header-text, 
+.medium-container#top-right .header-text
+{
+    color: #FFFFFF;
+}
+
+.view-page .refresh
+{
+    z-index: 1;
+    position: absolute;
+    top: 26%;
+    left: 88%;
+    width: 2.7%;
+    height: auto;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(.42, 0, .58, 1);
+    transition-duration: .1s;
+    cursor: pointer;
+}
+
+.view-page .refresh:hover
+{
+    transform: scale(1.1);
+}
+
+.view-page .header-divider
+{
+    z-index: 0;
+    position: absolute;
+    background-color: #005596;
+    top: 15%;
+    left: 93.5%;
+    width: 0.2%;
+    height: 58%;
+}
+
+.view-page .info
+{
+    z-index: 0;
+    position: absolute;
+    top: -5%;
+    left: 93.6%;
+    width: 7%;
+    height: auto;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(.42, 0, .58, 1);
+    transition-duration: .1s;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.view-page .info:hover
+{
+    transform: scale(1.1);
+}
+
+.view-page .border
+{
+    z-index: -2;
+    position: absolute;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
+    top: 1%;
+    width: 100%;
+    height: 100%;
+}
+
+/* to remove */
+
+.dashboard-page-view-border-default
+{
+    z-index: -2;
+    position: absolute;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
+    top: 1%;
+    width: 100%;
+    height: 100%;
+}
+
+/* --------- */
 
 .dashboard-page-view-headertop-text
 {
@@ -54,205 +204,6 @@
     font-weight: 500;
     padding-top: 0.3%;
     left: 8%;
-}
-
-.dashboard-page-view-headerimg-default
-{
-    position: absolute;
-    top: -4%;
-    left: -0.55%;
-    width: 101.502%;
-}
-
-.dashboard-page-view-header-refresh
-{
-    z-index: 0;
-    position: absolute;
-    top: 4%;
-    left: 88%;
-    width: 2.7%;
-    height: auto;
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(.42, 0, .58, 1);
-    transition-duration: .1s;
-    cursor: pointer;
-}
-
-.dashboard-page-view-header-refresh:hover
-{
-    transform: scale(1.1);
-}
-
-.dashboard-page-view-header-info
-{
-    z-index: 0;
-    position: absolute;
-    top: -0.7%;
-    left: 93.6%;
-    width: 7%;
-    height: auto;
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(.42, 0, .58, 1);
-    transition-duration: .1s;
-    cursor: pointer;
-    opacity: 0.5;
-}
-
-.dashboard-page-view-header-info:hover
-{
-    transform: scale(1.1);
-}
-
-.dashboard-page-view-border-default
-{
-    z-index: -2;
-    position: absolute;
-    top: 1%;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #E0E0E0;
-    border-radius: 3px;
-    opacity: 1;
-}
-
-/* active lights */
-
-.dashboard-page-view-activelights-container
-{
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    width: 49.2%;
-    height: 22.667%;
-}
-
-.dashboard-page-view-activelights-icon
-{
-    z-index: 1;
-    position: absolute;
-    top: 3%;
-    left: 2.5%;
-    width: 3.5%;
-    height: auto;
-}
-
-.dashboard-page-view-activelights-header-divider
-{
-    z-index: 0;
-    position: absolute;
-    background-color: #A35200;
-    top: 2.6%;
-    left: 93.6%;
-    width: 0.1%;
-    height: 9%;
-}
-
-.dashboard-page-view-activelights-table-container
-{
-    font-weight: 400;
-    font-size: max(0.8vw, 11.52px);
-    width: 90%;
-    margin-top: 15%;
-    margin-left: 5%;
-}
-
-.dashboard-page-view-activelights-table-header-detections
-{
-    position: absolute;
-    color: #333132;
-    font-weight: 600;
-    font-size: max(0.8vw, 11.52px);
-    left: 7.9%;
-    top: 15.7%;
-}
-
-.dashboard-page-view-activelights-table-header-date
-{
-    position: absolute;
-    color: #333132;
-    font-weight: 600;
-    font-size: max(0.8vw, 11.52px);
-    left: 33.7%;
-    top: 15.7%;
-}
-
-.dashboard-page-view-activelights-table-header-time
-{
-    position: absolute;
-    color: #333132;
-    font-weight: 600;
-    font-size: max(0.8vw, 11.52px);
-    left: 54.4%;
-    top: 15.7%;
-}
-
-.dashboard-page-view-activelights-table-header-stats
-{
-    position: absolute;
-    color: #333132;
-    font-weight: 600;
-    font-size: max(0.8vw, 11.52px);
-    left: 73.1%;
-    top: 15.7%;
-}
-
-.dashboard-page-view-activelights-table-divider
-{
-    position: absolute;
-    width: 89%;
-    height: 0%;
-    margin-top: -2.5%;
-    left: 5.25%;
-    border: 1px solid #E0E0E0;
-    opacity: 0.8
-}
-
-.dashboard-page-view-activelights-table
-{
-    padding-top: 5.5%;
-    border-collapse: collapse;
-}
-
-.dashboard-page-view-activelights-table tr:nth-child(odd)
-{
-    background-color: #FEF8F3;
-}
-
-.dashboard-page-view-activelights-table-id
-{
-    color: #333132;
-    font-size: max(0.75vw, 10.8px);
-    font-weight: 500;
-    width: 13.9%;
-    padding-top: 0.8%;
-    padding-left: 3%;
-}
-
-.dashboard-page-view-activelights-table-date
-{
-    color: #333132;
-    font-size: max(0.75vw, 10.8px);
-    font-weight: 500;
-    width: 10.2%;
-    padding-top: 0.8%;
-}
-
-.dashboard-page-view-activelights-table-time
-{
-    color: #333132;
-    font-size: max(0.75vw, 10.8px);
-    font-weight: 500;
-    width: 9.2%;
-    padding-top: 0.8%;
-}
-
-.dashboard-page-view-activelights-table-stats
-{
-    color: #009BA7;
-    font-size: max(0.75vw, 10.8px);
-    font-weight: 600;
-    width: 10%;
-    padding-top: 0.8%;
 }
 
 /* energy consumption */

@@ -1,0 +1,100 @@
+.view-page .medium-container#top-right
+{
+    right: 0%;
+}
+
+.view-page .medium-container#top-right .header-divider
+{
+    background-color: #A35200;
+}
+
+.activelights-table-container
+{
+    font-weight: 400;
+    font-size: max(0.8vw, 11.52px);
+    width: 90%;
+    margin-top: 15%;
+    margin-left: 5%;
+}
+
+.activelights-table-container > h1
+{
+    position: absolute;
+    color: #333132;
+    font-weight: 600;
+    font-size: max(0.8vw, 11.52px);
+    top: 15.7%
+}
+
+.activelights-table-container > h1.detections
+{
+    left: 7.9%;
+}
+
+.activelights-table-container > h1.date
+{
+    left: 33.7%;
+}
+
+.activelights-table-container > h1.time
+{
+    left: 54.4%;
+}
+
+.activelights-table-container > h1.stats
+{
+    left: 73.1%;
+}
+
+.activelights-table-container > div
+{
+    position: absolute;
+    opacity: 0.8;
+    border: 1px solid #E0E0E0;
+    margin-top: -2.5%;
+    left: 5.25%;
+    width: 89%;
+    height: 0%;
+}
+
+.activelights-table-container > table
+{
+    padding-top: 5.5%;
+    border-collapse: collapse;
+}
+
+.activelights-table-container > table tr:nth-child(odd)
+{
+    background-color: #FEF8F3;
+}
+
+.activelights-table-container td
+{
+    color: #333132;
+    font-size: max(0.75vw, 10.8px);
+    font-weight: 500;
+    padding-top: 0.8%;
+}
+
+.activelights-table-container td.id
+{
+    width: 13.9%;
+    padding-left: 3%;
+}
+
+.activelights-table-container td.date
+{
+    width: 10.2%;
+}
+
+.activelights-table-container td.time
+{
+    width: 9.2%;
+}
+
+.activelights-table-container td.stats
+{
+    color: #009BA7;
+    font-weight: 600;
+    width: 10%;
+}

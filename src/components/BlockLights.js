@@ -2,14 +2,14 @@ import "../resources/css/view-blocklights.css";
 
 import React, {useState, useEffect} from "react";
 
-import LightIcon from "../resources/dashboard/Icon awesome-lightbulb.svg";
-import BlockLightsHeader from "../resources/dashboard/blocklights header.svg";
-import BlockRefreshIcon from "../resources/dashboard/Icon ionic-md-refresh(block).svg";
-import BlockInfoIcon from "../resources/dashboard/Group 52718.svg";
-import WarningIcon from "../resources/dashboard/Icon ionic-ios-warning.svg";
-import OnIcon from "../resources/dashboard/Icon material-lightbulb-outline.svg";
-import OffIcon from "../resources/dashboard/Icon material-lightbulb-filled.svg";
-import DimIcon from "../resources/dashboard/Group 2403.svg";
+import Header from "../resources/view/blocklights-header-bg.svg";
+import HeaderIcon from "../resources/view/blocklights-header-icon.svg";
+import Refresh from "../resources/view/blocklights-refresh.svg";
+import Info from "../resources/dashboard/icon-info.svg";
+import Faults from "../resources/view/blocklights-faults.svg";
+import On from "../resources/dashboard/Icon material-lightbulb-outline.svg";
+import Off from "../resources/dashboard/Icon material-lightbulb-filled.svg";
+import Dimmed from "../resources/view/blocklights-dimmed.svg";
 
 function BlockLights(props)
 {
@@ -40,61 +40,61 @@ function BlockLights(props)
     }
 
     return(
-        <div className = "blocklights-container">
-            <img alt = "" src = {LightIcon} className = "dashboard-page-view-block-icon"></img>
-            <img 
-                alt = "" 
-                src = {BlockRefreshIcon} 
-                className = "dashboard-page-view-header-refresh"
-                onClick = {handleBlockRefresh}
-            ></img>
-            <div className = "dashboard-page-view-blocklights-header-divider"></div>
-            <img 
-                alt = "" 
-                src = {BlockInfoIcon} 
-                className = "dashboard-page-view-header-info"
-                onClick = {handleBlockInfo}
-            ></img>
-            <div className = "dashboard-page-view-header-default">
-                <h1 className = "dashboard-page-view-headertop-text">LIGHTS IN THIS BLOCK</h1>
-                <img alt = "" src = {BlockLightsHeader} className = "dashboard-page-view-headerimg-default"></img>
+        <div className = "medium-container" id = "top-left">
+            {/* header */}
+            <div className = "medium-header">
+                <img alt = "" src = {Header} className = "bg"></img>
+                <h1 className = "header-text">LIGHTS IN THIS BLOCK</h1>
+                <img alt = "" src = {HeaderIcon} className = "icon"></img>
+                <img 
+                    alt = "" 
+                    src = {Refresh} 
+                    className = "refresh" 
+                    onClick = {handleBlockRefresh}
+                ></img>
+                <div className = "header-divider"></div>
+                <img 
+                    alt = ""  src = {Info} 
+                    className = "info"
+                    onClick = {handleBlockInfo}
+                ></img>
             </div>
             {/* dividing lines */}
-            <div className = "dashboard-page-view-blocklights-divider0"></div>
-            <div className = "dashboard-page-view-blocklights-divider1"></div>
-            <div className = "dashboard-page-view-blocklights-divider2"></div>
+            <div className = "divider0" id = "blocklights"></div>
+            <div className = "divider1" id = "blocklights"></div>
+            <div className = "divider2" id = "blocklights"></div>
             {/* section labels */}
-            <h1 className = "dashboard-page-view-blocklights-text-numlights">Total no. of Lights</h1>
-            <h1 className = "dashboard-page-view-blocklights-text-faults">Lights Fault(s)</h1>
-            <h1 className = "dashboard-page-view-blocklights-text-on">Turned On</h1>
-            <h1 className = "dashboard-page-view-blocklights-text-off">Turned OFF</h1>
-            <h1 className = "dashboard-page-view-blocklights-text-dimmed">Dimmed</h1>
+            <h1 className = "text-numlights">Total no. of Lights</h1>
+            <h1 className = "text-faults">Lights Fault(s)</h1>
+            <h1 className = "text-on">Turned On</h1>
+            <h1 className = "text-off">Turned OFF</h1>
+            <h1 className = "text-dimmed">Dimmed</h1>
             {/* section label icons */}
-            <img alt = "" src = {WarningIcon} className = "dashboard-page-view-blocklights-icon-faults"></img>
-            <img alt = "" src = {OnIcon} className = "dashboard-page-view-blocklights-icon-on"></img>
-            <img alt = "" src = {OffIcon} className = "dashboard-page-view-blocklights-icon-off"></img>
-            <img alt = "" src = {DimIcon} className = "dashboard-page-view-blocklights-icon-dimmed"></img>
+            <img alt = "" src = {Faults} className = "faults"></img>
+            <img alt = "" src = {On} className = "on"></img>
+            <img alt = "" src = {Off} className = "off"></img>
+            <img alt = "" src = {Dimmed} className = "dimmed"></img>
             {/* section values */}
             {totalLights && lightsOn && lightsOff && lightsDimmed && lightFaults &&
-                <div>
-                    <div className = "dashboard-page-view-blocklights-value-container-numlights">
-                        <h1 className = "dashboard-page-view-blocklights-value">{totalLights.toLocaleString()}</h1>
+                <div className = "blocklights-value-container">
+                    <div className = "numlights">
+                        <h1 className = "blocklights-value">{totalLights.toLocaleString()}</h1>
                     </div>
-                    <div className = "dashboard-page-view-blocklights-value-container-faults">
-                        <h1 className = "dashboard-page-view-blocklights-value">{lightFaults.toLocaleString()}</h1>
+                    <div className = "faults">
+                        <h1 className = "blocklights-value">{lightFaults.toLocaleString()}</h1>
                     </div>
-                    <div className = "dashboard-page-view-blocklights-value-container-on">
-                        <h1 className = "dashboard-page-view-blocklights-value">{lightsOn.toLocaleString()}</h1>
+                    <div className = "on">
+                        <h1 className = "blocklights-value">{lightsOn.toLocaleString()}</h1>
                     </div>
-                    <div className = "dashboard-page-view-blocklights-value-container-off">
-                        <h1 className = "dashboard-page-view-blocklights-value">{lightsOff.toLocaleString()}</h1>
+                    <div className = "off">
+                        <h1 className = "blocklights-value">{lightsOff.toLocaleString()}</h1>
                     </div>
-                    <div className = "dashboard-page-view-blocklights-value-container-dimmed">
-                        <h1 className = "dashboard-page-view-blocklights-value">{lightsDimmed.toLocaleString()}</h1>
+                    <div className = "dimmed">
+                        <h1 className = "blocklights-value">{lightsDimmed.toLocaleString()}</h1>
                     </div>
                 </div>
             }
-            <div className = "dashboard-page-view-border-default"></div>
+            <div className = "border"></div>
         </div>
     );
 }

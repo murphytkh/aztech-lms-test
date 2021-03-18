@@ -31,8 +31,7 @@ current task:
 - data charts
   - figure out empty chart display?
 - code refactoring progress
-  - status: - continue cleaning dashboard?
-            - clean dashboard view 
+  - status: - clean dashboard view
 - light status - add button to table for
                  relocation
 
