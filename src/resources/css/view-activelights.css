@@ -3,6 +3,11 @@
     right: 0%;
 }
 
+.view-page .medium-container#top-right .icon
+{
+    width: 3.5%;
+}
+
 .view-page .medium-container#top-right .header-divider
 {
     background-color: #A35200;

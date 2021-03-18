@@ -184,7 +184,7 @@ function ActivityLog(props)
                 <h1 className = "dashboard-page-view-activity-header-text">ACTIVITY LOG</h1>
                 <img alt = "" src = {Header} className = "dashboard-page-view-activity-headerimg"></img>
             </div>
-            <div className = "dashboard-page-view-border-default"></div>
+            <div className = "border"></div>
             {/* header stuff */}
             <h1 className = "dashboard-page-view-activity-show">SHOW</h1>
             <h1 className = "dashboard-page-view-activity-entries">ENTRIES</h1>

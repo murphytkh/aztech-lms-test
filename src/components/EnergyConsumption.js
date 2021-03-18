@@ -1,3 +1,5 @@
+import "../resources/css/view-energyconsumption.css";
+
 import React, {useState, useEffect} from "react";
 
 import Header from "../resources/dashboard/dashboard header.svg";
@@ -138,41 +140,41 @@ function EnergyConsumption(props)
 
     const displayOptions = 
     (
-        <div className = "dashboard-page-view-energy-options-container">
+        <div className = "energy-options-container">
             <EnergyConsumptionOption 
                 click = {handleOneDClick} 
                 text = "1D" 
                 curr = {currDisplayOption}
-                class = "dashboard-page-view-energy-options-btn"
-                classSelected = "dashboard-page-view-energy-options-btn-selected"
+                class = "btn"
+                classSelected = "btn-selected"
             />
             <EnergyConsumptionOption 
                 click = {handleFiveDClick} 
                 text = "5D" 
                 curr = {currDisplayOption} 
-                class = "dashboard-page-view-energy-options-btn"
-                classSelected = "dashboard-page-view-energy-options-btn-selected"
+                class = "btn"
+                classSelected = "btn-selected"
             />
             <EnergyConsumptionOption 
                 click = {handleOneMClick} 
                 text = "1M" 
                 curr = {currDisplayOption}
-                class = "dashboard-page-view-energy-options-btn"
-                classSelected = "dashboard-page-view-energy-options-btn-selected"
+                class = "btn"
+                classSelected = "btn-selected"
             />
             <EnergyConsumptionOption 
                 click = {handleOneYClick} 
                 text = "1Y" 
                 curr = {currDisplayOption} 
-                class = "dashboard-page-view-energy-options-btn"
-                classSelected = "dashboard-page-view-energy-options-btn-selected"
+                class = "btn"
+                classSelected = "btn-selected"
             />
             <EnergyConsumptionOption 
                 click = {handleThreeYClick} 
                 text = "3Y" 
                 curr = {currDisplayOption}
-                class = "dashboard-page-view-energy-options-btn"
-                classSelected = "dashboard-page-view-energy-options-btn-selected"
+                class = "btn"
+                classSelected = "btn-selected"
             />
         </div>
     );
@@ -187,17 +189,16 @@ function EnergyConsumption(props)
     );
 
     return(
-        <div className = "dashboard-page-view-energy-container">
-            <img alt = "" src = {EnergyIcon} className = "dashboard-page-view-energy-icon"></img>
+        <div className = "medium-container" id = "left">
+            {/* header */}
             <div className = "medium-header">
-                <h1 className = "dashboard-page-view-header-text">ENERGY CONSUMPTION</h1>
-                <img alt = "" src = {Header} className = "dashboard-page-view-headerimg-default"></img>
+                <img alt = "" src = {Header} className = "bg"></img>
+                <h1 className = "header-text">ENERGY CONSUMPTION</h1>
+                <img alt = "" src = {EnergyIcon} className = "icon"></img>
             </div>
             {/* axis labels */}
-            <div className = "dashboard-page-view-energy-yaxis">
-                (KwH)
-            </div>
-            <div className = "dashboard-page-view-energy-xaxis">
+            <div className = "energy-axis" id = "y">(KwH)</div>
+            <div className = "energy-axis" id = "x">
                 {currDisplayOption === "1D" && "(Hours)"}
                 {currDisplayOption === "5D" && "(Days)"}
                 {currDisplayOption === "1M" && "(Weeks)"}
@@ -205,18 +206,14 @@ function EnergyConsumption(props)
                 {currDisplayOption === "3Y" && "(Years)"}
             </div>
             {/* present, past labels */}
-            <div className = "dashboard-page-view-energy-present">
-                Present
-            </div>
-            <div className = "dashboard-page-view-energy-present-img"></div>
-            <div className = "dashboard-page-view-energy-past">
-                Past
-            </div>
-            <div className = "dashboard-page-view-energy-past-img"></div>
+            <div className = "energy-label" id = "label0">Present</div>
+            <div className = "energy-img" id = "img0"></div>
+            <div className = "energy-label" id = "label1">Past</div>
+            <div className = "energy-img" id = "img1"></div>
             {/* graph */}
             {displayOptions}
             {displayGraph}
-            <div className = "dashboard-page-view-border-default"></div>
+            <div className = "border"></div>
         </div>
     );
 }

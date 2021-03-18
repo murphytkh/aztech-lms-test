@@ -31,7 +31,7 @@ current task:
 - data charts
   - figure out empty chart display?
 - code refactoring progress
-  - status: - clean dashboard view
+  - status: - clean energy consumption
 - light status - add button to table for
                  relocation
 

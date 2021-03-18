@@ -61,7 +61,7 @@ function EnergyConsumption(props)
         <div className = "dashboard-page-view-control-container">
             <img alt = "" src = {ControlIcon} className = "dashboard-page-view-control-icon"></img>
             <div className = "medium-header">
-                <h1 className = "dashboard-page-view-header-text">LIGHT CONTROL</h1>
+                <h1 className = "header-text">LIGHT CONTROL</h1>
                 <img alt = "" src = {Header} className = "dashboard-page-view-headerimg-default"></img>
             </div>
             {/* dropdown and button headers */}
@@ -69,7 +69,7 @@ function EnergyConsumption(props)
             <div className = "dashboard-page-view-control-light-header">SELECT LIGHT</div>
             <div className = "dashboard-page-view-control-lighting-header">LIGHTING CONTROL</div>
             <div className = "dashboard-page-view-control-admin-header">ADMIN CONTROL</div>
-            <div className = "dashboard-page-view-border-default"></div>
+            <div className = "border"></div>
             {/* dropdown lists */}
             {floorOptions && lightOptions &&
                 <div>

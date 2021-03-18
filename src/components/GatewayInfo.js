@@ -26,7 +26,7 @@ function GatewayInfo(props)
                 <h1 className = "dashboard-page-view-gateway-header-text">GATEWAY INFORMATION</h1>
                 <img alt = "" src = {GatewayHeader} className = "dashboard-page-view-gateway-headerimg"></img>
             </div>
-            <div className = "dashboard-page-view-border-default"></div>
+            <div className = "border"></div>
             {/* elements */}
             <div className = "dashboard-page-view-gateway-button" onClick = {handleRefreshButton}>
                 <img alt = "" src = {RefreshIcon} className = "dashboard-page-view-gateway-button-icon"></img>

@@ -4,19 +4,12 @@ function EnergyConsumptionOption(props)
 {
     return(
         <span>
-            {props.text === props.curr ?
-            <div
-                className = {props.classSelected}
+            <div 
+                className = {props.text === props.curr ? props.classSelected : props.class}
                 onClick = {props.click}
             >
                 {props.text}
-            </div> :
-            <div
-                className = {props.class}
-                onClick = {props.click}
-            >
-                {props.text}
-            </div>}
+            </div>
         </span>
     );
 };

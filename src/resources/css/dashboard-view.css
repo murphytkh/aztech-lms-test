@@ -65,6 +65,8 @@
     width: 101.502%;
 }
 
+/* to remove */
+
 .dashboard-page-view-headerimg-default
 {
     z-index: -10;
@@ -82,11 +84,6 @@
     left: 2.5%;
     width: 2.3%;
     height: auto;
-}
-
-.view-page .medium-container#top-right .icon
-{
-    width: 3.5%;
 }
 
 .view-page .header-text
@@ -165,183 +162,6 @@
     top: 1%;
     width: 100%;
     height: 100%;
-}
-
-/* to remove */
-
-.dashboard-page-view-border-default
-{
-    z-index: -2;
-    position: absolute;
-    border: 1px solid #E0E0E0;
-    border-radius: 3px;
-    top: 1%;
-    width: 100%;
-    height: 100%;
-}
-
-/* --------- */
-
-.dashboard-page-view-headertop-text
-{
-    z-index: 1;
-    position: absolute;
-    color: #FFFFFF;
-    background: none;
-    font-size: max(1vw, 14.4px);
-    font-weight: 500;
-    padding-top: 0.3%;
-    left: 8%;
-}
-
-.dashboard-page-view-header-text
-{
-    z-index: 1;
-    position: absolute;
-    color: #000000;
-    background: none;
-    font-size: max(1vw, 14.4px);
-    font-weight: 500;
-    padding-top: 0.3%;
-    left: 8%;
-}
-
-/* energy consumption */
-
-.dashboard-page-view-energy-container
-{
-    position: absolute;
-    top: 25%;
-    left: 0%;
-    width: 49.2%;
-    height: 22.667%;
-}
-
-.dashboard-page-view-energy-icon
-{
-    z-index: 1;
-    position: absolute;
-    top: 3%;
-    left: 2.5%;
-    width: 3.5%;
-    height: auto;
-}
-
-.dashboard-page-view-energy-options-container
-{
-    margin-top: 1.5%;
-    margin-left: 65%;
-}
-
-.dashboard-page-view-energy-options-btn
-{
-    display: inline-block;
-    cursor: pointer;
-    color: #333132;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 600;
-    border-radius: 3px;
-    text-align: center;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    padding-left: 6%;
-    padding-right: 6%;
-}
-
-.dashboard-page-view-energy-options-btn:hover
-{
-    background: #F5F2F2;
-}
-
-.dashboard-page-view-energy-options-btn-selected
-{
-    display: inline-block;
-    cursor: pointer;
-    color: #333132;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 600;
-    border-radius: 3px;
-    text-align: center;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    padding-left: 6%;
-    padding-right: 6%;
-    background: #E0E0E0;
-}
-
-.dashboard-page-view-energy-options-btn-selected:hover
-{
-    background: #E6E4E4;
-}
-
-.dashboard-page-view-energy-graph-container
-{
-    position: absolute;
-    top: 27%;
-    left: 4%;
-    width: 92%;
-    height: 70%;
-}
-
-.dashboard-page-view-energy-yaxis
-{
-    position: absolute;
-    color: #6D6E71;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 500;
-    top: 54.4%;
-    left: 3%;
-}
-
-.dashboard-page-view-energy-xaxis
-{
-    display: inline-block;
-    position: absolute;
-    color: #6D6E71;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 500;
-    top: 93%;
-    left: 52.15%;
-}
-
-.dashboard-page-view-energy-present
-{
-    position: absolute;
-    color: #212529;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 400;
-    top: 18%;
-    left: 80%;
-}
-
-.dashboard-page-view-energy-present-img
-{
-    position: absolute;
-    border: 1px solid #2CD9C5;
-    top: 20%;
-    left: 77%;
-    width: 2%;
-    height: 0%;
-}
-
-.dashboard-page-view-energy-past
-{
-    position: absolute;
-    color: #212529;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 400;
-    top: 18%;
-    left: 91.5%;
-}
-
-.dashboard-page-view-energy-past-img
-{
-    position: absolute;
-    border: 1px solid #826AF9;
-    top: 20%;
-    left: 88.5%;
-    width: 2%;
-    height: 0%;
 }
 
 /* light control */

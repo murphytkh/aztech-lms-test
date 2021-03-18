@@ -1,4 +1,4 @@
-import "../resources/css/dashboardview.css";
+import "../resources/css/dashboard-view.css";
 
 import React, {useEffect} from "react";
 

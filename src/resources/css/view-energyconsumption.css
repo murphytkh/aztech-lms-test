@@ -1,0 +1,124 @@
+.medium-container#left
+{
+    top: 25%;
+    left: 0%;
+    font-size: max(0.7vw, 10.08px);
+}
+
+.view-page .medium-container#left .icon
+{
+    width: 3.5%;
+}
+
+.view-page .energy-axis
+{
+    position: absolute;
+    color: #6D6E71;
+    font-weight: 500;
+}
+
+.view-page .energy-axis#y
+{
+    top: 54.4%;
+    left: 3%;
+}
+
+.view-page .energy-axis#x
+{
+    top: 93%;
+    left: 52.15%;
+}
+
+.view-page .energy-label
+{
+    position: absolute;
+    color: #212529;
+    font-weight: 400;
+    top: 18%;
+}
+
+.view-page .energy-label#label0
+{
+    left: 80%;
+}
+
+.view-page .energy-label#label1
+{
+    left: 91.5%;
+}
+
+.view-page .energy-img
+{
+    position: absolute;
+    top: 20%;
+    width: 2%;
+    height: 0%;
+}
+
+.view-page .energy-img#img0
+{
+    border: 1px solid #2CD9C5;
+    left: 77%;
+}
+
+.view-page .energy-img#img1
+{
+    border: 1px solid #826AF9;
+    left: 88.5%;
+}
+
+.view-page .energy-options-container
+{
+    margin-top: 1.5%;
+    margin-left: 65%;
+}
+
+.view-page .energy-options-container .btn
+{
+    display: inline-block;
+    cursor: pointer;
+    color: #333132;
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 600;
+    border-radius: 3px;
+    text-align: center;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.view-page .energy-options-container .btn:hover
+{
+    background: #F5F2F2;
+}
+
+.view-page .energy-options-container .btn-selected
+{
+    display: inline-block;
+    cursor: pointer;
+    color: #333132;
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 600;
+    border-radius: 3px;
+    text-align: center;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    padding-left: 6%;
+    padding-right: 6%;
+    background: #E0E0E0;
+}
+
+.view-page .energy-options-container .btn-selected
+{
+    background: #E6E4E4;
+}
+
+.dashboard-page-view-energy-graph-container
+{
+    position: absolute;
+    top: 27%;
+    left: 4%;
+    width: 92%;
+    height: 70%;
+}
