@@ -97,38 +97,12 @@ function Dashboard(props)
             history.push(path);
     }
 
-    function clearLocation()
+    function handleDashboardButton()
     {
         setSelectedLocation("");
         if (locationDDRef.current) 
             locationDDRef.current.clearChoice();
-    }
-
-    function clearArea()
-    {
-        setSelectedArea("");
-        if (areaDDRef.current)
-            areaDDRef.current.clearChoice();
-    }
-
-    function handleDashboardButton()
-    {
-        setSelectedLocation("");
-        setSelectedArea("");
-        setSelectedBlock("");
-        setSelectedLevel("");
-        setSelectedLight("");
-
-        if (locationDDRef.current)
-            locationDDRef.current.clearChoice();
-        if (areaDDRef.current)
-            areaDDRef.current.clearChoice();
-        if (blockDDRef.current)
-            blockDDRef.current.clearChoice();
-        if (levelDDRef.current)
-            levelDDRef.current.clearChoice();
-        if (lightDDRef.current)
-            lightDDRef.current.clearChoice();
+        handleLocationButton();
         
         goToPath("/dashboard");
     }
@@ -136,37 +110,27 @@ function Dashboard(props)
     function handleLocationButton()
     {
         setSelectedArea("");
-        setSelectedBlock("");
-        setSelectedLevel("");
-        setSelectedLight("");
-
         if (areaDDRef.current)
             areaDDRef.current.clearChoice();
-        if (blockDDRef.current)
-            blockDDRef.current.clearChoice();
-        if (levelDDRef.current)
-            levelDDRef.current.clearChoice();
-        if (lightDDRef.current)
-            lightDDRef.current.clearChoice();
+        handleAreaButton();
     }
 
     function handleAreaButton()
     {
         setSelectedBlock("");
-        setSelectedLevel("");
-        setSelectedLight("");
-
         if (blockDDRef.current)
             blockDDRef.current.clearChoice();
-        if (levelDDRef.current)
-            levelDDRef.current.clearChoice();
-        if (lightDDRef.current)
-            lightDDRef.current.clearChoice();
+        handleBlockButton();
     }
 
     function handleBlockButton()
     {
-        goToPath("/dashboard/view");
+        setSelectedLevel("");
+        if (levelDDRef.current)
+            levelDDRef.current.clearChoice();
+        setSelectedLight("");
+        if (lightDDRef.current)
+            lightDDRef.current.clearChoice();
     }
 
     function setSelectedLocationHelper(location)
@@ -184,14 +148,7 @@ function Dashboard(props)
     function setSelectedBlockHelper(block)
     {
         setSelectedBlock(block);
-
-        setSelectedLevel("");
-        setSelectedLight("");
-
-        if (levelDDRef.current)
-            levelDDRef.current.clearChoice();
-        if (lightDDRef.current)
-            lightDDRef.current.clearChoice();
+        handleBlockButton();
         
         if (location.pathname === "/dashboard")
             goToPath("/dashboard/view");
@@ -200,9 +157,7 @@ function Dashboard(props)
     function setSelectedLevelHelper(level)
     {
         setSelectedLevel(level);
-        
         setSelectedLight("");
-
         if (lightDDRef.current)
             lightDDRef.current.clearChoice();
     }
@@ -415,7 +370,7 @@ function Dashboard(props)
 
     function footerDisplayHelper()
     {
-        var page = "footer";
+        var page = "";
 
         if (location.pathname === "/dashboard/view" && selectedBlock)
             page = "view";
@@ -473,12 +428,12 @@ function Dashboard(props)
                 darkMode = {darkMode}
                 setDarkMode = {setDarkMode}
             ></Sidebar>
-            {/* default, non-config page */}
+            {/* default selectors, non-config page */}
             {(location.pathname !== "/dashboard/config" && 
               location.pathname !== "/dashboard/photosensor" && 
               location.pathname !== "/dashboard/datacharts") && 
               defaultTemplate}
-            {/* config, photosensor datacharts */}
+            {/* config selectors , photosensor and datacharts */}
             {(location.pathname === "/dashboard/config" || 
               location.pathname === "/dashboard/photosensor" || 
               location.pathname === "/dashboard/datacharts") && 

@@ -1,3 +1,5 @@
+import "../resources/css/view-blocklights.css";
+
 import React, {useState, useEffect} from "react";
 
 import LightIcon from "../resources/dashboard/Icon awesome-lightbulb.svg";
@@ -38,7 +40,7 @@ function BlockLights(props)
     }
 
     return(
-        <div className = "dashboard-page-view-blocklights-container">
+        <div className = "blocklights-container">
             <img alt = "" src = {LightIcon} className = "dashboard-page-view-block-icon"></img>
             <img 
                 alt = "" 
