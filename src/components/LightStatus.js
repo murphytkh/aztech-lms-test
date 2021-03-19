@@ -5,7 +5,7 @@ import TableSortButton from "../components/TableSortButton";
 
 import StatusHeader from "../resources/dashboard/status header.svg";
 import StatusIcon from "../resources/dashboard/history-24px.svg";
-import RefreshIcon from "../resources/dashboard/Icon ionic-md-refresh (black).svg";
+import RefreshIcon from "../resources/dashboard/icon-refresh-black.svg";
 
 class LightStatusObject
 {

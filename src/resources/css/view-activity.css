@@ -1,0 +1,63 @@
+.large-container#bottom-left
+{
+    top: 50%;
+    left: 0%;
+}
+
+.large-container#bottom-left .header-text
+{
+    top: -12%;
+    left: 6%;
+}
+
+.large-container#bottom-left .icon
+{
+    top: 8%;
+    left: 2%;
+    width: 2.65%;
+}
+
+.activity-header-divider
+{
+    z-index: 1;
+    position: absolute;
+    background-color: #C6C6C6;
+    top: 10%;
+    left: 95%;
+    width: 0.1%;
+    height: 58%;
+}
+
+.large-container#bottom-left .refresh
+{
+    top: 20%;
+    left: 96.5%;
+    width: 2.04%;
+}
+
+.large-header h1.show, h1.entries
+{
+    position: absolute;
+    font-size: max(0.75vw, 10.8px);
+    font-weight: 600;
+    top: 5%;
+}
+
+.large-header .show
+{
+    left: 73.8%;
+}
+
+.large-header .entries
+{
+    left: 87.5%;
+}
+
+.large-header .dd-container
+{
+    position: absolute;
+    top: 6%;
+    left: 79.25%;
+    width: 7%;
+    height: 55.23%;
+}

@@ -24,38 +24,37 @@
     filter: brightness(120%);
 }
 
-.view-page .small-container
+.view-page .small-container, .medium-container, .large-container
 {
     position: absolute;
     border: 1px solid #E0E0E0;
     border-radius: 3px;
+}
+
+.small-container
+{
     width: 31.8%;
     height: 24.933%;
-    text-align: center;
 }
 
-.view-page .medium-container
+.medium-container
 {
-    z-index: 0;
-    position: absolute;
-    border: 1px solid #E0E0E0;
-    border-radius: 3px;
     width: 48.8%;
     height: 22.667%;
-    display: block;
 }
 
-.view-page .large-container
+.large-container
 {
-
+    width: 65.8%;
+    height: 24.933%;
 }
 
-.view-page .full-container
+.full-container
 {
     
 }
 
-.view-page .small-header, .medium-header
+.small-header, .medium-header
 {
     position: absolute;
     top: -0.5%;
@@ -63,27 +62,31 @@
     width: 100.1%;
 }
 
-.view-page .small-header
+.small-header
 {
     height: 13.5%;
 }
 
-.view-page .medium-header
+.medium-header
 {
     height: 15.3%;
 }
 
-.view-page .large-header
+.large-header
+{
+    position: absolute;
+    top: -0.5%;
+    left: -0.25%;
+    width: 100.1%;
+    height: 13.5%;
+}
+
+.full-header
 {
 
 }
 
-.view-page .full-header
-{
-
-}
-
-.view-page .small-header .bg
+.small-header .bg
 {
     position: absolute;
     top: -13%;
@@ -91,7 +94,7 @@
     width: 102%;
 }
 
-.view-page .medium-header .bg
+.medium-header .bg
 {
     position: absolute;
     top: -4%;
@@ -99,9 +102,13 @@
     width: 101.502%;
 }
 
-.view-page .large-header .bg
+.large-header .bg
 {
-    
+    position: absolute;
+    top: -15%;
+    left: -0.4%;
+    width: 101.12%;
+    height: auto;
 }
 
 .view-page .icon
@@ -114,7 +121,7 @@
     height: auto;
 }
 
-.view-page .header-text
+.header-text
 {
     z-index: 1;
     position: absolute;
@@ -150,14 +157,14 @@
     transform: scale(1.1);
 }
 
-.view-page .header-divider
+.header-divider
 {
     z-index: 0;
     position: absolute;
     background-color: #005596;
     top: 15%;
     left: 93.5%;
-    width: 0.2%;
+    width: 0.1%;
     height: 58%;
 }
 
@@ -182,114 +189,6 @@
 }
 
 /* activity log */
-
-.dashboard-page-view-activity-container
-{
-    position: absolute;
-    border: 1px solid #E0E0E0;
-    border-radius: 3px;
-    top: 50%;
-    left: 0%;
-    width: 65.8%;
-    height: 24.933%;
-}
-
-.dashboard-page-view-activity-header
-{
-    position: absolute;
-    top: -0.5%;
-    left: -0.25%;
-    width: 100.1%;
-    height: 13.5%;
-}
-
-.dashboard-page-view-activity-headerimg
-{
-    position: absolute;
-    top: -4%;
-    left: -0.4%;
-    width: 101.12%;
-    height: auto;
-}
-
-.dashboard-page-view-activity-header-text
-{
-    z-index: 1;
-    position: absolute;
-    color: #000000;
-    background: none;
-    font-size: max(1vw, 14.4px);
-    font-weight: 500;
-    padding-top: 0.3%;
-    left: 6.6%;
-}
-
-.dashboard-page-view-activity-icon
-{
-    z-index: 1;
-    position: absolute;
-    top: 3%;
-    left: 2%;
-    width: 2.65%;
-    height: auto;
-}
-
-.dashboard-page-view-activity-header-divider
-{
-    z-index: 0;
-    position: absolute;
-    background-color: #C6C6C6;
-    top: 2.5%;
-    left: 95%;
-    width: 0.1%;
-    height: 7.6%;
-}
-
-.dashboard-page-view-activity-refresh
-{
-    z-index: 1;
-    position: absolute;
-    top: 3.7%;
-    left: 96.5%;
-    width: 2.04%;
-    height: auto;
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(.42, 0, .58, 1);
-    transition-duration: .1s;
-    cursor: pointer;
-}
-
-.dashboard-page-view-activity-refresh:hover
-{
-    transform: scale(1.1);
-}
-
-.dashboard-page-view-activity-show
-{
-    position: absolute;
-    font-size: max(0.75vw, 10.8px);
-    font-weight: 600;
-    top: 1.5%;
-    left: 73.8%;
-}
-
-.dashboard-page-view-activity-entries
-{
-    position: absolute;
-    font-size: max(0.75vw, 10.8px);
-    font-weight: 600;
-    top: 1.5%;
-    left: 87.5%;
-}
-
-.dashboard-page-view-activity-ddcontainer
-{
-    position: absolute;
-    top: 1.7%;
-    left: 79.25%;
-    width: 7%;
-    height: 8%;
-}
 
 .dashboard-page-view-activity-table-container
 {

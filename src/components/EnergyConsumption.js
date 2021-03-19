@@ -127,7 +127,7 @@ function EnergyConsumption(props)
     return(
         <div className = "medium-container" id = "left">
             {/* header */}
-            <div className = "medium-header" style = {{zIndex: -1}}>
+            <div className = "medium-header" style = {{zIndex: 0}}>
                 <img alt = "" src = {Header} className = "bg"></img>
                 <h1 className = "header-text">ENERGY CONSUMPTION</h1>
                 <img alt = "" src = {EnergyIcon} className = "icon"></img>

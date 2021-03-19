@@ -5,12 +5,12 @@
     font-size: max(0.7vw, 10.08px);
 }
 
-.view-page .medium-container#right .icon
+.medium-container#right .icon
 {
     width: 3.5%;
 }
 
-.view-page .medium-container#right > h1
+.medium-container#right > h1
 {
     z-index: -2;
     position: absolute;

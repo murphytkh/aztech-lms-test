@@ -143,6 +143,7 @@
 
 .dashboard-notification-dd ul h1
 {
+    color: #FFFFFF;
     font-size: max(0.75vw, 10.8px);
     font-weight: 600;
     text-decoration: underline;
@@ -153,6 +154,7 @@
 
 .dashboard-notification-dd ul h2
 {
+    color: #FFFFFF;
     font-size: max(0.75vw, 10.8px);
     font-weight: 400;
     margin-left: 20%;

@@ -1,17 +1,19 @@
 .small-container#bottom-right
 {
+    text-align: center;
     top: 50%;
     right: 0%;
 }
 
 .small-container#bottom-right .header-text
 {
+    top: -12%;
     left: 11.5%;
 }
 
 .small-container#bottom-right .icon
 {
-    top: 30%;
+    top: 20%;
     left: 3.5%;
     width: 4.5%;
 }

@@ -1,11 +1,13 @@
+import "../resources/css/view-activity.css";
+
 import React, {useState, useEffect, useRef} from "react";
 
-import GenericDropdown from ".//GenericDropdown";
-import TableSortButton from ".//TableSortButton";
+import GenericDropdown from "./GenericDropdown";
+import TableSortButton from "./TableSortButton";
 
-import Header from "../resources/dashboard/activity header.svg";
-import ActivityIcon from "../resources/dashboard/Icon material-event-note.svg";
-import RefreshIcon from "../resources/dashboard/Icon ionic-md-refresh (black).svg";
+import Header from "../resources/view/activity-header-bg.svg";
+import HeaderIcon from "../resources/view/activity-header-icon.svg";
+import RefreshIcon from "../resources/dashboard/icon-refresh-black.svg";
 
 class ActivityObject
 {
@@ -170,31 +172,32 @@ function ActivityLog(props)
     }
 
     return(
-        <div className = "dashboard-page-view-activity-container">
-            <img alt = "" src = {ActivityIcon} className = "dashboard-page-view-activity-icon"></img>
-            <div className = "dashboard-page-view-activity-header-divider"></div>
-            {/* refresh */}
-            <img 
-                alt = "" 
-                src = {RefreshIcon} 
-                className = "dashboard-page-view-activity-refresh"
-                onClick = {handleActivityLogRefresh}
-            ></img>
-            <div className = "dashboard-page-view-activity-header">
-                <h1 className = "dashboard-page-view-activity-header-text">ACTIVITY LOG</h1>
-                <img alt = "" src = {Header} className = "dashboard-page-view-activity-headerimg"></img>
-            </div>
-            {/* header stuff */}
-            <h1 className = "dashboard-page-view-activity-show">SHOW</h1>
-            <h1 className = "dashboard-page-view-activity-entries">ENTRIES</h1>
-            <div className = "dashboard-page-view-activity-ddcontainer" style = {{zIndex: 10}}>
-                <GenericDropdown
-                    ref = {entriesRef}
-                    default = {selectedOption}
-                    options = {["10", "20", "30", "ALL"]}
-                    selectOption = {handleSelectOption}
-                    disabled = {false}
-                ></GenericDropdown>
+        <div className = "large-container" id = "bottom-left">
+            {/* header */}
+            <div className = "large-header" style = {{zIndex: 0}}>
+                <img alt = "" src = {Header} className = "bg"></img>
+                <h1 className = "header-text">ACTIVITY LOG</h1>
+                <img alt = "" src = {HeaderIcon} className = "icon"></img>
+                {/* dropdown */}
+                <h1 className = "show">SHOW</h1>
+                <h1 className = "entries">ENTRIES</h1>
+                <div className = "dd-container" style = {{zIndex: 10}}>
+                    <GenericDropdown
+                        ref = {entriesRef}
+                        default = {selectedOption}
+                        options = {["10", "20", "30", "ALL"]}
+                        selectOption = {handleSelectOption}
+                        disabled = {false}
+                    ></GenericDropdown>
+                </div>
+                <div className = "activity-header-divider"></div>
+                {/* refresh */}
+                <img 
+                    alt = "" 
+                    src = {RefreshIcon} 
+                    className = "refresh"
+                    onClick = {handleActivityLogRefresh}
+                ></img>
             </div>
             {/* table */}
             {/* 0 - no arrows 1 - up 2 - down */}
