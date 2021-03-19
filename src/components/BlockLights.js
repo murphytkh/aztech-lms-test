@@ -7,8 +7,8 @@ import HeaderIcon from "../resources/view/blocklights-header-icon.svg";
 import Refresh from "../resources/view/blocklights-refresh.svg";
 import Info from "../resources/dashboard/icon-info.svg";
 import Faults from "../resources/view/blocklights-faults.svg";
-import On from "../resources/dashboard/Icon material-lightbulb-outline.svg";
-import Off from "../resources/dashboard/Icon material-lightbulb-filled.svg";
+import On from "../resources/dashboard/icon-light-empty.svg";
+import Off from "../resources/view/blocklights-off.svg";
 import Dimmed from "../resources/view/blocklights-dimmed.svg";
 
 function BlockLights(props)

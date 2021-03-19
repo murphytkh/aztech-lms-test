@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import ConfigBrightnessInput from "./ConfigBrightnessInput";
 
 import Header from "../resources/dashboard/config-long-header.svg";
-import HeaderIcon from "../resources/dashboard/Icon material-lightbulb-outline.svg";
+import HeaderIcon from "../resources/dashboard/icon-light-empty.svg";
 
 function ConfigBrightness(props)
 {

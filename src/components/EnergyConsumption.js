@@ -2,8 +2,8 @@ import "../resources/css/view-energyconsumption.css";
 
 import React, {useState, useEffect} from "react";
 
-import Header from "../resources/dashboard/dashboard header.svg";
-import EnergyIcon from "../resources/dashboard/chart-area-solid.svg";
+import Header from "../resources/view/header-medium-white.svg";
+import EnergyIcon from "../resources/dashboard/icon-chart.svg";
 
 import EnergyConsumptionOption from "../components/EnergyConsumptionOption";
 import EnergyConsumptionGraph from "../components/EnergyConsumptionGraph";
@@ -149,7 +149,7 @@ function EnergyConsumption(props)
             <div className = "energy-options-container">{optionMap}</div>
             <EnergyConsumptionGraph 
                 data = {energyData} 
-                option = {currDisplayOption} 
+                option = {currDisplayOption}
                 class = "graph-container"
             />
             <div className = "border"></div>

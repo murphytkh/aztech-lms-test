@@ -11,7 +11,7 @@ import PhotosensorDivider from "../resources/dashboard/calendar-photosensor-radi
 import FullBrightnessDivider from "../resources/dashboard/calendar-fullbrightness-radio-divider.svg";
 import MotionDivider from "../resources/dashboard/calendar-motion-radio-divider.svg";
 import PhotosensorIcon from "../resources/dashboard/calendar-photosensor-icon.svg";
-import FullBrightnessIcon from "../resources/dashboard/Icon material-lightbulb-outline.svg";
+import FullBrightnessIcon from "../resources/dashboard/icon-light-empty.svg";
 import MotionIcon from "../resources/dashboard/MotionSensor-icon-GY (black).svg";
 
 function RadioButtonGroup(props)

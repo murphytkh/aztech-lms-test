@@ -1,12 +1,14 @@
+import "../resources/css/view-lightcontrol.css";
+
 import React, {useState, useEffect, useRef} from "react";
 
 import GenericDropdown from "./GenericDropdown";
 
-import Header from "../resources/dashboard/dashboard header.svg";
-import ControlIcon from "../resources/dashboard/settings_power-24px.svg";
-import BulbIcon from "../resources/dashboard/Icon material-lightbulb-outline (white).svg";
-import BulbFillIcon from "../resources/dashboard/Icon material-lightbulb-outline (white filled).svg";
-import LoopIcon from "../resources/dashboard/loop-circular.svg";
+import Header from "../resources/view/header-medium-white.svg";
+import ControlIcon from "../resources/view/lightcontrol-header-icon.svg";
+import BulbIcon from "../resources/view/lightcontrol-on.svg";
+import BulbFillIcon from "../resources/view/lightcontrol-off.svg";
+import LoopIcon from "../resources/view/lightcontrol-loop.svg";
 
 function EnergyConsumption(props)
 {
@@ -58,22 +60,23 @@ function EnergyConsumption(props)
     }
 
     return(
-        <div className = "dashboard-page-view-control-container">
-            <img alt = "" src = {ControlIcon} className = "dashboard-page-view-control-icon"></img>
+        <div className = "medium-container" id = "right">
+            {/* header */}
             <div className = "medium-header">
+                <img alt = "" src = {Header} className = "bg"></img>
                 <h1 className = "header-text">LIGHT CONTROL</h1>
-                <img alt = "" src = {Header} className = "dashboard-page-view-headerimg-default"></img>
+                <img alt = "" src = {ControlIcon} className = "icon"></img>
             </div>
             {/* dropdown and button headers */}
-            <div className = "dashboard-page-view-control-floor-header">SELECT FLOOR</div>
-            <div className = "dashboard-page-view-control-light-header">SELECT LIGHT</div>
-            <div className = "dashboard-page-view-control-lighting-header">LIGHTING CONTROL</div>
-            <div className = "dashboard-page-view-control-admin-header">ADMIN CONTROL</div>
+            <h1 className = "lightcontrol-header0">SELECT FLOOR</h1>
+            <h1 className = "lightcontrol-header1">SELECT LIGHT</h1>
+            <h1 className = "lightcontrol-header2">LIGHTING CONTROL</h1>
+            <h1 className = "lightcontrol-header3">ADMIN CONTROL</h1>
             <div className = "border"></div>
             {/* dropdown lists */}
             {floorOptions && lightOptions &&
-                <div>
-                    <div className = "dashboard-page-view-selectfloor-ddcontainer" style = {{zIndex: 10}}>
+                <div className = "lightcontrol-dd">
+                    <div className = "lightcontrol-dd0" style = {{zIndex: 10}}>
                         <GenericDropdown
                             ref = {ddRef}
                             default = {selectedFloor}
@@ -82,7 +85,7 @@ function EnergyConsumption(props)
                             disabled = {false}
                         ></GenericDropdown>
                     </div>
-                    <div className = "dashboard-page-view-selectlight-ddcontainer"  style = {{zIndex: 9}}>
+                    <div className = "lightcontrol-dd1"  style = {{zIndex: 9}}>
                         <GenericDropdown
                             ref = {ddRef}
                             default = {selectedLights}
@@ -94,49 +97,21 @@ function EnergyConsumption(props)
                 </div>
             }
             {/* buttons */}
-            <div 
-                className = "dashboard-page-view-control-onbtn"
-                onClick = {handleOnButtonClick}
-            >
-                <img
-                    alt = ""
-                    src = {BulbIcon}
-                    className = "dashboard-page-view-control-btn-icon"
-                ></img>
-                <div className = "dashboard-page-view-control-btn-text">Turn On</div>
+            <div className = "lightcontrol-btn" id = "btn0" onClick = {handleOnButtonClick}>
+                <img alt = "" src = {BulbIcon}></img>
+                <h1>Turn On</h1>
             </div>
-            <div 
-                className = "dashboard-page-view-control-offbtn"
-                onClick = {handleOffButtonClick}
-            >
-                <img
-                    alt = ""
-                    src = {BulbFillIcon}
-                    className = "dashboard-page-view-control-btn-icon"
-                ></img>
-                <div className = "dashboard-page-view-control-btn-text">Turn Off</div>
+            <div className = "lightcontrol-btn" id = "btn1" onClick = {handleOffButtonClick}>
+                <img alt = "" src = {BulbFillIcon}></img>
+                <h1>Turn Off</h1>
             </div>
-            <div 
-                className = "dashboard-page-view-control-normalbtn"
-                onClick = {handleNormalButtonClick}
-            >
-                <img
-                    alt = ""
-                    src = {BulbIcon}
-                    className = "dashboard-page-view-control-btn-icon"
-                ></img>
-                <div className = "dashboard-page-view-control-btn-text">NORMAL</div>
+            <div className = "lightcontrol-btn" id = "btn2" onClick = {handleNormalButtonClick}>
+                <img alt = "" src = {BulbIcon}></img>
+                <h1>NORMAL</h1>
             </div>
-            <div 
-                className = "dashboard-page-view-control-loopbtn"
-                onClick = {handleLoopButtonClick}
-            >
-                <img
-                    alt = ""
-                    src = {LoopIcon}
-                    className = "dashboard-page-view-control-btn-loopicon"
-                ></img>
-                <div className = "dashboard-page-view-control-btn-looptext">LOOP</div>
+            <div className = "lightcontrol-btn" id = "btn3" onClick = {handleLoopButtonClick}>
+                <img alt = "" src = {LoopIcon}></img>
+                <h1>LOOP</h1>
             </div>
         </div>
     );

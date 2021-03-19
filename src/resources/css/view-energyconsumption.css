@@ -103,7 +103,7 @@
     background: #E6E4E4;
 }
 
-.dashboard-page-view-energy-graph-container
+.view-page .graph-container
 {
     position: absolute;
     top: 27%;
