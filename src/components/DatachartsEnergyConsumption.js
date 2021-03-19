@@ -140,15 +140,6 @@ function DatachartsEnergyConsumption(props)
         </div>
     );
 
-    const displayGraph =
-    (
-        <EnergyConsumptionGraph 
-            data = {energyData} 
-            option = {currDisplayOption} 
-            class = "dashboard-page-datacharts-graph-container"
-        />
-    );
-
     return(
         <div className = "dashboard-page-datacharts-energyconsumption-container">
             {/* header */}
@@ -190,7 +181,11 @@ function DatachartsEnergyConsumption(props)
             {/* graph */}
             <div className = "dashboard-page-datacharts-options-container">{optionMap}</div>
             {displayArrows}
-            {displayGraph}
+            <EnergyConsumptionGraph 
+                data = {energyData} 
+                option = {currDisplayOption} 
+                class = "dashboard-page-datacharts-graph-container"
+            />
         </div>
     )
 }

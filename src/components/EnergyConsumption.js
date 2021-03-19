@@ -123,15 +123,6 @@ function EnergyConsumption(props)
         />
     );
 
-    const displayGraph =
-    (
-        <EnergyConsumptionGraph 
-            data = {energyData} 
-            option = {currDisplayOption} 
-            class = "dashboard-page-view-energy-graph-container"
-        />
-    );
-
     return(
         <div className = "medium-container" id = "left">
             {/* header */}
@@ -156,7 +147,11 @@ function EnergyConsumption(props)
             <div className = "energy-img" id = "img1"></div>
             {/* graph */}
             <div className = "energy-options-container">{optionMap}</div>
-            {displayGraph}
+            <EnergyConsumptionGraph 
+                data = {energyData} 
+                option = {currDisplayOption} 
+                class = "graph-container"
+            />
             <div className = "border"></div>
         </div>
     );
