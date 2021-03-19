@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
 
-import GenericDropdown from "../components/GenericDropdown";
-import TableSortButton from "../components/TableSortButton";
+import GenericDropdown from ".//GenericDropdown";
+import TableSortButton from ".//TableSortButton";
 
 import Header from "../resources/dashboard/activity header.svg";
 import ActivityIcon from "../resources/dashboard/Icon material-event-note.svg";
@@ -184,7 +184,6 @@ function ActivityLog(props)
                 <h1 className = "dashboard-page-view-activity-header-text">ACTIVITY LOG</h1>
                 <img alt = "" src = {Header} className = "dashboard-page-view-activity-headerimg"></img>
             </div>
-            <div className = "border"></div>
             {/* header stuff */}
             <h1 className = "dashboard-page-view-activity-show">SHOW</h1>
             <h1 className = "dashboard-page-view-activity-entries">ENTRIES</h1>

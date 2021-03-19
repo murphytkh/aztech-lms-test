@@ -202,7 +202,6 @@ function LightStatus(props)
                 <h1 className = "dashboard-page-view-status-header-text">LIGHT STATUS</h1>
                 <img alt = "" src = {StatusHeader} className = "dashboard-page-view-status-headerimg"></img>
             </div>
-            <div className = "border"></div>
             {/* header stuff */}
             <h1 className = "dashboard-page-view-status-show">SHOW</h1>
             <h1 className = "dashboard-page-view-status-entries">ENTRIES</h1>

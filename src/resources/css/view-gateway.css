@@ -1,0 +1,84 @@
+.small-container#bottom-right
+{
+    top: 50%;
+    right: 0%;
+}
+
+.small-container#bottom-right .header-text
+{
+    left: 11.5%;
+}
+
+.small-container#bottom-right .icon
+{
+    top: 30%;
+    left: 3.5%;
+    width: 4.5%;
+}
+
+.gateway-button
+{
+    position: absolute;
+    background-color: #005570;
+    border-radius: 6px;
+    top: 67%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    height: 10%;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.gateway-button:hover
+{
+    filter: brightness(120%);
+}
+
+.gateway-button-icon
+{
+    position: absolute;
+    top: 25%;
+    left: 8%;
+    width: 7%;
+    height: auto;
+    opacity: 1;
+}
+
+.gateway-button h1
+{
+    position: absolute;
+    color: #FFFFFF;
+    font-size: max(0.8vw, 11.52px);
+    font-weight: 400;
+    top: 25%;
+    left: 20%;
+    margin: 0%;
+    opacity: 1;
+}
+
+.gateway-text
+{
+    position: absolute;
+    overflow-wrap: break-word;
+    color: #333132;
+    font-size: max(0.75vw, 10.8px);
+    text-align: left;
+    font-weight: 500;
+    margin-top: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 100%;
+}
+
+.gateway-subtext
+{
+    position: absolute;
+    color: #6D6E71;
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 500;
+    top: 90%;
+    width: 100%;
+}

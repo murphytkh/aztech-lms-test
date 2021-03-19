@@ -1,8 +1,10 @@
+import "../resources/css/view-gateway.css";
+
 import React, {useState, useEffect} from "react";
 
-import GatewayHeader from "../resources/dashboard/gateway header.svg";
-import GatewayIcon from "../resources/dashboard/Icon awesome-laptop-code.svg";
-import RefreshIcon from "../resources/dashboard/Icon ionic-md-refresh.svg";
+import Header from "../resources/view/gateway-header-bg.svg";
+import HeaderIcon from "../resources/view/gateway-header-icon.svg";
+import RefreshIcon from "../resources/view/gateway-refresh.svg";
 
 function GatewayInfo(props)
 {
@@ -20,25 +22,24 @@ function GatewayInfo(props)
     }
 
     return(
-        <div className = "dashboard-page-view-gateway-container">
-            <img alt = "" src = {GatewayIcon} className = "dashboard-page-view-gateway-icon"></img>
-            <div className = "dashboard-page-view-gateway-header">
-                <h1 className = "dashboard-page-view-gateway-header-text">GATEWAY INFORMATION</h1>
-                <img alt = "" src = {GatewayHeader} className = "dashboard-page-view-gateway-headerimg"></img>
+        <div className = "small-container" id = "bottom-right">
+            {/* header */}
+            <div className = "small-header">
+                <img alt = "" src = {Header} className = "bg"></img>
+                <h1 className = "header-text">GATEWAY INFORMATION</h1>
+                <img alt = "" src = {HeaderIcon} className = "icon"></img>
             </div>
-            <div className = "border"></div>
             {/* elements */}
-            <div className = "dashboard-page-view-gateway-button" onClick = {handleRefreshButton}>
-                <img alt = "" src = {RefreshIcon} className = "dashboard-page-view-gateway-button-icon"></img>
-                <div className = "dashboard-page-view-gateway-button-text">REFRESH / VIEW DETAIL</div>
+            <div className = "gateway-button" onClick = {handleRefreshButton}>
+                <img alt = "" src = {RefreshIcon} className = "gateway-button-icon"></img>
+                <h1>REFRESH / VIEW DETAIL</h1>
             </div>
             {gatewayInfo && 
                 <div>
-                    <h1 className = "dashboard-page-view-gateway-text">{gatewayInfo}</h1>
-                    <h1 className = "dashboard-page-view-gateway-updated-text">Last updated: Refresh for update</h1>
+                    <h1 className = "gateway-text">{gatewayInfo}</h1>
+                    <h1 className = "gateway-subtext">Last updated: Refresh for update</h1>
                 </div>
             }
-
         </div>
     );
 }

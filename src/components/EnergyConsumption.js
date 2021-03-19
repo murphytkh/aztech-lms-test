@@ -5,8 +5,8 @@ import React, {useState, useEffect} from "react";
 import Header from "../resources/view/header-medium-white.svg";
 import EnergyIcon from "../resources/dashboard/icon-chart.svg";
 
-import EnergyConsumptionOption from "../components/EnergyConsumptionOption";
-import EnergyConsumptionGraph from "../components/EnergyConsumptionGraph";
+import EnergyConsumptionOption from "./EnergyConsumptionOption";
+import EnergyConsumptionGraph from "./EnergyConsumptionGraph";
 
 const optionText = ["1D", "5D", "1M", "1Y", "3Y"];
 
@@ -117,6 +117,7 @@ function EnergyConsumption(props)
 
     const optionMap = optionText.map(option =>
         <EnergyConsumptionOption
+            key = {option}
             text = {option}
             curr = {currDisplayOption}
             set = {setCurrDisplayOption}
@@ -126,7 +127,7 @@ function EnergyConsumption(props)
     return(
         <div className = "medium-container" id = "left">
             {/* header */}
-            <div className = "medium-header">
+            <div className = "medium-header" style = {{zIndex: -1}}>
                 <img alt = "" src = {Header} className = "bg"></img>
                 <h1 className = "header-text">ENERGY CONSUMPTION</h1>
                 <img alt = "" src = {EnergyIcon} className = "icon"></img>
@@ -152,7 +153,6 @@ function EnergyConsumption(props)
                 option = {currDisplayOption}
                 class = "graph-container"
             />
-            <div className = "border"></div>
         </div>
     );
 }

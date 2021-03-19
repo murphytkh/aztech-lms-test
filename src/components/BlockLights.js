@@ -94,7 +94,6 @@ function BlockLights(props)
                     </div>
                 </div>
             }
-            <div className = "border"></div>
         </div>
     );
 }

@@ -90,7 +90,6 @@ function ActiveLights(props)
                     <table><tbody>{activeLightsList}</tbody></table>
                 </div>
             }
-            <div className = "border"></div>
         </div>
     );
 }

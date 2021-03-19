@@ -1,4 +1,4 @@
-{/* common elements */}
+/* common elements */
 
 .view-page
 {
@@ -24,26 +24,52 @@
     filter: brightness(120%);
 }
 
+.view-page .small-container
+{
+    position: absolute;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
+    width: 31.8%;
+    height: 24.933%;
+    text-align: center;
+}
+
 .view-page .medium-container
 {
     z-index: 0;
     position: absolute;
-    top: 0%;
-    width: 49.2%;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
+    width: 48.8%;
     height: 22.667%;
     display: block;
 }
 
-.view-page .small-header
+.view-page .large-container
+{
+
+}
+
+.view-page .full-container
 {
     
 }
 
+.view-page .small-header, .medium-header
+{
+    position: absolute;
+    top: -0.5%;
+    left: -0.25%;
+    width: 100.1%;
+}
+
+.view-page .small-header
+{
+    height: 13.5%;
+}
+
 .view-page .medium-header
 {
-    z-index: -1;
-    position: absolute;
-    width: 100%;
     height: 15.3%;
 }
 
@@ -57,12 +83,25 @@
 
 }
 
+.view-page .small-header .bg
+{
+    position: absolute;
+    top: -13%;
+    left: -0.8%;
+    width: 102%;
+}
+
 .view-page .medium-header .bg
 {
     position: absolute;
     top: -4%;
     left: -0.55%;
     width: 101.502%;
+}
+
+.view-page .large-header .bg
+{
+    
 }
 
 .view-page .icon
@@ -142,33 +181,25 @@
     transform: scale(1.1);
 }
 
-.view-page .border
-{
-    z-index: -2;
-    position: absolute;
-    border: 1px solid #E0E0E0;
-    border-radius: 3px;
-    top: 1%;
-    width: 100%;
-    height: 100%;
-}
-
 /* activity log */
 
 .dashboard-page-view-activity-container
 {
     position: absolute;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
     top: 50%;
     left: 0%;
-    width: 65%;
+    width: 65.8%;
     height: 24.933%;
 }
 
 .dashboard-page-view-activity-header
 {
-    z-index: -1;
     position: absolute;
-    width: 100%;
+    top: -0.5%;
+    left: -0.25%;
+    width: 100.1%;
     height: 13.5%;
 }
 
@@ -216,7 +247,7 @@
 
 .dashboard-page-view-activity-refresh
 {
-    z-index: 0;
+    z-index: 1;
     position: absolute;
     top: 3.7%;
     left: 96.5%;
@@ -439,127 +470,13 @@
     filter: brightness(120%);
 }
 
-/* gateway information */
-
-.dashboard-page-view-gateway-container
-{
-    position: absolute;
-    top: 50%;
-    right: 0%;
-    width: 33.5%;
-    height: 24.933%;
-    text-align: center;
-}
-
-.dashboard-page-view-gateway-header
-{
-    z-index: -1;
-    position: absolute;
-    width: 100%;
-    height: 13.5%;
-}
-
-.dashboard-page-view-gateway-headerimg
-{
-    position: absolute;
-    top: -13%;
-    left: -0.8%;
-    width: 102%;
-}
-
-.dashboard-page-view-gateway-header-text
-{
-    z-index: 1;
-    position: absolute;
-    color: #000000;
-    background: none;
-    font-size: max(1vw, 14.4px);
-    font-weight: 500;
-    padding-top: 0.3%;
-    left: 11.5%;
-}
-
-.dashboard-page-view-gateway-icon
-{
-    z-index: 1;
-    position: absolute;
-    top: 4.25%;
-    left: 3.5%;
-    width: 4.5%;
-    height: auto;
-}
-
-.dashboard-page-view-gateway-text
-{
-    position: absolute;
-    overflow-wrap: break-word;
-    color: #333132;
-    font-size: max(0.75vw, 10.8px);
-    font-weight: 500;
-    margin-top: 15%;
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 100%;
-    text-align: left;
-}
-
-.dashboard-page-view-gateway-button
-{
-    position: absolute;
-    background-color: #005570;
-    border-radius: 6px;
-    top: 67%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 50%;
-    height: 10%;
-    cursor: pointer;
-    opacity: 0.5;
-}
-
-.dashboard-page-view-gateway-button:hover
-{
-    filter: brightness(120%);
-}
-
-.dashboard-page-view-gateway-button-icon
-{
-    position: absolute;
-    top: 25%;
-    left: 8%;
-    width: 7%;
-    height: auto;
-    opacity: 1;
-}
-
-.dashboard-page-view-gateway-button-text
-{
-    position: absolute;
-    color: #FFFFFF;
-    font-size: max(0.8vw, 11.52px);
-    font-weight: 400;
-    top: 25%;
-    left: 20%;
-    opacity: 1;
-}
-
-.dashboard-page-view-gateway-updated-text
-{
-    position: absolute;
-    color: #6D6E71;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 500;
-    top: 90%;
-    width: 100%;
-}
-
 /* light status */
 
 .dashboard-page-view-status-container
 {
     position: absolute;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
     top: 77.5%;
     right: 0%;
     width: 100%;
@@ -568,9 +485,10 @@
 
 .dashboard-page-view-status-header
 {
-    z-index: -1;
     position: absolute;
-    width: 100%;
+    top: -0.5%;
+    left: -0.1%;
+    width: 100.1%;
     height: 13.5%;
 }
 
@@ -617,9 +535,9 @@
 
 .dashboard-page-view-status-refresh
 {
-    z-index: 0;
+    z-index: 1;
     position: absolute;
-    top: 3.2%;
+    top: 2.5%;
     left: 97.8%;
     width: 1.32%;
     height: auto;

@@ -72,7 +72,6 @@ function EnergyConsumption(props)
             <h1 className = "lightcontrol-header1">SELECT LIGHT</h1>
             <h1 className = "lightcontrol-header2">LIGHTING CONTROL</h1>
             <h1 className = "lightcontrol-header3">ADMIN CONTROL</h1>
-            <div className = "border"></div>
             {/* dropdown lists */}
             {floorOptions && lightOptions &&
                 <div className = "lightcontrol-dd">

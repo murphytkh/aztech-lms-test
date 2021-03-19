@@ -117,6 +117,7 @@ function DatachartsEnergyConsumption(props)
     
     const optionMap = optionText.map(option =>
         <EnergyConsumptionOption
+            key = {option}
             text = {option}
             curr = {currDisplayOption}
             set = {setCurrDisplayOption}
