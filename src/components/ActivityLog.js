@@ -205,6 +205,7 @@ function ActivityLog(props)
             {/* 0 - no arrows 1 - up 2 - down */}
             {activityList &&
                 <div className = "dashboard-page-view-activity-table-container">
+                    {/* headers and buttons */}
                     <div 
                         className = "dashboard-page-view-activity-table-header-user"
                         onClick = {handleUserClick}
@@ -226,11 +227,13 @@ function ActivityLog(props)
                         ACTION
                     </div>
                     <div className = "dashboard-page-view-activity-table-divider"></div>
-                    <table className = "dashboard-page-view-activity-table">
+                    {/* table object */}
+                    <table className = "activity-table">
                         <tbody>{activityList}</tbody>
                     </table>
                     <div className = "dashboard-page-view-activity-table-divider2"></div>
-                    <div className = "dashboard-page-view-activity-showing">
+                    {/* pagination */}
+                    <div className = "activity-bottomtext">
                         Showing {currentPage * 10 + 1} {" "}
                         to {" "}
                         {currentPage === lastPage ? displayLength : (currentPage + 1) * 10} {" "}

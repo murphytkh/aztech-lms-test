@@ -116,14 +116,14 @@
     opacity: 0.8
 }
 
-.dashboard-page-view-activity-table
+.activity-table
 {
     padding-top: 2.2%;
     width: 100%;
     border-collapse: collapse;
 }
 
-.dashboard-page-view-activity-table tr:nth-child(odd)
+.activity-table tr:nth-child(odd)
 {
     background-color: #F7F7F7;
 }
@@ -147,7 +147,7 @@
     padding-top: 0.5%;
 }
 
-.dashboard-page-view-activity-showing
+.activity-bottomtext
 {
     position: absolute;
     color: #6D6E71;
