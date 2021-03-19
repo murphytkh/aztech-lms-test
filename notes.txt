@@ -32,6 +32,7 @@ current task:
   - figure out empty chart display?
 - code refactoring progress
   - status: - cleaning activity log
+            - change all headers to css renders?
 - light status - add button to table for
                  relocation
 

@@ -20,12 +20,13 @@ class ActivityObject
 
 class PageObject
 {
-    constructor(index, active, value, style)
+    constructor(index, active, value, style, id)
     {
         this.index = index;
         this.active = active;
         this.value = value;
         this.style = style;
+        this.id = id;
     }
 }
 
@@ -64,11 +65,11 @@ function ActivityLog(props)
     for (var i = 0; i < lastPage + 1; ++i)
     {
         if (i === currentPage)
-            pageListHelper.push(new PageObject(i, false, i + 1, "dashboard-page-view-activity-page-current"));
+            pageListHelper.push(new PageObject(i, false, i + 1, "default", ""));
         else if (i === 0 || i === lastPage || i === currentPage - 1 || i === currentPage + 1)
-            pageListHelper.push(new PageObject(i, true, i + 1, "dashboard-page-view-activity-page"));
+            pageListHelper.push(new PageObject(i, true, i + 1, "default", "active"));
         else if (i === currentPage - 2 || i === currentPage + 2)
-            pageListHelper.push(new PageObject(i, false, "...", "dashboard-page-view-activity-page-current"));
+            pageListHelper.push(new PageObject(i, false, "...", "default", ""));
     }
 
     let pageList = pageListHelper.length &&
@@ -78,6 +79,7 @@ function ActivityLog(props)
         <div
             key = {page.index}
             className = {page.style}
+            id = {page.id}
             onClick={page.active ? () => handlePageClick(page.index) : () => {}}
         >
             {page.value}
@@ -174,7 +176,7 @@ function ActivityLog(props)
     return(
         <div className = "large-container" id = "bottom-left">
             {/* header */}
-            <div className = "large-header" style = {{zIndex: 0}}>
+            <div className = "large-header" style = {{zIndex: 1}}>
                 <img alt = "" src = {Header} className = "bg"></img>
                 <h1 className = "header-text">ACTIVITY LOG</h1>
                 <img alt = "" src = {HeaderIcon} className = "icon"></img>
@@ -225,9 +227,7 @@ function ActivityLog(props)
                     </div>
                     <div className = "dashboard-page-view-activity-table-divider"></div>
                     <table className = "dashboard-page-view-activity-table">
-                        <tbody>
-                            {activityList}
-                        </tbody>
+                        <tbody>{activityList}</tbody>
                     </table>
                     <div className = "dashboard-page-view-activity-table-divider2"></div>
                     <div className = "dashboard-page-view-activity-showing">
@@ -240,15 +240,17 @@ function ActivityLog(props)
                 </div>
             }
             {/* buttons */}
-            <div className = "dashboard-page-view-activity-pagination-container">
+            <div className = "pagination-container" id = "activity">
                 <div 
-                    className = {currentPage === lastPage ? "dashboard-page-view-activity-next" : "dashboard-page-view-activity-next-active"}
+                    className = "default"
+                    id = {currentPage === lastPage ? "" : "active"}
                     onClick = {handleNextClick}>
                     NEXT
                 </div>
                 {lastPage > 1 && pageList}
                 <div 
-                    className = {currentPage === 0 ? "dashboard-page-view-activity-prev" : "dashboard-page-view-activity-prev-active"}
+                    className = "left"
+                    id = {currentPage === 0 ? "" : "active"}
                     onClick = {handlePrevClick}>
                     PREVIOUS
                 </div>
