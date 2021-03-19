@@ -8,6 +8,8 @@ import HeaderIcon from "../resources/dashboard/chart-area-solid.svg";
 import ArrowDivider from "../resources/dashboard/datacharts-arrow-divider.svg";
 import Arrow from "../resources/dashboard/icon-dropdown-down.svg";
 
+const optionText = ["1D", "5D", "1M", "1Y", "3Y"];
+
 function DatachartsEnergyConsumption(props)
 {
     // 1D, 5D, 1M, 1Y, 3Y
@@ -112,71 +114,13 @@ function DatachartsEnergyConsumption(props)
         setEnergyData([data0, data1, data2, data3, data4, data5, data6, data7,
                        data8, data9]);
     }, []);
-
-    function handleOneDClick()
-    {
-        setCurrDisplayOption("1D");
-    }
-
-    function handleFiveDClick()
-    {
-        setCurrDisplayOption("5D");
-    }
-
-    function handleOneMClick()
-    {
-        setCurrDisplayOption("1M");
-    }
-
-    function handleOneYClick()
-    {
-        setCurrDisplayOption("1Y");
-    }
-
-    function handleThreeYClick()
-    {
-        setCurrDisplayOption("3Y");
-    }
-
-    const displayOptions = 
-    (
-        <div className = "dashboard-page-datacharts-options-container">
-            <EnergyConsumptionOption 
-                click = {handleOneDClick} 
-                text = "1D" 
-                curr = {currDisplayOption}
-                class = "dashboard-page-datacharts-options-btn"
-                classSelected = "dashboard-page-datacharts-options-btn-selected"
-            />
-            <EnergyConsumptionOption 
-                click = {handleFiveDClick} 
-                text = "5D" 
-                curr = {currDisplayOption}
-                class = "dashboard-page-datacharts-options-btn"
-                classSelected = "dashboard-page-datacharts-options-btn-selected"
-            />
-            <EnergyConsumptionOption 
-                click = {handleOneMClick} 
-                text = "1M" 
-                curr = {currDisplayOption}
-                class = "dashboard-page-datacharts-options-btn"
-                classSelected = "dashboard-page-datacharts-options-btn-selected"
-            />
-            <EnergyConsumptionOption 
-                click = {handleOneYClick} 
-                text = "1Y" 
-                curr = {currDisplayOption}
-                class = "dashboard-page-datacharts-options-btn"
-                classSelected = "dashboard-page-datacharts-options-btn-selected"
-            />
-            <EnergyConsumptionOption 
-                click = {handleThreeYClick} 
-                text = "3Y" 
-                curr = {currDisplayOption}
-                class = "dashboard-page-datacharts-options-btn"
-                classSelected = "dashboard-page-datacharts-options-btn-selected"
-            />
-        </div>
+    
+    const optionMap = optionText.map(option =>
+        <EnergyConsumptionOption
+            text = {option}
+            curr = {currDisplayOption}
+            set = {setCurrDisplayOption}
+        />
     );
 
     // hard-coded for now until i figure out what they actually do
@@ -244,7 +188,7 @@ function DatachartsEnergyConsumption(props)
             </div>
             <div className = "dashboard-page-datacharts-past-img"></div>
             {/* graph */}
-            {displayOptions}
+            <div className = "dashboard-page-datacharts-options-container">{optionMap}</div>
             {displayArrows}
             {displayGraph}
         </div>

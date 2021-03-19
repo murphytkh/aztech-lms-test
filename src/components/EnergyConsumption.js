@@ -8,6 +8,8 @@ import EnergyIcon from "../resources/dashboard/chart-area-solid.svg";
 import EnergyConsumptionOption from "../components/EnergyConsumptionOption";
 import EnergyConsumptionGraph from "../components/EnergyConsumptionGraph";
 
+const optionText = ["1D", "5D", "1M", "1Y", "3Y"];
+
 function EnergyConsumption(props)
 {
     // 1D, 5D, 1M, 1Y, 3Y
@@ -113,70 +115,12 @@ function EnergyConsumption(props)
                        data8, data9]);
     }, []);
 
-    function handleOneDClick()
-    {
-        setCurrDisplayOption("1D");
-    }
-
-    function handleFiveDClick()
-    {
-        setCurrDisplayOption("5D");
-    }
-
-    function handleOneMClick()
-    {
-        setCurrDisplayOption("1M");
-    }
-
-    function handleOneYClick()
-    {
-        setCurrDisplayOption("1Y");
-    }
-
-    function handleThreeYClick()
-    {
-        setCurrDisplayOption("3Y");
-    }
-
-    const displayOptions = 
-    (
-        <div className = "energy-options-container">
-            <EnergyConsumptionOption 
-                click = {handleOneDClick} 
-                text = "1D" 
-                curr = {currDisplayOption}
-                class = "btn"
-                classSelected = "btn-selected"
-            />
-            <EnergyConsumptionOption 
-                click = {handleFiveDClick} 
-                text = "5D" 
-                curr = {currDisplayOption} 
-                class = "btn"
-                classSelected = "btn-selected"
-            />
-            <EnergyConsumptionOption 
-                click = {handleOneMClick} 
-                text = "1M" 
-                curr = {currDisplayOption}
-                class = "btn"
-                classSelected = "btn-selected"
-            />
-            <EnergyConsumptionOption 
-                click = {handleOneYClick} 
-                text = "1Y" 
-                curr = {currDisplayOption} 
-                class = "btn"
-                classSelected = "btn-selected"
-            />
-            <EnergyConsumptionOption 
-                click = {handleThreeYClick} 
-                text = "3Y" 
-                curr = {currDisplayOption}
-                class = "btn"
-                classSelected = "btn-selected"
-            />
-        </div>
+    const optionMap = optionText.map(option =>
+        <EnergyConsumptionOption
+            text = {option}
+            curr = {currDisplayOption}
+            set = {setCurrDisplayOption}
+        />
     );
 
     const displayGraph =
@@ -211,7 +155,7 @@ function EnergyConsumption(props)
             <div className = "energy-label" id = "label1">Past</div>
             <div className = "energy-img" id = "img1"></div>
             {/* graph */}
-            {displayOptions}
+            <div className = "energy-options-container">{optionMap}</div>
             {displayGraph}
             <div className = "border"></div>
         </div>

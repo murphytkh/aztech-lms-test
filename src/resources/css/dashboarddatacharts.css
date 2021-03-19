@@ -121,12 +121,11 @@
     height: 7.7%
 }
 
-.dashboard-page-datacharts-options-btn
+.dashboard-page-datacharts-options-container .btn
 {
     display: inline-block;
     cursor: pointer;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-size: max(0.7vw, 10.08px);
     font-weight: 600;
     border-radius: 3px;
@@ -137,29 +136,17 @@
     padding-right: 6%;
 }
 
-.dashboard-page-datacharts-options-btn:hover
+.dashboard-page-datacharts-options-container .btn:hover
 {
     background: #F5F2F2;
 }
 
-.dashboard-page-datacharts-options-btn-selected
+.dashboard-page-datacharts-options-container .btn#selected
 {
-    display: inline-block;
-    cursor: pointer;
-    color: #333132;
-    font-family: "work sans", sans-serif;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 600;
-    border-radius: 3px;
-    text-align: center;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    padding-left: 6%;
-    padding-right: 6%;
     background: #E0E0E0;
 }
 
-.dashboard-page-datacharts-options-btn-selected:hover
+.dashboard-page-datacharts-options-container .btn#selected:hover
 {
     background: #E6E4E4;
 }

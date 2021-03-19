@@ -78,9 +78,9 @@
     display: inline-block;
     cursor: pointer;
     color: #333132;
+    border-radius: 3px;
     font-size: max(0.7vw, 10.08px);
     font-weight: 600;
-    border-radius: 3px;
     text-align: center;
     padding-top: 2.5%;
     padding-bottom: 2.5%;
@@ -93,23 +93,12 @@
     background: #F5F2F2;
 }
 
-.view-page .energy-options-container .btn-selected
+.view-page .energy-options-container .btn#selected
 {
-    display: inline-block;
-    cursor: pointer;
-    color: #333132;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 600;
-    border-radius: 3px;
-    text-align: center;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    padding-left: 6%;
-    padding-right: 6%;
     background: #E0E0E0;
 }
 
-.view-page .energy-options-container .btn-selected
+.view-page .energy-options-container .btn#selected:hover
 {
     background: #E6E4E4;
 }
