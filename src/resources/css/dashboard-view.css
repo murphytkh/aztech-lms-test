@@ -2,11 +2,11 @@
 
 .view-page
 {
-  position: absolute;
-  top: 17%;
-  left: 12%;
-  width: 81%;
-  height: 150%;
+    position: absolute;
+    top: 17%;
+    left: 12%;
+    width: 81%;
+    height: 160%;
 }
 
 .view-page .export-btn
@@ -31,31 +31,74 @@
     border-radius: 3px;
 }
 
+/* NEW TESTING */
+
+.card-container
+{
+    position: absolute;
+    box-shadow: inset 0 0 0 1px #E0E0E0;
+    border-radius: 3px;
+    height: 23.275%;
+}
+
+.card-container#small
+{
+    width: 31.8%;
+}
+
+.card-container#medium
+{
+    width: 48.85%;
+}
+
+.card-container#large
+{
+    width: 65.9%;
+}
+
+.card-container#full
+{
+    width: 100%;
+}
+
+.card-header
+{
+    position: absolute;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 2px 3px #00000029;
+    width: 100%;
+    height: 13.714%;
+}
+
+/* .card-header#active-lights .header-text */
+
+/* ----------- */
+
 .small-container
 {
     width: 31.8%;
-    height: 24.933%;
+    height: 23.275%;
 }
 
 .medium-container
 {
-    width: 48.8%;
-    height: 22.667%;
+    width: 48.85%;
+    height: 23.275%;
 }
 
 .large-container
 {
-    width: 65.8%;
-    height: 24.933%;
+    width: 65.9%;
+    height: 23.275%;
 }
 
 .full-container
 {
     width: 100%;
-    height: 24.933%;
+    height: 23.275%;
 }
 
-.small-header, .medium-header
+.small-header
 {
     position: absolute;
     top: -0.5%;
@@ -66,11 +109,6 @@
 .small-header
 {
     height: 13.5%;
-}
-
-.medium-header
-{
-    height: 15.3%;
 }
 
 .large-header
@@ -96,14 +134,6 @@
     top: -13%;
     left: -0.8%;
     width: 102%;
-}
-
-.medium-header .bg
-{
-    position: absolute;
-    top: -4%;
-    left: -0.55%;
-    width: 101.502%;
 }
 
 .large-header .bg
@@ -149,15 +179,13 @@
     color: #FFFFFF;
 }
 
-/* top row refresh buttons */
+/* refresh buttons */
 
 .view-page .refresh
 {
     z-index: 1;
     position: absolute;
-    top: 26%;
-    left: 88%;
-    width: 2.7%;
+    top: 31%;
     height: auto;
     transition-property: transform;
     transition-timing-function: cubic-bezier(.42, 0, .58, 1);
@@ -170,28 +198,24 @@
     transform: scale(1.1);
 }
 
-/* top row dividers */
+/* header dividers */
 
-.header-divider
+.view-page .header-divider
 {
     z-index: 0;
     position: absolute;
     background-color: #005596;
-    top: 15%;
-    left: 93.5%;
-    width: 0.1%;
-    height: 58%;
+    top: 18.75%;
+    width: 1px;
+    height: 62.5%;
 }
 
-/* top row info rollovers */
+/* header info icons */
 
 .view-page .info
 {
     z-index: 0;
     position: absolute;
-    top: -5%;
-    left: 93.6%;
-    width: 7%;
     height: auto;
     transition-property: transform;
     transition-timing-function: cubic-bezier(.42, 0, .58, 1);
