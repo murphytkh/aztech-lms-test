@@ -86,12 +86,6 @@
     height: 23.275%;
 }
 
-.large-container
-{
-    width: 65.9%;
-    height: 23.275%;
-}
-
 .full-container
 {
     width: 100%;
@@ -111,15 +105,6 @@
     height: 13.5%;
 }
 
-.large-header
-{
-    position: absolute;
-    top: -0.5%;
-    left: -0.25%;
-    width: 100.1%;
-    height: 13.5%;
-}
-
 .full-header
 {
     position: absolute;
@@ -134,14 +119,6 @@
     top: -13%;
     left: -0.8%;
     width: 102%;
-}
-
-.large-header .bg
-{
-    position: absolute;
-    top: -15%;
-    left: -0.4%;
-    width: 101.12%;
 }
 
 .full-header .bg

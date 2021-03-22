@@ -1,66 +1,58 @@
-.large-container#bottom-left
-{
-    top: 50%;
-    left: 0%;
-}
+/* header */
 
-.large-container#bottom-left .header-text
+.card-header#activity .header-text
 {
-    top: -12%;
+    top: 7%;
     left: 6%;
 }
 
-.large-container#bottom-left .icon
+.card-header#activity .icon
 {
-    top: 8%;
-    left: 2%;
-    width: 2.65%;
+    top: 24.5%;
+    left: 1.8%;
+    width: 2.6%;
 }
 
-.activity-header-divider
-{
-    z-index: 1;
-    position: absolute;
-    background-color: #C6C6C6;
-    top: 10%;
-    left: 95%;
-    width: 0.1%;
-    height: 58%;
-}
-
-.large-container#bottom-left .refresh
-{
-    top: 17%;
-    left: 96.5%;
-    width: 2.04%;
-}
-
-.large-header h1.show, .large-header h1.entries
+.card-header#activity h1.show, .card-header#activity h1.entries
 {
     position: absolute;
     font-size: max(0.75vw, 10.8px);
     font-weight: 600;
-    top: 5%;
+    top: 18%;
 }
 
-.large-header .show
+.card-header#activity .show
 {
     left: 73.8%;
 }
 
-.large-header .entries
+.card-header#activity .entries
 {
     left: 87.5%;
 }
 
-.large-header .dd-container
+.card-header#activity .dd-container
 {
     position: absolute;
-    top: 6%;
+    top: 20%;
     left: 79.25%;
     width: 7%;
     height: 55.23%;
 }
+
+.card-header#activity .header-divider
+{
+    background-color: #C6C6C6;
+    left: 95%;
+}
+
+.card-header#activity .refresh
+{
+    left: 96.5%;
+    width: 1.9%;
+}
+
+/* table */
 
 .activity-table-container
 {
@@ -75,7 +67,7 @@
     position: absolute;
     color: #333132;
     font-weight: 600;
-    top: 17%;
+    top: 18%;
     cursor: pointer;
     user-select: none;
 }
@@ -151,6 +143,8 @@
     top: 93%;
     left: 6.5%;
 }
+
+/* pagination */
 
 .pagination-container#activity
 {

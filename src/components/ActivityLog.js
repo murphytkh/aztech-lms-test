@@ -173,10 +173,9 @@ function ActivityLog(props)
     }
 
     return(
-        <div className = "large-container" id = "bottom-left">
+        <div className = "card-container" id = "large">
             {/* header */}
-            <div className = "large-header" style = {{zIndex: 1}}>
-                <img alt = "" src = {Header} className = "bg"></img>
+            <div className = "card-header" id = "activity">
                 <h1 className = "header-text">ACTIVITY LOG</h1>
                 <img alt = "" src = {HeaderIcon} className = "icon"></img>
                 {/* dropdown */}
@@ -191,7 +190,7 @@ function ActivityLog(props)
                         disabled = {false}
                     ></GenericDropdown>
                 </div>
-                <div className = "activity-header-divider"></div>
+                <div className = "header-divider"></div>
                 {/* refresh */}
                 <img 
                     alt = "" 

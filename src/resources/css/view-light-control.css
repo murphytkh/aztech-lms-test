@@ -13,6 +13,8 @@
     width: 3.5%;
 }
 
+/* config labels */
+
 .light-control-header
 {
     z-index: -2;
@@ -44,6 +46,8 @@
     left: 74.5% !important;
 }
 
+/* dropdown boxes */
+
 .light-control-dd > div
 {
     position: absolute;
@@ -61,6 +65,8 @@
 {
     top: 50.5%;
 }
+
+/* config buttons */
 
 .light-control-btn
 {
