@@ -1,8 +1,7 @@
-import "../resources/css/view-activelights.css";
+import "../resources/css/view-active-lights.css";
 
 import React, {useState, useEffect} from "react";
 
-import Header from "../resources/view/activelights-header-bg.svg";
 import HeaderIcon from "../resources/view/activelights-header-icon.svg";
 import Refresh from "../resources/view/activelights-refresh.svg";
 import Info from "../resources/dashboard/icon-info.svg";
@@ -59,10 +58,9 @@ function ActiveLights(props)
     }
 
     return(
-        <div className = "medium-container" id = "top-right">
+        <div className = "card-container" id = "medium">
             {/* header */}
-            <div className = "medium-header">
-                <img alt = "" src = {Header} className = "bg"></img>
+            <div className = "card-header" id = "active-lights">
                 <img alt = "" src = {HeaderIcon} className = "icon"></img>
                 <h1 className = "header-text">MOST ACTIVE LIGHT(S)</h1>
                 <img 
@@ -81,7 +79,7 @@ function ActiveLights(props)
             </div>
             {/* table */}
             {activeLightsList && 
-                <div className = "activelights-table-container">
+                <div className = "active-lights-table">
                     <h1 className = "detections">DETECTIONS</h1>
                     <h1 className = "date">DATE</h1>
                     <h1 className = "time">TIME</h1>

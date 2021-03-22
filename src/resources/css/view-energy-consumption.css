@@ -1,67 +1,77 @@
-.medium-container#left
+/* header */
+
+.card-header#energy-consumption
 {
-    top: 25%;
-    left: 0%;
-    font-size: max(0.7vw, 10.08px);
+    background-color: #FCFCFC;
 }
 
-.view-page .medium-container#left .icon
+.card-header#energy-consumption .header-text
 {
+    top: 7%;
+    left: 7.5%;
+}
+
+.card-header#energy-consumption .icon
+{
+    top: 26.5%;
+    left: 2.5%;
     width: 3.5%;
 }
 
-.view-page .energy-axis
+.energy-consumption-axis
 {
     position: absolute;
     color: #6D6E71;
+    font-size: max(0.7vw, 10.08px);
     font-weight: 500;
 }
 
-.view-page .energy-axis#y
+.energy-consumption-axis#y
 {
     top: 54.4%;
     left: 3%;
 }
 
-.view-page .energy-axis#x
+.energy-consumption-axis#x
 {
-    top: 93%;
+    top: 92%;
     left: 52.15%;
 }
 
-.view-page .energy-label
+.energy-consumption-label
 {
     position: absolute;
     color: #212529;
+    font-size: max(0.7vw, 10.08px);
     font-weight: 400;
-    top: 18%;
+    top: 17.5%;
 }
 
-.view-page .energy-label#label0
+.energy-consumption-label#label0
 {
     left: 80%;
 }
 
-.view-page .energy-label#label1
+.energy-consumption-label#label1
 {
     left: 91.5%;
 }
 
-.view-page .energy-img
+.energy-consumption-img
 {
     position: absolute;
-    top: 20%;
+    top: 19.5%;
     width: 2%;
     height: 0%;
 }
 
-.view-page .energy-img#img0
+.energy-consumption-img#img0
 {
     border: 1px solid #2CD9C5;
     left: 77%;
 }
 
-.view-page .energy-img#img1
+.energy-consumption-img#img1
 {
     border: 1px solid #826AF9;
     left: 88.5%;
@@ -73,7 +83,7 @@
     position: absolute;
     top: 3%;
     left: 65%;
-    width: 37%;
+    width: 36.5%;
 }
 
 .view-page .energy-options-container .btn
@@ -85,10 +95,7 @@
     font-size: max(0.7vw, 10.08px);
     font-weight: 600;
     text-align: center;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    padding-left: 6%;
-    padding-right: 6%;
+    padding: 2.5% 6% 2.5% 6%;
 }
 
 .view-page .energy-options-container .btn:hover
@@ -109,7 +116,7 @@
 .view-page .graph-container
 {
     position: absolute;
-    top: 27%;
+    top: 25%;
     left: 4%;
     width: 92%;
     height: 70%;

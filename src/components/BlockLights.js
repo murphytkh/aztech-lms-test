@@ -1,4 +1,4 @@
-import "../resources/css/view-blocklights.css";
+import "../resources/css/view-block-lights.css";
 
 import React, {useState, useEffect} from "react";
 

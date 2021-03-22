@@ -24,7 +24,7 @@
     filter: brightness(120%);
 }
 
-.view-page .small-container, .medium-container, .large-container, .full-container
+.view-page .small-container, .large-container, .full-container
 {
     position: absolute;
     border: 1px solid #E0E0E0;
@@ -35,10 +35,17 @@
 
 .card-container
 {
-    position: absolute;
+    position: relative;
+    display: inline-block;
     box-shadow: inset 0 0 0 1px #E0E0E0;
     border-radius: 3px;
+    margin-bottom: 2%;
     height: 23.275%;
+}
+
+.card-container:nth-child(even)
+{
+    margin-left: 2.3%;
 }
 
 .card-container#small
@@ -64,25 +71,18 @@
 .card-header
 {
     position: absolute;
+    background-color: #FCFCFC;
     border-radius: 3px 3px 0 0;
     box-shadow: 0 2px 3px #00000029;
     width: 100%;
     height: 13.714%;
 }
 
-/* .card-header#active-lights .header-text */
-
 /* ----------- */
 
 .small-container
 {
     width: 31.8%;
-    height: 23.275%;
-}
-
-.medium-container
-{
-    width: 48.85%;
     height: 23.275%;
 }
 
@@ -170,13 +170,6 @@
     font-size: max(1vw, 14.4px);
     font-weight: 500;
     padding-top: 0.3%;
-    left: 8%;
-}
-
-.medium-container#top-left .header-text, 
-.medium-container#top-right .header-text
-{
-    color: #FFFFFF;
 }
 
 /* refresh buttons */
@@ -204,7 +197,6 @@
 {
     z-index: 0;
     position: absolute;
-    background-color: #005596;
     top: 18.75%;
     width: 1px;
     height: 62.5%;
@@ -216,12 +208,12 @@
 {
     z-index: 0;
     position: absolute;
+    opacity: 0.5;
     height: auto;
     transition-property: transform;
     transition-timing-function: cubic-bezier(.42, 0, .58, 1);
     transition-duration: .1s;
     cursor: pointer;
-    opacity: 0.5;
 }
 
 .view-page .info:hover

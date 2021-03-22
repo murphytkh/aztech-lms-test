@@ -60,10 +60,9 @@ function EnergyConsumption(props)
     }
 
     return(
-        <div className = "medium-container" id = "right">
+        <div className = "card-container" id = "medium">
             {/* header */}
-            <div className = "medium-header">
-                <img alt = "" src = {Header} className = "bg"></img>
+            <div className = "card-header" id = "light-control">
                 <h1 className = "header-text">LIGHT CONTROL</h1>
                 <img alt = "" src = {ControlIcon} className = "icon"></img>
             </div>

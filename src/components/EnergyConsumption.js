@@ -1,8 +1,7 @@
-import "../resources/css/view-energyconsumption.css";
+import "../resources/css/view-energy-consumption.css";
 
 import React, {useState, useEffect} from "react";
 
-import Header from "../resources/view/header-medium-white.svg";
 import EnergyIcon from "../resources/dashboard/icon-chart.svg";
 
 import EnergyConsumptionOption from "./EnergyConsumptionOption";
@@ -125,16 +124,15 @@ function EnergyConsumption(props)
     );
 
     return(
-        <div className = "medium-container" id = "left">
+        <div className = "card-container" id = "medium">
             {/* header */}
-            <div className = "medium-header" style = {{zIndex: 0}}>
-                <img alt = "" src = {Header} className = "bg"></img>
+            <div className = "card-header" id = "energy-consumption">
                 <h1 className = "header-text">ENERGY CONSUMPTION</h1>
                 <img alt = "" src = {EnergyIcon} className = "icon"></img>
             </div>
             {/* axis labels */}
-            <div className = "energy-axis" id = "y">(KwH)</div>
-            <div className = "energy-axis" id = "x">
+            <div className = "energy-consumption-axis" id = "y">(KwH)</div>
+            <div className = "energy-consumption-axis" id = "x">
                 {currDisplayOption === "1D" && "(Hours)"}
                 {currDisplayOption === "5D" && "(Days)"}
                 {currDisplayOption === "1M" && "(Weeks)"}
@@ -142,10 +140,10 @@ function EnergyConsumption(props)
                 {currDisplayOption === "3Y" && "(Years)"}
             </div>
             {/* present, past labels */}
-            <div className = "energy-label" id = "label0">Present</div>
-            <div className = "energy-img" id = "img0"></div>
-            <div className = "energy-label" id = "label1">Past</div>
-            <div className = "energy-img" id = "img1"></div>
+            <div className = "energy-consumption-label" id = "label0">Present</div>
+            <div className = "energy-consumption-img" id = "img0"></div>
+            <div className = "energy-consumption-label" id = "label1">Past</div>
+            <div className = "energy-consumption-img" id = "img1"></div>
             {/* graph */}
             <div className = "energy-options-container">{optionMap}</div>
             <EnergyConsumptionGraph 

@@ -21,12 +21,13 @@
 
 .card-header#block-lights .refresh
 {
-    left: 88%;
+    left: 88.5%;
     width: 2.7%;
 }
 
 .card-header#block-lights .header-divider
 {
+    background-color: #005596;
     left: 93.5%;
 }
 
