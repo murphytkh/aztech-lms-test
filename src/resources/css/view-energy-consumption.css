@@ -18,6 +18,8 @@
     width: 3.5%;
 }
 
+/* labels */
+
 .energy-consumption-axis
 {
     position: absolute;
@@ -28,13 +30,13 @@
 
 .energy-consumption-axis#y
 {
-    top: 54.4%;
-    left: 3%;
+    top: 53.5%;
+    left: 3.5%;
 }
 
 .energy-consumption-axis#x
 {
-    top: 92%;
+    top: 91%;
     left: 52.15%;
 }
 
@@ -77,6 +79,8 @@
     left: 88.5%;
 }
 
+/* options */
+
 .view-page .energy-options-container
 {
     z-index: 1;
@@ -112,6 +116,8 @@
 {
     background: #E6E4E4;
 }
+
+/* graph */
 
 .view-page .graph-container
 {

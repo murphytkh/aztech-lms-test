@@ -1,16 +1,19 @@
-.medium-container#right
+/* header */
+
+.card-header#light-control .header-text
 {
-    top: 25%;
-    right: 0%;
-    font-size: max(0.7vw, 10.08px);
+    top: 7%;
+    left: 7.5%;
 }
 
-.medium-container#right .icon
+.card-header#light-control .icon
 {
+    top: 26.5%;
+    left: 2.5%;
     width: 3.5%;
 }
 
-.medium-container#right > h1
+.light-control-header
 {
     z-index: -2;
     position: absolute;
@@ -20,28 +23,28 @@
     left: 6%;
 }
 
-.lightcontrol-header0
+.light-control-header#header0
 {
     top: 18%;
 }
 
-.lightcontrol-header1
+.light-control-header#header1
 {
     top: 40.5%;
 }
 
-.lightcontrol-header2
+.light-control-header#header2
 {
     top: 63%;
 }
 
-.lightcontrol-header3
+.light-control-header#header3
 {
     top: 63%;
     left: 74.5% !important;
 }
 
-.lightcontrol-dd > div
+.light-control-dd > div
 {
     position: absolute;
     left: 5%;
@@ -49,17 +52,17 @@
     height: 8%;
 }
 
-.lightcontrol-dd0
+.light-control-dd0
 {
     top: 28%;
 }
 
-.lightcontrol-dd1
+.light-control-dd1
 {
     top: 50.5%;
 }
 
-.lightcontrol-btn
+.light-control-btn
 {
     z-index: 0;
     position: absolute;
@@ -71,36 +74,36 @@
     cursor: pointer;
 }
 
-.lightcontrol-btn:hover
+.light-control-btn:hover
 {
     filter: brightness(120%);
 }
 
-.lightcontrol-btn#btn0
+.light-control-btn#btn0
 {
     background-color: #3497FD;
     left: 4.7%;
 }
 
-.lightcontrol-btn#btn1
+.light-control-btn#btn1
 {
     background-color: #6D6E71;
     left: 27.7%;
 }
 
-.lightcontrol-btn#btn2
+.light-control-btn#btn2
 {
     background-color: #A0BC34;
     left: 50.7%;
 }
 
-.lightcontrol-btn#btn3
+.light-control-btn#btn3
 {
     background-color: #F07E0B;
     left: 73.7%;
 }
 
-.lightcontrol-btn img
+.light-control-btn img
 {
     position: relative;
     top: 30%;
@@ -109,12 +112,12 @@
     height: auto;
 }
 
-.lightcontrol-btn#btn3 img
+.light-control-btn#btn3 img
 {
     width: 19%;
 }
 
-.lightcontrol-btn h1
+.light-control-btn h1
 {
     position: absolute;
     color: #FFFFFF;
@@ -125,7 +128,7 @@
     margin: 0%;
 }
 
-.lightcontrol-btn#btn3 h1
+.light-control-btn#btn3 h1
 {
     left: 42%;
 }

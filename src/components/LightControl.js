@@ -1,10 +1,9 @@
-import "../resources/css/view-lightcontrol.css";
+import "../resources/css/view-light-control.css";
 
 import React, {useState, useEffect, useRef} from "react";
 
 import GenericDropdown from "./GenericDropdown";
 
-import Header from "../resources/view/header-medium-white.svg";
 import ControlIcon from "../resources/view/lightcontrol-header-icon.svg";
 import BulbIcon from "../resources/view/lightcontrol-on.svg";
 import BulbFillIcon from "../resources/view/lightcontrol-off.svg";
@@ -67,14 +66,14 @@ function EnergyConsumption(props)
                 <img alt = "" src = {ControlIcon} className = "icon"></img>
             </div>
             {/* dropdown and button headers */}
-            <h1 className = "lightcontrol-header0">SELECT FLOOR</h1>
-            <h1 className = "lightcontrol-header1">SELECT LIGHT</h1>
-            <h1 className = "lightcontrol-header2">LIGHTING CONTROL</h1>
-            <h1 className = "lightcontrol-header3">ADMIN CONTROL</h1>
+            <h1 className = "light-control-header" id = "header0">SELECT FLOOR</h1>
+            <h1 className = "light-control-header" id = "header1">SELECT LIGHT</h1>
+            <h1 className = "light-control-header" id = "header2">LIGHTING CONTROL</h1>
+            <h1 className = "light-control-header" id = "header3">ADMIN CONTROL</h1>
             {/* dropdown lists */}
             {floorOptions && lightOptions &&
-                <div className = "lightcontrol-dd">
-                    <div className = "lightcontrol-dd0" style = {{zIndex: 10}}>
+                <div className = "light-control-dd">
+                    <div className = "light-control-dd0" style = {{zIndex: 10}}>
                         <GenericDropdown
                             ref = {ddRef}
                             default = {selectedFloor}
@@ -83,7 +82,7 @@ function EnergyConsumption(props)
                             disabled = {false}
                         ></GenericDropdown>
                     </div>
-                    <div className = "lightcontrol-dd1"  style = {{zIndex: 9}}>
+                    <div className = "light-control-dd1"  style = {{zIndex: 9}}>
                         <GenericDropdown
                             ref = {ddRef}
                             default = {selectedLights}
@@ -95,19 +94,19 @@ function EnergyConsumption(props)
                 </div>
             }
             {/* buttons */}
-            <div className = "lightcontrol-btn" id = "btn0" onClick = {handleOnButtonClick}>
+            <div className = "light-control-btn" id = "btn0" onClick = {handleOnButtonClick}>
                 <img alt = "" src = {BulbIcon}></img>
                 <h1>Turn On</h1>
             </div>
-            <div className = "lightcontrol-btn" id = "btn1" onClick = {handleOffButtonClick}>
+            <div className = "light-control-btn" id = "btn1" onClick = {handleOffButtonClick}>
                 <img alt = "" src = {BulbFillIcon}></img>
                 <h1>Turn Off</h1>
             </div>
-            <div className = "lightcontrol-btn" id = "btn2" onClick = {handleNormalButtonClick}>
+            <div className = "light-control-btn" id = "btn2" onClick = {handleNormalButtonClick}>
                 <img alt = "" src = {BulbIcon}></img>
                 <h1>NORMAL</h1>
             </div>
-            <div className = "lightcontrol-btn" id = "btn3" onClick = {handleLoopButtonClick}>
+            <div className = "light-control-btn" id = "btn3" onClick = {handleLoopButtonClick}>
                 <img alt = "" src = {LoopIcon}></img>
                 <h1>LOOP</h1>
             </div>
