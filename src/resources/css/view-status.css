@@ -1,0 +1,177 @@
+.full-container#bottom
+{
+    top: 77.5%;
+    left: 0%;
+}
+
+.full-container#bottom .header-text
+{
+    top: -1%;
+    left: 3.9%;
+}
+
+.full-container#bottom .icon
+{
+    top: 17%;
+    left: 1%;
+    width: 2.25%;
+}
+
+.status-header-divider
+{
+    z-index: 1;
+    position: absolute;
+    background-color: #C6C6C6;
+    top: 19%;
+    left: 96.9%;
+    width: 0.1%;
+    height: 58%;
+}
+
+.full-container#bottom .refresh
+{
+    top: 26%;
+    left: 97.8%;
+    width: 1.5%;
+}
+
+.full-header h1.show, .full-header h1.entries
+{
+    position: absolute;
+    font-size: max(0.75vw, 10.8px);
+    font-weight: 600;
+    top: 16%;
+}
+
+.full-header .show
+{
+    left: 82.6%;
+}
+
+.full-header .entries
+{
+    left: 91.7%;
+}
+
+.full-header .dd-container
+{
+    position: absolute;
+    top: 17%;
+    left: 86.3%;
+    width: 4.6%;
+    height: 55.23%;
+}
+
+.status-table-container
+{
+    font-size: max(0.8vw, 11.52px);
+    font-weight: 400;
+    margin: 6.75% 3.55% 0% 3.55%;
+    width: 93%;
+}
+
+.status-table-header
+{
+    position: absolute;
+    color: #333132;
+    font-weight: 600;
+    top: 17%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.status-table-header#name
+{
+    left: 5.4%;
+}
+
+.status-table-header#date
+{
+    left: 26.6%;
+}
+
+.status-table-header#time
+{
+    left: 50%;
+}
+
+.status-table-header#status
+{
+    left: 73.35%;
+}
+
+.status-table-divider
+{
+    position: absolute;
+    border: 1px solid #E0E0E0;
+    opacity: 0.8;
+    width: 93%;
+    height: 0%;
+}
+
+.status-table-divider#divider0
+{
+    top: 24%;
+}
+
+.status-table-divider#divider1
+{
+    top: 90.3%;
+}
+
+.status-table
+{
+    padding-top: 2.2%;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.status-table tr:nth-child(odd)
+{
+    background-color: #F7F7F7;
+}
+
+.activity-table .user
+{
+    padding-top: 0.5%;
+    padding-left: 3%;
+    width: 13.9%;
+}
+
+.activity-table .action
+{
+    padding-top: 0.5%;
+    width: 10.2%;
+}
+
+.status-table td
+{
+    color: #333132;
+    font-size: max(0.75vw, 10.8px);
+    font-weight: 500;
+    width: 10.2%;
+    padding-top: 0.4%;
+}
+
+.status-table .name
+{
+    padding-left: 1.9%;
+}
+
+.status-bottomtext
+{
+    position: absolute;
+    color: #6D6E71;
+    font-weight: 500;
+    font-size: max(0.8vw, 11.52px);
+    top: 93.4%;
+    left: 4.21%;
+}
+
+.pagination-container#status
+{
+    top: 93%;
+    left: 67%;
+    width: 30%;
+    height: 5.5%;
+}

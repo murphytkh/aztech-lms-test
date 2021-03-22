@@ -42,7 +42,6 @@ function ActivityLog(props)
 
     const entriesRef = useRef();
     const [selectedOption, setSelectedOption] = useState("10");
-    // user_descending, user_ascending, action_descending, action_ascending
     const [sortingMode, setSortingMode] = useState("user_descending");
     const [currentPage, setCurrentPage] = useState(0);
     const [lastPage, setLastPage] = useState(0);
@@ -55,8 +54,8 @@ function ActivityLog(props)
         .slice(currentPage * 10, (currentPage + 1) * 10)
         .map(activity =>
         <tr key = {activity.user + activity.action}>
-            <td className = "dashboard-page-view-activity-table-user">{activity.user}</td>
-            <td className = "dashboard-page-view-activity-table-action">{activity.action}</td>
+            <td className = "user">{activity.user}</td>
+            <td className = "action">{activity.action}</td>
         </tr>
     );
 
@@ -204,34 +203,28 @@ function ActivityLog(props)
             {/* table */}
             {/* 0 - no arrows 1 - up 2 - down */}
             {activityList &&
-                <div className = "dashboard-page-view-activity-table-container">
+                <div className = "activity-table-container">
                     {/* headers and buttons */}
-                    <div 
-                        className = "dashboard-page-view-activity-table-header-user"
-                        onClick = {handleUserClick}
-                    >
+                    <div className = "activity-table-header" id = "user" onClick = {handleUserClick}>
                         <TableSortButton 
                             onClick = {handleUserClick} 
                             sort = {sortingMode === "user_descending" ? 2 : (sortingMode === "user_ascending" ? 1 : 0)}
                         />
                         USER
                     </div>
-                    <div 
-                        className = "dashboard-page-view-activity-table-header-action"
-                        onClick = {handleActionClick}
-                    >
+                    <div className = "activity-table-header" id = "action" onClick = {handleActionClick}>
                         <TableSortButton 
                             onClick = {handleActionClick}
                             sort = {sortingMode === "action_descending" ? 2 : (sortingMode === "action_ascending" ? 1 : 0)}
                         />
                         ACTION
                     </div>
-                    <div className = "dashboard-page-view-activity-table-divider"></div>
+                    <div className = "activity-table-divider" id = "divider0"></div>
                     {/* table object */}
                     <table className = "activity-table">
                         <tbody>{activityList}</tbody>
                     </table>
-                    <div className = "dashboard-page-view-activity-table-divider2"></div>
+                    <div className = "activity-table-divider" id = "divider1"></div>
                     {/* pagination */}
                     <div className = "activity-bottomtext">
                         Showing {currentPage * 10 + 1} {" "}

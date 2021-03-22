@@ -1,4 +1,4 @@
-import "../resources/css/tablesortbutton.css";
+import "../resources/css/table-sort-button.css";
 
 import DownArrow from "../resources/dashboard/icon-dropdown-down.svg";
 import UpArrow from "../resources/dashboard/icon-dropdown-up.svg";
@@ -10,16 +10,18 @@ import React from "react";
 function TableSortButton(props)
 {
     return(
-        <div className = "dashboard-view-tablesort-btn" onClick = {props.onClick}>
+        <div className = "tablesort-btn" onClick = {props.onClick}>
             <img
                 alt = ""
                 src = {UpArrow}
-                className = {props.sort === 1 ? "dashboard-view-tablesort-up" : "dashboard-view-tablesort-up-off"}
+                className = "tablesort-up"
+                id = {props.sort === 1 ? "tablesort-on" : "tablesort-off"}
             ></img>
             <img
                 alt = ""
                 src = {DownArrow}
-                className = {props.sort === 2 ? "dashboard-view-tablesort-down" : "dashboard-view-tablesort-down-off"}
+                className = "tablesort-down"
+                id = {props.sort === 2 ? "tablesort-on" : "tablesort-off"}
             ></img>
         </div>
     );

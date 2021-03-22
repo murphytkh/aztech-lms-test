@@ -1,10 +1,12 @@
+import "../resources/css/view-status.css";
+
 import React, {useState, useEffect, useRef} from "react";
 
-import GenericDropdown from "../components/GenericDropdown";
-import TableSortButton from "../components/TableSortButton";
+import GenericDropdown from "./GenericDropdown";
+import TableSortButton from "./TableSortButton";
 
-import StatusHeader from "../resources/dashboard/status header.svg";
-import StatusIcon from "../resources/dashboard/history-24px.svg";
+import Header from "../resources/view/status-header-bg.svg";
+import HeaderIcon from "../resources/view/status-header-icon.svg";
 import RefreshIcon from "../resources/dashboard/icon-refresh-black.svg";
 
 class LightStatusObject
@@ -20,12 +22,13 @@ class LightStatusObject
 
 class PageObject
 {
-    constructor(index, active, value, style)
+    constructor(index, active, value, style, id)
     {
         this.index = index;
         this.active = active;
         this.value = value;
         this.style = style;
+        this.id = id;
     }
 }
 
@@ -58,10 +61,10 @@ function LightStatus(props)
         .slice(currentPage * 10, (currentPage + 1) * 10)
         .map(lightStatus =>
             <tr key = {lightStatus.name}>
-                <td className = "dashboard-page-view-status-table-name">{lightStatus.name}</td>
-                <td className = "dashboard-page-view-status-table-date">{lightStatus.date}</td>
-                <td className = "dashboard-page-view-status-table-time">{lightStatus.time}</td>
-                <td className = "dashboard-page-view-status-table-status">{lightStatus.status}</td>
+                <td className = "name">{lightStatus.name}</td>
+                <td className = "date">{lightStatus.date}</td>
+                <td className = "time">{lightStatus.time}</td>
+                <td className = "status">{lightStatus.status}</td>
             </tr>
         );
 
@@ -70,11 +73,11 @@ function LightStatus(props)
     for (var i = 0; i < lastPage + 1; ++i)
     {
         if (i === currentPage)
-            pageListHelper.push(new PageObject(i, false, i + 1, "dashboard-page-view-status-page-current"));
+            pageListHelper.push(new PageObject(i, false, i + 1, "default", ""));
         else if (i === 0 || i === lastPage || i === currentPage - 1 || i === currentPage + 1)
-            pageListHelper.push(new PageObject(i, true, i + 1, "dashboard-page-view-status-page"));
+            pageListHelper.push(new PageObject(i, true, i + 1, "default", "active"));
         else if (i === currentPage - 2 || i === currentPage + 2)
-            pageListHelper.push(new PageObject(i, false, "...", "dashboard-page-view-status-page-current"));
+            pageListHelper.push(new PageObject(i, false, "...", "default", ""));
     }
 
     let pageList = pageListHelper.length &&
@@ -84,6 +87,7 @@ function LightStatus(props)
             <div
                 key = {page.index}
                 className = {page.style}
+                id = {page.id}
                 onClick={page.active ? () => handlePageClick(page.index) : () => {}}
             >
                 {page.value}
@@ -188,84 +192,78 @@ function LightStatus(props)
     }
 
     return(
-        <div className = "dashboard-page-view-status-container">
-            <img alt = "" src = {StatusIcon} className = "dashboard-page-view-status-icon"></img>
-            <div className = "dashboard-page-view-status-header-divider"></div>
-            {/* refresh */}
-            <img
-                alt = ""
-                src = {RefreshIcon}
-                className = "dashboard-page-view-status-refresh"
-                onClick = {handleStatusRefresh}
-            ></img>
-            <div className = "dashboard-page-view-status-header">
-                <h1 className = "dashboard-page-view-status-header-text">LIGHT STATUS</h1>
-                <img alt = "" src = {StatusHeader} className = "dashboard-page-view-status-headerimg"></img>
-            </div>
-            {/* header stuff */}
-            <h1 className = "dashboard-page-view-status-show">SHOW</h1>
-            <h1 className = "dashboard-page-view-status-entries">ENTRIES</h1>
-            <div className = "dashboard-page-view-status-ddcontainer" style = {{zIndex: 10}}>
-                <GenericDropdown
-                    ref = {entriesRef}
-                    default = {selectedOption}
-                    options = {["10", "20", "30", "ALL"]}
-                    selectOption = {handleSelectOption}
-                    disabled = {false}
-                ></GenericDropdown>
+        <div className = "full-container" id = "bottom">
+            {/* header */}
+            <div className = "full-header" style = {{zIndex: 1}}>
+                <img alt = "" src = {Header} className = "bg"></img>
+                <h1 className = "header-text">LIGHT STATUS</h1>
+                <img alt = "" src = {HeaderIcon} className = "icon"></img>
+                <h1 className = "show">SHOW</h1>
+                <h1 className = "entries">ENTRIES</h1>
+                <div className = "dd-container" style = {{zIndex: 10}}>
+                    <GenericDropdown
+                        ref = {entriesRef}
+                        default = {selectedOption}
+                        options = {["10", "20", "30", "ALL"]}
+                        selectOption = {handleSelectOption}
+                        disabled = {false}
+                    ></GenericDropdown>
+                </div>
+                <div className = "status-header-divider"></div>
+                {/* refresh */}
+                <img
+                    alt = ""
+                    src = {RefreshIcon}
+                    className = "refresh"
+                    onClick = {handleStatusRefresh}
+                ></img>
             </div>
             {/* table */}
             {/* 0 - no arrows 1 - up 2 - down */}
             {lightStatusList &&
-                <div className = "dashboard-page-view-status-table-container">
-                    <div 
-                        className = "dashboard-page-view-status-table-header-name"
-                        onClick = {handleNameClick}
-                    >
+                <div className = "status-table-container">
+                    {/* headers and buttons */}
+                    <div  className = "status-table-header" id = "name" onClick = {handleNameClick}>
                         <TableSortButton
                             onClick = {handleNameClick}
                             sort = {sortingMode === "name_descending" ? 2 : (sortingMode === "name_ascending" ? 1 : 0)}
                         />
                         LIGHT
                     </div>
-                    <div 
-                        className = "dashboard-page-view-status-table-header-date"
-                        onClick = {handleDateClick}
-                    >
+                    <div  className = "status-table-header" id = "date" onClick = {handleDateClick}>
+
                         <TableSortButton
                             onClick = {handleDateClick}
                             sort = {sortingMode === "date_descending" ? 2 : (sortingMode === "date_ascending" ? 1 : 0)}
                         />
                         LAST RESPONSE DATE
                     </div>
-                    <div 
-                        className = "dashboard-page-view-status-table-header-time"
-                        onClick = {handleTimeClick}
-                    >
+                    <div  className = "status-table-header" id = "time" onClick = {handleTimeClick}>
+
                         <TableSortButton
                             onClick = {handleTimeClick}
                             sort = {sortingMode === "time_descending" ? 2 : (sortingMode === "time_ascending" ? 1 : 0)}
                         />
                         LAST RESPONSE TIME
                     </div>
-                    <div 
-                        className = "dashboard-page-view-status-table-header-status"
-                        onClick = {handleStatusClick}
-                    >
+                    <div  className = "status-table-header" id = "status" onClick = {handleStatusClick}>
+
                         <TableSortButton
                             onClick = {handleStatusClick}
                             sort = {sortingMode === "status_descending" ? 2 : (sortingMode === "status_ascending" ? 1 : 0)}
                         />
                         STATUS
                     </div>
-                    <div className = "dashboard-page-view-status-table-divider"></div>
-                    <table className = "dashboard-page-view-status-table">
+                    <div className = "status-table-divider" id = "divider0"></div>
+                    {/* table object */}
+                    <table className = "status-table">
                         <tbody>
                             {lightStatusList}
                         </tbody>
                     </table>
-                    <div className = "dashboard-page-view-status-table-divider2"></div>
-                    <div className = "dashboard-page-view-status-showing">
+                    <div className = "status-table-divider" id = "divider1"></div>
+                    {/* pagination */}
+                    <div className = "status-bottomtext">
                         Showing {currentPage * 10 + 1} {" "}
                         to {" "}
                         {currentPage === lastPage ? displayLength : (currentPage + 1) * 10} {" "}
@@ -275,15 +273,17 @@ function LightStatus(props)
                 </div>                
             }
             {/* buttons */}
-            <div className = "dashboard-page-view-status-pagination-container">
-                <div
-                    className = {currentPage === lastPage ? "dashboard-page-view-status-next" : "dashboard-page-view-status-next-active"}
+            <div className = "pagination-container" id = "status">
+                <div 
+                    className = "default"
+                    id = {currentPage === lastPage ? "" : "active"}
                     onClick = {handleNextClick}>
                     NEXT
                 </div>
                 {lastPage > 1 && pageList}
-                <div
-                    className = {currentPage === 0 ? "dashboard-page-view-status-prev" : "dashboard-page-view-status-prev-active"}
+                <div 
+                    className = "left"
+                    id = {currentPage === 0 ? "" : "active"}
                     onClick = {handlePrevClick}>
                     PREVIOUS
                 </div>

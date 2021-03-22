@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 
-import EnergyConsumptionOption from "../components/EnergyConsumptionOption";
-import EnergyConsumptionGraph from "../components/EnergyConsumptionGraph";
+import EnergyConsumptionOption from "./EnergyConsumptionOption";
+import EnergyConsumptionGraph from "./EnergyConsumptionGraph";
 
-import HeaderImg from "../resources/dashboard/status header.svg";
+import HeaderImg from "../resources/view/status-header-bg.svg";
 import HeaderIcon from "../resources/dashboard/icon-chart.svg";
 import ArrowDivider from "../resources/dashboard/datacharts-arrow-divider.svg";
 import Arrow from "../resources/dashboard/icon-dropdown-down.svg";
