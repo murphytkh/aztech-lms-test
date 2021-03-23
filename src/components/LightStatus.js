@@ -5,7 +5,6 @@ import React, {useState, useEffect, useRef} from "react";
 import GenericDropdown from "./GenericDropdown";
 import TableSortButton from "./TableSortButton";
 
-import Header from "../resources/view/status-header-bg.svg";
 import HeaderIcon from "../resources/view/status-header-icon.svg";
 import RefreshIcon from "../resources/dashboard/icon-refresh-black.svg";
 
@@ -192,10 +191,9 @@ function LightStatus(props)
     }
 
     return(
-        <div className = "full-container" id = "bottom">
+        <div className = "card-container" id = "full">
             {/* header */}
-            <div className = "full-header" style = {{zIndex: 1}}>
-                <img alt = "" src = {Header} className = "bg"></img>
+            <div className = "card-header" id = "status">
                 <h1 className = "header-text">LIGHT STATUS</h1>
                 <img alt = "" src = {HeaderIcon} className = "icon"></img>
                 <h1 className = "show">SHOW</h1>
@@ -209,7 +207,7 @@ function LightStatus(props)
                         disabled = {false}
                     ></GenericDropdown>
                 </div>
-                <div className = "status-header-divider"></div>
+                <div className = "header-divider"></div>
                 {/* refresh */}
                 <img
                     alt = ""

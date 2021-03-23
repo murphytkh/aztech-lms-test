@@ -24,13 +24,6 @@
     filter: brightness(120%);
 }
 
-.view-page .small-container, .large-container, .full-container
-{
-    position: absolute;
-    border: 1px solid #E0E0E0;
-    border-radius: 3px;
-}
-
 /* NEW TESTING */
 
 .card-container
@@ -80,55 +73,6 @@
 
 /* ----------- */
 
-.small-container
-{
-    width: 31.8%;
-    height: 23.275%;
-}
-
-.full-container
-{
-    width: 100%;
-    height: 23.275%;
-}
-
-.small-header
-{
-    position: absolute;
-    top: -0.5%;
-    left: -0.25%;
-    width: 100.1%;
-}
-
-.small-header
-{
-    height: 13.5%;
-}
-
-.full-header
-{
-    position: absolute;
-    top: -0.8%;
-    width: 100%;
-    height: 13.5%;
-}
-
-.small-header .bg
-{
-    position: absolute;
-    top: -13%;
-    left: -0.8%;
-    width: 102%;
-}
-
-.full-header .bg
-{
-    position: absolute;
-    top: -3%;
-    left: -0.4%;
-    width: 100.7%;
-}
-
 .view-page .icon
 {
     z-index: 1;
@@ -147,6 +91,7 @@
     font-size: max(1vw, 14.4px);
     font-weight: 500;
     padding-top: 0.3%;
+    top: 7%;
 }
 
 /* refresh buttons */

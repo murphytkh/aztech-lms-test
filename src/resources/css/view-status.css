@@ -1,8 +1,57 @@
-.full-container#bottom
+/* header */
+
+.card-header#status .header-text
 {
-    top: 77.5%;
-    left: 0%;
+    left: 3.6637%;
 }
+
+.card-header#status .icon
+{
+    top: 28%;
+    left: 1.2212%;
+    width: 2%;
+}
+
+.card-header#status h1.show, .card-header#status h1.entries
+{
+    position: absolute;
+    font-size: max(0.75vw, 10.8px);
+    font-weight: 600;
+    top: 18%;
+}
+
+.card-header#status .show
+{
+    left: 82.7342%;
+}
+
+.card-header#status .entries
+{
+    left: 91.7625%;
+}
+
+.card-header#status .dd-container
+{
+    position: absolute;
+    top: 20%;
+    left: 86.32575%;
+    width: 4.631%;
+    height: 55.23%;
+}
+
+.card-header#status .header-divider
+{
+    background-color: #C6C6C6;
+    left: 96.705%;
+}
+
+.card-header#status .refresh
+{
+    left: 97.7%;
+    width: 1.2521%;
+}
+
+/* table */
 
 .full-container#bottom .header-text
 {

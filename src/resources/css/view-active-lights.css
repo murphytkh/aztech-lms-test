@@ -8,7 +8,6 @@
 .card-header#active-lights .header-text
 {
     color: #FFFFFF;
-    top: 7%;
     left: 7.5%;
 }
 
@@ -81,11 +80,11 @@
 {
     position: absolute;
     opacity: 0.8;
-    border: 1px solid #E0E0E0;
+    background-color: #E0E0E0;
     margin-top: -2.5%;
     left: 5.25%;
     width: 89%;
-    height: 0%;
+    height: 1px;
 }
 
 .active-lights-table > table

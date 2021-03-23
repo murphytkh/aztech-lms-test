@@ -33,6 +33,16 @@ current task:
 - code refactoring progress
   - change all headers to css renders
   - do the divider for view-activity.css
+  - header-text
+    - 3.66375
+    - width / left values (text, icon)
+    - small:  31.8  11.5212 3.8404
+    - medium: 48.85 7.5     2.5
+    - large:  65.9  5.5595  1.8531
+    - full:   100   3.6637  1.2212
+    - width / left values (large - full show entries)
+    - large:  65.9  
+    - full:   100   
 - light status - add button to table for
                  relocation
 

@@ -2,7 +2,6 @@ import "../resources/css/view-gateway.css";
 
 import React, {useState, useEffect} from "react";
 
-import Header from "../resources/view/gateway-header-bg.svg";
 import HeaderIcon from "../resources/view/gateway-header-icon.svg";
 import RefreshIcon from "../resources/view/gateway-refresh.svg";
 
@@ -22,10 +21,9 @@ function GatewayInfo(props)
     }
 
     return(
-        <div className = "small-container" id = "bottom-right">
+        <div className = "card-container" id = "small">
             {/* header */}
-            <div className = "small-header">
-                <img alt = "" src = {Header} className = "bg"></img>
+            <div className = "card-header" id = "gateway">
                 <h1 className = "header-text">GATEWAY INFORMATION</h1>
                 <img alt = "" src = {HeaderIcon} className = "icon"></img>
             </div>

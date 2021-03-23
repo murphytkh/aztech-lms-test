@@ -5,7 +5,6 @@ import React, {useState, useEffect, useRef} from "react";
 import GenericDropdown from "./GenericDropdown";
 import TableSortButton from "./TableSortButton";
 
-import Header from "../resources/view/activity-header-bg.svg";
 import HeaderIcon from "../resources/view/activity-header-icon.svg";
 import RefreshIcon from "../resources/dashboard/icon-refresh-black.svg";
 
