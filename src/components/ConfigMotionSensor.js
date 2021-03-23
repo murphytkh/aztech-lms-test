@@ -1,9 +1,10 @@
+import "../resources/css/config-motion-sensor.css";
+
 import React, {useState, useEffect, useRef} from "react";
 
-import GenericDropdown from ".//GenericDropdown";
+import GenericDropdown from "./GenericDropdown";
 
-import Header from "../resources/dashboard/configheader-top.svg";
-import HeaderIcon from "../resources/dashboard/MotionSensor-icon-GY (black).svg";
+import HeaderIcon from "../resources/dashboard/icon-motion-black.svg";
 import InfoIcon from "../resources/dashboard/icon-question-mark.svg";
 
 function ConfigMotionSensor(props)
@@ -20,21 +21,22 @@ function ConfigMotionSensor(props)
 
     function handleMSButton()
     {
-        var circle = document.getElementsByClassName("dashboard-page-config-ms-button-circle");
-        var container = document.getElementsByClassName("dashboard-page-config-ms-button-container");
-
+        var circle = document.querySelector(".card-toggle-btn#motion-sensor .circle");
+        var container = document.querySelector(".card-toggle-btn#motion-sensor");
         // turn on
-        if (circle[0].style.transform === "translate(-10%, 0%)")
+        if (circle.style.transform === "translate(-10%, 0%)")
         {
-            circle[0].style.transform = "translate(75%, 0%)";
-            container[0].style.backgroundColor = "#005570";
+            circle.style.transform = "translate(75%, 0%)";
+            circle.style.border = "1px solid #005570";
+            container.style.backgroundColor = "#005570";
             props.setMD("ON");
         }
         // turn off
         else
         {
-            circle[0].style.transform = "translate(-10%, 0%)";
-            container[0].style.backgroundColor = "#333132";
+            circle.style.transform = "translate(-10%, 0%)";
+            circle.style.border = "1px solid #000000";
+            container.style.backgroundColor = "#333132";
             props.setMD("OFF");
         }
     }
@@ -46,36 +48,33 @@ function ConfigMotionSensor(props)
     }
 
     return(
-        <div className = "dashboard-page-config-ms-container">
-            {/* header icon */}
-            <img alt = "" src = {HeaderIcon} className = "dashboard-page-config-header-top-icon"></img>
-            {/* header button(s) */}
-            {props.lights ?
-                <div 
-                    className = "dashboard-page-config-ms-button-container"
-                    style = {{opacity: 1.0, cursor: "pointer"}}
+        <div className = "card-container" id = "small">
+            {/* header */}
+            <div className = "card-header" id = "motion-sensor">
+                <h1 className = "header-text">MOTION SENSOR</h1>
+                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
+                {/* header button(s) */}
+                <div
+                    className = "card-toggle-btn"
+                    id = "motion-sensor"
+                    style = {props.lights ? {opacity: 1.0} : {pointerEvents: "none", opacity: 0.3}}
                     onClick = {handleMSButton}
                 >
-                    <div className = "dashboard-page-config-ms-button-circle"></div>
-                </div> :
-                <div
-                    className = "dashboard-page-config-ms-button-container"
-                    style = {{opacity: 0.3, cursor: "default"}}
-                >
-                    <div className = "dashboard-page-config-ms-button-circle"></div>
+                    <div className = "circle"></div>
                 </div>
-            }
-            {/* header */}
-            <div className = "dashboard-page-config-header-top">
-                <h1 className = "dashboard-page-config-header-top-text">MOTION SENSOR</h1>
-                <img alt = "" src = {Header} className = "dashboard-page-config-header-top-img"></img>
             </div>
-            {/* dropdown header */}
-            <div className = "dashboard-page-config-card-header0">SENSITIVITY</div>
-            {/* info icon*/}
-            <img title = "Higher sensitivity allows for easier triggering of motion sensor." alt = "" src = {InfoIcon} className = "dashboard-page-config-ms-info"></img>
+            {/* dropdown label */}
+            <div className = "card-label" id = "label0">SENSITIVITY</div>
+            {/* info icon */}
+            <img 
+                title = "Higher sensitivity allows for easier triggering of motion sensor." 
+                alt = "" 
+                src = {InfoIcon}
+                className = "card-info"
+                id = "motion-sensor-info0"
+            ></img>
             {/* dropdown list */}
-            <div className = "dashboard-page-config-ms-ddcontainer" style = {{zIndex: 10}}>
+            <div className = "card-dropdown" id = "motion-sensor-dd0" style = {{zIndex: 10}}>
                 <GenericDropdown
                     ref = {msRef}
                     default = {option}

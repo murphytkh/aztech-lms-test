@@ -195,7 +195,7 @@ function LightStatus(props)
             {/* header */}
             <div className = "card-header" id = "status">
                 <h1 className = "header-text">LIGHT STATUS</h1>
-                <img alt = "" src = {HeaderIcon} className = "icon"></img>
+                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
                 <h1 className = "show">SHOW</h1>
                 <h1 className = "entries">ENTRIES</h1>
                 <div className = "dd-container" style = {{zIndex: 10}}>

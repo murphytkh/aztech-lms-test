@@ -25,7 +25,7 @@ function GatewayInfo(props)
             {/* header */}
             <div className = "card-header" id = "gateway">
                 <h1 className = "header-text">GATEWAY INFORMATION</h1>
-                <img alt = "" src = {HeaderIcon} className = "icon"></img>
+                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
             </div>
             {/* elements */}
             <div className = "gateway-button" onClick = {handleRefreshButton}>

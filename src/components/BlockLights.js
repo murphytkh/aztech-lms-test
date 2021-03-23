@@ -43,7 +43,7 @@ function BlockLights(props)
             {/* header */}
             <div className = "card-header" id = "block-lights">
                 <h1 className = "header-text">LIGHTS IN THIS BLOCK</h1>
-                <img alt = "" src = {HeaderIcon} className = "icon"></img>
+                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
                 <img 
                     alt = "" 
                     src = {Refresh} 

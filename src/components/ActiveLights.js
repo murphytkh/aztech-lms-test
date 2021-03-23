@@ -61,7 +61,7 @@ function ActiveLights(props)
         <div className = "card-container" id = "medium">
             {/* header */}
             <div className = "card-header" id = "active-lights">
-                <img alt = "" src = {HeaderIcon} className = "icon"></img>
+                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
                 <h1 className = "header-text">MOST ACTIVE LIGHT(S)</h1>
                 <img 
                     alt = "" 

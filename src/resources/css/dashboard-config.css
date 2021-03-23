@@ -1,51 +1,111 @@
-.dashboard-page-config
+.config-page
 {
     position: absolute;
     top: 17%;
     left: 12%;
     width: 81%;
     height: 100%;
-    text-align: left;
 }
 
-/* top row headers */
-
-.dashboard-page-config-header-top
+.config-page .card-container
 {
-    width: 100%;
-    height: auto;
+    margin-bottom: 3.2%;
+    height: 37.24%;
 }
 
-.dashboard-page-config-header-top-text
+.config-page .card-container:nth-child(2)
+{
+    margin-left: 2.3%;
+    margin-right: 2.3%;
+}
+
+.config-page-btn
+{
+    position: absolute;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: max(0.9vw, 12.96px);
+    font-weight: 600;
+    text-align: center;
+    line-height: 185%;
+    top: 110%;
+    width: 14%;
+    height: 3%;
+    cursor: pointer;
+}
+
+.config-page-btn:hover
+{
+    filter: brightness(120%);
+}
+
+.config-page-btn#cancel
+{
+    background-color: #C6C6C6;
+    left: 32%;
+}
+
+.config-page-btn#submit
+{
+    background-color: #005570;
+    left: 48%;
+}
+
+/* header buttons */
+
+.card-toggle-btn
 {
     z-index: 1;
+    position: absolute;
+    background-color: #005570;
+    border-radius: 14px;
+    top: 22.5%;
+    height: 55%;
+    cursor: pointer;
+}
+
+.card-toggle-btn .circle
+{
+    z-index: 1;
+    position: absolute;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 2px #00000029;
+    border: 1px solid #005570;
+    border-radius: 50%;
+    width: 58%;
+    height: 91%;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(.42, 0, .58, 1);
+    transition-duration: .1s;
+    /* -10%, 75% */
+    transform: translate(75%, 0%);
+}
+
+/* common labels */
+
+.card-label
+{
+    z-index: -2;
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
-    background: none;
-    font-size: max(1vw, 14.4px);
-    font-weight: 500;
-    top: -0.1%;
-    left: 11.3%;
+    font-size: max(0.8vw, 11.52px);
+    font-weight: 600;
+    left: 9%;
 }
 
-.dashboard-page-config-header-top-img
+.card-label#label0
 {
-    position: absolute;
-    top: -1.1%;
-    left: -1.2%;
-    width: 102.4%;
-    height: auto;
+    top: 20%;
 }
 
-.dashboard-page-config-header-top-icon
+.card-label#label1
 {
-    z-index: 1;
-    position: absolute;
-    top: 2.75%;
-    left: 3%;
-    width: 5.5%;
-    height: auto;
+    top: 47%;
+}
+
+.card-label#label2
+{
+    top: 74%;
 }
 
 /* common headers */
@@ -84,181 +144,6 @@
     font-size: max(0.8vw, 11.52px);
     top: 74%;
     left: 9%;
-}
-
-/* motion sensor */
-
-.dashboard-page-config-ms-container
-{
-    position: relative;
-    display: inline-block;
-    border: 1px solid #E0E0E0;
-    border-radius: 3px;
-    width: 31.8%;
-    height: 35%;
-    vertical-align: top;
-}
-
-.dashboard-page-config-ms-button-container
-{
-    z-index: 1;
-    position: absolute;
-    border-radius: 14px;
-    background-color: #005570;
-    top: 2.3%;
-    left: 85%;
-    width: 9.3%;
-    height: 7.875%;
-    cursor: pointer;
-}
-
-.dashboard-page-config-ms-button-circle
-{
-    z-index: 1;
-    position: absolute;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 2px #00000029;
-    border: 1px solid #000000;
-    border-radius: 50%;
-    width: 56%;
-    height: 91%;
-
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(.42, 0, .58, 1);
-    transition-duration: .1s;
-    /* -10%, 75% */
-    transform: translate(75%, 0%);
-}
-
-.dashboard-page-config-ms-info
-{
-    position: absolute;
-    top: 16.25%;
-    left: 29%;
-    width: 9%;
-    height: auto;
-    cursor: pointer;
-}
-
-.dashboard-page-config-ms-info:hover
-{
-    transform: scale(1.1);
-}
-
-.dashboard-page-config-ms-ddcontainer
-{
-    position: absolute;
-    top: 28%;
-    left: 8%;
-    width: 70%;
-    height: 8%;
-}
-
-/* settings */
-
-.dashboard-page-config-settings-container
-{
-    position: relative;
-    display: inline-block;
-    border: 1px solid #E0E0E0;
-    border-radius: 3px;
-    margin-left: 2%;
-    width: 31.8%;
-    height: 35%;
-    vertical-align: top;
-}
-
-.dashboard-page-config-settings-sync-info
-{
-    position: absolute;
-    top: 16.25%;
-    left: 32.3%;
-    width: 9%;
-    height: auto;
-    cursor: pointer;
-}
-
-.dashboard-page-config-settings-sync-info:hover
-{
-    transform: scale(1.1);
-}
-
-.dashboard-page-config-settings-intensity-info
-{
-    position: absolute;
-    top: 43.2%;
-    left: 37.5%;
-    width: 9%;
-    height: auto;
-    cursor: pointer;
-}
-
-.dashboard-page-config-settings-intensity-info:hover
-{
-    transform: scale(1.1);
-}
-
-.dashboard-page-config-settings-holdtime-info
-{
-    position: absolute;
-    top: 70.15%;
-    left: 29.3%;
-    width: 9%;
-    height: auto;
-    cursor: pointer;
-}
-
-.dashboard-page-config-settings-holdtime-info:hover
-{
-    transform: scale(1.1);
-}
-
-.dashboard-page-config-clocktext
-{
-    position: absolute;
-    color: #333132;
-    font-family: "work sans", sans-serif;
-    font-weight: 500;
-    font-size: max(0.91vw, 13.16px);
-    top: 29.7%;
-    left: 16%;
-}
-
-.dashboard-page-config-radio
-{
-    position: absolute;
-    top: 29.5%;
-    left: 9%;
-    width: 4.6%;
-    height: auto;
-    cursor: pointer;
-}
-
-.dashboard-page-config-settings-intensity-ddcontainer
-{
-    position: absolute;
-    top: 55%;
-    left: 8%;
-    width: 70%;
-    height: 8%;
-}
-
-.dashboard-page-config-settings-holdtime-ddcontainer
-{
-    position: absolute;
-    top: 82%;
-    left: 8%;
-    width: 25%;
-    height: 8%;
-}
-
-.dashboard-page-config-settings-holdtimeunits-ddcontainer
-{
-    position: absolute;
-    top: 82%;
-    left: 36%;
-    width: 41.9%;
-    height: 8%;
 }
 
 /* schedule */
@@ -754,58 +639,4 @@
     padding-top: 13.25%;
     top: 70%;
     left: 68%;
-}
-
-/* config page cancel and submit buttons */
-
-.dashboard-page-config-cancel
-{
-    position: absolute;
-    background-color: #C6C6C6;
-    border-radius: 6px;
-
-    color: #FFFFFF;
-    font-family: "work sans", sans-serif;
-    font-weight: 600;
-    font-size: max(0.9vw, 12.96px);
-    text-align: center;
-
-    top: 110%;
-    left: 32%;
-    width: 14%;
-    height: 3%;
-    line-height: 185%;
-
-    cursor: pointer;
-}
-
-.dashboard-page-config-cancel:hover
-{
-    filter: brightness(105%);
-}
-
-.dashboard-page-config-submit
-{
-    position: absolute;
-    background-color: #005570;
-    border-radius: 6px;
-
-    color: #FFFFFF;
-    font-family: "work sans", sans-serif;
-    font-weight: 600;
-    font-size: max(0.9vw, 12.96px);
-    text-align: center;
-
-    top: 110%;
-    left: 48%;
-    width: 14%;
-    height: 3%;
-    line-height: 185%;
-
-    cursor: pointer;
-}
-
-.dashboard-page-config-submit:hover
-{
-    filter: brightness(120%);
 }

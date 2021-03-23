@@ -1,0 +1,39 @@
+/* header */
+
+.card-header#motion-sensor .header-text
+{
+    left: 11.5212%;
+}
+
+.card-header#motion-sensor .header-icon
+{
+    top: 26.5%;
+    left: 3.8404%;
+    width: 5.3765%;
+}
+
+.card-toggle-btn#motion-sensor
+{
+    left: 85%;
+    width: 9.3%;
+}
+
+/* info rollover */
+
+.card-info#motion-sensor-info0
+{
+    top: 16.25%;
+    left: 29%;
+    width: 9%;
+}
+
+/* dropdown box */
+
+.card-dropdown#motion-sensor-dd0
+{
+    position: absolute;
+    top: 28%;
+    left: 8%;
+    width: 70%;
+    height: 8%;
+}

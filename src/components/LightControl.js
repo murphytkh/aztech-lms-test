@@ -63,7 +63,7 @@ function EnergyConsumption(props)
             {/* header */}
             <div className = "card-header" id = "light-control">
                 <h1 className = "header-text">LIGHT CONTROL</h1>
-                <img alt = "" src = {ControlIcon} className = "icon"></img>
+                <img alt = "" src = {ControlIcon} className = "header-icon"></img>
             </div>
             {/* dropdown and button headers */}
             <h1 className = "light-control-header" id = "header0">SELECT FLOOR</h1>

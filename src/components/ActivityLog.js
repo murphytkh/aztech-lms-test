@@ -176,7 +176,7 @@ function ActivityLog(props)
             {/* header */}
             <div className = "card-header" id = "activity">
                 <h1 className = "header-text">ACTIVITY LOG</h1>
-                <img alt = "" src = {HeaderIcon} className = "icon"></img>
+                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
                 {/* dropdown */}
                 <h1 className = "show">SHOW</h1>
                 <h1 className = "entries">ENTRIES</h1>

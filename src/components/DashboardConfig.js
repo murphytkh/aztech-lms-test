@@ -1,6 +1,4 @@
-//import ThreeJsScene from "./threejsscene";
-
-import "../resources/css/dashboardconfig.css";
+import "../resources/css/dashboard-config.css";
 
 import React, {useState, useEffect} from "react";
 
@@ -42,7 +40,7 @@ function DashboardConfig(props)
         console.log("clock sync: " + sync);
         console.log("light intensity: " + intensity);
         console.log("hold time: " + holdTime + " " + holdTimeUnits);
-        console.log("dimmed brightness:" + dimmedBrightness);
+        console.log("dimmed brightness: " + dimmedBrightness);
         console.log("motion brightness: " + motionBrightness);
         console.log("max brightness: " + maxBrightness);
         console.log("schedule data: " + schedule);
@@ -54,7 +52,8 @@ function DashboardConfig(props)
     }
 
     return(
-        <div className = "dashboard-page-config">
+        <div className = "config-page">
+            {/* cards */}
             <ConfigMotionSensor 
                 location = {props.location}
                 area = {props.area}
@@ -108,13 +107,15 @@ function DashboardConfig(props)
             />
             {/* buttons */}
             <div 
-                className = "dashboard-page-config-cancel" 
+                className = "config-page-btn" 
+                id = "cancel"
                 onClick = {props.cancel}
             >
                 CANCEL
             </div>
             <div
-                className = "dashboard-page-config-submit" 
+                className = "config-page-btn"
+                id = "submit" 
                 onClick = {props.lights ? handleSubmitButton : placeholder}
             >
                 SUBMIT

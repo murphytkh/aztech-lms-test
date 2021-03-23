@@ -1,0 +1,88 @@
+/* header */
+
+.card-header#settings .header-text
+{
+    left: 11.5212%;
+}
+
+.card-header#settings .header-icon
+{
+    top: 26.5%;
+    left: 3.8404%;
+    width: 5.3765%;
+}
+
+/* info rollover */
+
+.card-info#settings-info0
+{
+    top: 16.25%;
+    left: 32.3%;
+    width: 9%;
+}
+
+.card-info#settings-info1
+{
+    top: 43.2%;
+    left: 37.5%;
+    width: 9%;
+}
+
+.card-info#settings-info2
+{
+    top: 70.15%;
+    left: 29.3%;
+    width: 9%;
+}
+
+/* radio button */
+
+.config-page .clock-radio-text
+{
+    position: absolute;
+    color: #333132;
+    font-weight: 500;
+    font-size: max(0.91vw, 13.16px);
+    top: 29.7%;
+    left: 16%;
+}
+
+.config-page .clock-radio
+{
+    position: absolute;
+    top: 29.5%;
+    left: 9%;
+    width: 4.6%;
+    height: auto;
+    cursor: pointer;
+}
+
+/* dropdown boxes */
+
+.card-dropdown#settings-dd0, .card-dropdown#settings-dd1,
+.card-dropdown#settings-dd2
+{
+    position: absolute;
+    height: 8%;
+}
+
+.card-dropdown#settings-dd0
+{
+    top: 55%;
+    left: 8%;
+    width: 70%;
+}
+
+.card-dropdown#settings-dd1
+{
+    top: 82%;
+    left: 8%;
+    width: 25%;
+}
+
+.card-dropdown#settings-dd2
+{
+    top: 82%;
+    left: 36%;
+    width: 41.9%;
+}

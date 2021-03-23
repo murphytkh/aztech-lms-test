@@ -1,3 +1,4 @@
+import "../resources/css/common-elements.css";
 import "../resources/css/dashboard-landing.css";
 
 import React, {useState, useRef, useEffect} from "react";
