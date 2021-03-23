@@ -1,8 +1,9 @@
+import "../resources/css/config-brightness.css";
+
 import React, {useEffect} from "react";
 
 import ConfigBrightnessInput from "./ConfigBrightnessInput";
 
-import Header from "../resources/dashboard/config-long-header.svg";
 import HeaderIcon from "../resources/dashboard/icon-light-empty.svg";
 
 function ConfigBrightness(props)
@@ -14,13 +15,11 @@ function ConfigBrightness(props)
     }, []);
 
     return(
-        <div className = "dashboard-page-config-brightness-container">
-            {/* header icon */}
-                <img alt = "" src = {HeaderIcon} className = "dashboard-page-config-header-brightness-icon"></img>
+        <div className = "card-container" id = "large">
             {/* header */}
-            <div className = "dashboard-page-config-header-brightness">
-                <h1 className = "dashboard-page-config-header-brightness-text">BRIGHTNESS LEVEL</h1>
-                <img alt = "" src = {Header} className = "dashboard-page-config-header-brightness-img"></img>
+            <div className = "card-header" id = "brightness-level">
+                <h1 className = "header-text">BRIGHTNESS LEVEL</h1>
+                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
             </div>
             {/* inputs */}
             <ConfigBrightnessInput
