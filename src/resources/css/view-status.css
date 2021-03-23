@@ -53,19 +53,6 @@
 
 /* table */
 
-.full-container#bottom .header-text
-{
-    top: -1%;
-    left: 3.9%;
-}
-
-.full-container#bottom .icon
-{
-    top: 17%;
-    left: 1%;
-    width: 2.25%;
-}
-
 .status-header-divider
 {
     z-index: 1;
@@ -75,40 +62,6 @@
     left: 96.9%;
     width: 0.1%;
     height: 58%;
-}
-
-.full-container#bottom .refresh
-{
-    top: 26%;
-    left: 97.8%;
-    width: 1.5%;
-}
-
-.full-header h1.show, .full-header h1.entries
-{
-    position: absolute;
-    font-size: max(0.75vw, 10.8px);
-    font-weight: 600;
-    top: 16%;
-}
-
-.full-header .show
-{
-    left: 82.6%;
-}
-
-.full-header .entries
-{
-    left: 91.7%;
-}
-
-.full-header .dd-container
-{
-    position: absolute;
-    top: 17%;
-    left: 86.3%;
-    width: 4.6%;
-    height: 55.23%;
 }
 
 .status-table-container
@@ -178,19 +131,6 @@
 .status-table tr:nth-child(odd)
 {
     background-color: #F7F7F7;
-}
-
-.activity-table .user
-{
-    padding-top: 0.5%;
-    padding-left: 3%;
-    width: 13.9%;
-}
-
-.activity-table .action
-{
-    padding-top: 0.5%;
-    width: 10.2%;
 }
 
 .status-table td
