@@ -162,15 +162,15 @@ function ConfigSchedule(props)
                     Add Schedule
                 </div>
             </div>
-            {/* dropdown and day headers */}
-            <div className = "dashboard-page-config-card-header0">ACTIVITIES</div>
-            <div className = "dashboard-page-config-card-header1">START TIME</div>
-            <div className = "dashboard-page-config-schedule-endtime-header">END TIME</div>
-            <div className = "dashboard-page-config-card-header2">REPEAT</div>
+            {/* labels */}
+            <div className = "card-label" id = "label0">ACTIVITIES</div>
+            <div className = "card-label" id = "label1">START TIME</div>
+            <div className = "card-label" id = "label1-right">END TIME</div>
+            <div className = "card-label" id = "label2">REPEAT</div>
             {/* dropdown lists */}
             {dayActive &&
                 <div>
-                    <div className = "dashboard-page-config-schedule-activities-ddcontainer" style = {{zIndex: 2}}>
+                    <div className = "card-dropdown" id = "schedule-dd0" style = {{zIndex: 2}}>
                         <GenericDropdown
                             ref = {ddRef}
                             default = {activity}
@@ -179,7 +179,7 @@ function ConfigSchedule(props)
                             disabled = {props.lights ? false : true}
                         ></GenericDropdown>
                     </div>
-                    <div className = "dashboard-page-config-schedule-start-ddcontainer" style = {{zIndex: 1}}>
+                    <div className = "card-dropdown" id = "schedule-dd1" style = {{zIndex: 1}}>
                         <GenericDropdown
                             ref = {ddRef}
                             default = {start}
@@ -188,7 +188,7 @@ function ConfigSchedule(props)
                             disabled = {props.lights ? false : true}
                         ></GenericDropdown>
                     </div>
-                    <div className = "dashboard-page-config-schedule-end-ddcontainer" style = {{zIndex: 1}}>
+                    <div className = "card-dropdown" id = "schedule-dd2" style = {{zIndex: 1}}>
                         <GenericDropdown
                             ref = {ddRef}
                             default = {end}
@@ -201,7 +201,7 @@ function ConfigSchedule(props)
             }
             {/* day selector */}
             {dayActive &&
-                <div className = "dashboard-page-config-schedule-day-container">
+                <div className = "day-selector">
                     <DaySelectorButton disabled = {props.lights} day = {"SUN"} onClick = {toggleDay} active = {dayActive[0]}></DaySelectorButton>
                     <DaySelectorButton disabled = {props.lights} day = {"MON"} onClick = {toggleDay} active = {dayActive[1]}></DaySelectorButton>
                     <DaySelectorButton disabled = {props.lights} day = {"TUE"} onClick = {toggleDay} active = {dayActive[2]}></DaySelectorButton>

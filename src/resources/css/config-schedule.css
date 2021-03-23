@@ -19,7 +19,7 @@
     color: #005570;
     font-weight: 500;
     font-size: max(0.8vw, 11.52px);
-    top: 32.5%;
+    top: 38%;
     left: 75%;
     cursor: pointer;
 }
@@ -35,62 +35,62 @@
     pointer-events: none;
 }
 
-/* schedule */
+/* label */
 
-.dashboard-page-config-schedule-endtime-header
+.card-label#label1-right
 {
-    z-index: -2;
-    position: absolute;
-    color: #333132;
-    font-weight: 600;
-    font-size: max(0.8vw, 11.52px);
     top: 47%;
     left: 53.5%;
 }
 
-.dashboard-page-config-schedule-activities-ddcontainer
+/* dropdown lists */
+
+.card-dropdown#schedule-dd0, .card-dropdown#schedule-dd1,
+.card-dropdown#schedule-dd2
 {
     position: absolute;
+    height: 8%;
+}
+
+.card-dropdown#schedule-dd0
+{
     top: 28%;
     left: 8%;
     width: 72%;
-    height: 8%;
 }
 
-.dashboard-page-config-schedule-start-ddcontainer
+.card-dropdown#schedule-dd1
 {
-    position: absolute;
     top: 55%;
     left: 8%;
     width: 40%;
-    height: 8%;
 }
 
-.dashboard-page-config-schedule-end-ddcontainer
+.card-dropdown#schedule-dd2
 {
-    position: absolute;
     top: 55%;
     left: 52%;
     width: 40%;
-    height: 8%;
 }
 
-.dashboard-page-config-schedule-day-container
+/* day selector */
+
+.config-page .day-selector
 {
     z-index: 0;
     position: absolute;
+    display: inline-block;
     border: 1px solid #C6C6C6;
     border-radius: 6px;
     top: 82%;
     left: 8%;
-    width: 84%;
-    height: 8%;
-    display: inline-block;
+    padding-top: 0.3%;
     padding-left: 3%;
-    padding-top: 1%;
+    width: 80.5%;
+    height: 7.7%;
 }
 
-.dashboard-page-config-schedule-day-button
+.config-page .day-selector-btn
 {
     position: relative;
     color: #005570;
@@ -100,17 +100,13 @@
     cursor: pointer;
 }
 
-.dashboard-page-config-schedule-day-button:hover
+.config-page .day-selector-btn:hover
 {
-    filter: brightness(120%);
+    filter: brightness(115%);
 }
 
-.dashboard-page-config-schedule-day-button-disabled
+.config-page .day-selector-btn#disabled
 {
-    color: #005570;
-    font-weight: 600;
-    font-size: max(0.8vw, 11.52px);
-    margin-right: 7.1%;
     opacity: 0.5;
-    cursor: default;
+    pointer-events: none;
 }
