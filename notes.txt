@@ -41,7 +41,7 @@ current task:
     - large:  65.9  5.5595  1.8531
     - full:   100   3.6637  1.2212
     - width / left values (large - full show entries)
-    - large:  65.9  
+    - large:  34.1  26.2  20.75 12.5  5   4.5
     - full:   100   
 - light status - add button to table for
                  relocation

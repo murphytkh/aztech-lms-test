@@ -1,7 +1,7 @@
 import "../resources/css/dashboard-searchbar.css";
 
 import React, {useState} from "react";
-import SearchIcon from "../resources/dashboard/search-icon.svg";
+import SearchIcon from "../resources/dashboard/icon-search.svg";
 
 function SearchBar(props)
 {
