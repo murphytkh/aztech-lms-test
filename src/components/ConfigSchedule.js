@@ -1,10 +1,11 @@
+import "../resources/css/config-schedule.css";
+
 import React, {useState, useEffect, useRef} from "react";
 
-import GenericDropdown from "../components/GenericDropdown";
-import DaySelectorButton from "../components/DaySelectorButton";
+import GenericDropdown from "./GenericDropdown";
+import DaySelectorButton from "./DaySelectorButton";
 
-import Header from "../resources/dashboard/configheader-top.svg";
-import HeaderIcon from "../resources/dashboard/icon-schedule.svg";
+import HeaderIcon from "../resources/config/schedule-header-icon.svg";
 
 let ddTime = [];
 let hourcounter = -1;
@@ -147,21 +148,19 @@ function ConfigSchedule(props)
     }
 
     return(
-        <div className = "dashboard-page-config-schedule-container">
-            {/* header icon */}
-            <img alt = "" src = {HeaderIcon} className = "dashboard-page-config-header-top-icon"></img>
-            {/* header button */}
-            <div 
-				className = {props.lights ? "dashboard-page-config-schedule-add" :
-							 "dashboard-page-config-schedule-add-disabled"}
-				onClick = {props.lights ? handleAddSchedule : placeholder}
-			>
-                Add Schedule
-            </div>
+        <div className = "card-container" id = "small">
             {/* header */}
-            <div className = "dashboard-page-config-header-top">
-                <h1 className = "dashboard-page-config-header-top-text">PRE-SET SCHEDULE</h1>
-                <img alt = "" src = {Header} className = "dashboard-page-config-header-top-img"></img>
+            <div className = "card-header" id = "schedule">
+                <h1 className = "header-text">PRE-SET SCHEDULE</h1>
+                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
+                {/* header button */}
+                <div 
+			    	className = "schedule-add"
+                    id = {props.lights ? "" : "disabled"}
+			    	onClick = {props.lights ? handleAddSchedule : placeholder}
+			    >
+                    Add Schedule
+                </div>
             </div>
             {/* dropdown and day headers */}
             <div className = "dashboard-page-config-card-header0">ACTIVITIES</div>

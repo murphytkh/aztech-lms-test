@@ -1,0 +1,116 @@
+/* header */
+
+.card-header#schedule .header-text
+{
+    left: 11.5212%;
+}
+
+.card-header#schedule .header-icon
+{
+    top: 26.5%;
+    left: 3.8404%;
+    width: 5.3765%;
+}
+
+.config-page .schedule-add
+{
+    z-index: 1;
+    position: absolute;
+    color: #005570;
+    font-weight: 500;
+    font-size: max(0.8vw, 11.52px);
+    top: 32.5%;
+    left: 75%;
+    cursor: pointer;
+}
+
+.config-page .schedule-add:hover
+{
+    filter: brightness(120%);
+}
+
+.config-page .schedule-add#disabled
+{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* schedule */
+
+.dashboard-page-config-schedule-endtime-header
+{
+    z-index: -2;
+    position: absolute;
+    color: #333132;
+    font-weight: 600;
+    font-size: max(0.8vw, 11.52px);
+    top: 47%;
+    left: 53.5%;
+}
+
+.dashboard-page-config-schedule-activities-ddcontainer
+{
+    position: absolute;
+    top: 28%;
+    left: 8%;
+    width: 72%;
+    height: 8%;
+}
+
+.dashboard-page-config-schedule-start-ddcontainer
+{
+    position: absolute;
+    top: 55%;
+    left: 8%;
+    width: 40%;
+    height: 8%;
+}
+
+.dashboard-page-config-schedule-end-ddcontainer
+{
+    position: absolute;
+    top: 55%;
+    left: 52%;
+    width: 40%;
+    height: 8%;
+}
+
+.dashboard-page-config-schedule-day-container
+{
+    z-index: 0;
+    position: absolute;
+    border: 1px solid #C6C6C6;
+    border-radius: 6px;
+    top: 82%;
+    left: 8%;
+    width: 84%;
+    height: 8%;
+    display: inline-block;
+    padding-left: 3%;
+    padding-top: 1%;
+}
+
+.dashboard-page-config-schedule-day-button
+{
+    position: relative;
+    color: #005570;
+    font-weight: 600;
+    font-size: max(0.8vw, 11.52px);
+    margin-right: 7.1%;
+    cursor: pointer;
+}
+
+.dashboard-page-config-schedule-day-button:hover
+{
+    filter: brightness(120%);
+}
+
+.dashboard-page-config-schedule-day-button-disabled
+{
+    color: #005570;
+    font-weight: 600;
+    font-size: max(0.8vw, 11.52px);
+    margin-right: 7.1%;
+    opacity: 0.5;
+    cursor: default;
+}

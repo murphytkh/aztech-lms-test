@@ -4,7 +4,7 @@ import React, {useState, useEffect, useRef} from "react";
 
 import GenericDropdown from "./GenericDropdown";
 
-import HeaderIcon from "../resources/config/motion-sensor-header-icon.svg";
+import HeaderIcon from "../resources/config/settings-header-icon.svg";
 import InfoIcon from "../resources/dashboard/icon-question-mark.svg";
 import RadioButtonOff from "../resources/dashboard/icon-radio-button-off.svg";
 import RadioButtonOn from "../resources/dashboard/icon-radio-button-on.svg";
