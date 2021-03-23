@@ -127,9 +127,9 @@
 .sidebar .text-container
 {
     position: absolute;
-    bottom: 0.7%;
-    left: 25%;
     text-align: center;
+    bottom: 1.5%;
+    left: 25%;
 }
 
 .sidebar .text-container h1
@@ -138,9 +138,10 @@
     color: #6D6E71;
     font-size: max(0.7vw, 10.08px);
     font-weight: 500;
+    line-height: 5px;
 }
 
 .sidebar .text-container .version
 {
-    padding-top: 5%;
+    padding-top: 15%;
 }
