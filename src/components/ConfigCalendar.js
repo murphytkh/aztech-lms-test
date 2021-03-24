@@ -133,23 +133,23 @@ function ConfigCalendar(props)
             if (photo && fullbrightness && motion)
             {
                 return(
-                    <div className = "dashboard-page-config-calendar-indicators">
-                        <div className = "dashboard-page-config-calendar-photosensor-event"></div>
-                        <div className = "dashboard-page-config-calendar-fullbrightness-event"></div> 
-                        <div className = "dashboard-page-config-calendar-motion-event"></div> 
+                    <div className = "config-calendar-indicators">
+                        <div className = "photosensor"></div>
+                        <div className = "full-brightness"></div> 
+                        <div className = "motion"></div> 
                     </div>
                 );
             }
             else if (photo && fullbrightness)
             {
                 return(
-                    <div className = "dashboard-page-config-calendar-indicators">
+                    <div className = "config-calendar-indicators">
                         <div 
-                            className = "dashboard-page-config-calendar-photosensor-event" 
+                            className = "photosensor" 
                             style = {{left: "33%"}}
                         ></div>
                         <div 
-                            className = "dashboard-page-config-calendar-fullbrightness-event" 
+                            className = "full-brightness" 
                             style = {{left: "55%"}}
                         ></div> 
                     </div>
@@ -158,9 +158,9 @@ function ConfigCalendar(props)
             else if (photo && motion)
             {
                 return(
-                    <div className = "dashboard-page-config-calendar-indicators">
-                        <div className = "dashboard-page-config-calendar-photosensor-event" style = {{left: "33%"}}></div> 
-                        <div className = "dashboard-page-config-calendar-motion-event" style = {{left: "55%"}}></div> 
+                    <div className = "config-calendar-indicators">
+                        <div className = "photosensor" style = {{left: "33%"}}></div> 
+                        <div className = "motion" style = {{left: "55%"}}></div> 
                     </div>
                 );
 
@@ -168,33 +168,33 @@ function ConfigCalendar(props)
             else if (fullbrightness && motion)
             {
                 return(
-                    <div className = "dashboard-page-config-calendar-indicators">
-                        <div className = "dashboard-page-config-calendar-fullbrightness-event" style = {{left: "33%"}}></div> 
-                        <div className = "dashboard-page-config-calendar-motion-event" style = {{left: "55%"}}></div> 
+                    <div className = "config-calendar-indicators">
+                        <div className = "full-brightness" style = {{left: "33%"}}></div> 
+                        <div className = "motion" style = {{left: "55%"}}></div> 
                     </div>
                 );
             }
             else if (photo)
             {
                 return(
-                    <div className = "dashboard-page-config-calendar-indicators">
-                        <div className = "dashboard-page-config-calendar-photosensor-event" style = {{left: "44%"}}></div>
+                    <div className = "config-calendar-indicators">
+                        <div className = "photosensor" style = {{left: "44%"}}></div>
                     </div>
                 );
             }
             else if (fullbrightness)
             {
                 return(
-                    <div className = "dashboard-page-config-calendar-indicators">
-                        <div className = "dashboard-page-config-calendar-fullbrightness-event" style = {{left: "44%"}}></div> 
+                    <div className = "config-calendar-indicators">
+                        <div className = "full-brightness" style = {{left: "44%"}}></div> 
                     </div>
                 );
             }
             else if (motion)
             {
                 return(
-                    <div className = "dashboard-page-config-calendar-indicators">
-                        <div className = "dashboard-page-config-calendar-motion-event" style = {{left: "44%"}}></div> 
+                    <div className = "config-calendar-indicators">
+                        <div className = "motion" style = {{left: "44%"}}></div> 
                     </div>
                 );
             }
