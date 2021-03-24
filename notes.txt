@@ -32,6 +32,7 @@ current task:
   - figure out empty chart display?
 - code refactoring progress
   - clean config calendar card
+    - possible to clean the logic?
 - light status - add button to table for
                  relocation
 
