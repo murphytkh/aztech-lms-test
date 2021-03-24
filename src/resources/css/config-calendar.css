@@ -1,0 +1,246 @@
+.config-page .card-container.calendar
+{
+    margin-left: 2.3%;
+    height: 66%;
+}
+
+/* calendar navigation */
+
+.config-calendar-prevnext
+{
+    width: 150%;
+    height: auto;
+}
+
+/* legends */
+
+.card-container.calendar > h1
+{
+    position: absolute;
+    color: #333132;
+    font-weight: 500;
+    font-size: max(0.7vw, 10.08px);
+    margin: 0%;
+    top: 61.65%;
+}
+
+.card-container.calendar > h1.photosensor
+{
+    left: 11%;
+}
+
+.card-container.calendar > h1.full-brightness
+{
+    left: 46%;
+}
+
+.card-container.calendar > h1.motion
+{
+    left: 74%;
+}
+
+.card-container.calendar .legend-icon
+{
+    position: absolute;
+    border-radius: 50%;
+    top: 62.3%;
+    width: 1.4%;
+    padding-top: 1.4%;
+}
+
+.card-container.calendar .legend-icon#photosensor
+{
+    background-color: #FF8900;
+    left: 8%;
+}
+
+.card-container.calendar .legend-icon#full-brightness
+{
+    background-color: #00C2FF;
+    left: 43.5%;
+}
+
+.card-container.calendar .legend-icon#motion
+{
+    background-color: #58C315;
+    left: 71.5%;
+}
+
+/* divider */
+
+.card-container.calendar > .divider
+{
+    position: absolute;
+    background-color: #C6C6C6;
+    top: 66%;
+    left: 4.8%;
+    width: 90.4%;
+    height: 1px;
+}
+
+/* bottom radio buttons */
+
+.card-container.calendar .header-date
+{
+    position: absolute;
+    color: #333132;
+    font-weight: 700;
+    font-size: max(1.24vw, 17.33px);
+    top: 68.5%;
+    left: 8%;
+}
+
+.config-calendar-radio
+{
+    position: absolute;
+    background-color: #FCFCFC;
+    left: 2%;
+    width: 96%;
+    height: 6%;
+}
+
+.config-calendar-radio#c0
+{
+    top: 75%;
+}
+
+.config-calendar-radio#c1
+{
+    top: 83%;
+}
+
+.config-calendar-radio#c2
+{
+    top: 91%;
+}
+
+.config-calendar-radio .divider
+{
+    position: absolute;
+    top: 5.55%;
+    left: 14.5%;
+    width: 3px;
+    height: 88.9%;
+}
+
+.config-calendar-radio#c0 .divider
+{
+    background-color: #FF8900;
+}
+
+.config-calendar-radio#c1 .divider
+{
+    background-color: #00C2FF;
+}
+
+.config-calendar-radio#c2 .divider
+{
+    background-color: #58C315;
+}
+
+.config-calendar-radio .btn
+{
+    position: absolute;
+    top: 22.6%;
+    left: 6%;
+    width: 4.8%;
+    height: auto;
+    cursor: pointer;
+}
+
+.config-calendar-radio .radio-icon
+{
+    position: absolute;
+    height: auto;
+}
+
+.config-calendar-radio#c0 .radio-icon
+{
+    top: 3%;
+    left: 17.2%;
+    width: 8%;
+}
+
+.config-calendar-radio#c1 .radio-icon
+{
+    top: 22%;
+    left: 19.5%;
+    width: 3.4%;
+}
+
+.config-calendar-radio#c2 .radio-icon
+{
+    top: 24%;
+    left: 18.7%;
+    width: 4.6%;
+}
+
+.config-calendar-radio .text
+{
+    color: #272D3B;
+    font-size: max(0.85vw, 12.24px);
+}
+
+.config-calendar-radio .text#label
+{
+    position: absolute;
+    font-weight: 700;
+    top: 25%;
+    left: 28%;
+}
+
+.config-calendar-radio .text#time
+{
+    font-weight: 300;
+    margin-top: 2%;
+    margin-right: 3%;
+    text-align: right;
+}
+
+/* custom calendar content */
+
+.dashboard-page-config-calendar-indicators
+{
+    position: relative;
+    width: 100%;
+    height: 20%;
+}
+
+.dashboard-page-config-calendar-photosensor-event
+{
+    position: absolute;
+    background-color: #FF8900;
+    border-radius: 50%;
+
+    width: 13.25%;
+    padding-top: 13.25%;
+    height: 0%;
+    top: 70%;
+    left: 20%;
+}
+
+.dashboard-page-config-calendar-fullbrightness-event
+{
+    position: absolute;
+    display: inline-block;
+    background-color: #00C2FF;
+    border-radius: 50%;
+
+    width: 13.25%;
+    padding-top: 13.25%;
+    top: 70%;
+    left: 44%;
+}
+
+.dashboard-page-config-calendar-motion-event
+{
+    position: absolute;
+    display: inline-block;
+    background-color: #58C315;
+    border-radius: 50%;
+
+    width: 13.25%;
+    padding-top: 13.25%;
+    top: 70%;
+    left: 68%;
+}

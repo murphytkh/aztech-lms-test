@@ -1,46 +1,40 @@
-import "../resources/css/configcalendar.css";
+import "../resources/css/react-calendar.css";
+import "../resources/css/config-calendar.css";
 
 import React, {useEffect, useState} from "react";
 import Calendar from 'react-calendar';
 
-import PrevIcon from "../resources/dashboard/calendar-prev.svg";
-import NextIcon from "../resources/dashboard/calendar-next.svg";
+import PrevIcon from "../resources/config/calendar-prev.svg";
+import NextIcon from "../resources/config/calendar-next.svg";
 import RadioButtonOff from "../resources/dashboard/icon-radio-button-off.svg";
 import RadioButtonOn from "../resources/dashboard/icon-radio-button-on.svg";
-import PhotosensorDivider from "../resources/dashboard/calendar-photosensor-radio-divider.svg";
-import FullBrightnessDivider from "../resources/dashboard/calendar-fullbrightness-radio-divider.svg";
-import MotionDivider from "../resources/dashboard/calendar-motion-radio-divider.svg";
-import PhotosensorIcon from "../resources/dashboard/calendar-photosensor-icon.svg";
+import PhotosensorIcon from "../resources/dashboard/icon-photosensor.svg";
 import FullBrightnessIcon from "../resources/dashboard/icon-light-empty.svg";
 import MotionIcon from "../resources/dashboard/icon-motion-black.svg";
+
+// individual radio button
 
 function RadioButtonGroup(props)
 {
     return(
-        <div className = {"dashboard-page-config-calendar-radio-container" + props.containerOrder}>
+        <div className = "config-calendar-radio" id = {"c" + props.containerOrder}>
+            {/* radio button */}
             <img 
                 alt = "" 
                 src = {props.enabled ? RadioButtonOn : RadioButtonOff} 
-                className = "dashboard-page-config-calendar-radio"
+                className = "btn"
                 onClick = {props.onClick}
             ></img>
-            <img 
-                alt = "" 
-                src = {props.containerOrder === "0" ? PhotosensorDivider : 
-                        props.containerOrder === "1" ? FullBrightnessDivider : MotionDivider} 
-                className = "dashboard-page-config-calendar-radio-divider"
-            ></img>
-            <img 
-                alt = ""
-                src = {props.containerOrder === "0" ? PhotosensorIcon : 
-                        props.containerOrder === "1" ? FullBrightnessIcon : MotionIcon} 
-                className = {"dashboard-page-config-calendar-radio-icon" + props.containerOrder}
-            ></img>
-            <div className = "dashboard-page-config-calendar-radio-text">
+            {/* divider */}
+            <div className = "divider"></div>
+            {/* icon */}
+            <img alt = "" src = {props.icon} className = {"radio-icon"}></img>
+            {/* text */}
+            <div className = "text" id = "label">
                 {props.containerOrder === "0" ? "Photosensor Control" :
                     props.containerOrder === "1" ? "Full Brightness" : "Motion Trigger"}
             </div>
-            <div className = "dashboard-page-config-calendar-radio-time">
+            <div className = "text" id = "time">
                 {props.data && 
                 (props.containerOrder === "0" ? props.data[0] + " - " + props.data[1] :
                     props.containerOrder === "1" ? props.data[4] + " - " + props.data[5] :
@@ -118,14 +112,15 @@ function ConfigCalendar(props)
 
     const prevButton =
     (
-        <img alt = "" src = {PrevIcon} className = "dashboard-page-config-calendar-prevnext"></img>
+        <img alt = "" src = {PrevIcon} className = "config-calendar-prevnext"></img>
     );
 
     const nextButton =
     (
-        <img alt = "" src = {NextIcon} className = "dashboard-page-config-calendar-prevnext"></img>
+        <img alt = "" src = {NextIcon} className = "config-calendar-prevnext"></img>
     );
 
+    /* custom tile display for react-calendar */
     function tileContent({date, view})
     {
         if (view === "month")
@@ -134,15 +129,6 @@ function ConfigCalendar(props)
             var photo = (props.schedule[3] && props.schedule[2][dayOfWeek]) ? true : false;
             var fullbrightness = (props.schedule[7] && props.schedule[6][dayOfWeek]) ? true : false;
             var motion = (props.schedule[11] && props.schedule[10][dayOfWeek]) ? true : false;
-            
-            // 3 icon set up
-            // middle left: 44%
-            // left   left: 
-            // right  left: 
-
-            // 2 icon set up
-            // left  left: 
-            // right left: 
 
             if (photo && fullbrightness && motion)
             {
@@ -217,7 +203,8 @@ function ConfigCalendar(props)
 
     return(
         <div 
-            className = "dashboard-page-config-calendar-container" 
+            className = "card-container calendar"
+            id = "small"
             style = {props.lights ? {opacity: 1.0} : {opacity: 0.5, pointerEvents: "none"}}
         >
             {/* calendar itself */}
@@ -234,23 +221,17 @@ function ConfigCalendar(props)
                 tileContent = {tileContent}
             />
             {/* legends */}
-            <div className = "dashboard-page-config-photosensor-legend">
-                Photosensor Control
-            </div>
-            <div className = "dashboard-page-config-fullbrightness-legend">
-                Full Brightness
-            </div>
-            <div className = "dashboard-page-config-motion-legend">
-                Motion Trigger
-            </div>
+            <h1 className = "photosensor">Photosensor Control</h1>
+            <h1 className = "full-brightness">Full Brightness</h1>
+            <h1 className = "motion">Motion Trigger</h1>
             {/* legend icons */}
-            <div className = "dashboard-page-config-photosensor-icon"></div>
-            <div className = "dashboard-page-config-fullbrightness-icon"></div>
-            <div className = "dashboard-page-config-motion-icon"></div>
+            <div className = "legend-icon" id = "photosensor"></div>
+            <div className = "legend-icon" id = "full-brightness"></div>
+            <div className = "legend-icon" id = "motion"></div>
             {/* divider */}
-            <div className = "dashboard-page-config-calendar-divider"></div>
+            <div className = "divider"></div>
             {/* bottom header */}
-            <div className = "dashboard-page-config-calendar-bottom-header" >
+            <div className = "header-date">
                 {DayOfWeek(props.currDate) + ", " + props.currDate.getDate() + " " + 
                  MonthYearFormatterBottom(props.currDate)}
             </div>
@@ -258,21 +239,24 @@ function ConfigCalendar(props)
             <RadioButtonGroup
                 data = {props.schedule}
                 enabled = {photoRadio}
+                icon = {PhotosensorIcon}
                 containerOrder = {"0"}
                 onClick = {handlePhotosensorRadioButton}
-            ></RadioButtonGroup>
+            />
             <RadioButtonGroup
                 data = {props.schedule}
                 enabled = {fullBrightnessRadio}
+                icon = {FullBrightnessIcon}
                 containerOrder = {"1"}
                 onClick = {handleFullBrightnessRadioButton}
-            ></RadioButtonGroup>
+            />
             <RadioButtonGroup
                 data = {props.schedule}
                 enabled = {motionRadio}
+                icon = {MotionIcon}
                 containerOrder = {"2"}
                 onClick = {handleMotionRadioButton}
-            ></RadioButtonGroup>
+            />
         </div>
     );
 }

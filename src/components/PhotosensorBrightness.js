@@ -3,7 +3,7 @@ import React, {useEffect, useRef} from "react";
 import GenericDropdown from "./GenericDropdown";
 
 import Header from "../resources/dashboard/configheader-top.svg";
-import HeaderIcon from "../resources/dashboard/calendar-photosensor-icon.svg";
+import HeaderIcon from "../resources/dashboard/icon-photosensor.svg";
 import InfoIcon from "../resources/dashboard/icon-question-mark.svg";
 
 var options = [];

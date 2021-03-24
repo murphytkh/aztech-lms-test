@@ -31,7 +31,7 @@ current task:
 - data charts
   - figure out empty chart display?
 - code refactoring progress
-  - change headers/clean general config page
+  - clean config calendar card
 - light status - add button to table for
                  relocation
 
