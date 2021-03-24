@@ -14,66 +14,66 @@
 
 /* brightness */
 
-.dashboard-page-config-brightness-input-container
+.brightness-input
 {
     z-index: 1;
     position: relative;
     display: inline-block;
-    border: 1px solid #C6C6C6;
+    box-shadow: inset 0 0 0 1px #C6C6C6;
     border-radius: 6px;
-    margin-top: 8%;
-    margin-left: 3.7%;
-    margin-right: 3.7%;
-    width: 24.43%;
-    height: 67.9%;
+    top: 25%;
+    margin-left: 5.44%;
+    width: 23%;
+    height: 0%;
+    padding-bottom: 23%;
 }
 
-.dashboard-page-config-brightness-input-info
+.brightness-input + .brightness-input
 {
-    position: absolute;
+    margin-left: 10.06%;
+}
+
+/* info rollover */
+
+.card-info#brightness-input-info0
+{
     top: -2%;
     left: 83%;
-    width: 17.805%;
-    height: auto;
-    cursor: pointer;
+    width: 18.5%;
 }
 
-.dashboard-page-config-brightness-input-info:hover
-{
-    transform: scale(1.1);
-}
+/* circular input */
 
-.dashboard-page-config-brightness-input-circle
+.brightness-input-circle
 {
     z-index: 0;
-    position: relative;
-    display: inline-block;
-    top: 16%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.dashboard-page-config-brightness-input-label
+.brightness-input-text
 {
-    position: relative;
+    position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
+    text-align: center;
+}
+
+.brightness-input-text#label
+{
     font-weight: 600;
     font-size: max(0.8vw, 11.52px);
-    text-align: center;
-    top: -19%;
-    margin-left: 30%;
-    margin-right: 30%;
-    height: 20%;
+    top: 52%;
+    margin-left: 25%;
+    width: 50%;
 }
 
-.dashboard-page-config-brightness-input-value
+.brightness-input-text#value
 {
-    position: relative;
-    color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 700;
     font-size: max(2vw, 28.8px);
-    text-align: center;
-    top: -58%;
-    margin-left: 24%;
-    margin-right: 24%;
+    top: 32%;
+    margin-left: 25%;
+    width: 50%;
 }

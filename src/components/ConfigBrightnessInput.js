@@ -30,7 +30,7 @@ function ConfigBrightnessInput(props)
 
     return(
         <div 
-            className = "dashboard-page-config-brightness-input-container" 
+            className = "brightness-input" 
             style = {props.disabled ? {opacity: 0.5} : {opacity: 1.0}}
         >
             {/* icon */}
@@ -38,11 +38,12 @@ function ConfigBrightnessInput(props)
                 title = {props.info} 
                 alt = "" 
                 src = {InfoIcon} 
-                className = "dashboard-page-config-brightness-input-info"
+                className = "card-info"
+                id = "brightness-input-info0"
             ></img>
             { /* circlular input */}
             <CircularInput 
-                className = "dashboard-page-config-brightness-input-circle"
+                className = "brightness-input-circle"
                 value = {stepValue(props.level)} 
                 onChange = {props.disabled ? placeholder :setValueHelper} 
                 radius = {windowWidth > 1900 ? 80 : 65}
@@ -57,11 +58,11 @@ function ConfigBrightnessInput(props)
                 <InputHandleShadow />
 	        </CircularInput>
             { /* label and value display */}
-            <div className = "dashboard-page-config-brightness-input-label">
-                {props.label}
-            </div>
-            <div className = "dashboard-page-config-brightness-input-value">
+            <div className = "brightness-input-text" id = "value">
                 {Math.round(props.level * 100) + "%"}
+            </div>
+            <div className = "brightness-input-text" id = "label">
+                {props.label}
             </div>
         </div>
     );
