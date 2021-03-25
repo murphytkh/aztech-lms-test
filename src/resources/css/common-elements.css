@@ -73,3 +73,60 @@
 {
     transform: scale(1.1);
 }
+
+/* header toggle buttons */
+
+.card-toggle-btn
+{
+    z-index: 1;
+    position: absolute;
+    background-color: #005570;
+    border-radius: 14px;
+    top: 22.5%;
+    height: 55%;
+    cursor: pointer;
+}
+
+.card-toggle-btn .circle
+{
+    z-index: 1;
+    position: absolute;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 2px #00000029;
+    border: 1px solid #005570;
+    border-radius: 50%;
+    width: 58%;
+    height: 91%;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(.42, 0, .58, 1);
+    transition-duration: .1s;
+    /* -10%, 75% */
+    transform: translate(75%, 0%);
+}
+
+/* common labels */
+
+.card-label
+{
+    z-index: -2;
+    position: absolute;
+    color: #333132;
+    font-size: max(0.8vw, 11.52px);
+    font-weight: 600;
+    left: 9%;
+}
+
+.card-label#label0
+{
+    top: 20%;
+}
+
+.card-label#label1
+{
+    top: 47%;
+}
+
+.card-label#label2
+{
+    top: 74%;
+}

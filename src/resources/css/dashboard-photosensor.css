@@ -1,26 +1,24 @@
-.config-page
+.photosensor-page
 {
     position: absolute;
     top: 17%;
     left: 12%;
     width: 81%;
-    height: 100%;
+    height: 75%;
 }
 
-.config-page .card-container
+.photosensor-page .card-container
 {
-    margin-bottom: 2%;
-    height: 37.24%;
-    vertical-align: top;
+    height: 49.653%;
 }
 
-.config-page .card-container:nth-child(2)
+.photosensor-page .card-container:nth-child(2)
 {
     margin-left: 2.3%;
     margin-right: 2.3%;
 }
 
-.config-page-btn
+.photosensor-page-btn
 {
     position: absolute;
     color: #FFFFFF;
@@ -29,24 +27,24 @@
     font-weight: 600;
     text-align: center;
     line-height: 185%;
-    top: 110%;
+    top: 98.5%;
     width: 14%;
-    height: 3%;
+    height: 4%;
     cursor: pointer;
 }
 
-.config-page-btn:hover
+.photosensor-page-btn:hover
 {
     filter: brightness(120%);
 }
 
-.config-page-btn#cancel
+.photosensor-page-btn#cancel
 {
     background-color: #C6C6C6;
     left: 32%;
 }
 
-.config-page-btn#submit
+.photosensor-page-btn#submit
 {
     background-color: #005570;
     left: 48%;

@@ -1,7 +1,8 @@
-import "../resources/css/genericdropdown.css";
+import "../resources/css/generic-dropdown.css";
 
 import React, {useState, useEffect, useRef, useImperativeHandle, forwardRef} from "react";
 
+import UpArrow from "../resources/dashboard/icon-dropdown-up.svg";
 import DownArrow from "../resources/dashboard/icon-dropdown-down.svg";
 
 const GenericDropdown = forwardRef((props, ref) =>
@@ -51,47 +52,19 @@ const GenericDropdown = forwardRef((props, ref) =>
         return () => {document.removeEventListener("mousedown", handleClickOutside);};
     }, []);
 
-    const openMenuTemplate =
-    (
-        <div className = "dashboard-page-view-dropdown-list">
-            <ul className = "dashboard-page-view-dropdown-ul">
-                {optionsList}
-            </ul>
-        </div>
-    );
-
     return(
-        <div className = "holder">
-            {!props.disabled ? 
-                <div ref = {node} className = "dashboard-page-view-dropdown" onClick = {handleDropdownClick}>
-                    <h1 className = "dashboard-page-view-dropdown-choicetext">
-                        {props.default}
-                    </h1>
-                    {isOpen ?             
-                        <img 
-                            alt = ""
-                            src = {DownArrow}
-                            className = "dashboard-page-view-dropdown-uparrow"
-                        ></img> :
-                        <img 
-                            alt = ""
-                            src = {DownArrow}
-                            className = "dashboard-page-view-dropdown-downarrow"
-                        ></img>
-                    }
-                    {isOpen && openMenuTemplate}
-                </div> :
-                <div className = "dashboard-page-view-dropdown-disabled">
-                    <img
-                        alt = ""
-                        src = {DownArrow}
-                        className = "dashboard-page-view-dropdown-downarrow"
-                    ></img>
-                    <h1 className = "dashboard-page-view-dropdown-choicetext" style = {{opacity:0.5}}>
-                        {choice}
-                    </h1>
-                </div>
-            }
+        <div 
+            ref = {node} 
+            className = "dropdown" 
+            id = {props.disabled ? "disabled" : ""}
+            onClick = {handleDropdownClick}
+        >
+            {/* current choice */}
+            <h1 id = {props.disabled ? "disabled" : ""}>{choice}</h1>
+            {/* up/down arrow */}
+            <img alt = "" src = {isOpen ? UpArrow : DownArrow}></img>
+            {/* dropdown list */}
+            {isOpen && <ul>{optionsList}</ul>}
         </div>
     );
 });

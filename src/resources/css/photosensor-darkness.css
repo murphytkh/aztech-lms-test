@@ -1,0 +1,64 @@
+/* header */
+
+.card-header#darkness .header-text
+{
+    left: 11.5212%;
+}
+
+.card-header#darkness .header-icon
+{
+    top: 26.5%;
+    left: 3.8404%;
+    width: 5.3765%;
+}
+
+.card-toggle-btn#darkness
+{
+    left: 85%;
+    width: 9.3%;
+}
+
+/* info rollover */
+
+.card-info#darkness-info0
+{
+    top: 16.25%;
+    left: 50%;
+    width: 9%;
+}
+
+.card-info#darkness-info1
+{
+    top: 70.25%;
+    left: 39%;
+    width: 9%;
+}
+
+/* dropdown box */
+
+.card-dropdown#darkness-dd0
+{
+    position: absolute;
+    top: 28%;
+    left: 8%;
+    width: 70%;
+    height: 8%;
+}
+
+.card-dropdown#darkness-dd1
+{
+    position: absolute;
+    top: 55%;
+    left: 8%;
+    width: 70%;
+    height: 8%;
+}
+
+.card-dropdown#darkness-dd2
+{
+    position: absolute;
+    top: 82%;
+    left: 8%;
+    width: 70%;
+    height: 8%;
+}

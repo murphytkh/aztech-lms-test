@@ -1,4 +1,4 @@
-import "../resources/css/dashboardphotosensor.css";
+import "../resources/css/dashboard-photosensor.css";
 
 import React, {useState, useEffect} from "react";
 
@@ -42,7 +42,8 @@ function DashboardPhotosensor(props)
     }
 
     return(
-        <div className = "dashboard-page-photosensor">
+        <div className = "photosensor-page">
+            {/* cards */}
             <PhotosensorDarkness
                 lights = {props.lights}
                 darknessDetection = {darknessDetection}
@@ -67,13 +68,15 @@ function DashboardPhotosensor(props)
             />
             {/* buttons */}
             <div 
-                className = "dashboard-page-photosensor-cancel" 
+                className = "photosensor-page-btn" 
+                id = "cancel"
                 onClick = {props.cancel}
             >
                 CANCEL
             </div>
             <div
-                className = "dashboard-page-photosensor-submit" 
+                className = "photosensor-page-btn" 
+                id = "submit"
                 onClick = {props.lights ? handleSubmitButton : placeholder}
             >
                 SUBMIT

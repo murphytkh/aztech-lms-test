@@ -31,8 +31,7 @@ current task:
 - data charts
   - figure out empty chart display?
 - code refactoring progress
-  - clean config calendar card
-    - possible to clean the logic?
+  - clean photosensor page
 - light status - add button to table for
                  relocation
 

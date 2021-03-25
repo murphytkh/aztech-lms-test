@@ -1,9 +1,10 @@
+import "../resources/css/photosensor-darkness.css";
+
 import React, {useEffect, useRef} from "react";
 
 import GenericDropdown from "./GenericDropdown";
 
-import Header from "../resources/dashboard/configheader-top.svg";
-import HeaderIcon from "../resources/dashboard/darkness-icon.svg";
+import HeaderIcon from "../resources/photosensor/darkness-icon.svg";
 import InfoIcon from "../resources/dashboard/icon-question-mark.svg";
 
 var options = [];
@@ -31,59 +32,62 @@ function PhotosensorDarkness(props)
 
     function handleDarknessButton()
     {
-        var circle = document.getElementsByClassName("dashboard-page-photosensor-darkness-button-circle");
-        var container = document.getElementsByClassName("dashboard-page-photosensor-darkness-button-container");
+        var circle = document.querySelector(".card-toggle-btn#darkness .circle");
+        var container = document.querySelector(".card-toggle-btn#darkness");
 
         // turn on
-        if (circle[0].style.transform === "translate(-10%, 0%)")
+        if (circle.style.transform === "translate(-10%, 0%)")
         {
-            circle[0].style.transform = "translate(75%, 0%)";
-            container[0].style.backgroundColor = "#005570";
+            circle.style.transform = "translate(75%, 0%)";
+            container.style.backgroundColor = "#005570";
             props.setDarknessDetection("ON");
         }
         // turn off
         else
         {
-            circle[0].style.transform = "translate(-10%, 0%)";
-            container[0].style.backgroundColor = "#333132";
+            circle.style.transform = "translate(-10%, 0%)";
+            container.style.backgroundColor = "#333132";
             props.setDarknessDetection("OFF");
         }
     }
 
     return(
-        <div className = "dashboard-page-photosensor-darkness-container">
-            {/* header icon */}
-            <img alt = "" src = {HeaderIcon} className = "dashboard-page-photosensor-darkness-header-icon"></img>
-            {/* header button(s) */}
-                {props.lights ?
-                    <div 
-                        className = "dashboard-page-photosensor-darkness-button-container"
-                        style = {{opacity: 1.0, cursor: "pointer"}}
-                        onClick = {handleDarknessButton}
-                    >
-                        <div className = "dashboard-page-photosensor-darkness-button-circle"></div>
-                    </div> :
-                    <div
-                        className = "dashboard-page-photosensor-darkness-button-container"
-                        style = {{opacity: 0.3, cursor: "default"}}
-                    >
-                        <div className = "dashboard-page-photosensor-darkness-button-circle"></div>
-                    </div>
-                }
+        <div className = "card-container" id = "small">
             {/* header */}
-            <div className = "dashboard-page-photosensor-header">
-                <h1 className = "dashboard-page-photosensor-header-text">DARKNESS DETECTION</h1>
-                <img alt = "" src = {Header} className = "dashboard-page-photosensor-header-img"></img>
+            <div className = "card-header" id = "darkness">
+                <h1 className = "header-text">DARKNESS DETECTION</h1>
+                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
+                {/* header button(s) */}
+                <div
+                    className = "card-toggle-btn"
+                    id = "darkness"
+                    style = {props.lights ? {opacity: 1.0} : {pointerEvents: "none", opacity: 0.3}}
+                    onClick = {handleDarknessButton}
+                >
+                    <div className = "circle"></div>
+                </div>
             </div>
-            {/* dropdown headers */}
-            <div className = "dashboard-page-photosensor-card-header0">ENVIRONMENTAL OFFSET</div>
-            <div className = "dashboard-page-photosensor-card-header1">DESIRED INTENSITY</div>
-            <div className = "dashboard-page-photosensor-card-header2">DARK THRESHOLD</div>
-            {/* info icons */}
-            <img title = "Lux of the environment the lighting is at." alt = "" src = {InfoIcon} className = "dashboard-page-photosensor-darkness-info0"></img>
-            <img title = "Sensor reading below threshold value turns 'ON' lighting." alt = "" src = {InfoIcon} className = "dashboard-page-photosensor-darkness-info2"></img>
-            {/* dropdown lists */}
-            <div className = "dashboard-page-photosensor-ddcontainer0" style = {{zIndex: 10}}>
+            {/* dropdown label */}
+            <div className = "card-label" id = "label0">ENVIRONMENTAL OFFSET</div>
+            <div className = "card-label" id = "label1">DESIRED INTENSITY</div>
+            <div className = "card-label" id = "label2">DARK THRESHOLD</div>
+            {/* info icon */}
+            <img 
+                title = "Lux of the environment the lighting is at."
+                alt = "" 
+                src = {InfoIcon}
+                className = "card-info"
+                id = "darkness-info0"
+            ></img>
+            <img 
+                title = "Sensor reading below threshold value turns 'ON' lighting." 
+                alt = "" 
+                src = {InfoIcon}
+                className = "card-info"
+                id = "darkness-info1"
+            ></img>
+            {/* dropdown list */}
+            <div className = "card-dropdown" id = "darkness-dd0" style = {{zIndex: 10}}>
                 <GenericDropdown
                     ref = {darknessRef}
                     default = {props.environmentalOffset}
@@ -92,7 +96,7 @@ function PhotosensorDarkness(props)
                     disabled = {props.darknessDetection === "ON" && props.lights ? false : true}
                 ></GenericDropdown>
             </div>
-            <div className = "dashboard-page-photosensor-ddcontainer1" style = {{zIndex: 9}}>
+            <div className = "card-dropdown" id = "darkness-dd1" style = {{zIndex: 9}}>
                 <GenericDropdown
                     ref = {darknessRef}
                     default = {props.darknessIntensity}
@@ -101,7 +105,7 @@ function PhotosensorDarkness(props)
                     disabled = {props.darknessDetection === "ON" && props.lights ? false : true}
                 ></GenericDropdown>
             </div>
-            <div className = "dashboard-page-photosensor-ddcontainer2" style = {{zIndex: 8}}>
+            <div className = "card-dropdown" id = "darkness-dd2" style = {{zIndex: 8}}>
                 <GenericDropdown
                     ref = {darknessRef}
                     default = {props.darkThreshold}
