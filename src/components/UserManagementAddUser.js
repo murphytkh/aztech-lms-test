@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 
 import AddUserIcon from "../resources/dashboard/usermanagement-adduser.svg";
 import ButtonIcon from "../resources/dashboard/usermanagement-addbox-button.svg";
-import UpArrowIcon from "../resources/dashboard/Icon ionic-md-arrow-dropup.svg";
-import DownArrowIcon from "../resources/dashboard/Icon ionic-md-arrow-dropdown.svg";
+import UpArrowIcon from "../resources/dashboard/icon-triangle-up.svg";
+import DownArrowIcon from "../resources/dashboard/icon-triangle-down.svg";
 import EyeIcon from "../resources/dashboard/icon-eye.svg";
 import EyeOffIcon from "../resources/dashboard/icon-eye-off.svg";
 

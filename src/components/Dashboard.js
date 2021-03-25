@@ -284,7 +284,7 @@ function Dashboard(props)
         <div className = "path-container">
             <h1 className = "left">DATA CHARTS</h1>
             {selectedArea && showText("ENERGY CONSUMPTION")}
-            {selectedArea && showText("MOTION DETECTION")}
+            {selectedArea && showText(selectedArea)}
         </div>
     );
 

@@ -1,9 +1,10 @@
+import "../resources/css/datacharts-energy-consumption.css";
+
 import React, {useState, useEffect} from "react";
 
 import EnergyConsumptionOption from "./EnergyConsumptionOption";
 import EnergyConsumptionGraph from "./EnergyConsumptionGraph";
 
-import HeaderImg from "../resources/view/status-header-bg.svg";
 import HeaderIcon from "../resources/dashboard/icon-chart.svg";
 import ArrowDivider from "../resources/dashboard/datacharts-arrow-divider.svg";
 import Arrow from "../resources/dashboard/icon-dropdown-down.svg";
@@ -127,7 +128,7 @@ function DatachartsEnergyConsumption(props)
     // hard-coded for now until i figure out what they actually do
     const displayArrows =
     (
-        <div>
+        <div className = "datacharts-arrow-container">
             <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
             <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
             <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
@@ -142,22 +143,12 @@ function DatachartsEnergyConsumption(props)
     );
 
     return(
-        <div className = "dashboard-page-datacharts-energyconsumption-container">
+        <div className = "card-container" id = "full">
             {/* header */}
-            <div className = "dashboard-page-datacharts-energyconsumption-header">
-                <img 
-                    alt = "" 
-                    src = {HeaderIcon} 
-                    className = "dashboard-page-energyconsumption-energyconsumption-icon"
-                ></img>
-                <h1 className = "dashboard-page-datacharts-energyconsumption-header-text">
-                    ENERGY CONSUMPTION (kwH)
-                    </h1>
-                <img 
-                    alt = "" 
-                    src = {HeaderImg} 
-                    className = "dashboard-page-datacharts-energyconsumption-headerimg"
-                ></img>
+            <div className = "card-header" id = "datacharts-energy">
+                <h1 className = "header-text">ENERGY CONSUMPTION (KwH)</h1>
+                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
+                {displayArrows}
             </div>
             {/* axis labels */}
             <div className = "dashboard-page-datacharts-yaxis">
@@ -181,7 +172,6 @@ function DatachartsEnergyConsumption(props)
             <div className = "dashboard-page-datacharts-past-img"></div>
             {/* graph */}
             <div className = "dashboard-page-datacharts-options-container">{optionMap}</div>
-            {displayArrows}
             <EnergyConsumptionGraph 
                 data = {energyData} 
                 option = {currDisplayOption} 

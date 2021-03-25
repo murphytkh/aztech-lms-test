@@ -43,15 +43,14 @@
     z-index: -1;
     position: absolute;
     background-color: #FFFFFF;
-    top: 100%;
-    width: 99.5%;
     border-left: 1px solid #C6C6C6;
     border-right: 1px solid #C6C6C6;
     border-bottom: 1px solid #C6C6C6;
     border-radius: 6px;
-    opacity: 1;
-    overflow-y: auto;
+    top: 100%;
+    width: 99.5%;
     max-height: 700%;
+    overflow-y: auto;
     list-style: none;
 }
 

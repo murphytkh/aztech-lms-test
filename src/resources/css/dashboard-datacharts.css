@@ -1,0 +1,92 @@
+.datacharts-page
+{
+    position: absolute;
+    top: 17%;
+    left: 12%;
+    width: 81%;
+    height: 75%;
+}
+
+.datacharts-page .card-container
+{
+    top: 10.8%;
+    height: 49.653%;
+}
+
+.datacharts-page-btn
+{
+    position: absolute;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: max(0.9vw, 12.96px);
+    font-weight: 600;
+    text-align: center;
+    line-height: 185%;
+    top: 98.5%;
+    width: 14%;
+    height: 4%;
+    cursor: pointer;
+}
+
+.datacharts-page-btn:hover
+{
+    filter: brightness(120%);
+}
+
+.datacharts-page-btn#cancel
+{
+    background-color: #C6C6C6;
+    left: 32%;
+}
+
+.datacharts-page-btn#submit
+{
+    background-color: #005570;
+    left: 48%;
+}
+
+/* calendar selector */
+
+.calendar-selector
+{
+    position: absolute;
+    background: #FCFCFC;
+    box-shadow: 0px 2px 3px #00000029;
+    border-radius: 3px;
+    top: 0%;
+    left: 0.15%;
+    width: 18.61%;
+    height: 7.6%;
+    cursor: pointer;
+}
+
+.calendar-selector h1
+{
+    z-index: 0;
+    position: absolute;
+    left: 5%;
+}
+
+.calendar-selector h1#date
+{
+    color: #333132;
+    font-size: max(0.75vw, 10.8px);
+    font-weight: 400;
+}
+
+.calendar-selector h1#choice
+{
+    color: #005570;
+    font-size: max(1.2vw, 17.28px);
+    font-weight: 500;
+    top: 20%;
+}
+
+.calendar-selector img
+{
+    position: absolute;
+    top: 28%;
+    left: 83.5%;
+    width: 11%;
+    height: auto;
+}
