@@ -6,7 +6,7 @@ import EnergyConsumptionOption from "./EnergyConsumptionOption";
 import EnergyConsumptionGraph from "./EnergyConsumptionGraph";
 
 import HeaderIcon from "../resources/dashboard/icon-chart.svg";
-import ArrowDivider from "../resources/dashboard/datacharts-arrow-divider.svg";
+import ArrowDivider from "../resources/datacharts/datacharts-arrow-divider.svg";
 import Arrow from "../resources/dashboard/icon-dropdown-down.svg";
 
 const optionText = ["1D", "5D", "1M", "1Y", "3Y"];
@@ -129,16 +129,16 @@ function DatachartsEnergyConsumption(props)
     const displayArrows =
     (
         <div className = "datacharts-arrow-container">
-            <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
-            <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
-            <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
-            <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
-            <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
-            <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
-            <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
-            <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
-            <img alt = "" src = {Arrow} className = "dashboard-page-datacharts-arrow"></img>
-            <img alt = "" src = {ArrowDivider} className = "dashboard-page-datacharts-arrow-divider"></img>
+            <img alt = "" src = {Arrow} className = "arrow"></img>
+            <img alt = "" src = {ArrowDivider} className = "divider"></img>
+            <img alt = "" src = {Arrow} className = "arrow"></img>
+            <img alt = "" src = {ArrowDivider} className = "divider"></img>
+            <img alt = "" src = {Arrow} className = "arrow"></img>
+            <img alt = "" src = {ArrowDivider} className = "divider"></img>
+            <img alt = "" src = {Arrow} className = "arrow"></img>
+            <img alt = "" src = {ArrowDivider} className = "divider"></img>
+            <img alt = "" src = {Arrow} className = "arrow"></img>
+            <img alt = "" src = {ArrowDivider} className = "divider"></img>
         </div>
     );
 
@@ -148,13 +148,12 @@ function DatachartsEnergyConsumption(props)
             <div className = "card-header" id = "datacharts-energy">
                 <h1 className = "header-text">ENERGY CONSUMPTION (KwH)</h1>
                 <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
+                {/* arrow buttons */}
                 {displayArrows}
             </div>
             {/* axis labels */}
-            <div className = "dashboard-page-datacharts-yaxis">
-                (KwH)
-            </div>
-            <div className = "dashboard-page-datacharts-xaxis">
+            <div className = "datacharts-axis" id = "y">(KwH)</div>
+            <div className = "datacharts-axis" id = "x">
                 {currDisplayOption === "1D" && "(Hours)"}
                 {currDisplayOption === "5D" && "(Days)"}
                 {currDisplayOption === "1M" && "(Weeks)"}

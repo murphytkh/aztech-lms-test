@@ -28,10 +28,8 @@ what in the fucks going on
 current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
-- data charts
-  - figure out empty chart display?
 - code refactoring progress
-  - clean photosensor page
+  - recharts axis labels?
 - light status - add button to table for
                  relocation
 
