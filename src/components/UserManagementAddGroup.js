@@ -34,15 +34,9 @@ function UserManagementAddGroup(props)
                 {/* text */}
                 <h1 className = "small">Create new group to maintain your smart estate.</h1>
                 {/* button */}
-                <div 
-                    className = "dashboard-usermanagement-addbox-button"
-                    style = {props.enabled ? {opacity: 1.0} : {opacity: 0.5, pointerEvents: "none"}}
-                    onClick = {handleOpenMenu}
-                >
-                    <img alt = "" src = {ButtonIcon} className = "dashboard-usermanagement-addbox-button-icon"></img>
-                    <div className = "dashboard-usermanagement-addbox-button-text">
-                        Create New Group
-                    </div>
+                <div className = "btn" id = {props.enabled ? "" : "disabled"} onClick = {handleOpenMenu}>
+                    <img alt = "" src = {ButtonIcon}></img>
+                    <h1>Create New Group</h1>
                 </div>
             </div>
             {/* dropdown menu */}

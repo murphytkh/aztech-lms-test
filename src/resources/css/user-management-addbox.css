@@ -47,7 +47,7 @@
     top: 40%;
 }
 
-.dashboard-usermanagement-addbox-button
+.user-management-add .btn
 {
     position: absolute;
     top: 70%;
@@ -57,24 +57,31 @@
     cursor: pointer;
 }
 
-.dashboard-usermanagement-addbox-button:hover
+.user-management-add .btn#disabled
+{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.user-management-add .btn:hover
 {
     filter: brightness(120%);
 }
 
-.dashboard-usermanagement-addbox-button-icon
+.user-management-add .btn img
 {
     position: absolute;
     width: 12%;
     height: auto;
 }
 
-.dashboard-usermanagement-addbox-button-text
+.user-management-add .btn h1
 {
     position: absolute;
     font-size: max(0.822vw, 12.857px);
     font-weight: 600;
     letter-spacing: 1.8px;
+    margin: 0%;
     top: 15%;
     left: 16%;
     color: #F07E0B;

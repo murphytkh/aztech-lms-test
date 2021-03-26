@@ -118,15 +118,9 @@ function UserManagementAddUser(props)
                     Register new user to control the smart system light for your estate.
                 </h1>
                 {/* button */}
-                <div 
-                    className = "dashboard-usermanagement-addbox-button"
-                    style = {props.enabled ? {opacity: 1.0} : {opacity: 0.5, pointerEvents: "none"}}
-                    onClick = {handleOpenMenu}
-                >
-                    <img alt = "" src = {ButtonIcon} className = "dashboard-usermanagement-addbox-button-icon"></img>
-                    <div className = "dashboard-usermanagement-addbox-button-text">
-                        Register New User
-                    </div>
+                <div className = "btn" id = {props.enabled ? "" : "disabled"} onClick = {handleOpenMenu}>
+                    <img alt = "" src = {ButtonIcon}></img>
+                    <h1>Register New User</h1>
                 </div>
             </div>
             {/* dropdown menu */}
