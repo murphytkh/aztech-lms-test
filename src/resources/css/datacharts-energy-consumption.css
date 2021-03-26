@@ -40,55 +40,7 @@
     cursor: pointer;
 }
 
-/* graph */
-
-.dashboard-page-datacharts-options-container
-{
-    position: absolute;
-    top: 3%;
-    left: 67%;
-    width: 18%;
-    height: 7.7%
-}
-
-.dashboard-page-datacharts-options-container .btn
-{
-    display: inline-block;
-    cursor: pointer;
-    color: #333132;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 600;
-    border-radius: 3px;
-    text-align: center;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    padding-left: 6%;
-    padding-right: 6%;
-}
-
-.dashboard-page-datacharts-options-container .btn:hover
-{
-    background: #F5F2F2;
-}
-
-.dashboard-page-datacharts-options-container .btn#selected
-{
-    background: #E0E0E0;
-}
-
-.dashboard-page-datacharts-options-container .btn#selected:hover
-{
-    background: #E6E4E4;
-}
-
-.dashboard-page-datacharts-graph-container
-{
-    position: absolute;
-    top: 25%;
-    left: 2%;
-    width: 44.9%;
-    height: 70%;
-}
+/* labels */
 
 .datacharts-label
 {
@@ -127,4 +79,56 @@
 {
     background-color: #826AF9;
     left: 43.68%;
+}
+
+/* options */
+
+.datacharts-options-container
+{
+    position: absolute;
+    top: 3%;
+    left: 67%;
+    width: 18%;
+    height: 7.7%
+}
+
+.datacharts-options-container .btn
+{
+    display: inline-block;
+    cursor: pointer;
+    color: #333132;
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 600;
+    border-radius: 3px;
+    text-align: center;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.datacharts-options-container .btn:hover
+{
+    background: #F5F2F2;
+}
+
+.datacharts-options-container .btn#selected
+{
+    background: #E0E0E0;
+}
+
+.datacharts-options-container .btn#selected:hover
+{
+    background: #E6E4E4;
+}
+
+/* graph */
+
+.datacharts-graph-container
+{
+    position: absolute;
+    top: 25%;
+    left: 2%;
+    width: 44.9%;
+    height: 70%;
 }

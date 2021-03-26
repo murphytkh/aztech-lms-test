@@ -157,11 +157,11 @@ function DatachartsEnergyConsumption(props)
             <div className = "datacharts-label" id = "label1">Past</div>
             <div className = "datacharts-img" id = "img1"></div>
             {/* graph */}
-            <div className = "dashboard-page-datacharts-options-container">{optionMap}</div>
+            <div className = "datacharts-options-container">{optionMap}</div>
             <EnergyConsumptionGraph 
                 data = {energyData} 
                 option = {currDisplayOption} 
-                class = "dashboard-page-datacharts-graph-container"
+                class = "datacharts-graph-container"
             />
         </div>
     )
