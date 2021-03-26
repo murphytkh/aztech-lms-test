@@ -7,9 +7,41 @@
     height: 75%;
 }
 
+.user-management-page-btn
+{
+    position: absolute;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: max(0.9vw, 12.96px);
+    font-weight: 600;
+    text-align: center;
+    line-height: 185%;
+    top: 98.5%;
+    width: 14%;
+    height: 4%;
+    cursor: pointer;
+}
+
+.user-management-page-btn:hover
+{
+    filter: brightness(120%);
+}
+
+.user-management-page-btn#revoke
+{
+    background-color: #C6C6C6;
+    left: 32%;
+}
+
+.user-management-page-btn#update
+{
+    background-color: #005570;
+    left: 48%;
+}
+
 /* add cards */
 
-.dashboard-page-usermanagement-add-container
+.add-container
 {
     position: absolute;
     top: -11.5%;
@@ -20,7 +52,7 @@
 
 /* add group card */
 
-.dashboard-page-usermanagement-addgroup-container
+.add-container .group
 {
     position: inline-block;
     width: 100%;
@@ -28,7 +60,7 @@
 
 /* add user card */
 
-.dashboard-page-usermanagement-adduser-container
+.add-container .user
 {
     position: inline-block;
     margin-top: 5%;

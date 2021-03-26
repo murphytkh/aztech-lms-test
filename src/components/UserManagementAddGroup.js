@@ -24,22 +24,15 @@ function UserManagementAddGroup(props)
     }
 
     return(
-        <div className = "dashboard-page-usermanagement-addgroup-container">
+        <div className = "group">
             {/* main card */}
-            <div 
-                className = "dashboard-usermanagement-addbox-box" 
-                style = {props.open ? {borderRadius: "6px 6px 0px 0px"} : {borderRadius: "6px 6px 6px 6px"}}
-            >
+            <div className = "user-management-add"  id = {props.open ? "open" : ""}>
                 {/* icon */}
-                <img alt = "" src = {AddGroupIcon} className = "dashboard-usermanagement-addbox-icon"></img>
+                <img alt = "" src = {AddGroupIcon} className = "icon"></img>
                 {/* title */}
-                <div className = "dashboard-usermanagement-addbox-title">
-                    Add New Group
-                </div>
+                <h1 className = "big">Add New Group</h1>
                 {/* text */}
-                <div className = "dashboard-usermanagement-addbox-text">
-                    Create new group to maintain your smart estate.
-                </div>
+                <h1 className = "small">Create new group to maintain your smart estate.</h1>
                 {/* button */}
                 <div 
                     className = "dashboard-usermanagement-addbox-button"

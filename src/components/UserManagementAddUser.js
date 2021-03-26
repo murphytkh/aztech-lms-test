@@ -106,22 +106,17 @@ function UserManagementAddUser(props)
     }
 
     return(
-        <div className = "dashboard-page-usermanagement-adduser-container">
+        <div className = "user">
             {/* main card */}
-            <div 
-                className = "dashboard-usermanagement-addbox-box" 
-                style = {props.open ? {borderRadius: "6px 6px 0px 0px"} : {borderRadius: "6px 6px 6px 6px"}}
-            >
+            <div className = "user-management-add"  id = {props.open ? "open" : ""}>
                 {/* icon */}
-                <img alt = "" src = {AddUserIcon} className = "dashboard-usermanagement-addbox-icon"></img>
+                <img alt = "" src = {AddUserIcon} className = "icon"></img>
                 {/* title */}
-                <div className = "dashboard-usermanagement-addbox-title">
-                    Register New User
-                </div>
+                <h1 className = "big">Register New User</h1>
                 {/* text */}
-                <div className = "dashboard-usermanagement-addbox-text">
+                <h1 className = "small">
                     Register new user to control the smart system light for your estate.
-                </div>
+                </h1>
                 {/* button */}
                 <div 
                     className = "dashboard-usermanagement-addbox-button"

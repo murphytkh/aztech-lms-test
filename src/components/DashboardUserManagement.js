@@ -139,7 +139,7 @@ function DashboardUserManagement(props)
     return(
         <div className = "user-management-page">
             {/* add group and add user cards */}
-            <div className = "dashboard-page-usermanagement-add-container">
+            <div className = "add-container">
                 <UserManagementAddGroup
                     enabled = {props.block}
                     open = {addGroupOpen}
@@ -158,13 +158,15 @@ function DashboardUserManagement(props)
             {props.location && groupList}
             {/* buttons */}
             <div 
-                className = "dashboard-page-usermanagement-revoke" 
+                className = "user-management-page-btn"
+                id = "revoke"
                 onClick = {props.block ? handleRevoke : placeholder}
             >
                 REVOKE ALL ACCESS
             </div>
             <div
-                className = "dashboard-page-usermanagement-update" 
+                className = "user-management-page-btn"
+                id = "update"
                 onClick = {props.block ? handleUpdate : placeholder}
             >
                 UPDATE ACCESS

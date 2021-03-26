@@ -1,4 +1,4 @@
-.dashboard-usermanagement-addbox-box
+.user-management-add
 {
     position: relative;
     background-color: #F7F7F7;
@@ -8,7 +8,12 @@
     width: 100%;
 }
 
-.dashboard-usermanagement-addbox-icon
+.user-management-add#open
+{
+    border-radius: 6px 6px 0px 0px;
+}
+
+.user-management-add .icon
 {
     position: absolute;
     top: 14%;
@@ -17,27 +22,29 @@
     height: auto;
 }
 
-.dashboard-usermanagement-addbox-title
+.user-management-add > h1
 {
     position: absolute;
-    font-family: "work sans", sans-serif;
-    font-size: max(1vw, 15px);
-    font-weight: 600;
-    color: #333132;
-    top: 20%;
     left: 20%;
+    margin-top: 0%;
 }
 
-.dashboard-usermanagement-addbox-text
+.user-management-add > h1.big
 {
-    position: absolute;
-    font-family: "work sans", sans-serif;
+    color: #333132;
+    font-size: max(1vw, 15px);
+    font-weight: 600;
+    top: 20%;
+
+}
+
+.user-management-add > h1.small
+{
+    color: #6D6E71;
     font-size: max(0.64vw, 10px);
     font-weight: 500;
-    color: #6D6E71;
     margin-right: 15%;
     top: 40%;
-    left: 20%;
 }
 
 .dashboard-usermanagement-addbox-button
@@ -65,7 +72,6 @@
 .dashboard-usermanagement-addbox-button-text
 {
     position: absolute;
-    font-family: "work sans", sans-serif;
     font-size: max(0.822vw, 12.857px);
     font-weight: 600;
     letter-spacing: 1.8px;
@@ -88,7 +94,6 @@
 .dashboard-usermanagement-addbox-input
 {
     color: #005570;
-    font-family: "work sans", sans-serif;
     font-size: max(0.64vw, 10px);
     font-weight: 500;
     text-align: center;
@@ -153,7 +158,6 @@
     color: #FFFFFF;
     border: none;
     border-radius: 6px;
-    font-family: "work sans", sans-serif;
     font-size: max(0.64vw, 10px);
     font-weight: 500;
     margin-top: 8%;
@@ -173,7 +177,6 @@
 .dashboard-usermanagement-addbox-input::placeholder /* Chrome, Firefox, Opera, Safari 10.1+ */
 { 
     color: #6D6E71;
-    font-family: "work sans", sans-serif;
     font-size: max(0.64vw, 10px);
     font-weight: 400;
     opacity: 0.5;
@@ -183,7 +186,6 @@
 .dashboard-usermanagement-addbox-input::-ms-input-placeholder /* Internet Explorer 10-11 */
 { 
     color: #6D6E71;
-    font-family: "work sans", sans-serif;
     font-size: max(0.64vw, 10px);
     font-weight: 400;
     opacity: 0.5;
@@ -193,7 +195,6 @@
 .dashboard-usermanagement-addbox-input::-ms-input-placeholder /* Microsoft Edge */
 { 
     color: #6D6E71;
-    font-family: "work sans", sans-serif;
     font-size: max(0.64vw, 10px);
     font-weight: 400;
     opacity: 0.5;
