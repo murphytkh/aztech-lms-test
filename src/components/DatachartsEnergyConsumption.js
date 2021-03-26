@@ -153,13 +153,6 @@ function DatachartsEnergyConsumption(props)
             </div>
             {/* axis labels */}
             <div className = "datacharts-axis" id = "y">(KwH)</div>
-            <div className = "datacharts-axis" id = "x">
-                {currDisplayOption === "1D" && "(Hours)"}
-                {currDisplayOption === "5D" && "(Days)"}
-                {currDisplayOption === "1M" && "(Weeks)"}
-                {currDisplayOption === "1Y" && "(Months)"}
-                {currDisplayOption === "3Y" && "(Years)"}
-            </div>
             {/* present, past labels */}
             <div className = "dashboard-page-datacharts-present">
                 Present

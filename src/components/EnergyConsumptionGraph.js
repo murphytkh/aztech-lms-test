@@ -1,5 +1,5 @@
 import React from "react";
-import {Area, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer} from 'recharts';
+import {Label, Area, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer} from 'recharts';
 import moment from "moment";
 
 var axisStyle = {
@@ -70,6 +70,24 @@ function dataPicker(data, option)
     }
 }
 
+function xLabelPicker(option)
+{
+    switch(option)
+    {
+        case "1D":
+            return "(Hours)";
+        case "5D":
+            return "(Days)";
+        case "1M":
+            return "(Weeks)";
+        case "1Y":
+            return "(Months)";
+        case "3Y":
+            return "(Years)";
+        default: break;
+    }
+}
+
 function EnergyConsumptionGraph(props)
 {
     const graph =
@@ -87,7 +105,7 @@ function EnergyConsumptionGraph(props)
                     </linearGradient>
                 </defs>
                 <CartesianGrid stroke = "#ccc" strokeDasharray = "5 5"/>
-                <XAxis 
+                <XAxis
                     dataKey = "t"
                     style = {axisStyle}
                     axisLine = {false}
@@ -96,7 +114,14 @@ function EnergyConsumptionGraph(props)
                     domain = {domainPicker(props.option)}
                     ticks = {tickPicker(props.option)}
                     tickFormatter = {formatterPicker(props.option)}
-                />
+                >
+                    <Label
+                        value = {xLabelPicker(props.option)}
+                        offset = {-5}
+                        position = "bottom"
+                        fontSize = "max(0.7vw, 10.08px)"
+                    />
+                </XAxis>
                 <YAxis 
                     style = {axisStyle}
                     stroke = "#E0E0E0"

@@ -132,13 +132,6 @@ function EnergyConsumption(props)
             </div>
             {/* axis labels */}
             <div className = "energy-consumption-axis" id = "y">(KwH)</div>
-            <div className = "energy-consumption-axis" id = "x">
-                {currDisplayOption === "1D" && "(Hours)"}
-                {currDisplayOption === "5D" && "(Days)"}
-                {currDisplayOption === "1M" && "(Weeks)"}
-                {currDisplayOption === "1Y" && "(Months)"}
-                {currDisplayOption === "3Y" && "(Years)"}
-            </div>
             {/* present, past labels */}
             <div className = "energy-consumption-label" id = "label0">Present</div>
             <div className = "energy-consumption-img" id = "img0"></div>
