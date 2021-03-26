@@ -1,6 +1,6 @@
-import "../resources/css/dashboardusermanagement.css";
-import "../resources/css/usermanagementaddbox.css";
-import "../resources/css/usermanagementgroup.css";
+import "../resources/css/dashboard-user-management.css";
+import "../resources/css/user-management-addbox.css";
+import "../resources/css/user-management-group.css";
 
 import React, {useEffect, useState} from "react";
 
@@ -137,7 +137,7 @@ function DashboardUserManagement(props)
     function placeholder() {}
 
     return(
-        <div className = "dashboard-page-usermanagement">
+        <div className = "user-management-page">
             {/* add group and add user cards */}
             <div className = "dashboard-page-usermanagement-add-container">
                 <UserManagementAddGroup
