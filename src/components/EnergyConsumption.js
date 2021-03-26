@@ -130,8 +130,6 @@ function EnergyConsumption(props)
                 <h1 className = "header-text">ENERGY CONSUMPTION</h1>
                 <img alt = "" src = {EnergyIcon} className = "header-icon"></img>
             </div>
-            {/* axis labels */}
-            <div className = "energy-consumption-axis" id = "y">(KwH)</div>
             {/* present, past labels */}
             <div className = "energy-consumption-label" id = "label0">Present</div>
             <div className = "energy-consumption-img" id = "img0"></div>

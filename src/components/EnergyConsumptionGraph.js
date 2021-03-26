@@ -120,13 +120,22 @@ function EnergyConsumptionGraph(props)
                         offset = {-5}
                         position = "bottom"
                         fontSize = "max(0.7vw, 10.08px)"
+                        fill = "#6D6E71"
                     />
                 </XAxis>
                 <YAxis 
                     style = {axisStyle}
                     stroke = "#E0E0E0"
                     tick = {{fill: "#6D6E71"}}
-                />
+                >
+                    <Label
+                        value = "(KwH)"
+                        offset = {-25}
+                        position = "left"
+                        fontSize = "max(0.7vw, 10.08px)"
+                        fill = "#6D6E71"
+                    />
+                </YAxis>
                 <Tooltip 
                     wrapperStyle = {{
                         color: "#6D6E71",

@@ -20,26 +20,6 @@
 
 /* labels */
 
-.energy-consumption-axis
-{
-    position: absolute;
-    color: #6D6E71;
-    font-size: max(0.7vw, 10.08px);
-    font-weight: 500;
-}
-
-.energy-consumption-axis#y
-{
-    top: 53.5%;
-    left: 2.5%;
-}
-
-.energy-consumption-axis#x
-{
-    top: 91%;
-    left: 51.65%;
-}
-
 .energy-consumption-label
 {
     position: absolute;
@@ -62,20 +42,20 @@
 .energy-consumption-img
 {
     position: absolute;
-    top: 19.5%;
+    top: 19.2%;
     width: 2%;
-    height: 0%;
+    height: 3px;
 }
 
 .energy-consumption-img#img0
 {
-    border: 1px solid #2CD9C5;
+    background-color: #2CD9C5;
     left: 77%;
 }
 
 .energy-consumption-img#img1
 {
-    border: 1px solid #826AF9;
+    background-color: #826AF9;
     left: 88.5%;
 }
 

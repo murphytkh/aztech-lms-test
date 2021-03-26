@@ -151,17 +151,11 @@ function DatachartsEnergyConsumption(props)
                 {/* arrow buttons */}
                 {displayArrows}
             </div>
-            {/* axis labels */}
-            <div className = "datacharts-axis" id = "y">(KwH)</div>
             {/* present, past labels */}
-            <div className = "dashboard-page-datacharts-present">
-                Present
-            </div>
-            <div className = "dashboard-page-datacharts-present-img"></div>
-            <div className = "dashboard-page-datacharts-past">
-                Past
-            </div>
-            <div className = "dashboard-page-datacharts-past-img"></div>
+            <div className = "datacharts-label" id = "label0">Present</div>
+            <div className = "datacharts-img" id = "img0"></div>
+            <div className = "datacharts-label" id = "label1">Past</div>
+            <div className = "datacharts-img" id = "img1"></div>
             {/* graph */}
             <div className = "dashboard-page-datacharts-options-container">{optionMap}</div>
             <EnergyConsumptionGraph 
