@@ -181,7 +181,7 @@
 
 /* input placeholders */
 
-.dashboard-usermanagement-addbox-input::placeholder /* Chrome, Firefox, Opera, Safari 10.1+ */
+.dashboard-usermanagement-addbox-input::placeholder
 { 
     color: #6D6E71;
     font-size: max(0.64vw, 10px);
@@ -189,23 +189,3 @@
     opacity: 0.5;
     text-align: center;
 }
-  
-.dashboard-usermanagement-addbox-input::-ms-input-placeholder /* Internet Explorer 10-11 */
-{ 
-    color: #6D6E71;
-    font-size: max(0.64vw, 10px);
-    font-weight: 400;
-    opacity: 0.5;
-    text-align: center;
-}
-  
-.dashboard-usermanagement-addbox-input::-ms-input-placeholder /* Microsoft Edge */
-{ 
-    color: #6D6E71;
-    font-size: max(0.64vw, 10px);
-    font-weight: 400;
-    opacity: 0.5;
-    text-align: center;
-}
-
-/* ------------------ */
