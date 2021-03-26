@@ -83,7 +83,7 @@
 
 /* options */
 
-.datacharts-options-container
+.datacharts-options
 {
     position: absolute;
     top: 3%;
@@ -92,7 +92,7 @@
     height: 7.7%
 }
 
-.datacharts-options-container .btn
+.datacharts-options .btn
 {
     display: inline-block;
     cursor: pointer;
@@ -107,17 +107,17 @@
     padding-right: 6%;
 }
 
-.datacharts-options-container .btn:hover
+.datacharts-options .btn:hover
 {
     background: #F5F2F2;
 }
 
-.datacharts-options-container .btn#selected
+.datacharts-options .btn#selected
 {
     background: #E0E0E0;
 }
 
-.datacharts-options-container .btn#selected:hover
+.datacharts-options .btn#selected:hover
 {
     background: #E6E4E4;
 }
