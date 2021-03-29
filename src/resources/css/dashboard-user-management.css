@@ -7,7 +7,7 @@
     height: 75%;
 }
 
-.user-management-page-btn
+.user-management-btn
 {
     position: absolute;
     color: #FFFFFF;
@@ -22,18 +22,18 @@
     cursor: pointer;
 }
 
-.user-management-page-btn:hover
+.user-management-btn:hover
 {
     filter: brightness(120%);
 }
 
-.user-management-page-btn#revoke
+.user-management-btn#revoke
 {
     background-color: #C6C6C6;
     left: 32%;
 }
 
-.user-management-page-btn#update
+.user-management-btn#update
 {
     background-color: #005570;
     left: 48%;
@@ -50,73 +50,15 @@
     height: 110%;
 }
 
-/* add group card */
-
-.add-container .group
+.add-container .user-management-add-group
 {
     position: inline-block;
     width: 100%;
 }
 
-/* add user card */
-
-.add-container .user
+.add-container .user-management-add-user
 {
     position: inline-block;
     margin-top: 5%;
     width: 100%;
-}
-
-/* user management bottom buttons */
-
-.dashboard-page-usermanagement-revoke
-{
-    position: absolute;
-    background-color: #C6C6C6;
-    border-radius: 6px;
-
-    color: #FFFFFF;
-    font-family: "work sans", sans-serif;
-    font-weight: 600;
-    font-size: max(0.9vw, 12.96px);
-    text-align: center;
-
-    top: 98.5%;
-    left: 32%;
-    width: 14%;
-    height: 4%;
-    line-height: 185%;
-
-    cursor: pointer;
-}
-
-.dashboard-page-usermanagement-revoke:hover
-{
-    filter: brightness(105%);
-}
-
-.dashboard-page-usermanagement-update
-{
-    position: absolute;
-    background-color: #005570;
-    border-radius: 6px;
-
-    color: #FFFFFF;
-    font-family: "work sans", sans-serif;
-    font-weight: 600;
-    font-size: max(0.9vw, 12.96px);
-    text-align: center;
-
-    top: 98.5%;
-    left: 48%;
-    width: 14%;
-    height: 4%;
-    line-height: 185%;
-
-    cursor: pointer;
-}
-
-.dashboard-page-usermanagement-update:hover
-{
-    filter: brightness(120%);
 }

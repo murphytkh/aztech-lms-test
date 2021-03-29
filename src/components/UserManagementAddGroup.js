@@ -1,11 +1,13 @@
+import "../resources/css/user-management-add.css";
+
 import React, {useState} from "react";
 
-import AddGroupIcon from "../resources/dashboard/usermanagement-addgroup.svg";
-import ButtonIcon from "../resources/dashboard/usermanagement-addbox-button.svg";
+import AddGroupIcon from "../resources/user-management/user-management-add-group.svg";
+import ButtonIcon from "../resources/user-management/user-management-plus.svg";
 
 function UserManagementAddGroup(props)
 {
-    const [groupname, setGroupname] = useState("");
+    const [groupName, setGroupName] = useState("");
 
     function handleOpenMenu()
     {
@@ -14,17 +16,17 @@ function UserManagementAddGroup(props)
 
     function handleChangeGroupName(e)
     {
-        setGroupname(e.target.value);
+        setGroupName(e.target.value);
     }
 
     function handleSubmit(e)
     {
         e.preventDefault();
-        props.add(groupname);
+        props.add(groupName);
     }
 
     return(
-        <div className = "group">
+        <div className = "user-management-add-group">
             {/* main card */}
             <div className = "user-management-add"  id = {props.open ? "open" : ""}>
                 {/* icon */}
@@ -41,21 +43,19 @@ function UserManagementAddGroup(props)
             </div>
             {/* dropdown menu */}
             {props.open &&
-                <div className = "dashboard-usermanagement-addbox-dropdown-container">
+                <div className = "user-management-input">
                     <form onSubmit = {handleSubmit}>
                         <input
                             type = "text"
-                            id = "usermanagement-input-groupname"
-                            className = "dashboard-usermanagement-addbox-input"
-                            name = "groupname"
-                            value = {groupname}
+                            id = "user-management-group-name"
+                            className = "field"
+                            name = "group-name"
+                            value = {groupName}
                             placeholder = "GROUP NAME"
                             onChange = {handleChangeGroupName}
                         ></input>
                         {/* register button */}
-                        <button className = "dashboard-usermanagement-addbox-submit" type = "submit">
-                            CREATE GROUP
-                        </button>
+                        <button className = "submit" type = "submit">CREATE GROUP</button>
                     </form>
                 </div>
             }

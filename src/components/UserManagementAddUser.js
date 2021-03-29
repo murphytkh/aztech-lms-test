@@ -1,7 +1,9 @@
+import "../resources/css/user-management-add.css";
+
 import React, {useEffect, useState} from "react";
 
-import AddUserIcon from "../resources/dashboard/usermanagement-adduser.svg";
-import ButtonIcon from "../resources/dashboard/usermanagement-addbox-button.svg";
+import AddUserIcon from "../resources/user-management/user-management-add-user.svg";
+import ButtonIcon from "../resources/user-management/user-management-plus.svg";
 import UpArrowIcon from "../resources/dashboard/icon-triangle-up.svg";
 import DownArrowIcon from "../resources/dashboard/icon-triangle-down.svg";
 import EyeIcon from "../resources/dashboard/icon-eye.svg";
@@ -106,7 +108,7 @@ function UserManagementAddUser(props)
     }
 
     return(
-        <div className = "user">
+        <div className = "user-management-add-user">
             {/* main card */}
             <div className = "user-management-add"  id = {props.open ? "open" : ""}>
                 {/* icon */}
@@ -125,12 +127,12 @@ function UserManagementAddUser(props)
             </div>
             {/* dropdown menu */}
             {props.open &&
-                <div className = "dashboard-usermanagement-addbox-dropdown-container">
+                <div className = "user-management-input">
                     <form onSubmit = {handleSubmit}>
                         <input
                             type = "text"
-                            id = "usermanagement-input-username"
-                            className = "dashboard-usermanagement-addbox-input"
+                            id = "user-management-username"
+                            className = "field"
                             name = "username"
                             value = {username}
                             placeholder = "USER NAME"
@@ -140,9 +142,9 @@ function UserManagementAddUser(props)
                             <input
                                 style = {{pointerEvents: "none"}}
                                 type = "text"
-                                id = "usermanagement-input-usertype"
-                                className = "dashboard-usermanagement-addbox-input"
-                                name = "usertype"
+                                id = "user-management-user-type"
+                                className = "field"
+                                name = "user-type"
                                 value = {usertype}
                                 placeholder = "USER TYPE"
                                 onChange = {placeholder}
@@ -151,20 +153,22 @@ function UserManagementAddUser(props)
                             <img
                                 alt = ""
                                 src = {UpArrowIcon}
-                                className = "dashboard-usermanagement-addbox-up"
+                                className = "arrow"
+                                id = "up"
                                 onClick = {handleUpArrow}
                             ></img>
                             <img
                                 alt = ""
                                 src = {DownArrowIcon}
-                                className = "dashboard-usermanagement-addbox-down"
+                                className = "arrow"
+                                id = "down"
                                 onClick = {handleDownArrow}
                             ></img>
                         </div>
                         <input
                             type = "text"
-                            id = "usermanagement-input-email"
-                            className = "dashboard-usermanagement-addbox-input"
+                            id = "user-management-email"
+                            className = "field"
                             name = "email"
                             value = {email}
                             placeholder = "EMAIL"
@@ -172,9 +176,9 @@ function UserManagementAddUser(props)
                         ></input>
                         <input
                             type = "text"
-                            id = "usermanagement-input-contactnumber"
-                            className = "dashboard-usermanagement-addbox-input"
-                            name = "contactnumber"
+                            id = "user-management-contact-number"
+                            className = "field"
+                            name = "contact-number"
                             value = {contactNumber}
                             placeholder = "CONTACT NUMBER"
                             onChange = {handleChangeContactNumber}
@@ -182,8 +186,8 @@ function UserManagementAddUser(props)
                         <div style = {{position: "relative"}}>
                             <input
                                 type = {showPassword ? "text" : "password"}
-                                id = "usermanagement-input-password"
-                                className = "dashboard-usermanagement-addbox-input"
+                                id = "user-management-password"
+                                className = "field"
                                 name = "password"
                                 value = {password}
                                 placeholder = "PASSWORD"
@@ -193,16 +197,16 @@ function UserManagementAddUser(props)
                             <img 
                                 alt = "" 
                                 src = {showPassword ? EyeIcon : EyeOffIcon} 
-                                className = "dashboard-usermanagement-addbox-hide"
+                                className = "hide"
                                 onClick = {handleTogglePasswordHide}
                             ></img>
                         </div>
                         <div style = {{position: "relative"}}>
                             <input
                                 type = {showConfirmPassword ? "text" : "password"}
-                                id = "usermanagement-input-confirmpassword"
-                                className = "dashboard-usermanagement-addbox-input"
-                                name = "confirmpassword"
+                                id = "user-management-confirm-password"
+                                className = "field"
+                                name = "confirm-password"
                                 value = {confirmPassword}
                                 placeholder = "CONFIRM PASSWORD"
                                 onChange = {handleChangeConfirmPassword}
@@ -212,14 +216,12 @@ function UserManagementAddUser(props)
                             <img 
                                 alt = "" 
                                 src = {showConfirmPassword ? EyeIcon : EyeOffIcon} 
-                                className = "dashboard-usermanagement-addbox-hide"
+                                className = "hide"
                                 onClick = {handleToggleConfirmPasswordHide}
                             ></img>
                         </div>
                         {/* register button */}
-                        <button className = "dashboard-usermanagement-addbox-submit" type = "submit">
-                            REGISTER
-                        </button>
+                        <button className = "submit" type = "submit">REGISTER</button>
                     </form>
                 </div>
             }

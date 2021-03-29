@@ -1,4 +1,6 @@
-.dashboard-usermanagement-group-container
+/* card */
+
+.user-management-group
 {
     position: relative;
     display: inline-block;
@@ -7,7 +9,9 @@
     height: 20%;
 }
 
-.dashboard-usermanagement-group-header
+/* card header */
+
+.group-header
 {
     position: relative;
     border-radius: 6px 6px 0px 0px;
@@ -16,7 +20,7 @@
     height: 25%;
 }
 
-.dashboard-usermanagement-group-header-icon
+.group-header .icon
 {
     position: absolute;
     top: 8%;
@@ -25,29 +29,29 @@
     height: auto;
 }
 
-.dashboard-usermanagement-group-header-title
+.group-header h1
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
-    font-weight: 600;
+    margin-top: 0%;
+    left: 25%;
+}
+
+.group-header h1.title
+{
     font-size: max(1.2vw, 17.28px);
+    font-weight: 600;
     top: 15%;
-    left: 25%;
 }
 
-.dashboard-usermanagement-group-header-text
+.group-header h1.subtitle
 {
-    position: absolute;
-    color: #333132;
-    font-family: "work sans", sans-serif;
-    font-weight: 400;
     font-size: max(0.7vw, 10.08px);
-    top: 30%;
-    left: 25%;
+    font-weight: 400;
+    top: 35%;
 }
 
-.dashboard-usermanagement-group-header-delete
+.group-header .delete
 {
     position: absolute;
     top: -2%;
@@ -57,12 +61,14 @@
     cursor: pointer;
 }
 
-.dashboard-usermanagement-group-header-delete:hover
+.group-header .delete:hover
 {
     transform: scale(1.2);
 }
 
-.dashboard-usermanagement-group-header-blocks-container
+/* user display */
+
+.user-management-group .block-container
 {
     position: absolute;
     display: flex;
@@ -75,22 +81,21 @@
     height: 38%;
 }
 
-.dashboard-usermanagement-group-header-block
+.user-management-group .block
 {
     position: relative;
     margin-top: 5%;
 }
 
-.dashboard-usermanagement-group-header-block-text
+.user-management-group .block div
 {
-    margin-left: 8%;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 500;
     font-size: max(0.75vw, 10.85px);
+    margin-left: 8%;
 }
 
-.dashboard-usermanagement-group-header-block-radio
+.user-management-group .block img
 {
     position: absolute;
     top: 15%;
@@ -99,7 +104,7 @@
     cursor: pointer;
 }
 
-.dashboard-usermanagement-group-user-container
+.user-management-group .user-container
 {
     position: absolute;
     background-color: #F7F7F7;
@@ -107,19 +112,24 @@
     width: 100%;
 }
 
-.dashboard-usermanagement-group-user
+.user-management-group .user
 {
     position: relative;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 6px #00000029;
     border-radius: 7px;
     margin-top: 5%;
+    padding-top: 19.2%;
     left: 4.95%;
     width: 90.1%;
-    padding-top: 19.2%;
 }
 
-.dashboard-usermanagement-group-user-icon
+.user-management-group .user#inactive
+{
+    background-color: #E0E0E0;
+}
+
+.user-management-group .user-icon
 {
     position: absolute;
     top: 14.8%;
@@ -128,63 +138,62 @@
     height: auto;
 }
 
-.dashboard-usermanagement-group-user-name
+.user-management-group .user h1
 {
     position: absolute;
+    color: #6D6E71;
+
+    font-size: max(0.7vw, 10.08px);
+    font-weight: 400;
+    margin: 0%;
+}
+
+.user-management-group .user h1#name
+{
     color: #333132;
-    font-family: "work sans", sans-serif;
-    font-weight: 500;
     font-size: max(0.91vw, 13.175px);
+    font-weight: 500;
     top: 25%;
     left: 24%;
 }
 
-.dashboard-usermanagement-group-user-type
+.user-management-group .user h1#type
 {
-    position: absolute;
-    color: #6D6E71;
-    font-family: "work sans", sans-serif;
-    font-weight: 400;
-    font-size: max(0.7vw, 10.08px);
     top: 57%;
     left: 24%;
 }
 
-.dashboard-usermanagement-group-user-date
+.user-management-group .user h1#date
 {
-    position: absolute;
-    color: #6D6E71;
-    font-family: "work sans", sans-serif;
-    font-weight: 400;
-    font-size: max(0.7vw, 10.08px);
     top: 30%;
     left: 77%;
 }
 
-.dashboard-usermanagement-group-user-time
+.user-management-group .user h1#time
 {
-    position: absolute;
-    color: #6D6E71;
-    font-family: "work sans", sans-serif;
-    font-weight: 400;
-    font-size: max(0.7vw, 10.08px);
     top: 55%;
     left: 77%;
     width: 17.6%;
     text-align: right;
 }
 
-.dashboard-usermanagement-group-user-active
+.user-management-group .user .indicator
 {
     position: absolute;
+    background-color: #A0BC34;
+    border-radius : 50%;
     top: 9%;
     left: 96%;
     width: 1.715%;
     height: 8.046%;
-    border-radius : 50%;
 }
 
-.dashboard-usermanagement-group-newmember
+.user-management-group .user .indicator#inactive
+{
+    background-color: #F07E0B;
+}
+
+.user-management-group .new-member
 {
     position: relative;
     background-color: #FFFFFF;
@@ -192,24 +201,24 @@
     border-radius: 7px;
     margin-top: 5%;
     margin-bottom: 10%;
+    padding-top: 19.2%;
     left: 4.95%;
     width: 90.1%;
-    padding-top: 19.2%;
     cursor: pointer;
 }
 
-.dashboard-usermanagement-group-newmember:hover
+.user-management-group .new-member:hover
 {
     background-color: #E7E7E7;
 }
 
-.dashboard-usermanagement-group-newmember-text
+.user-management-group .new-member h1
 {
     position: absolute;
     color: #333132;
-    font-family: "work sans", sans-serif;
     font-weight: 500;
     font-size: max(0.91vw, 13.175px);
     top: 36.67%;
     left: 24%;
+    margin: 0%;
 }

@@ -29,7 +29,7 @@ current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
 - code refactoring progress
-  - user management page
+  - clean edit profile
 - light status - add button to table for
                  relocation
 

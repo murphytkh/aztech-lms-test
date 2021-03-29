@@ -1,3 +1,5 @@
+/* main card */
+
 .user-management-add
 {
     position: relative;
@@ -87,7 +89,9 @@
     color: #F07E0B;
 }
 
-.dashboard-usermanagement-addbox-dropdown-container
+/* dropdown card */
+
+.user-management-input
 {
     background-color: #FFFFFF;
     border-radius: 0px 0px 6px 6px;
@@ -98,52 +102,68 @@
     text-align: center;
 }
 
-.dashboard-usermanagement-addbox-input
+.user-management-input .field,
+.user-management-input .submit
 {
-    color: #005570;
+    border-radius: 6px;
     font-size: max(0.64vw, 10px);
     font-weight: 500;
-    text-align: center;
+}
+
+.user-management-input .field
+{
+    color: #005570;
     border: 1px solid #E0E0E0;
-    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 2%;
     padding-left: 5%;
     padding-right: 5%;
-    margin-bottom: 2%;
     width: 77.76%;
     height: 3.5em;
 }
 
-.dashboard-usermanagement-addbox-up
+.user-management-input .submit
+{
+    background-color: #009BA7;
+    color: #FFFFFF;
+    border: none;
+    margin-top: 8%;
+    margin-bottom: 5%;
+    width: 88.5%;
+    height: 3.9em;
+    cursor: pointer;
+}
+
+.user-management-input .submit:hover
+{
+    filter: brightness(120%);
+}
+
+.user-management-input .arrow
 {
     position: absolute;
+    left: 86%;
+    width: 4.5%;
+    height: auto;
+    cursor: pointer;
+}
+
+.user-management-input .arrow:hover
+{
+    transform: scale(1.2);
+}
+
+.user-management-input .arrow#up
+{
     top: 23%;
-    left: 86%;
-    width: 4.5%;
-    height: auto;
-    cursor: pointer;
 }
 
-.dashboard-usermanagement-addbox-up:hover
+.user-management-input .arrow#down
 {
-    transform: scale(1.2);
-}
-
-.dashboard-usermanagement-addbox-down
-{
-    position: absolute;
     top: 48%;
-    left: 86%;
-    width: 4.5%;
-    height: auto;
-    cursor: pointer;
 }
 
-.dashboard-usermanagement-addbox-down:hover
-{
-    transform: scale(1.2);
-}
-
-.dashboard-usermanagement-addbox-hide
+.user-management-input .hide
 {
     position: absolute;
     filter: invert(48%) sepia(0%) saturate(1159%) hue-rotate(148deg) brightness(92%) contrast(99%);
@@ -154,35 +174,15 @@
     cursor: pointer;
 }
 
-.dashboard-usermanagement-addbox-hide:hover
+.user-management-input .hide:hover
 {
     transform: scale(1.2);
 }
 
-.dashboard-usermanagement-addbox-submit
+/* input placeholder */
+
+.user-management-input .field::placeholder
 {
-    background-color: #009BA7;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 6px;
-    font-size: max(0.64vw, 10px);
-    font-weight: 500;
-    margin-top: 8%;
-    margin-bottom: 5%;
-    width: 87.76%;
-    height: 3.33em;
-    cursor: pointer;
-}
-
-.dashboard-usermanagement-addbox-submit:hover
-{
-    filter: brightness(120%);
-}
-
-/* input placeholders */
-
-.dashboard-usermanagement-addbox-input::placeholder
-{ 
     color: #6D6E71;
     font-size: max(0.64vw, 10px);
     font-weight: 400;

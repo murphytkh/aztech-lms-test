@@ -1,10 +1,8 @@
 import "../resources/css/dashboard-user-management.css";
-import "../resources/css/user-management-addbox.css";
-import "../resources/css/user-management-group.css";
 
 import React, {useEffect, useState} from "react";
 
-import DefaultUser from "../resources/dashboard/usermanagement-default-user.svg";
+import DefaultUser from "../resources/user-management/usermanagement-default-user.svg";
 import HDBIcon from "../resources/dashboard/hdb.png";
 
 import UserManagementAddGroup from "./UserManagementAddGroup";
@@ -44,7 +42,7 @@ function DashboardUserManagement(props)
     const [addGroupOpen, setAddGroupOpen] = useState(false);
     const [addUserOpen, setAddUserOpen] = useState(false);
 
-    const [userArray, setUserArray] = useState([]);
+    //const [userArray, setUserArray] = useState([]);
     const [groupArray, setGroupArray] = useState([]);
 
     const groupList = groupArray.map(group =>
@@ -80,7 +78,7 @@ function DashboardUserManagement(props)
                                HDBIcon,
                                colours[1]);
         
-        setUserArray([user0, user1, user2]);
+        //setUserArray([user0, user1, user2]);
         setGroupArray([group0, group1]);
     }, []);
 
@@ -126,12 +124,12 @@ function DashboardUserManagement(props)
 
     function handleRevoke()
     {
-        console.log("AJISASKAS");
+        console.log("revoke");
     }
 
     function handleUpdate()
     {
-        console.log("what the fuck");
+        console.log("update");
     }
 
     function placeholder() {}
@@ -158,14 +156,14 @@ function DashboardUserManagement(props)
             {props.location && groupList}
             {/* buttons */}
             <div 
-                className = "user-management-page-btn"
+                className = "user-management-btn"
                 id = "revoke"
                 onClick = {props.block ? handleRevoke : placeholder}
             >
                 REVOKE ALL ACCESS
             </div>
             <div
-                className = "user-management-page-btn"
+                className = "user-management-btn"
                 id = "update"
                 onClick = {props.block ? handleUpdate : placeholder}
             >
