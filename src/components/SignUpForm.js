@@ -57,7 +57,7 @@ function SignUpForm(props)
                 <h1 className = "footer-right">{privacy}</h1>
             </div>
             {/* signup form */}
-            <div className = "signup-form">
+            <div className = "entry-form" id = "signup">
                 {/* labels and images */}
                 <img alt = "" src = {LoginRect} className = "bg"></img>
                 <img alt = "" src = {Logo} className = "logo"></img>

@@ -130,3 +130,136 @@
 {
     top: 74%;
 }
+
+/* pop-up card */
+
+.pop-up
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.pop-up .fade
+{
+    position: fixed;
+    background-color: #000E1B;
+    opacity: 0.85;
+    width: 100%;
+    height: 100%;
+}
+
+.pop-up .container
+{
+    position: relative;
+    background-color: #FFFFFF;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 6px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 38.02%;
+}
+
+.pop-up-header
+{
+    position: absolute;
+    background-color: #E0E0E0;
+    box-shadow: 0px 2px 3px #00000029;
+    border-radius: 6px 6px 0px 0px;
+    top: 0%;
+    width: 100%;
+}
+
+.pop-up-header h1
+{
+    position: absolute;
+    margin-top: 0%;
+    left: 8.904%;
+}
+
+.pop-up-header h1.title
+{
+    color: #333132;
+    font-size: max(0.75vw, 10.8px);
+    font-weight: 400;
+}
+
+.pop-up-header h1.subtitle
+{
+    color: #005570;
+    font-size: max(1.2vw, 17.28px);
+    font-weight: 500;
+}
+
+.pop-up input
+{
+    color: #005570;
+    font-size: max(0.64vw, 10px);
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    margin-top: 1.5%;
+    width: 82.19%;
+    height: 3.5em;
+}
+
+.pop-up .input-top
+{
+    margin-top: 23%;
+    width: 82.19%;
+    height: 6.75%;
+}
+
+.pop-up .arrow
+{
+    position: absolute;
+    left: 87.5%;
+    width: 2%;
+    height: auto;
+    cursor: pointer;
+}
+
+.pop-up .arrow:hover
+{
+    transform: scale(1.2);
+}
+
+.pop-up .arrow#up
+{
+    top: 40%;
+}
+
+.pop-up .arrow#down
+{
+    top: 65%;
+}
+
+/* input placeholder */
+
+.pop-up input::placeholder
+{ 
+    color: #6D6E71;
+    font-size: max(0.64vw, 10px);
+    font-weight: 400;
+    opacity: 0.5;
+    text-align: center;
+}
+
+.pop-up .btn
+{
+    position: absolute;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: max(0.9vw, 12.96px);
+    text-align: center;
+    width: 29.8%;
+    cursor: pointer;
+}
+
+.pop-up .btn:hover
+{
+    filter: brightness(110%);
+}

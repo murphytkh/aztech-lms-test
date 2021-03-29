@@ -1,0 +1,83 @@
+.pop-up .container#edit-profile
+{
+    height: 65.74%;
+    text-align: center;
+}
+
+/* header */
+
+.pop-up-header#edit-profile
+{
+    height: 21.13%;
+}
+
+.pop-up-header#edit-profile h1.title
+{
+    top: 20%;
+} 
+
+.pop-up-header#edit-profile h1.subtitle
+{
+    top: 32.5%;
+}
+
+.pop-up-header .user-img
+{
+    position: relative;
+    top: 12.72%;
+    width: 15%;
+    height: auto;
+}
+
+.pop-up-header .user-img-btn
+{
+    position: absolute;
+    top: 63%;
+    left: 53.75%;
+    width: 5.087%;
+    height: auto;
+    cursor: pointer;
+}
+
+.pop-up-header .user-img-btn:hover
+{
+    transform: scale(1.1);
+}
+
+/* input */
+
+.pop-up .hide
+{
+    position: absolute;
+    filter: invert(48%) sepia(0%) saturate(1159%) hue-rotate(148deg) brightness(92%) contrast(99%);
+    top: 43%;
+    right: 10.2%;
+    width: 2.5%;
+    height: auto;
+    cursor: pointer;
+}
+
+.pop-up .hide:hover
+{
+    transform: scale(1.2);
+}
+
+/* cancel and submit buttons */
+
+.pop-up .container#edit-profile .btn#cancel
+{
+    background-color: #C6C6C6;
+    top: 92.5%;
+    left: 18.2%;
+    height: 4.55%;
+    line-height: 185%;
+}
+
+.pop-up .container#edit-profile .btn#submit
+{
+    background-color: #005570;
+    top: 92.5%;
+    left: 52.3%;
+    height: 4.55%;
+    line-height: 185%;
+}

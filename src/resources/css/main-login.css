@@ -72,7 +72,7 @@ body, ul
 
 /* input placeholders */
 
-::placeholder /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder
 {
     color: #6D6E71;
     opacity: 0.4;
@@ -81,26 +81,23 @@ body, ul
     text-align: center;
 }
 
-/* --- login form -- */
+/* common form elements */
 
-.login-form
+.entry-form
 {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 28.8%;
-    height: 71.5%;
 }
 
-/* labels and text */
-
-.login-form h1, h2, h3, h4, h5, h6
+.entry-form h1, h2, h3, h4, h5, h6
 {
     position: absolute;
 }
 
-.login-form h1
+.entry-form h1
 {
     color: #FFFFFF;
     font-size: max(1.6vw, 23.04px);
@@ -109,52 +106,50 @@ body, ul
     left: 7.3%;
 }
 
-.login-form h2
+.entry-form h2
 {
     color: #009BA7;
     font-size: max(1.4vw, 20.16px);
     font-weight: 600;
-    top: 34%;
     left: 50%;
     transform: translate(-50%, 0%);
+    width: 100%;
+    text-align: center;
 }
 
-.login-form h3
+.entry-form h3
 {
     color: #C6C6C6;
     font-size: max(1.05vw, 15.12px);
     font-weight: 400;
-    top: 40%;
     left: 68.5%;
     transform: translate(-50%, 0%);
     width: 100%;
 }
 
-.login-form h4
+.entry-form h4
 {
     color: #C6C6C6;
     font-size: max(0.85vw, 12.2px);
     font-weight: 500;
-    top: 81.3%;
     left: 4.8%;
 }
 
-.login-form h5
+.entry-form h5
 {
     color: #009BA7;
     font-size: max(0.85vw, 12.2px);
     font-weight: 600;
-    top: 83.9%;
     left: 4.8%;
     cursor: pointer;
 }
 
-.login-form h5:hover
+.entry-form h5:hover
 {
     filter: brightness(140%);
 }
 
-.login-form h6
+.entry-form h6
 {
     color: #C6C6C6;
     opacity: 0.6;
@@ -166,15 +161,13 @@ body, ul
     width: 90%;
 }
 
-/* images */
-
-.login-form .bg
+.entry-form .bg
 {
     width: 100%;
     height: auto;
 }
 
-.login-form .logo
+.entry-form .logo
 {
     position: absolute;
     top: 17.8%;
@@ -184,19 +177,16 @@ body, ul
     height: auto;
 }
 
-.login-form .line
+.entry-form .line
 {
     position: absolute;
     opacity: 0.7;
-    top: 93.9%;
     left: 0%;
     width: 100%;
     height: 1px;
 }
 
-/* inputs */
-
-.login-form input
+.entry-form input
 {
     position: absolute;
     transform: translate(-50%, 0%);
@@ -208,20 +198,9 @@ body, ul
     text-align: center;
     left: 50%;
     width: 89%; 
-    height: 9%;
 }
 
-.login-form .input0
-{
-    top: 49.6%;
-}
-
-.login-form .input1
-{
-    top: 61%;
-}
-
-.login-form .btn
+.entry-form .btn
 {
     position: absolute;
     top: 82.1%;
@@ -230,166 +209,126 @@ body, ul
     cursor: pointer;
 }
 
-.login-form .btn:hover
+.entry-form .btn:hover
 {
     filter: brightness(120%);
 }
 
-/* -- signup form -- */
+/* login form */
 
-.signup-form
+.entry-form#login
 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 28.8%;
+    height: 71.5%;
+}
+
+.entry-form#login h2
+{
+    top: 34%;
+}
+
+.entry-form#login h3
+{
+    top: 40%;
+}
+
+.entry-form#login h4
+{
+    top: 81.3%;
+}
+
+.entry-form#login h5
+{
+    top: 83.9%;
+}
+
+.entry-form#login h6
+{
+    top: 94.7%;
+}
+
+.entry-form#login .line
+{
+    top: 93.9%;
+}
+
+.entry-form#login input
+{
+    height: 9%;
+}
+
+.entry-form#login .input0
+{
+    top: 49.6%;
+}
+
+.entry-form#login .input1
+{
+    top: 61%;
+}
+
+.entry-form#login .btn
+{
+    top: 82.1%;
+}
+
+/* signup form */
+
+.entry-form#signup
+{
     height: 80%;
 }
 
-/* labels and text */
-
-.signup-form h1, h2, h3, h4, h5, h6
+.entry-form#signup h2
 {
-    position: absolute;
-}
-
-.signup-form h1
-{
-    color: #FFFFFF;
-    font-size: max(1.6vw, 23.04px);
-    font-weight: 600;
-    top: 4%;
-    left: 7.3%;
-}
-
-.signup-form h2
-{
-    color: #009BA7;
-    font-size: max(1.4vw, 20.16px);
-    font-weight: 600;
     top: 32%;
-    left: 50%;
-    transform: translate(-50%, 0%);
 }
 
-.signup-form h3
+.entry-form#signup h3
 {
-    color: #C6C6C6;
-    font-size: max(1.05vw, 15.12px);
-    font-weight: 400;
     top: 37%;
-    left: 68.5%;
-    transform: translate(-50%, 0%);
-    width: 100%;
 }
 
-.signup-form h4
+.entry-form#signup h4
 {
-    color: #C6C6C6;
-    font-size: max(0.85vw, 12.2px);
-    font-weight: 500;
     top: 79.7%;
-    left: 4.8%;
 }
 
-.signup-form h5
+.entry-form#signup h5
 {
-    color: #009BA7;
-    font-size: max(0.85vw, 12.2px);
-    font-weight: 600;
     top: 82.3%;
-    left: 4.8%;
-    cursor: pointer;
 }
 
-.signup-form h5:hover
+.entry-form#signup h6
 {
-    filter: brightness(140%);
-}
-
-.signup-form h6
-{
-    color: #C6C6C6;
-    opacity: 0.6;
-    font-size: max(0.76vw, 11px);
-    font-weight: 400;
-    text-align: center;
     top: 91.7%;
-    left: 5%;
-    width: 90%;
 }
 
-/* images */
-
-.signup-form .bg
+.entry-form#signup .line
 {
-    width: 100%;
-    height: auto;
-}
-
-.signup-form .logo
-{
-    position: absolute;
-    top: 16.3%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    width: 66%;
-    height: auto;
-}
-
-.signup-form .line
-{
-    position: absolute;
-    opacity: 0.7;
     top: 91%;
-    left: 0%;
-    width: 100%;
-    height: 1px;
 }
 
-/* inputs */
-
-.signup-form input
+.entry-form#signup input
 {
-    position: absolute;
-    transform: translate(-50%, 0%);
-    border-radius: 6px;
-    opacity: 0.7;
-    padding: 0.25% 1%;
-    font-size: max(1.05vw, 15.12px);
-    font-weight: 400;
-    text-align: center;
-    left: 50%;
-    width: 89%;
     height: 8.045%;
 }
 
-.signup-form .input0
+.entry-form#signup .input0
 {
     top: 46%;
 }
 
-.signup-form .input1
+.entry-form#signup .input1
 {
     top: 56.5%;
 }
 
-.signup-form .input2
+.entry-form#signup .input2
 {
     top: 67%;
 }
 
-.signup-form .btn
+.entry-form#signup .btn
 {
-    position: absolute;
     top: 80.5%;
-    left: 63%;
-    width: 32.5%;
-    cursor: pointer;
-}
-
-.signup-form .btn:hover
-{
-    filter: brightness(120%);
 }

@@ -51,7 +51,7 @@ function LoginForm(props)
                 <h1 className = "footer-right">{privacy}</h1>
             </div>
             {/* login form */}
-            <div className = "login-form">
+            <div className = "entry-form" id = "login">
                 {/* labels and images */}
                 <img alt = "" src = {LoginRect} className = "bg"></img>
                 <img alt = "" src = {Logo} className = "logo"></img>

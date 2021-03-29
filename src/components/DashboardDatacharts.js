@@ -4,7 +4,7 @@ import React, {useRef} from "react";
 
 import DatachartsEnergyConsumption from "./DatachartsEnergyConsumption";
 
-import CalendarIcon from "../resources/dashboard/datacharts-calendar-icon.svg";
+import CalendarIcon from "../resources/datacharts/datacharts-calendar-icon.svg";
 
 function DashboardDatacharts(props)
 {

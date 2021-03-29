@@ -1,4 +1,4 @@
-import "../resources/css/editprofile.css";
+import "../resources/css/edit-profile.css";
 
 import React, {useState, useEffect} from "react";
 
@@ -20,7 +20,7 @@ class UserObject
 
 function EditProfile(props)
 {
-    const [image, setImage] = useState(null);
+    //const [image, setImage] = useState(null);
     const [username, setUsername] = useState("");
     const [position, setPosition] = useState("");
     const [email, setEmail] = useState("");
@@ -137,27 +137,26 @@ function EditProfile(props)
     }
 
     return(
-        <div className = "dashboard-page-editprofile" style = {{zIndex: 15}}>
-            {/* bg colour */}
-            <div className = "dashboard-page-editprofile-bg" style = {{zIndex: 0}}></div>
-            <div className = "dashboard-page-editprofile-container" style = {{zIndex: 1}}>
+        <div className = "pop-up" style = {{zIndex: 15}}>
+            {/* edit profile card */}
+            <div className = "fade" style = {{zIndex: 0}}></div>
+            <div className = "container" id = "edit-profile" style = {{zIndex: 1}}>
                 {/* header */}
-                <div className = "dashboard-page-editprofile-header">
-                    <div className = "dashboard-page-editprofile-header-text0">USER SETTINGS</div>
-                    <div className = "dashboard-page-editprofile-header-text1">EDIT PROFILE</div>
-                    <img alt = "" src = {props.currUser.image} className = "dashboard-page-editprofile-header-img"></img>
+                <div className = "pop-up-header" id = "edit-profile">
+                    <h1 className = "title">USER SETTINGS</h1>
+                    <h1 className = "subtitle">EDIT PROFILE</h1>
+                    <img alt = "" src = {props.currUser.image} className = "user-img"></img>
                     <img 
                         alt = "" 
                         src = {EditPhoto} 
-                        className = "dashboard-page-editprofile-header-button"
+                        className = "user-img-btn"
                         onClick = {handleImageChange}
                     ></img>
                 </div>
                 {/* inputs */}
                 <input
                     type = "text"
-                    id = "editprofile-input-username"
-                    className = "dashboard-editprofile-input-first"
+                    className = "input-top"
                     name = "username"
                     value = {username}
                     placeholder = "USERNAME"
@@ -167,8 +166,6 @@ function EditProfile(props)
                     <input
                         style = {{pointerEvents: "none"}}
                         type = "text"
-                        id = "editprofile-input-position"
-                        className = "dashboard-editprofile-input"
                         name = "position"
                         value = {position}
                         placeholder = "POSITION"
@@ -177,20 +174,20 @@ function EditProfile(props)
                     <img
                         alt = ""
                         src = {UpArrowIcon}
-                        className = "dashboard-editprofile-input-up"
+                        className = "arrow"
+                        id = "up"
                         onClick = {handleUpArrow}
                     ></img>
                     <img
                         alt = ""
                         src = {DownArrowIcon}
-                        className = "dashboard-editprofile-input-down"
+                        className = "arrow"
+                        id = "down"
                         onClick = {handleDownArrow}
                     ></img>
                 </div>
                 <input
                     type = "text"
-                    id = "editprofile-input-email"
-                    className = "dashboard-editprofile-input"
                     name = "email"
                     value = {email}
                     placeholder = "EMAIL"
@@ -198,9 +195,7 @@ function EditProfile(props)
                 ></input>
                 <input
                     type = "text"
-                    id = "editprofile-input-contactnumber"
-                    className = "dashboard-editprofile-input"
-                    name = "contactnumber"
+                    name = "contact-number"
                     value = {contactNumber}
                     placeholder = "CONTACT NUMBER"
                     onChange = {handleChangeContactNumber}
@@ -208,9 +203,7 @@ function EditProfile(props)
                 <div style = {{position: "relative"}}>
                     <input
                         type = {showCurrPassword ? "text" : "password"}
-                        id = "editprofile-input-currpassword"
-                        className = "dashboard-editprofile-input"
-                        name = "currpassword"
+                        name = "curr-password"
                         value = {currPassword}
                         placeholder = "CURRENT PASSWORD"
                         onChange = {handleChangeCurrPassword}
@@ -218,16 +211,14 @@ function EditProfile(props)
                     <img 
                         alt = "" 
                         src = {showCurrPassword ? EyeIcon : EyeOffIcon} 
-                        className = "dashboard-editprofile-hide"
+                        className = "hide"
                         onClick = {handleToggleCurrPasswordHide}
                     ></img>
                 </div>
                 <div style = {{position: "relative"}}>
                     <input
                         type = {showNewPassword ? "text" : "password"}
-                        id = "editprofile-input-newpassword"
-                        className = "dashboard-editprofile-input"
-                        name = "newpassword"
+                        name = "new-password"
                         value = {newPassword}
                         placeholder = "NEW PASSWORD"
                         onChange = {handleChangeNewPassword}
@@ -235,16 +226,14 @@ function EditProfile(props)
                     <img 
                         alt = "" 
                         src = {showNewPassword ? EyeIcon : EyeOffIcon} 
-                        className = "dashboard-editprofile-hide"
+                        className = "hide"
                         onClick = {handleToggleNewPasswordHide}
                     ></img>
                 </div>
                 <div style = {{position: "relative"}}>
                     <input
                         type = {showConfirmPassword ? "text" : "password"}
-                        id = "editprofile-input-confirmpassword"
-                        className = "dashboard-editprofile-input"
-                        name = "confirmpassword"
+                        name = "confirm-password"
                         value = {confirmPassword}
                         placeholder = "CONFIRM PASSWORD"
                         onChange = {handleChangeConfirmPassword}
@@ -252,13 +241,13 @@ function EditProfile(props)
                     <img 
                         alt = "" 
                         src = {showConfirmPassword ? EyeIcon : EyeOffIcon} 
-                        className = "dashboard-editprofile-hide"
+                        className = "hide"
                         onClick = {handleToggleConfirmPasswordHide}
                     ></img>
                 </div>
                 {/* buttons */}
-                <div className = "dashboard-page-editprofile-cancel" onClick = {handleCancel}>CANCEL</div>
-                <div className = "dashboard-page-editprofile-submit" onClick = {handleSubmit}>SUBMIT</div>
+                <div className = "btn" id = "cancel" onClick = {handleCancel}>CANCEL</div>
+                <div className = "btn" id = "submit" onClick = {handleSubmit}>SUBMIT</div>
             </div>
         </div>
     );
