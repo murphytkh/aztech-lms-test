@@ -29,8 +29,6 @@ current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
 - light status - figure out data
-- create separate pop-up class
-- put relocation pop up in dashboard view itself
 - move data out from components into dashboard view
 - create array updating function in dashboard view
 

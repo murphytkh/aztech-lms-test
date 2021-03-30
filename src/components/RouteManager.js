@@ -5,7 +5,7 @@ import DashboardView from "./DashboardView";
 import DashboardConfig from "./DashboardConfig";
 import DashboardPhotosensor from "./DashboardPhotosensor";
 import DashboardDatacharts from "./DashboardDatacharts";
-import DashboardLightCycle from "./DashboardLightCycle";
+import DashboardPlaceholder from "./DashboardPlaceholder";
 import DashboardUserManagement from "./DashboardUserManagement";
 import DashboardAdd from "./DashboardAdd";
 
@@ -61,8 +61,8 @@ function RouteManager(propss)
                                     >
             </Route>
             <Route 
-                path = "/dashboard/lightcycle" 
-                render = {(props) => <DashboardLightCycle {...props} />}>
+                path = "/dashboard/placeholder" 
+                render = {(props) => <DashboardPlaceholder {...props} />}>
             </Route>
             <Route 
                 path = "/dashboard/usermanagement" 

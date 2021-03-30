@@ -106,10 +106,10 @@ function Sidebar(props)
                 ></SidebarIcon>
                 <SidebarIcon 
                     onClick = {handleSidebarButton} 
-                    path = "/dashboard/lightcycle" 
+                    path = "/dashboard/placeholder" 
                     default = {LightCycle}
                     active = {LightCycleActive} 
-                    tooltip = "LightCycle"
+                    tooltip = "Placeholder"
                 ></SidebarIcon>
                 <SidebarIcon 
                     onClick = {handleSidebarButton} 
