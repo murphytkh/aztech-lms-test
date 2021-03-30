@@ -103,7 +103,8 @@
     color: #333132;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
-    padding-top: 0.8%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
 }
 
 .active-lights-table td.id

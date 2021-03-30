@@ -35,6 +35,7 @@ class PageObject
 
 function LightStatus(props)
 {
+    // comparison for sorting table
     const sortTypes =
     {
         name_descending: (a, b) => a.name.localeCompare(b.name),
@@ -57,11 +58,19 @@ function LightStatus(props)
     const [lightStatusData, setLightStatusData] = useState([]);
     const [displayLength, setDisplayLength] = useState([]);
 
+    // display table elements
     let lightStatusList = lightStatusData.length &&
         lightStatusData.sort(sortTypes[sortingMode])
         .slice(currentPage * 10, (currentPage + 1) * 10)
         .map(lightStatus =>
             <tr key = {lightStatus.name}>
+                <td className = "btn">
+                    <img 
+                        alt = "" 
+                        src = {EditIcon}
+                        onClick = {handleRelocationClick}
+                    ></img>
+                </td>
                 <td className = "name">{lightStatus.name} - {lightStatus.location}</td>
                 <td className = "date">{lightStatus.date}</td>
                 <td className = "time">{lightStatus.time}</td>
@@ -71,6 +80,7 @@ function LightStatus(props)
 
     let pageListHelper = [];
 
+    // update pagination
     for (var i = 0; i < lastPage + 1; ++i)
     {
         if (i === currentPage)
@@ -128,7 +138,8 @@ function LightStatus(props)
 
         // + 40
         for (var i = 0; i < 40; ++i)
-            a.push(new LightStatusObject("1.4." + i.toString(), "Location undefined", "2020-09-25", "17:44:25", (i % 2) ? "ON" : "OFF"));
+            a.push(new LightStatusObject("1.4." + i.toString(), "Location undefined", 
+                                         "2020-09-25", "17:44:25", (i % 2) ? "ON" : "OFF"));
 
         setLightStatusData(a);
         setDisplayLength(a.length < 10 ? a.length : 10);
@@ -155,24 +166,33 @@ function LightStatus(props)
         setSelectedOption(option);
     }
 
+    function handleRelocationClick()
+    {
+        console.log("relocation");
+    }
+
     function handleNameClick()
     {
-        sortingMode === "name_descending" ? setSortingMode("name_ascending") : setSortingMode("name_descending");
+        sortingMode === "name_descending" ? setSortingMode("name_ascending") : 
+                            setSortingMode("name_descending");
     }
 
     function handleDateClick()
     {
-        sortingMode === "date_descending" ? setSortingMode("date_ascending") : setSortingMode("date_descending");
+        sortingMode === "date_descending" ? setSortingMode("date_ascending") : 
+                            setSortingMode("date_descending");
     }
 
     function handleTimeClick()
     {
-        sortingMode === "time_descending" ? setSortingMode("time_ascending") : setSortingMode("time_descending");
+        sortingMode === "time_descending" ? setSortingMode("time_ascending") : 
+                            setSortingMode("time_descending");
     }
 
     function handleStatusClick()
     {
-        sortingMode === "status_descending" ? setSortingMode("status_ascending") : setSortingMode("status_descending");
+        sortingMode === "status_descending" ? setSortingMode("status_ascending") : 
+                            setSortingMode("status_descending");
     }
 
     function handlePrevClick()
@@ -226,7 +246,8 @@ function LightStatus(props)
                     <div  className = "status-table-header" id = "name" onClick = {handleNameClick}>
                         <TableSortButton
                             onClick = {handleNameClick}
-                            sort = {sortingMode === "name_descending" ? 2 : (sortingMode === "name_ascending" ? 1 : 0)}
+                            sort = {sortingMode === "name_descending" ? 2 : 
+                                    (sortingMode === "name_ascending" ? 1 : 0)}
                         />
                         LIGHT
                     </div>
@@ -234,7 +255,8 @@ function LightStatus(props)
 
                         <TableSortButton
                             onClick = {handleDateClick}
-                            sort = {sortingMode === "date_descending" ? 2 : (sortingMode === "date_ascending" ? 1 : 0)}
+                            sort = {sortingMode === "date_descending" ? 2 : 
+                                    (sortingMode === "date_ascending" ? 1 : 0)}
                         />
                         LAST RESPONSE DATE
                     </div>
@@ -242,7 +264,8 @@ function LightStatus(props)
 
                         <TableSortButton
                             onClick = {handleTimeClick}
-                            sort = {sortingMode === "time_descending" ? 2 : (sortingMode === "time_ascending" ? 1 : 0)}
+                            sort = {sortingMode === "time_descending" ? 2 : 
+                                    (sortingMode === "time_ascending" ? 1 : 0)}
                         />
                         LAST RESPONSE TIME
                     </div>
@@ -250,7 +273,8 @@ function LightStatus(props)
 
                         <TableSortButton
                             onClick = {handleStatusClick}
-                            sort = {sortingMode === "status_descending" ? 2 : (sortingMode === "status_ascending" ? 1 : 0)}
+                            sort = {sortingMode === "status_descending" ? 2 : 
+                                    (sortingMode === "status_ascending" ? 1 : 0)}
                         />
                         STATUS
                     </div>

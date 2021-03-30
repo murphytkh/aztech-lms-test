@@ -118,18 +118,18 @@
     color: #333132;
     font-size: max(0.75vw, 10.8px);
     font-weight: 500;
+    padding-top: 0.3%;
+    padding-bottom: 0.3%;
 }
 
 .activity-table .user
 {
-    padding-top: 0.5%;
     padding-left: 3%;
     width: 13.9%;
 }
 
 .activity-table .action
 {
-    padding-top: 0.5%;
     width: 10.2%;
 }
 
