@@ -32,6 +32,7 @@ current task:
 - create separate pop-up class
 - put relocation pop up in dashboard view itself
 - move data out from components into dashboard view
+- create array updating function in dashboard view
 
 list of npm packages installed (other than the
 usual react stuff)
