@@ -82,7 +82,7 @@ function DashboardView(props)
     function handleRelocationClick(name, location)
     {
         // toggle popup, update current selected light
-        setRelocationHelper();
+        props.setRelocation();
         setCurrName(name);
         setCurrLocation(location);
     }
@@ -99,13 +99,6 @@ function DashboardView(props)
         console.log("clicked export");
     }
 
-    // toggle relocation popup
-    function setRelocationHelper()
-    {
-        props.setRelocation();
-        //setRelocation(!relocation);
-    }
-
     return(
         <div>
             {props.block ?
@@ -113,7 +106,7 @@ function DashboardView(props)
                     {/* relocation popup */}
                     {props.relocation && 
                         <Relocation
-                            setRelocation = {setRelocationHelper}
+                            setRelocation = {props.setRelocation}
                             relocate = {relocate}
                             name = {currName}
                             location = {currLocation}
