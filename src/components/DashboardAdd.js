@@ -1,4 +1,4 @@
-import "../resources/css/dashboardadd.css";
+import "../resources/css/dashboard-add.css";
 
 import React from "react";
 

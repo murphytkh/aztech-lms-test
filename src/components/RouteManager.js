@@ -18,6 +18,8 @@ function RouteManager(propss)
             <Route 
                 path = "/dashboard/view" 
                 render = {(props) => <DashboardView 
+                                        relocation = {propss.relocation}
+                                        setRelocation = {propss.setRelocation}
                                         location = {propss.location}
                                         area = {propss.area}
                                         block = {propss.block}

@@ -130,6 +130,7 @@ function EditProfile(props)
 
     function handleSubmit()
     {
+        // update current user parameters
         let user = new UserObject(username, position, props.currUser.image);
         props.setCurrUser(user);
         props.setEditProfile();

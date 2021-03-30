@@ -9,6 +9,11 @@
     overflow: overlay;
 }
 
+.dashboard#popup
+{
+    overflow: hidden;
+}
+
 .dashboard .header
 {
     z-index: 3;

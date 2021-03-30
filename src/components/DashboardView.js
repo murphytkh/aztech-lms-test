@@ -29,7 +29,15 @@ class LightStatusObject
 
 function DashboardView(props)
 {
+    // store data used in cards
     const [viewData, setViewData] = useState([]);
+
+    // current light relocation data
+    const [currName, setCurrName] = useState("");
+    const [currLocation, setCurrLocation] = useState("");
+
+    // relocation pop up
+    //const [relocation, setRelocation] = useState(false);
 
     useEffect(() =>
     {
@@ -73,9 +81,10 @@ function DashboardView(props)
     // relocation pop-up handling
     function handleRelocationClick(name, location)
     {
-        
-        console.log(name);
-        console.log(location);
+        // toggle popup, update current selected light
+        setRelocationHelper();
+        setCurrName(name);
+        setCurrLocation(location);
     }
 
     // editing data
@@ -84,15 +93,32 @@ function DashboardView(props)
 
     }
 
+    // export button (placeholder for now)
     function handleExportClick()
     {
         console.log("clicked export");
+    }
+
+    // toggle relocation popup
+    function setRelocationHelper()
+    {
+        props.setRelocation();
+        //setRelocation(!relocation);
     }
 
     return(
         <div>
             {props.block ?
                 <div className = "view-page">
+                    {/* relocation popup */}
+                    {props.relocation && 
+                        <Relocation
+                            setRelocation = {setRelocationHelper}
+                            relocate = {relocate}
+                            name = {currName}
+                            location = {currLocation}
+                        />
+                    }
                     {/* cards */}
                     <BlockLights    
                         location = {props.location}

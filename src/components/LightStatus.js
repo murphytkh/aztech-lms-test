@@ -105,7 +105,6 @@ function LightStatus(props)
 
     useEffect(() =>
     {
-        console.log("call");
         setDisplayLength(props.data.length < 10 ? props.data.length : 10);
         setLastPage(0);
     }, [props.data.length]);

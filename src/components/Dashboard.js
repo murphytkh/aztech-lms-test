@@ -65,8 +65,9 @@ function Dashboard(props)
     const [selectedLevel, setSelectedLevel] = useState("");
     const [selectedLight, setSelectedLight] = useState("");
 
-    // bool for displaying edit profile
+    // bool for displaying popups
     const [editProfile, setEditProfile] = useState(false);
+    const [relocation, setRelocation] = useState(false);
 
     const [darkMode, setDarkMode] = useState(false);
 
@@ -391,9 +392,14 @@ function Dashboard(props)
         setEditProfile(!editProfile);
     }
 
+    function setRelocationHelper()
+    {
+        setRelocation(!relocation);
+    }
+
     return(
         // enable/disable scrollbar
-        <div className = "dashboard" style = {editProfile ? {overflow: "hidden"} : {overflow: "overlay"}}>
+        <div className = "dashboard" id = {(editProfile || relocation) ? "popup" : ""}>
             {/* edit profile popup */}
             {editProfile && 
                 <EditProfile
@@ -438,6 +444,8 @@ function Dashboard(props)
             {footerDisplayHelper()}
             {/* routing and passing of data to children */}
             <RouteManager 
+                relocation = {relocation}
+                setRelocation = {setRelocationHelper}
                 location = {selectedLocation}
                 area = {selectedArea}
                 block = {selectedBlock}
