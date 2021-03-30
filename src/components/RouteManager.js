@@ -20,7 +20,7 @@ function RouteManager(propss)
                 render = {(props) => <DashboardView 
                                         location = {propss.location}
                                         area = {propss.area}
-                                        block = {propss.block} 
+                                        block = {propss.block}
                                         {...props} />}
                                     >
             </Route>

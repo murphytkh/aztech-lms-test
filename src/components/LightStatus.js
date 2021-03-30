@@ -58,6 +58,22 @@ function LightStatus(props)
     const [lightStatusData, setLightStatusData] = useState([]);
     const [displayLength, setDisplayLength] = useState([]);
 
+    function RelocationHelper(name, location)
+    {
+        props.relocation(name, location);
+    }
+
+    function RelocationIcon(props)
+    {
+        function click()
+        {
+            RelocationHelper(props.name, props.location);
+        }
+
+        return(
+            <div><img alt = "" src = {EditIcon} onClick = {click}></img></div>
+        );
+    }
     // display table elements
     let lightStatusList = lightStatusData.length &&
         lightStatusData.sort(sortTypes[sortingMode])
@@ -65,11 +81,7 @@ function LightStatus(props)
         .map(lightStatus =>
             <tr key = {lightStatus.name}>
                 <td className = "btn">
-                    <img 
-                        alt = "" 
-                        src = {EditIcon}
-                        onClick = {handleRelocationClick}
-                    ></img>
+                    <RelocationIcon name = {lightStatus.name} location = {lightStatus.location}/>
                 </td>
                 <td className = "name">{lightStatus.name} - {lightStatus.location}</td>
                 <td className = "date">{lightStatus.date}</td>
@@ -164,11 +176,6 @@ function LightStatus(props)
         if (currentPage > last)
             setCurrentPage(last);
         setSelectedOption(option);
-    }
-
-    function handleRelocationClick()
-    {
-        console.log("relocation");
     }
 
     function handleNameClick()
