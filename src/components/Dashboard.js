@@ -438,8 +438,13 @@ function Dashboard(props)
             {/* default selectors, non-config page */}
             {(location.pathname !== "/dashboard/config" && 
               location.pathname !== "/dashboard/photosensor" && 
-              location.pathname !== "/dashboard/datacharts") ? 
-              defaultTemplate : configTemplate}
+              location.pathname !== "/dashboard/datacharts") && 
+              defaultTemplate}
+            {/* config selectors , photosensor and datacharts */}
+            {(location.pathname === "/dashboard/config" || 
+              location.pathname === "/dashboard/photosensor" || 
+              location.pathname === "/dashboard/datacharts") && 
+              configTemplate}
             {/* footer */}
             {footerDisplayHelper()}
             {/* routing and passing of data to children */}
