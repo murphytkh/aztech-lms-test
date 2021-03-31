@@ -1,6 +1,6 @@
 import "../resources/css/view-block-lights.css";
 
-import React, {useState, useEffect} from "react";
+import React from "react";
 
 import HeaderIcon from "../resources/view/blocklights-header-icon.svg";
 import Refresh from "../resources/view/blocklights-refresh.svg";
@@ -12,22 +12,6 @@ import Dimmed from "../resources/view/blocklights-dimmed.svg";
 
 function BlockLights(props)
 {
-    const [totalLights, setTotalLights] = useState(null);
-    const [lightsOn, setLightsOn] = useState(null);
-    const [lightsOff, setLightsOff] = useState(null);
-    const [lightsDimmed, setLightsDimmed] = useState(null);
-    const [lightFaults, setLightFaults] = useState(null);
-
-    useEffect(() =>
-    {
-        // simulate getting data
-        setTotalLights(800000);
-        setLightFaults(40);
-        setLightsOn(80000);
-        setLightsOff(1000);
-        setLightsDimmed(7000);
-    }, []);
-
     function handleBlockRefresh()
     {
         console.log("block refresh");
@@ -73,22 +57,23 @@ function BlockLights(props)
             <img alt = "" src = {Off} className = "block-lights-icon" id = "off"></img>
             <img alt = "" src = {Dimmed} className = "block-lights-icon" id = "dimmed"></img>
             {/* section values */}
-            {totalLights && lightsOn && lightsOff && lightsDimmed && lightFaults &&
+            {props.data.get("total") && props.data.get("on") && 
+             props.data.get("off") && props.data.get("dimmed") && props.data.get("faults") &&
                 <div className = "block-lights-values">
                     <div className = "numlights">
-                        <h1>{totalLights.toLocaleString()}</h1>
+                        <h1>{props.data.get("total").toLocaleString()}</h1>
                     </div>
                     <div className = "faults">
-                        <h1>{lightFaults.toLocaleString()}</h1>
+                        <h1>{props.data.get("faults").toLocaleString()}</h1>
                     </div>
                     <div className = "on">
-                        <h1>{lightsOn.toLocaleString()}</h1>
+                        <h1>{props.data.get("on").toLocaleString()}</h1>
                     </div>
                     <div className = "off">
-                        <h1>{lightsOff.toLocaleString()}</h1>
+                        <h1>{props.data.get("off").toLocaleString()}</h1>
                     </div>
                     <div className = "dimmed">
-                        <h1>{lightsDimmed.toLocaleString()}</h1>
+                        <h1>{props.data.get("dimmed").toLocaleString()}</h1>
                     </div>
                 </div>
             }
