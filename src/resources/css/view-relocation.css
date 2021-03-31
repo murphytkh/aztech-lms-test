@@ -20,3 +20,46 @@
 {
     top: 48.274729%;
 }
+
+/* input */
+
+.container#relocation input
+{
+    font-size: max(1.2vw, 17.28px);
+    font-weight: 500;
+    text-align: left;
+    margin-top: 17.5%;
+    padding-left: 4%;
+    padding-right: 4%;
+    width: 82.19%;
+    height: 17.0551603732%;
+}
+
+.container#relocation input::placeholder
+{ 
+    color: #6D6E71;
+    opacity: 0.5;
+    font-size: max(1.2vw, 17.28px);
+    font-weight: 500;
+    text-align: left;
+}
+
+/* cancel and submit buttons */
+
+.container#relocation .btn#cancel
+{
+    background-color: #C6C6C6;
+    top: 81.04982%;
+    left: 18.2%;
+    height: 11.4964%;
+    line-height: 185%;
+}
+
+.container#relocation .btn#submit
+{
+    background-color: #005570;
+    top: 81.04982%;
+    left: 52.3%;
+    height: 11.4964%;
+    line-height: 185%;
+}

@@ -11,6 +11,16 @@ function Relocation(props)
         setLocation(e.target.value);
     }
 
+    function handleCancel()
+    {
+        props.setRelocation();
+    }
+
+    function handleSubmit()
+    {
+        console.log("submit clicked");
+    }
+
     // simulate getting data
     useEffect(() =>
     {
@@ -27,6 +37,17 @@ function Relocation(props)
                     <h1 className = "title">RELOCATION</h1>
                     <h1 className = "subtitle">PLEASE ENTER NEW LOCATION FOR LIGHT</h1>
                 </div>
+                {/* input */}
+                <input
+                    type = "text"
+                    name = "location"
+                    value = {location}
+                    placeholder = {props.name + " - " + props.location}
+                    onChange = {handleChangeLocation}
+                ></input>
+                {/* buttons */}
+                <div className = "btn" id = "cancel" onClick = {handleCancel}>CANCEL</div>
+                <div className = "btn" id = "submit" onClick = {handleSubmit}>SUBMIT</div>
             </div>
         </div>
     );
