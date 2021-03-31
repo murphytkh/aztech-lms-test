@@ -11,14 +11,10 @@ function Relocation(props)
         setLocation(e.target.value);
     }
 
-    function handleCancel()
-    {
-        props.setRelocation();
-    }
-
     function handleSubmit()
     {
-        console.log("submit clicked");
+        props.setRelocation();
+        props.relocate(props.name, location);
     }
 
     // simulate getting data
@@ -46,7 +42,7 @@ function Relocation(props)
                     onChange = {handleChangeLocation}
                 ></input>
                 {/* buttons */}
-                <div className = "btn" id = "cancel" onClick = {handleCancel}>CANCEL</div>
+                <div className = "btn" id = "cancel" onClick = {props.setRelocation}>CANCEL</div>
                 <div className = "btn" id = "submit" onClick = {handleSubmit}>SUBMIT</div>
             </div>
         </div>

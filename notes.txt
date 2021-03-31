@@ -31,7 +31,6 @@ current task:
 - light status - figure out data
 - move data out from components into dashboard view
 - create array updating function in dashboard view
-- deal with relocation popup
 
 list of npm packages installed (other than the
 usual react stuff)
@@ -68,6 +67,19 @@ scrollable dropdownbox:
 ul.dropdown-menu {
     max-height: 500px;
     overflow-y: scroll;
+}
+
+updating state array
+function relocate(name, location)
+{
+    let updatedArray = viewData.map(light =>
+        {
+            if (light.name === name)
+                return {...light, location: location};
+                
+            return light;
+        });
+    setViewData(updatedArray);
 }
 
 missing assets:

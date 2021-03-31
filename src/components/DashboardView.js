@@ -90,7 +90,15 @@ function DashboardView(props)
     // editing data
     function relocate(name, location)
     {
+        let updatedArray = viewData.map(light =>
+            {
+                if (light.name === name)
+                    return {...light, location: location};
 
+                return light;
+            });
+
+        setViewData(updatedArray);
     }
 
     // export button (placeholder for now)
