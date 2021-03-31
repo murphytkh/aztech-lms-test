@@ -2,7 +2,7 @@ import "../resources/css/dashboard-view.css";
 
 import React, {useState, useEffect} from "react";
 
-import {getBlockData, getStatusData} from "./MockAPI";
+import {getBlockData, getActiveLightsData, getStatusData} from "./MockAPI";
 import BlockLights from "./BlockLights";
 import ActiveLights from "./ActiveLights";
 import EnergyConsumption from "./EnergyConsumption";
@@ -19,6 +19,7 @@ function DashboardView(props)
 {
     // store data used in cards
     const [blockData, setBlockData] = useState("");
+    const [activeLightsData, setActiveLightsData] = useState([]);
     const [statusData, setStatusData] = useState([]);
 
     // current light relocation data
@@ -29,6 +30,7 @@ function DashboardView(props)
     {
         // simulate getting data
         setBlockData(getBlockData());
+        setActiveLightsData(getActiveLightsData());
         setStatusData(getStatusData());
     }, []);
 
@@ -67,17 +69,20 @@ function DashboardView(props)
             {props.block ?
                 <div className = "view-page">
                     {/* cards */}
+                    {blockData && 
                     <BlockLights    
                         data = {blockData}
                         location = {props.location}
                         area = {props.area}
                         block = {props.block} 
-                    />
+                    />}
+                    {activeLightsData && 
                     <ActiveLights    
-                        location = {props.location}
-                        area = {props.area}
-                        block = {props.block} 
-                    />
+                       data = {activeLightsData}
+                       location = {props.location}
+                       area = {props.area}
+                       block = {props.block} 
+                    />}
                     <EnergyConsumption    
                         location = {props.location}
                         area = {props.area}

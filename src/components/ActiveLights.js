@@ -1,8 +1,6 @@
 import "../resources/css/view-active-lights.css";
 
-import React, {useState, useEffect} from "react";
-
-import {ActiveLightObject} from "./Utility";
+import React from "react";
 
 import HeaderIcon from "../resources/view/activelights-header-icon.svg";
 import Refresh from "../resources/view/activelights-refresh.svg";
@@ -10,9 +8,7 @@ import Info from "../resources/dashboard/icon-info.svg";
 
 function ActiveLights(props)
 {
-    const [lightData, setLightData] = useState([]);
-
-    const activeLightsList = lightData.map(light =>
+    const activeLightsList = props.data.map(light =>
         <tr key = {light.id}>
             <td className = "id"> {light.id} - {light.detections}</td>
             <td className = "date"> {light.date} </td>
@@ -20,22 +16,6 @@ function ActiveLights(props)
             <td className = "stats"> {light.stats} </td>
         </tr>
     );
-
-    useEffect(() =>
-    {
-        // simulate getting data
-        let light0 = new ActiveLightObject("1.1.2", 1234, "2020-09-01", "12:55:55", "IN PROGRESS");
-        let light1 = new ActiveLightObject("1.1.3", 1234, "2020-09-01", "13:55:55", "IN PROGRESS");
-        let light2 = new ActiveLightObject("1.1.4", 1234, "2020-09-01", "14:55:55", "IN PROGRESS");
-        let light3 = new ActiveLightObject("1.1.5", 1234, "2020-09-01", "15:55:55", "IN PROGRESS");
-        let light4 = new ActiveLightObject("1.1.6", 1234, "2020-09-01", "16:55:55", "IN PROGRESS");
-        let light5 = new ActiveLightObject("1.2.7", 1234, "2020-09-01", "17:55:55", "IN PROGRESS");
-        let light6 = new ActiveLightObject("1.1.8", 1234, "2020-09-01", "18:55:55", "IN PROGRESS");
-        let light7 = new ActiveLightObject("1.1.9", 1234, "2020-09-01", "19:55:55", "IN PROGRESS");
-        let light8 = new ActiveLightObject("1.2.1", 1234, "2020-09-01", "20:55:55", "IN PROGRESS");
-
-        setLightData([light0, light1, light2, light3, light4, light5, light6, light7, light8]);
-    }, []);
 
     function handleActiveRefresh()
     {

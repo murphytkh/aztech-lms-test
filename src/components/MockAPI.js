@@ -1,4 +1,4 @@
-import {NotificationObject, UserObject, LightStatusObject} from "./Utility";
+import {NotificationObject, UserObject, ActiveLightObject, LightStatusObject} from "./Utility";
 
 // hard coded images
 import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png";
@@ -47,6 +47,23 @@ function getBlockData()
     return data;
 }
 
+function getActiveLightsData()
+{
+    var data = [];
+
+    data.push(new ActiveLightObject("1.1.2", 1234, "2020-09-01", "12:55:55", "IN PROGRESS"));
+    data.push(new ActiveLightObject("1.1.3", 1234, "2020-09-01", "13:55:55", "IN PROGRESS"));
+    data.push(new ActiveLightObject("1.1.4", 1234, "2020-09-01", "14:55:55", "IN PROGRESS"));
+    data.push(new ActiveLightObject("1.1.5", 1234, "2020-09-01", "15:55:55", "IN PROGRESS"));
+    data.push(new ActiveLightObject("1.1.6", 1234, "2020-09-01", "16:55:55", "IN PROGRESS"));
+    data.push(new ActiveLightObject("1.2.7", 1234, "2020-09-01", "17:55:55", "IN PROGRESS"));
+    data.push(new ActiveLightObject("1.1.8", 1234, "2020-09-01", "18:55:55", "IN PROGRESS"));
+    data.push(new ActiveLightObject("1.1.9", 1234, "2020-09-01", "19:55:55", "IN PROGRESS"));
+    data.push(new ActiveLightObject("1.2.1", 1234, "2020-09-01", "20:55:55", "IN PROGRESS"));
+
+    return data;
+}
+
 function getStatusData()
 {
     var a = [];
@@ -85,4 +102,5 @@ function getStatusData()
     return a;
 }
 
-export {getNotifications, getVersion, getCurrUser, getUsers, getBlockData, getStatusData};
+export {getNotifications, getVersion, getCurrUser, getUsers, getBlockData, getActiveLightsData,
+        getStatusData};
