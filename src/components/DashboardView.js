@@ -2,9 +2,7 @@ import "../resources/css/dashboard-view.css";
 
 import React, {useState, useEffect} from "react";
 
-import ExportButton from "../resources/view/view-export.svg";
-import Map from "../resources/dashboard/map-sg.png";
-
+import {LightStatusObject} from "./Utility";
 import BlockLights from "./BlockLights";
 import ActiveLights from "./ActiveLights";
 import EnergyConsumption from "./EnergyConsumption";
@@ -14,18 +12,8 @@ import GatewayInfo from "./GatewayInfo";
 import LightStatus from "./LightStatus";
 import Relocation from "./Relocation";
 
-// objects to manage data
-class LightStatusObject
-{
-    constructor(name, location, date, time, status)
-    {
-        this.name = name;
-        this.location = location;
-        this.date = date;
-        this.time = time;
-        this.status = status;
-    }
-}
+import ExportButton from "../resources/view/view-export.svg";
+import Map from "../resources/dashboard/map-sg.png";
 
 function DashboardView(props)
 {
@@ -36,12 +24,9 @@ function DashboardView(props)
     const [currName, setCurrName] = useState("");
     const [currLocation, setCurrLocation] = useState("");
 
-    // relocation pop up
-    //const [relocation, setRelocation] = useState(false);
-
     useEffect(() =>
     {
-        // simulate getting data for lightstatus
+        // simulate getting data
         var a = [];
 
         a.push(new LightStatusObject("1.1.1", "Front row, nearest to HR", "2020-09-01", "17:44:00", "ON"));

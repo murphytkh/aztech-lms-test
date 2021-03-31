@@ -4,10 +4,7 @@ import "../resources/css/dashboard-landing.css";
 import React, {useState, useRef, useEffect} from "react";
 import {useHistory, useLocation} from "react-router-dom";
 
-import Map from "../resources/dashboard/map-sg.png";
-import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png";
-import DefaultUser from "../resources/dashboard/user-profile-default.svg";
-
+import {getCurrUser, getUsers, getNotifications, getVersion} from "./MockAPI";
 import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
@@ -16,30 +13,11 @@ import Sidebar from "./Sidebar";
 import EditProfile from "./EditProfile";
 import RouteManager from "./RouteManager";
 
+import Map from "../resources/dashboard/map-sg.png";
+
 const arrowVar = ">";
 const copyright = "COPYRIGHT © 2020 AZTECH TECHNOLOGIES PTE LTD. ALL RIGHTS RESERVED.";
 const privacy = "PRIVACY POLICY · TERMS & CONDITIONS";
-
-// data objects
-class NotificationObject
-{
-    constructor(title, description, rectify)
-    {
-        this.title = title;
-        this.description = description;
-        this.rectify = rectify;
-    }
-}
-
-class UserObject
-{
-    constructor(name, role, image)
-    {
-        this.name = name;
-        this.role = role;
-        this.image = image;
-    }
-}
 
 function Dashboard(props)
 {
@@ -74,23 +52,10 @@ function Dashboard(props)
     // simulate getting data
     useEffect(() =>
     {
-        let notification0 = new NotificationObject("Alert For Light Offline", 
-                                                   "Light 1.2.8 AC Failure",
-                                                   "true");
-        let notification1 = new NotificationObject("Alert For Light 1.2.7", 
-                                                   "Light 1.2.7 AC Failure",
-                                                   "false");
-        let notification2 = new NotificationObject("Alert For Light 1.2.11", 
-                                                   "Light 1.2.11 AC Failure",
-                                                   "false");
-        let curruser = new UserObject("office_admin", "Project Manager", PlaceholderUser);
-        let user0 = new UserObject("VIOLA CHAN", "Design Manager", DefaultUser);
-        let user1 = new UserObject("MANNMO WONG", "Designer", DefaultUser);
-
-        setVersion("3.0.0");
-        setAlerts([notification0, notification1, notification2]);
-        setCurrUser(curruser);
-        setUserList([user0, user1]);
+        setVersion(getVersion());
+        setAlerts(getNotifications());
+        setCurrUser(getCurrUser());
+        setUserList(getUsers());
     }, []);
 
     function goToPath(path)

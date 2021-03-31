@@ -2,6 +2,7 @@ import "../resources/css/view-activity.css";
 
 import React, {useState, useEffect, useRef} from "react";
 
+import {PageObject} from "./Utility";
 import GenericDropdown from "./GenericDropdown";
 import TableSortButton from "./TableSortButton";
 
@@ -14,18 +15,6 @@ class ActivityObject
     {
         this.user = user;
         this.action = action;
-    }
-}
-
-class PageObject
-{
-    constructor(index, active, value, style, id)
-    {
-        this.index = index;
-        this.active = active;
-        this.value = value;
-        this.style = style;
-        this.id = id;
     }
 }
 

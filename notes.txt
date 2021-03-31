@@ -28,9 +28,7 @@ what in the fucks going on
 current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
-- light status - figure out data
 - move data out from components into dashboard view
-- create array updating function in dashboard view
 
 list of npm packages installed (other than the
 usual react stuff)

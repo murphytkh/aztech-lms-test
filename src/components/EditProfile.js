@@ -2,21 +2,13 @@ import "../resources/css/edit-profile.css";
 
 import React, {useState, useEffect} from "react";
 
+import {UserObject} from "./Utility";
+
 import EditPhoto from "../resources/dashboard/edit-photo.svg";
 import UpArrowIcon from "../resources/dashboard/icon-triangle-up.svg";
 import DownArrowIcon from "../resources/dashboard/icon-triangle-down.svg";
 import EyeIcon from "../resources/dashboard/icon-eye.svg";
 import EyeOffIcon from "../resources/dashboard/icon-eye-off.svg";
-
-class UserObject
-{
-    constructor(name, role, image)
-    {
-        this.name = name;
-        this.role = role;
-        this.image = image;
-    }
-}
 
 function EditProfile(props)
 {

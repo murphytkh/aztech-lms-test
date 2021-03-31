@@ -2,6 +2,7 @@ import "../resources/css/view-status.css";
 
 import React, {useState, useEffect, useRef} from "react";
 
+import {PageObject} from "./Utility";
 import GenericDropdown from "./GenericDropdown";
 import TableSortButton from "./TableSortButton";
 
@@ -9,17 +10,7 @@ import HeaderIcon from "../resources/view/status-header-icon.svg";
 import RefreshIcon from "../resources/dashboard/icon-refresh-black.svg";
 import EditIcon from "../resources/view/status-edit-icon.svg";
 
-class PageObject
-{
-    constructor(index, active, value, style, id)
-    {
-        this.index = index;
-        this.active = active;
-        this.value = value;
-        this.style = style;
-        this.id = id;
-    }
-}
+
 
 function LightStatus(props)
 {

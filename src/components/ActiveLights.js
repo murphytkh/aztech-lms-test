@@ -2,21 +2,11 @@ import "../resources/css/view-active-lights.css";
 
 import React, {useState, useEffect} from "react";
 
+import {ActiveLightObject} from "./Utility";
+
 import HeaderIcon from "../resources/view/activelights-header-icon.svg";
 import Refresh from "../resources/view/activelights-refresh.svg";
 import Info from "../resources/dashboard/icon-info.svg";
-
-class ActiveLightObject
-{
-    constructor(id, detections, date, time, stats)
-    {
-        this.id = id;
-        this.detections = detections;
-        this.date = date;
-        this.time = time;
-        this.stats = stats;
-    }
-}
 
 function ActiveLights(props)
 {
