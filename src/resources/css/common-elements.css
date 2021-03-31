@@ -135,7 +135,9 @@
 
 .pop-up
 {
-    position: absolute;
+    position: fixed;
+    top: 0%;
+    left: 0%;
     width: 100%;
     height: 100%;
 }
@@ -153,7 +155,7 @@
 
 .pop-up .container
 {
-    position: fixed;
+    position: absolute;
     background-color: #FFFFFF;
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 6px;
@@ -197,21 +199,9 @@
 .pop-up input
 {
     color: #005570;
-    font-size: max(0.64vw, 10px);
-    font-weight: 500;
-    text-align: center;
     border: 1px solid #E0E0E0;
     border-radius: 6px;
-    margin-top: 1.5%;
     width: 82.19%;
-    height: 3.5em;
-}
-
-.pop-up .input-top
-{
-    margin-top: 23%;
-    width: 82.19%;
-    height: 6.75%;
 }
 
 .pop-up .arrow
@@ -236,17 +226,6 @@
 .pop-up .arrow#down
 {
     top: 65%;
-}
-
-/* input placeholder */
-
-.pop-up input::placeholder
-{ 
-    color: #6D6E71;
-    font-size: max(0.64vw, 10px);
-    font-weight: 400;
-    opacity: 0.5;
-    text-align: center;
 }
 
 .pop-up .btn

@@ -22,6 +22,11 @@ function Relocation(props)
             {/* relocation card */}
             <div className = "fade" style = {{zIndex: 0}}></div>
             <div className = "container" id = "relocation" style = {{zIndex: 1}}>
+                {/* header */}
+                <div className = "pop-up-header" id = "relocation">
+                    <h1 className = "title">RELOCATION</h1>
+                    <h1 className = "subtitle">PLEASE ENTER NEW LOCATION FOR LIGHT</h1>
+                </div>
             </div>
         </div>
     );

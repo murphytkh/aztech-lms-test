@@ -103,15 +103,6 @@ function DashboardView(props)
         <div>
             {props.block ?
                 <div className = "view-page">
-                    {/* relocation popup */}
-                    {props.relocation && 
-                        <Relocation
-                            setRelocation = {props.setRelocation}
-                            relocate = {relocate}
-                            name = {currName}
-                            location = {currLocation}
-                        />
-                    }
                     {/* cards */}
                     <BlockLights    
                         location = {props.location}
@@ -150,6 +141,15 @@ function DashboardView(props)
                         block = {props.block}
                         relocation = {handleRelocationClick}
                     />
+                    {/* relocation popup - placed below due to css issues */}
+                    {props.relocation && 
+                        <Relocation
+                            setRelocation = {props.setRelocation}
+                            relocate = {relocate}
+                            name = {currName}
+                            location = {currLocation}
+                        />
+                    }
                     {/* export button */}
                     <img 
                         alt = "" 

@@ -1,5 +1,22 @@
 .pop-up .container#relocation
 {
-    height: 65.74%;
+    height: 26.018225%;
     text-align: center;
+}
+
+/* header */
+
+.pop-up-header#relocation
+{
+    height: 35.94306%;
+}
+
+.pop-up-header#relocation h1.title
+{
+    top: 29.707525%;
+} 
+
+.pop-up-header#relocation h1.subtitle
+{
+    top: 48.274729%;
 }
