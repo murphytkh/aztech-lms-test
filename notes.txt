@@ -40,12 +40,12 @@ usual react stuff)
 - recharts
 - react-helmet
 - paho-mqtt
-- custom three (three.js) folder in node_modules
-  - list out exact changes perhaps?
-  - redoing this with react-three-fiber
+- three
+- @react-three/fiber
 
 - don't let calendar card make any changes for now
   - radio buttons will do nothing
+
 - schedule data format (for each light)
   - array of size 12 (4 for each schedule type)
       photosensor
@@ -63,6 +63,12 @@ usual react stuff)
     - end time (string)
     - days active (array of bools)
     - active/inactive (bool)
+
+three scene stuff
+- sphere props used
+  - radius
+
+useful code fragments:
 
 scrollable dropdownbox:
 ul.dropdown-menu {

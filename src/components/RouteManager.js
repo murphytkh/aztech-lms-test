@@ -7,7 +7,8 @@ import DashboardPhotosensor from "./DashboardPhotosensor";
 import DashboardDatacharts from "./DashboardDatacharts";
 import DashboardPlaceholder from "./DashboardPlaceholder";
 import DashboardUserManagement from "./DashboardUserManagement";
-import DashboardAdd from "./DashboardAdd";
+//import DashboardAdd from "./DashboardAdd";
+import ThreeJsScene from "./ThreeJsScene";
 
 // using propss instead of props is a bit of a hack, some name conflict
 // going on here
@@ -74,10 +75,14 @@ function RouteManager(propss)
                                         block = {propss.block}
                                         {...props} />}>
             </Route>
-            <Route 
+            {/*<Route 
                 path = "/dashboard/add" 
                 render = {(props) => <DashboardAdd {...props} />}>
-            </Route>
+            </Route>*/}
+            <Route
+                path = "/dashboard/three"
+                render = {(props) => <ThreeJsScene {...props} />}
+            ></Route>
         </HashRouter>
     );
 }

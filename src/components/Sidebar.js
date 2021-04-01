@@ -120,7 +120,7 @@ function Sidebar(props)
                 ></SidebarIcon>
                 <SidebarIcon 
                     onClick = {handleSidebarButton} 
-                    path = "/dashboard/add" 
+                    path = "/dashboard/three" 
                     default = {Add}
                     active = {AddActive}
                     tooltip = "Add"
