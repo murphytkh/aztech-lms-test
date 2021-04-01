@@ -1,11 +1,12 @@
 import "../resources/css/three-js-scene.css";
 
-import React from "react";
+import React, {Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // three components
-import Sphere from "./three/Sphere";
 import Camera from "./three/Camera";
+import Sphere from "./three/Sphere";
+import Plane from "./three/Plane";
 
 function ThreeJsScene(props)
 {
@@ -16,11 +17,14 @@ function ThreeJsScene(props)
                 {/* camera*/}
                 <Camera />
                 {/* default scene lighting */}
-                <ambientLight />
-                <pointLight position={[10, 10, 10]} />
+                <ambientLight intensity = {0.5} />
+                <directionalLight color = {0xFFFFFF} intensity = {1} />
                 {/* elements */}
-                <Sphere radius = {1} position={[-1.2, 0, 0]} colour = {0x808080} />
-                <Sphere radius = {1} position={[1.2, 0, 0]} colour = {0x808080} />
+                <Sphere radius = {1} position = {[-1.2, 0, 0]} colour = {0x808080} />
+                <Sphere radius = {1} position = {[1.2, 0, 0]} colour = {0x808080} />
+                <Suspense fallback={null}>
+                    <Plane width = {100} height = {71}/>
+                </Suspense>
             </Canvas>
         </div>
     );

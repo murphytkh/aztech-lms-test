@@ -65,5 +65,11 @@ class LightStatusObject
     }
 }
 
+// utility functions
+function Rad(deg)
+{
+    return deg * Math.PI / 180;
+}
+
 export {NotificationObject, PageObject, UserObject, ActiveLightObject, 
-        ActivityObject, LightStatusObject};
+        ActivityObject, LightStatusObject, Rad};

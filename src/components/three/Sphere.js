@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, {useRef, useState} from "react";
 //import {useFrame} from "@react-three/fiber";
 
 function Sphere(props) 
 {
-    const mesh = useRef()
+    const mesh = useRef();
 
     const [hovered, setHover] = useState(false)
     const [active, setActive] = useState(false)
@@ -16,18 +16,18 @@ function Sphere(props)
             {...props}
             ref={mesh}
             // default scale 1
-            scale={1}
+            scale = {1}
             // on click
-            onClick={(event) => setActive(!active)}
+            onClick = {(event) => setActive(!active)}
             // on rollover
-            onPointerOver={(event) => setHover(true)}
+            onPointerOver = {(event) => setHover(true)}
             // on exit
-            onPointerOut={(event) => setHover(false)}
+            onPointerOut = {(event) => setHover(false)}
         >
             {/* radius, width segments, height segments */}
-            <sphereBufferGeometry args={[props.radius, 32, 32]} />
+            <sphereBufferGeometry args = {[props.radius, 32, 32]} />
             {/* colour */}
-            <meshStandardMaterial color={hovered ? "orange" : props.colour} />
+            <meshStandardMaterial color = {hovered ? "orange" : props.colour} />
         </mesh>
     )
 }
