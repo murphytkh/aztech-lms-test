@@ -41,6 +41,7 @@ usual react stuff)
 - react-helmet
 - custom three (three.js) folder in node_modules
   - list out exact changes perhaps?
+  - redoing this with react-three-fiber
 - paho-mqtt
 
 - don't let calendar card make any changes for now
