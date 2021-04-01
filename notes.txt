@@ -67,6 +67,7 @@ usual react stuff)
 three scene stuff
 - sphere props used
   - radius
+  - colour
 
 useful code fragments:
 

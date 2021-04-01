@@ -27,7 +27,7 @@ function Sphere(props)
             {/* radius, width segments, height segments */}
             <sphereBufferGeometry args={[props.radius, 32, 32]} />
             {/* colour */}
-            <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+            <meshStandardMaterial color={hovered ? "orange" : props.colour} />
         </mesh>
     )
 }
