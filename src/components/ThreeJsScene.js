@@ -17,7 +17,6 @@ function ThreeJsScene(props)
                 {/* camera*/}
                 <Camera />
                 {/* default scene lighting */}
-                <ambientLight intensity = {0.5} />
                 <directionalLight color = {0xFFFFFF} intensity = {1} />
                 {/* elements */}
                 <Sphere radius = {1} position = {[-1.2, 0, 0]} colour = {0x808080} />

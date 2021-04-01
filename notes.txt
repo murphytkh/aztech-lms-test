@@ -68,6 +68,9 @@ three scene stuff
 - sphere props used
   - radius
   - colour
+- plane props used
+  - width
+  - height
 
 useful code fragments:
 
