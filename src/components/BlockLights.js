@@ -57,26 +57,23 @@ function BlockLights(props)
             <img alt = "" src = {Off} className = "block-lights-icon" id = "off"></img>
             <img alt = "" src = {Dimmed} className = "block-lights-icon" id = "dimmed"></img>
             {/* section values */}
-            {props.data.get("total") && props.data.get("on") && 
-             props.data.get("off") && props.data.get("dimmed") && props.data.get("faults") &&
-                <div className = "block-lights-values">
-                    <div className = "numlights">
-                        <h1>{props.data.get("total").toLocaleString()}</h1>
-                    </div>
-                    <div className = "faults">
-                        <h1>{props.data.get("faults").toLocaleString()}</h1>
-                    </div>
-                    <div className = "on">
-                        <h1>{props.data.get("on").toLocaleString()}</h1>
-                    </div>
-                    <div className = "off">
-                        <h1>{props.data.get("off").toLocaleString()}</h1>
-                    </div>
-                    <div className = "dimmed">
-                        <h1>{props.data.get("dimmed").toLocaleString()}</h1>
-                    </div>
+            <div className = "block-lights-values">
+                <div className = "numlights">
+                    <h1>{props.data.get("total").toLocaleString()}</h1>
                 </div>
-            }
+                <div className = "faults">
+                    <h1>{props.data.get("faults").toLocaleString()}</h1>
+                </div>
+                <div className = "on">
+                    <h1>{props.data.get("on").toLocaleString()}</h1>
+                </div>
+                <div className = "off">
+                    <h1>{props.data.get("off").toLocaleString()}</h1>
+                </div>
+                <div className = "dimmed">
+                    <h1>{props.data.get("dimmed").toLocaleString()}</h1>
+                </div>
+            </div>
         </div>
     );
 }

@@ -44,6 +44,15 @@ class ActiveLightObject
     }
 }
 
+class ActivityObject
+{
+    constructor(user, action)
+    {
+        this.user = user;
+        this.action = action;
+    }
+}
+
 class LightStatusObject
 {
     constructor(name, location, date, time, status)
@@ -56,4 +65,5 @@ class LightStatusObject
     }
 }
 
-export {NotificationObject, PageObject, UserObject, ActiveLightObject, LightStatusObject};
+export {NotificationObject, PageObject, UserObject, ActiveLightObject, 
+        ActivityObject, LightStatusObject};

@@ -1,4 +1,5 @@
-import {NotificationObject, UserObject, ActiveLightObject, LightStatusObject} from "./Utility";
+import {NotificationObject, UserObject, ActiveLightObject, LightStatusObject,
+        ActivityObject} from "./Utility";
 
 // hard coded images
 import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png";
@@ -64,6 +65,145 @@ function getActiveLightsData()
     return data;
 }
 
+function getEnergyData()
+{
+    const data0 = [
+        {t: 59400, Present: 0.02},
+        {t: 73800, Present: 0.035},
+        {t: 88200, Present: 0.025},
+        {t: 102600, Present: 0.042},
+        {t: 117000, Present: 0.078},
+        {t: 131400, Present: 0.07},
+        {t: 145800, Present: 0.06},
+    ];
+    
+    const data1 = [
+        {t: 59400, Past: 0.005},
+        {t: 73800, Past: 0.019},
+        {t: 88200, Past: 0.018},
+        {t: 102600, Past: 0.021},
+        {t: 117000, Past: 0.017},
+        {t: 131400, Past: 0.042},
+        {t: 145800, Past: 0.048},
+    ];
+
+    const data2 = [
+        {t: 1, Present: 0.29},
+        {t: 2, Present: 0.31},
+        {t: 3, Present: 0.19},
+        {t: 4, Present: 0.39},
+        {t: 5, Present: 0.35},
+    ];
+
+    const data3 = [
+        {t: 1, Past: 0.25},
+        {t: 2, Past: 0.31},
+        {t: 3, Past: 0.29},
+        {t: 4, Past: 0.23},
+        {t: 5, Past: 0.17},
+    ];
+
+    const data4 = [
+        {t: 1, Present: 1.9},
+        {t: 2, Present: 2.34},
+        {t: 3, Present: 2.18},
+        {t: 4, Present: 2.45},
+    ];
+
+    const data5 = [
+        {t: 1, Past: 2.6},
+        {t: 2, Past: 2.5},
+        {t: 3, Past: 1.79},
+        {t: 4, Past: 2.22},
+    ];
+
+    const data6 = [
+        {t: 1, Present: 8.79},
+        {t: 2, Present: 6.98},
+        {t: 3, Present: 7.12},
+        {t: 4, Present: 7.89},
+        {t: 5, Present: 8.3},
+        {t: 6, Present: 8.01},
+        {t: 7, Present: 7.5},
+        {t: 8, Present: 7.68},
+        {t: 9, Present: 7.48},
+        {t: 10, Present: 6.54},
+        {t: 11, Present: 9.3},
+        {t: 12, Present: 8.87},
+    ];
+
+    const data7 = [
+        {t: 1, Past: 7.45},
+        {t: 2, Past: 7.5},
+        {t: 3, Past: 7.32},
+        {t: 4, Past: 6.89},
+        {t: 5, Past: 8.72},
+        {t: 6, Past: 8.21},
+        {t: 7, Past: 9.02},
+        {t: 8, Past: 9.1},
+        {t: 9, Past: 7.923},
+        {t: 10, Past: 6.89},
+        {t: 11, Past: 6.93},
+        {t: 12, Past: 8.64},
+    ];
+
+    const data8 = [
+        {t: 1, Present: 79.98},
+        {t: 2, Present: 90.273},
+        {t: 3, Present: 85.46},
+    ];
+
+    const data9 = [
+        {t: 1, Past: 85.23},
+        {t: 2, Past: 92.21},
+        {t: 3, Past: 89.59},
+    ];
+
+    return([data0, data1, data2, data3, data4, data5, data6, data7, data8, data9]);
+}
+
+function getActivityData()
+{
+    var a = [];
+
+    a.push(new ActivityObject("1.2.1 - 9463", "2020-09-01"));
+    a.push(new ActivityObject("1.1.1 - 4120", "2020-09-02"));
+    a.push(new ActivityObject("1.1.5 - 4098", "2020-09-03"));
+    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-04"));
+    a.push(new ActivityObject("1.1.2 - 3697", "2020-09-05"));
+    a.push(new ActivityObject("1.2.1 - 9463", "2020-09-06"));
+    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-07"));
+    a.push(new ActivityObject("1.1.2 - 9463", "2020-09-08"));
+    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-09"));
+    a.push(new ActivityObject("1.1.2 - 3697", "2020-09-10"));
+    a.push(new ActivityObject("1.1.3 - 3697", "2020-09-11"));
+    a.push(new ActivityObject("1.1.7 - 3697", "2020-09-12"));
+    a.push(new ActivityObject("1.2.1 - 9463", "2020-09-13"));
+    a.push(new ActivityObject("1.1.1 - 4120", "2020-09-14"));
+    a.push(new ActivityObject("1.1.5 - 4098", "2020-09-15"));
+    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-16"));
+    a.push(new ActivityObject("1.1.2 - 3697", "2020-09-17"));
+    a.push(new ActivityObject("1.2.1 - 9463", "2020-09-18"));
+    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-19"));
+    a.push(new ActivityObject("1.1.2 - 9463", "2020-09-20"));
+    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-21"));
+    a.push(new ActivityObject("1.1.2 - 3697", "2020-09-22"));
+    a.push(new ActivityObject("1.1.3 - 3697", "2020-09-23"));
+    a.push(new ActivityObject("1.1.7 - 3697", "2020-09-24"));
+    // 24
+
+    // + 40
+    for (var i = 0; i < 40; ++i)
+        a.push(new ActivityObject("1.3." + i.toString() + " - 9999", "2020-09-25"));
+
+    return a;
+}
+
+function getGatewayData()
+{
+    return "{“lpAddress”:{“wlp2s0”:”192.168.1.188”,”lo”:”127.0.0.1”}}";
+}
+
 function getStatusData()
 {
     var a = [];
@@ -103,4 +243,4 @@ function getStatusData()
 }
 
 export {getNotifications, getVersion, getCurrUser, getUsers, getBlockData, getActiveLightsData,
-        getStatusData};
+        getEnergyData, getActivityData, getGatewayData, getStatusData};

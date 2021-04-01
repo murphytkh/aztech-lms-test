@@ -2,7 +2,8 @@ import "../resources/css/dashboard-view.css";
 
 import React, {useState, useEffect} from "react";
 
-import {getBlockData, getActiveLightsData, getStatusData} from "./MockAPI";
+import {getBlockData, getActiveLightsData, getEnergyData, getStatusData,
+        getActivityData, getGatewayData} from "./MockAPI";
 import BlockLights from "./BlockLights";
 import ActiveLights from "./ActiveLights";
 import EnergyConsumption from "./EnergyConsumption";
@@ -18,9 +19,12 @@ import Map from "../resources/dashboard/map-sg.png";
 function DashboardView(props)
 {
     // store data used in cards
-    const [blockData, setBlockData] = useState("");
-    const [activeLightsData, setActiveLightsData] = useState([]);
-    const [statusData, setStatusData] = useState([]);
+    const [blockData, setBlockData] = useState(null);
+    const [activeLightsData, setActiveLightsData] = useState(null);
+    const [energyData, setEnergyData] = useState(null);
+    const [activityData, setActivityData] = useState(null);
+    const [gatewayData, setGatewayData] = useState(null);
+    const [statusData, setStatusData] = useState(null);
 
     // current light relocation data
     const [currName, setCurrName] = useState("");
@@ -31,6 +35,9 @@ function DashboardView(props)
         // simulate getting data
         setBlockData(getBlockData());
         setActiveLightsData(getActiveLightsData());
+        setEnergyData(getEnergyData());
+        setActivityData(getActivityData());
+        setGatewayData(getGatewayData());
         setStatusData(getStatusData());
     }, []);
 
@@ -83,33 +90,40 @@ function DashboardView(props)
                        area = {props.area}
                        block = {props.block} 
                     />}
-                    <EnergyConsumption    
+                    {energyData &&
+                    <EnergyConsumption
+                        data = {energyData}
+                        location = {props.location}
+                        area = {props.area}
+                        block = {props.block}
+                    />}
+                    <LightControl
                         location = {props.location}
                         area = {props.area}
                         block = {props.block} 
                     />
-                    <LightControl    
+                    {activityData &&
+                    <ActivityLog
+                        data = {activityData}
                         location = {props.location}
                         area = {props.area}
                         block = {props.block} 
-                    />
-                    <ActivityLog    
+                    />}
+                    {gatewayData &&
+                    <GatewayInfo
+                        data = {gatewayData}
                         location = {props.location}
                         area = {props.area}
                         block = {props.block} 
-                    />
-                    <GatewayInfo    
-                        location = {props.location}
-                        area = {props.area}
-                        block = {props.block} 
-                    />
+                    />}
+                    {statusData &&
                     <LightStatus
                         data = {statusData}
                         location = {props.location}
                         area = {props.area}
                         block = {props.block}
                         relocation = {handleRelocationClick}
-                    />
+                    />}
                     {/* relocation popup - placed below due to css issues */}
                     {props.relocation && 
                         <Relocation

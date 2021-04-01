@@ -48,16 +48,14 @@ function ActiveLights(props)
                 ></img>
             </div>
             {/* table */}
-            {activeLightsList && 
-                <div className = "active-lights-table">
-                    <h1 className = "detections">DETECTIONS</h1>
-                    <h1 className = "date">DATE</h1>
-                    <h1 className = "time">TIME</h1>
-                    <h1 className = "stats">STATS</h1>
-                    <div className = "table-divider"></div>
-                    <table><tbody>{activeLightsList}</tbody></table>
-                </div>
-            }
+            <div className = "active-lights-table">
+                <h1 className = "detections">DETECTIONS</h1>
+                <h1 className = "date">DATE</h1>
+                <h1 className = "time">TIME</h1>
+                <h1 className = "stats">STATS</h1>
+                <div className = "table-divider"></div>
+                <table><tbody>{activeLightsList}</tbody></table>
+            </div>
         </div>
     );
 }

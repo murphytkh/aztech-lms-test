@@ -29,6 +29,7 @@ current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
 - move data out from components into dashboard view
+- create production build after this is done
 
 list of npm packages installed (other than the
 usual react stuff)
@@ -40,6 +41,7 @@ usual react stuff)
 - react-helmet
 - custom three (three.js) folder in node_modules
   - list out exact changes perhaps?
+- paho-mqtt
 
 - don't let calendar card make any changes for now
   - radio buttons will do nothing

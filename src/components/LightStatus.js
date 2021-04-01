@@ -53,7 +53,8 @@ function LightStatus(props)
     }
     // display table elements
     let lightStatusList = props.data.length &&
-    props.data.sort(sortTypes[sortingMode])
+        [].concat(props.data)
+        .sort(sortTypes[sortingMode])
         .slice(currentPage * 10, (currentPage + 1) * 10)
         .map(lightStatus =>
             <tr key = {lightStatus.name}>
@@ -189,62 +190,57 @@ function LightStatus(props)
             </div>
             {/* table */}
             {/* 0 - no arrows 1 - up 2 - down */}
-            {lightStatusList &&
-                <div className = "status-table-container">
-                    {/* headers and buttons */}
-                    <div  className = "status-table-header" id = "name" onClick = {handleNameClick}>
-                        <TableSortButton
-                            onClick = {handleNameClick}
-                            sort = {sortingMode === "name_descending" ? 2 : 
-                                    (sortingMode === "name_ascending" ? 1 : 0)}
-                        />
-                        LIGHT
-                    </div>
-                    <div  className = "status-table-header" id = "date" onClick = {handleDateClick}>
-
-                        <TableSortButton
-                            onClick = {handleDateClick}
-                            sort = {sortingMode === "date_descending" ? 2 : 
-                                    (sortingMode === "date_ascending" ? 1 : 0)}
-                        />
-                        LAST RESPONSE DATE
-                    </div>
-                    <div  className = "status-table-header" id = "time" onClick = {handleTimeClick}>
-
-                        <TableSortButton
-                            onClick = {handleTimeClick}
-                            sort = {sortingMode === "time_descending" ? 2 : 
-                                    (sortingMode === "time_ascending" ? 1 : 0)}
-                        />
-                        LAST RESPONSE TIME
-                    </div>
-                    <div  className = "status-table-header" id = "status" onClick = {handleStatusClick}>
-
-                        <TableSortButton
-                            onClick = {handleStatusClick}
-                            sort = {sortingMode === "status_descending" ? 2 : 
-                                    (sortingMode === "status_ascending" ? 1 : 0)}
-                        />
-                        STATUS
-                    </div>
-                    <div className = "status-table-divider" id = "divider0"></div>
-                    {/* table object */}
-                    <table className = "status-table">
-                        <tbody>
-                            {lightStatusList}
-                        </tbody>
-                    </table>
-                    <div className = "status-table-divider" id = "divider1"></div>
-                    {/* pagination */}
-                    <div className = "status-bottomtext">
-                        Showing {currentPage * 10 + 1} {" "}
-                        to {" "}
-                        {currentPage === lastPage ? displayLength : (currentPage + 1) * 10} {" "}
-                        of {" "}
-                        {displayLength} entries
-                    </div>
-                </div>                
-            }
+            <div className = "status-table-container">
+                {/* headers and buttons */}
+                <div  className = "status-table-header" id = "name" onClick = {handleNameClick}>
+                    <TableSortButton
+                        onClick = {handleNameClick}
+                        sort = {sortingMode === "name_descending" ? 2 : 
+                                (sortingMode === "name_ascending" ? 1 : 0)}
+                    />
+                    LIGHT
+                </div>
+                <div  className = "status-table-header" id = "date" onClick = {handleDateClick}>
+                    <TableSortButton
+                        onClick = {handleDateClick}
+                        sort = {sortingMode === "date_descending" ? 2 : 
+                                (sortingMode === "date_ascending" ? 1 : 0)}
+                    />
+                    LAST RESPONSE DATE
+                </div>
+                <div  className = "status-table-header" id = "time" onClick = {handleTimeClick}>
+                    <TableSortButton
+                        onClick = {handleTimeClick}
+                        sort = {sortingMode === "time_descending" ? 2 : 
+                                (sortingMode === "time_ascending" ? 1 : 0)}
+                    />
+                    LAST RESPONSE TIME
+                </div>
+                <div  className = "status-table-header" id = "status" onClick = {handleStatusClick}>
+                    <TableSortButton
+                        onClick = {handleStatusClick}
+                        sort = {sortingMode === "status_descending" ? 2 : 
+                                (sortingMode === "status_ascending" ? 1 : 0)}
+                    />
+                    STATUS
+                </div>
+                <div className = "status-table-divider" id = "divider0"></div>
+                {/* table object */}
+                <table className = "status-table">
+                    <tbody>
+                        {lightStatusList}
+                    </tbody>
+                </table>
+                <div className = "status-table-divider" id = "divider1"></div>
+                {/* pagination */}
+                <div className = "status-bottomtext">
+                    Showing {currentPage * 10 + 1} {" "}
+                    to {" "}
+                    {currentPage === lastPage ? displayLength : (currentPage + 1) * 10} {" "}
+                    of {" "}
+                    {displayLength} entries
+                </div>
+            </div>                
             {/* buttons */}
             <div className = "pagination-container" id = "status">
                 <div 

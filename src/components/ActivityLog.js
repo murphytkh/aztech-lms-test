@@ -9,15 +9,6 @@ import TableSortButton from "./TableSortButton";
 import HeaderIcon from "../resources/view/activity-header-icon.svg";
 import RefreshIcon from "../resources/dashboard/icon-refresh-black.svg";
 
-class ActivityObject
-{
-    constructor(user, action)
-    {
-        this.user = user;
-        this.action = action;
-    }
-}
-
 function ActivityLog(props)
 {
     const sortTypes = 
@@ -33,12 +24,11 @@ function ActivityLog(props)
     const [sortingMode, setSortingMode] = useState("user_descending");
     const [currentPage, setCurrentPage] = useState(0);
     const [lastPage, setLastPage] = useState(0);
-
-    const [activityData, setActivityData] = useState([]);
     const [displayLength, setDisplayLength] = useState([]);
 
-    let activityList = activityData.length && 
-        activityData.sort(sortTypes[sortingMode])
+    let activityList = props.data.length && 
+        [].concat(props.data)
+        .sort(sortTypes[sortingMode])
         .slice(currentPage * 10, (currentPage + 1) * 10)
         .map(activity =>
         <tr key = {activity.user + activity.action}>
@@ -76,42 +66,9 @@ function ActivityLog(props)
     useEffect(() =>
     {
         // simulate getting data
-        var a = [];
-
-        a.push(new ActivityObject("1.2.1 - 9463", "2020-09-01"));
-        a.push(new ActivityObject("1.1.1 - 4120", "2020-09-02"));
-        a.push(new ActivityObject("1.1.5 - 4098", "2020-09-03"));
-        a.push(new ActivityObject("1.1.8 - 3955", "2020-09-04"));
-        a.push(new ActivityObject("1.1.2 - 3697", "2020-09-05"));
-        a.push(new ActivityObject("1.2.1 - 9463", "2020-09-06"));
-        a.push(new ActivityObject("1.1.8 - 3955", "2020-09-07"));
-        a.push(new ActivityObject("1.1.2 - 9463", "2020-09-08"));
-        a.push(new ActivityObject("1.1.8 - 3955", "2020-09-09"));
-        a.push(new ActivityObject("1.1.2 - 3697", "2020-09-10"));
-        a.push(new ActivityObject("1.1.3 - 3697", "2020-09-11"));
-        a.push(new ActivityObject("1.1.7 - 3697", "2020-09-12"));
-        a.push(new ActivityObject("1.2.1 - 9463", "2020-09-13"));
-        a.push(new ActivityObject("1.1.1 - 4120", "2020-09-14"));
-        a.push(new ActivityObject("1.1.5 - 4098", "2020-09-15"));
-        a.push(new ActivityObject("1.1.8 - 3955", "2020-09-16"));
-        a.push(new ActivityObject("1.1.2 - 3697", "2020-09-17"));
-        a.push(new ActivityObject("1.2.1 - 9463", "2020-09-18"));
-        a.push(new ActivityObject("1.1.8 - 3955", "2020-09-19"));
-        a.push(new ActivityObject("1.1.2 - 9463", "2020-09-20"));
-        a.push(new ActivityObject("1.1.8 - 3955", "2020-09-21"));
-        a.push(new ActivityObject("1.1.2 - 3697", "2020-09-22"));
-        a.push(new ActivityObject("1.1.3 - 3697", "2020-09-23"));
-        a.push(new ActivityObject("1.1.7 - 3697", "2020-09-24"));
-        // 24
-
-        // + 40
-        for (var i = 0; i < 40; ++i)
-            a.push(new ActivityObject("1.3." + i.toString() + " - 9999", "2020-09-25"));
-
-        setActivityData(a);
-        setDisplayLength(a.length < 10 ? a.length : 10);
+        setDisplayLength(props.data.length < 10 ? props.data.length : 10);
         setLastPage(0);
-    }, []);
+    }, [props.data.length]);
 
     function handleActivityLogRefresh()
     {
@@ -121,8 +78,8 @@ function ActivityLog(props)
     function handleSelectOption(option)
     {
         var len;
-        if (option === "ALL" || parseInt(option) > activityData.length)
-            len = activityData.length;
+        if (option === "ALL" || parseInt(option) > props.data.length)
+            len = props.data.length;
         else
             len = option;
         setDisplayLength(len);
@@ -189,39 +146,37 @@ function ActivityLog(props)
             </div>
             {/* table */}
             {/* 0 - no arrows 1 - up 2 - down */}
-            {activityList &&
-                <div className = "activity-table-container">
-                    {/* headers and buttons */}
-                    <div className = "activity-table-header" id = "user" onClick = {handleUserClick}>
-                        <TableSortButton 
-                            onClick = {handleUserClick} 
-                            sort = {sortingMode === "user_descending" ? 2 : (sortingMode === "user_ascending" ? 1 : 0)}
-                        />
-                        USER
-                    </div>
-                    <div className = "activity-table-header" id = "action" onClick = {handleActionClick}>
-                        <TableSortButton 
-                            onClick = {handleActionClick}
-                            sort = {sortingMode === "action_descending" ? 2 : (sortingMode === "action_ascending" ? 1 : 0)}
-                        />
-                        ACTION
-                    </div>
-                    <div className = "activity-table-divider" id = "divider0"></div>
-                    {/* table object */}
-                    <table className = "activity-table">
-                        <tbody>{activityList}</tbody>
-                    </table>
-                    <div className = "activity-table-divider" id = "divider1"></div>
-                    {/* pagination */}
-                    <div className = "activity-bottomtext">
-                        Showing {currentPage * 10 + 1} {" "}
-                        to {" "}
-                        {currentPage === lastPage ? displayLength : (currentPage + 1) * 10} {" "}
-                        of {" "}
-                        {displayLength} entries
-                    </div>
+            <div className = "activity-table-container">
+                {/* headers and buttons */}
+                <div className = "activity-table-header" id = "user" onClick = {handleUserClick}>
+                    <TableSortButton 
+                        onClick = {handleUserClick} 
+                        sort = {sortingMode === "user_descending" ? 2 : (sortingMode === "user_ascending" ? 1 : 0)}
+                    />
+                    USER
                 </div>
-            }
+                <div className = "activity-table-header" id = "action" onClick = {handleActionClick}>
+                    <TableSortButton 
+                        onClick = {handleActionClick}
+                        sort = {sortingMode === "action_descending" ? 2 : (sortingMode === "action_ascending" ? 1 : 0)}
+                    />
+                    ACTION
+                </div>
+                <div className = "activity-table-divider" id = "divider0"></div>
+                {/* table object */}
+                <table className = "activity-table">
+                    <tbody>{activityList}</tbody>
+                </table>
+                <div className = "activity-table-divider" id = "divider1"></div>
+                {/* pagination */}
+                <div className = "activity-bottomtext">
+                    Showing {currentPage * 10 + 1} {" "}
+                    to {" "}
+                    {currentPage === lastPage ? displayLength : (currentPage + 1) * 10} {" "}
+                    of {" "}
+                    {displayLength} entries
+                </div>
+            </div>
             {/* buttons */}
             <div className = "pagination-container" id = "activity">
                 <div 
