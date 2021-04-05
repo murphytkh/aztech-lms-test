@@ -68,24 +68,17 @@ function ThreeJsScene(props)
         <div className = "three-scene-page">
             {/* ui elements */}
             <div className = "three-btn-container">
-                <div className = "btn" onClick = {toggleAdd}>
-                    {addMode ? "ADD" : "VIEW"}
-                </div>
-                <div className = "btn" onClick = {togglePlaceholder}>
-                    {phMode ? "TEST1" : "TEST0"}
-                </div>
-                <div className = "btn" onClick = {toggleAdd}>
-                    QWE
-                </div>
+                <div onClick = {toggleAdd}>{addMode ? "ADD" : "VIEW"}</div>
+                <div onClick = {togglePlaceholder}>{phMode ? "TEST1" : "TEST0"}</div>
+                <div onClick = {toggleAdd}>QWE</div>
             </div>
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
-                <Camera />
+                <Camera controlsEnabled = {!addMode} />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}
                 <directionalLight color = {0xFFFFFF} intensity = {1.5} />
                 {/* elements */}
-                {lights}
                 <Suspense fallback={null}>
                     <Plane 
                         ref = {planeRef} 
@@ -94,6 +87,7 @@ function ThreeJsScene(props)
                         onClick = {handlePlaneClick}
                     />
                 </Suspense>
+                {lights}
             </Canvas>
         </div>
     );

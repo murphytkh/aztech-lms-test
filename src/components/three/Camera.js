@@ -1,19 +1,27 @@
 import React, {useEffect, useState} from "react";
 import * as THREE from "three";
-import {useThree} from "@react-three/fiber";
+import {useFrame, useThree} from "@react-three/fiber";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
 import {Rad} from "../Utility";
+
+let controls;
 
 const Camera = React.forwardRef((props, ref) => 
 {
     // get default elements from scene
     const {camera, gl} = useThree();
 
+    useFrame(() =>
+    {
+        if (controls)
+            controls.enabled = props.controlsEnabled;
+    });
+
     // initialise camera
     useEffect(() =>
     {
-        const controls = new OrbitControls(camera, gl.domElement);
+        controls = new OrbitControls(camera, gl.domElement);
         controls.mouseButtons ={LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.ROTATE};
         controls.enableDamping = false;
         // camera properties
