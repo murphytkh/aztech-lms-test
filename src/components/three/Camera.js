@@ -1,11 +1,11 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import * as THREE from "three";
 import {useThree} from "@react-three/fiber";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
 import {Rad} from "../Utility";
 
-function Camera(props)
+const Camera = React.forwardRef((props, ref) => 
 {
     // get default elements from scene
     const {camera, gl} = useThree();
@@ -38,6 +38,6 @@ function Camera(props)
     }, [camera, gl]);
 
     return null;
-}
+});
 
 export default Camera;

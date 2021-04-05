@@ -1,11 +1,12 @@
 import "../resources/css/three-js-scene.css";
 
-import React, {useState, useEffect, Suspense} from "react";
-import {Canvas} from "@react-three/fiber";
-import {Rad} from "./Utility";
+import React, {useState, useEffect, createRef, Suspense} from "react";
+import * as THREE from "three";
+import {useThree, Canvas} from "@react-three/fiber";
 
 // three components
 import Camera from "./three/Camera";
+import RaycastManager from "./three/RaycastManager";
 import Sphere from "./three/Sphere";
 import Plane from "./three/Plane";
 
@@ -16,7 +17,7 @@ function ThreeJsScene(props)
     const [phMode, setPhMode] = useState(false);
 
     // element refs
-    const planeRef = React.createRef();
+    const planeRef = createRef();
 
     // data
     const [lightPos, setLightPos] = useState("");
@@ -57,17 +58,20 @@ function ThreeJsScene(props)
                 <div className = "btn" onClick = {togglePlaceholder}>
                     {phMode ? "TEST1" : "TEST0"}
                 </div>
+                <div className = "btn" onClick = {toggleAdd}>
+                    QWE
+                </div>
             </div>
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
-                {/* camera*/}
                 <Camera />
+                <RaycastManager plane = {planeRef} />
                 {/* default scene lighting */}
                 <directionalLight color = {0xFFFFFF} intensity = {1.5} />
                 {/* elements */}
                 {lights}
                 <Suspense fallback={null}>
-                    <Plane ref = {planeRef} width = {100} height = {71}/>
+                    <Plane ref = {planeRef} width = {100} height = {71} />
                 </Suspense>
             </Canvas>
         </div>

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, forwardRef} from "react";
 import * as THREE from "three";
 import {useLoader} from "@react-three/fiber";
 
@@ -6,7 +6,7 @@ import {Rad} from "../Utility";
 
 import floorImg from "../../resources/three/c1basement1.png";
 
-const Plane = React.forwardRef((props, ref) => 
+const Plane = forwardRef((props, ref) => 
 {
     const img = useLoader(THREE.TextureLoader, floorImg);
 
