@@ -10,10 +10,6 @@ const Camera = React.forwardRef((props, ref) =>
     // get default elements from scene
     const {camera, gl} = useThree();
 
-    // camera parameters
-    const [minPan, setMinPan] = useState("");
-    const [maxPan, setMaxPan] = useState("");
-
     // initialise camera
     useEffect(() =>
     {
@@ -27,13 +23,11 @@ const Camera = React.forwardRef((props, ref) =>
         // camera initial facing
         controls.target.set(0.0, 0.0, 0.0);
         camera.position.set(0.0, 45.4, 0.0);
-        controls.update();
-        // limit camera panning
-        setMinPan(new THREE.Vector3(-40.0, -40.0, -20.0));
-        setMaxPan(new THREE.Vector3(40.0, 40.0, 20.0));
         // limit camera zoom
         controls.minDistance = 5.0;
         controls.maxDistance = 45.4;
+        controls.update();
+        
         return() => {controls.dispose();};
     }, [camera, gl]);
 
