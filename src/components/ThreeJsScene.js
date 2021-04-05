@@ -20,19 +20,19 @@ function ThreeJsScene(props)
     const planeRef = createRef();
 
     // data
-    const [lightPos, setLightPos] = useState("");
-
+    const [lightPos, setLightPos] = useState([]);
+    const [currPoint, setCurrPoint] = useState([]);
     // array of light positions
     let lights = lightPos.length && lightPos.map((obj, i) =>
-        <Sphere key = {i} radius = {0.5} position = {[obj[0], obj[1], 0]} colour = {0x808080} />
+        <Sphere key = {i} radius = {0.5} position = {[obj[0], 0, obj[1]]} colour = {0x808080} />
     );
 
     // simulate getting light positions (move to MockAPI later)
     useEffect(() =>
     {
         var tmp = [];
-        tmp.push([-1.2, 0]);
-        tmp.push([1.2, 0]);
+        //tmp.push([-1.2, 0]);
+        //tmp.push([1.2, 0]);
 
         setLightPos(tmp);
     }, []);
@@ -46,6 +46,22 @@ function ThreeJsScene(props)
     function togglePlaceholder()
     {
         setPhMode(!phMode);
+    }
+
+    // ui events
+    function setPoint(x, y)
+    {
+        setCurrPoint([x, y]);
+    }
+
+    function handlePlaneClick()
+    {
+        if (addMode)
+        {
+            var arr = [...lightPos];
+            arr.push(currPoint);
+            setLightPos(arr);
+        }
     }
 
     return(
@@ -65,13 +81,18 @@ function ThreeJsScene(props)
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
                 <Camera />
-                <RaycastManager plane = {planeRef} />
+                <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}
                 <directionalLight color = {0xFFFFFF} intensity = {1.5} />
                 {/* elements */}
                 {lights}
                 <Suspense fallback={null}>
-                    <Plane ref = {planeRef} width = {100} height = {71} />
+                    <Plane 
+                        ref = {planeRef} 
+                        width = {100} 
+                        height = {71}
+                        onClick = {handlePlaneClick}
+                    />
                 </Suspense>
             </Canvas>
         </div>
