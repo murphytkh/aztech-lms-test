@@ -75,12 +75,13 @@ three scene stuff
 useful code fragments:
 
 scrollable dropdownbox:
-ul.dropdown-menu {
+ul.dropdown-menu 
+{
     max-height: 500px;
     overflow-y: scroll;
 }
 
-updating state array
+updating state array:
 function relocate(name, location)
 {
     let updatedArray = viewData.map(light =>
