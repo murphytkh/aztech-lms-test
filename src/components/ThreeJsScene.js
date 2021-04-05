@@ -2,6 +2,7 @@ import "../resources/css/three-js-scene.css";
 
 import React, {useState, useEffect, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
+import {Rad} from "./Utility";
 
 // three components
 import Camera from "./three/Camera";
@@ -13,6 +14,9 @@ function ThreeJsScene(props)
     // ui states
     const [addMode, setAddMode] = useState(false);
     const [phMode, setPhMode] = useState(false);
+
+    // element refs
+    const planeRef = React.createRef();
 
     // data
     const [lightPos, setLightPos] = useState("");
@@ -63,7 +67,7 @@ function ThreeJsScene(props)
                 {/* elements */}
                 {lights}
                 <Suspense fallback={null}>
-                    <Plane width = {100} height = {71}/>
+                    <Plane ref = {planeRef} width = {100} height = {71}/>
                 </Suspense>
             </Canvas>
         </div>
