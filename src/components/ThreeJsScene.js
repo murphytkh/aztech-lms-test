@@ -107,10 +107,7 @@ function ThreeJsScene(props)
 
     return(
         // prevent right click context menu
-        <div 
-            className = "three-scene-page" 
-            onContextMenu = {(e) => e.preventDefault()}
-        >
+        <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
             {/* ui elements */}
             <div className = "three-btn-container">
                 <div onClick = {toggleAdd}>{addMode ? "ADD" : "VIEW"}</div>
