@@ -10,11 +10,11 @@ let controls;
 const Camera = React.forwardRef((props, ref) => 
 {
     // get default elements from scene
-    const {camera, gl} = useThree();
+    const {camera, gl, events} = useThree();
 
     function ResetCamera()
     {
-        
+
     }
 
     useFrame(() =>

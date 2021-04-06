@@ -28,8 +28,11 @@ what in the fucks going on
 current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
-- move data out from components into dashboard view
-- create production build after this is done
+- deal with input (both mouse and keyboard)
+  for three.js scene
+    - separate input manager to be accessed by
+      individual components?
+    - input handled by ThreeJsScene component?
 
 list of npm packages installed (other than the
 usual react stuff)

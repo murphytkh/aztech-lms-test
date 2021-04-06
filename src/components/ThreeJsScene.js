@@ -5,6 +5,7 @@ import {Canvas} from "@react-three/fiber";
 
 // three components
 import Camera from "./three/Camera";
+import InputManager from "./three/InputManager";
 import RaycastManager from "./three/RaycastManager";
 import Sphere from "./three/Sphere";
 import IndicatorSphere from "./three/IndicatorSphere";
@@ -16,7 +17,8 @@ function ThreeJsScene(props)
     const [addMode, setAddMode] = useState(false);
     const [phMode, setPhMode] = useState(false);
 
-    // element refs
+    // refs
+    const inputRef = createRef();
     const planeRef = createRef();
 
     // data
@@ -49,9 +51,14 @@ function ThreeJsScene(props)
     }
 
     // ui events
+
+    // called when mouse is moved on plane
     function setPoint(x, y)
     {
+        // update current clicked point
         setCurrPoint([x, y]);
+        //if (inputRef)
+        //    console.log(inputRef.current.test);
     }
 
     function handlePlaneClick()
@@ -66,10 +73,9 @@ function ThreeJsScene(props)
 
     return(
         // disable right click context menu, input events
-        <div 
-            className = "three-scene-page"
-            onContextMenu = {(e) => e.preventDefault()}
-        >
+        // onContextMenu -> right click
+        // onClick -> left lcick
+        <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
             {/* ui elements */}
             <div className = "three-btn-container">
                 <div onClick = {toggleAdd}>{addMode ? "ADD" : "VIEW"}</div>
@@ -79,6 +85,7 @@ function ThreeJsScene(props)
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
                 <Camera controlsEnabled = {!addMode} />
+                {inputRef && <InputManager ref = {inputRef} />}
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}
                 <directionalLight color = {0xFFFFFF} intensity = {1.0} />
