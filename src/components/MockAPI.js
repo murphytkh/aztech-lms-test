@@ -7,6 +7,7 @@ import DefaultUser from "../resources/dashboard/user-profile-default.svg";
 
 // three scene stuff
 import floorImg0 from "../resources/three/c1basement1.png";
+import floorImg1 from "../resources/three/c1basement2.png";
 
 // dashboard persistent elements
 
@@ -248,17 +249,25 @@ function getStatusData()
 function getThreeData(id)
 {
     var data = new SceneDataObject();
-
-    // floor plan data
-    data.img = floorImg0;
-    // light data
     data.lights = [];
-    var tmp = new Light("test", [1.2, 0]);
-    var tmp0 = new Light("test2", [5.6, 4]);
-    var tmp1 = new Light("test3", [-4, -4]);
-    data.lights.push(tmp);
-    data.lights.push(tmp0);
-    data.lights.push(tmp1);
+
+    switch(id)
+    {
+        case 0:
+            var tmp = new Light("test", [1.2, 0]);
+            var tmp0 = new Light("test2", [5.6, 4]);
+            var tmp1 = new Light("test3", [-4, -4]);
+            data.lights.push(tmp);
+            data.lights.push(tmp0);
+            data.lights.push(tmp1);
+            data.img = floorImg0;
+            break;
+        case 1:
+            data.img = floorImg1;
+            break;
+        default:
+            break;
+    }
 
     return data;
 }

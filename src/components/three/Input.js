@@ -77,17 +77,8 @@ function useRMBUp(action)
             if (e.button === 2) action();
         }
 
-        function disableContext(e)
-        {
-            e.preventDefault();
-        }
-
-        window.addEventListener("contextmenu", disableContext);
         window.addEventListener("pointerup", onRMBUp);
-        return () => {
-            window.addEventListener("contextmenu", disableContext);
-            window.removeEventListener("pointerup", onRMBUp);
-        }
+        return () => window.removeEventListener("pointerup", onRMBUp);
     }, []);
 }
 

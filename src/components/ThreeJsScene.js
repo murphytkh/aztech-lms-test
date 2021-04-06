@@ -8,7 +8,7 @@ import {getThreeData} from "./MockAPI";
 
 // three components
 import Camera from "./three/Camera";
-//import {useLMBUp, useRMBUp} from "./three/Input";
+import {useKeyUp, useLMBUp, useRMBUp} from "./three/Input";
 import RaycastManager from "./three/RaycastManager";
 import Sphere from "./three/Sphere";
 import IndicatorSphere from "./three/IndicatorSphere";
@@ -55,12 +55,12 @@ function ThreeJsScene(props)
     // ui state handling
     function toggleAdd()
     {
-        setAddMode(!addMode);
+        setAddMode(addMode => !addMode);
     }
 
     function togglePlaceholder()
     {
-        setPhMode(!phMode);
+        setPhMode(phMode => !phMode);
     }
 
     // ui events
@@ -83,6 +83,20 @@ function ThreeJsScene(props)
         }
     }
 
+    // input
+
+    useKeyUp(" ", () => {
+        toggleAdd();
+    });
+
+    useKeyUp("1", () => {
+        loadData(0);
+    });
+
+    useKeyUp("2", () => {
+        loadData(1);
+    });
+
     //useLMBUp(() => {
     //    console.log("akjsas");
     //});
@@ -92,7 +106,11 @@ function ThreeJsScene(props)
     //});
 
     return(
-        <div className = "three-scene-page">
+        // prevent right click context menu
+        <div 
+            className = "three-scene-page" 
+            onContextMenu = {(e) => e.preventDefault()}
+        >
             {/* ui elements */}
             <div className = "three-btn-container">
                 <div onClick = {toggleAdd}>{addMode ? "ADD" : "VIEW"}</div>

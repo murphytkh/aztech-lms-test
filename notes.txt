@@ -31,6 +31,7 @@ current task:
 - data saving and loading
   - just light position for now, ignore floor plan
     and properties
+  - preventDefault is not working everywhere
 
 list of npm packages installed (other than the
 usual react stuff)
@@ -66,6 +67,12 @@ usual react stuff)
     - active/inactive (bool)
 
 three scene stuff
+- controls
+  - LMB - pan
+  - scroll - zoom
+  - RMB - rotate
+  - 1 - c1basement1
+  - 2 - c1basement2
 - sphere props used
   - radius
   - colour
