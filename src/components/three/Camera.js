@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import * as THREE from "three";
 import {useFrame, useThree} from "@react-three/fiber";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
+import {useKeyUp} from "./Input";
 import {Rad} from "../Utility";
 
 let controls;
@@ -10,17 +11,24 @@ let controls;
 const Camera = React.forwardRef((props, ref) => 
 {
     // get default elements from scene
-    const {camera, gl, events} = useThree();
+    const {camera, gl} = useThree();
 
     function ResetCamera()
     {
-
+        controls.target.set(0.0, 0.0, 0.0);
+        camera.position.set(0.0, 45.4, 0.0);
+        controls.update();
     }
 
     useFrame(() =>
     {
         if (controls)
             controls.enabled = props.controlsEnabled;
+    });
+
+    // key input
+    useKeyUp("r", () => {
+        ResetCamera();
     });
 
     // initialise camera
