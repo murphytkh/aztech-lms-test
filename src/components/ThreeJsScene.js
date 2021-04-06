@@ -1,13 +1,13 @@
 import "../resources/css/three-js-scene.css";
 
 import React, {useState, useEffect, createRef, Suspense} from "react";
-import * as THREE from "three";
-import {useThree, Canvas} from "@react-three/fiber";
+import {Canvas} from "@react-three/fiber";
 
 // three components
 import Camera from "./three/Camera";
 import RaycastManager from "./three/RaycastManager";
 import Sphere from "./three/Sphere";
+import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
 
 function ThreeJsScene(props)
@@ -65,7 +65,11 @@ function ThreeJsScene(props)
     }
 
     return(
-        <div className = "three-scene-page">
+        // disable right click context menu, input events
+        <div 
+            className = "three-scene-page"
+            onContextMenu = {(e) => e.preventDefault()}
+        >
             {/* ui elements */}
             <div className = "three-btn-container">
                 <div onClick = {toggleAdd}>{addMode ? "ADD" : "VIEW"}</div>
@@ -77,7 +81,7 @@ function ThreeJsScene(props)
                 <Camera controlsEnabled = {!addMode} />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}
-                <directionalLight color = {0xFFFFFF} intensity = {1.5} />
+                <directionalLight color = {0xFFFFFF} intensity = {1.0} />
                 {/* elements */}
                 <Suspense fallback={null}>
                     <Plane 
@@ -87,6 +91,13 @@ function ThreeJsScene(props)
                         onClick = {handlePlaneClick}
                     />
                 </Suspense>
+                {/* placement indicator */}
+                {addMode && 
+                <IndicatorSphere 
+                    radius = {0.5} 
+                    position = {[currPoint[0], 0, currPoint[1]]} 
+                    colour = {0x808080}
+                />}
                 {lights}
             </Canvas>
         </div>

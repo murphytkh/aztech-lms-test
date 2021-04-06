@@ -14,7 +14,7 @@ function Sphere(props)
     return (
         <mesh
             {...props}
-            ref={mesh}
+            ref = {mesh}
             // default scale 1
             scale = {1}
             // on click
