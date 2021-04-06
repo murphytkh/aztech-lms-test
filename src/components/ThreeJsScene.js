@@ -3,9 +3,12 @@ import "../resources/css/three-js-scene.css";
 import React, {useState, useEffect, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
+// data
+import {getThreeData} from "./MockAPI";
+
 // three components
 import Camera from "./three/Camera";
-import {useKeyUp} from "./three/Input";
+//import {useLMBUp, useRMBUp} from "./three/Input";
 import RaycastManager from "./three/RaycastManager";
 import Sphere from "./three/Sphere";
 import IndicatorSphere from "./three/IndicatorSphere";
@@ -13,29 +16,40 @@ import Plane from "./three/Plane";
 
 function ThreeJsScene(props)
 {
-    // ui states
+    // ui
     const [addMode, setAddMode] = useState(false);
     const [phMode, setPhMode] = useState(false);
+    const [currPoint, setCurrPoint] = useState([]);
 
     // refs
     const planeRef = createRef();
 
     // data
+    const [floorPlan, setFloorPlan] = useState([]);
     const [lightPos, setLightPos] = useState([]);
-    const [currPoint, setCurrPoint] = useState([]);
+
     // array of light positions
     let lights = lightPos.length && lightPos.map((obj, i) =>
-        <Sphere key = {i} radius = {0.5} position = {[obj[0], 0, obj[1]]} colour = {0x808080} />
+        <Sphere key = {i} radius = {0.5} position = {obj} colour = {0x808080} />
     );
 
-    // simulate getting light positions (move to MockAPI later)
+    // data loading
+    function loadData(id)
+    {
+        var data = getThreeData(id);
+        let tmp = data.lights.map(obj => 
+            [obj.pos[0], 0, obj.pos[1]]
+        );
+
+        setFloorPlan(data.img);
+        setLightPos(tmp);
+    }
+
+    // simulate getting data (move to MockAPI or JSON later)
     useEffect(() =>
     {
-        var tmp = [];
-        //tmp.push([-1.2, 0]);
-        //tmp.push([1.2, 0]);
-
-        setLightPos(tmp);
+        // load c1basement1 by default
+        loadData(0);
     }, []);
 
     // ui state handling
@@ -55,7 +69,8 @@ function ThreeJsScene(props)
     function setPoint(x, y)
     {
         // update current clicked point
-        setCurrPoint([x, y]);
+        if (addMode)
+            setCurrPoint([x, 0, y]);
     }
 
     function handlePlaneClick()
@@ -68,10 +83,15 @@ function ThreeJsScene(props)
         }
     }
 
+    //useLMBUp(() => {
+    //    console.log("akjsas");
+    //});
+
+    //useRMBUp(() => {
+    //    console.log("rmb");
+    //});
+
     return(
-        // disable right click context menu, input events
-        // onContextMenu -> right click
-        // onClick -> left click
         <div className = "three-scene-page">
             {/* ui elements */}
             <div className = "three-btn-container">
@@ -91,6 +111,7 @@ function ThreeJsScene(props)
                         ref = {planeRef} 
                         width = {100} 
                         height = {71}
+                        img = {floorPlan}
                         onClick = {handlePlaneClick}
                     />
                 </Suspense>
@@ -98,7 +119,7 @@ function ThreeJsScene(props)
                 {addMode && 
                 <IndicatorSphere 
                     radius = {0.5} 
-                    position = {[currPoint[0], 0, currPoint[1]]} 
+                    position = {currPoint} 
                     colour = {0x808080}
                 />}
                 {lights}

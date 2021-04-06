@@ -4,12 +4,9 @@ import {useLoader} from "@react-three/fiber";
 
 import {Rad} from "../Utility";
 
-import floorImg from "../../resources/three/c1basement1.png";
-
 const Plane = forwardRef((props, ref) => 
 {
-    const img = useLoader(THREE.TextureLoader, floorImg);
-
+    const img = useLoader(THREE.TextureLoader, props.img);
     // place it flat facing up by default
     useEffect(() =>
     {

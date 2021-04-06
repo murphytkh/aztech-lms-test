@@ -28,11 +28,9 @@ what in the fucks going on
 current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
-- deal with input (both mouse and keyboard)
-  for three.js scene
-    - separate input manager to be accessed by
-      individual components?
-    - input handled by ThreeJsScene component?
+- data saving and loading
+  - just light position for now, ignore floor plan
+    and properties
 
 list of npm packages installed (other than the
 usual react stuff)

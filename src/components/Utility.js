@@ -65,6 +65,24 @@ class LightStatusObject
     }
 }
 
+class Light
+{
+    constructor(name, pos)
+    {
+        this.name = name;
+        this.pos = pos;
+    }
+}
+
+class SceneDataObject
+{
+    constructor(img, lights)
+    {
+        this.img = img;
+        this.lights = lights;
+    }
+}
+
 // utility functions
 function Rad(deg)
 {
@@ -72,4 +90,4 @@ function Rad(deg)
 }
 
 export {NotificationObject, PageObject, UserObject, ActiveLightObject, 
-        ActivityObject, LightStatusObject, Rad};
+        ActivityObject, LightStatusObject, Light, SceneDataObject, Rad};

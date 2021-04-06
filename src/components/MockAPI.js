@@ -1,9 +1,12 @@
 import {NotificationObject, UserObject, ActiveLightObject, LightStatusObject,
-        ActivityObject} from "./Utility";
+        ActivityObject, Light, SceneDataObject} from "./Utility";
 
 // hard coded images
 import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png";
 import DefaultUser from "../resources/dashboard/user-profile-default.svg";
+
+// three scene stuff
+import floorImg0 from "../resources/three/c1basement1.png";
 
 // dashboard persistent elements
 
@@ -242,5 +245,23 @@ function getStatusData()
     return a;
 }
 
+function getThreeData(id)
+{
+    var data = new SceneDataObject();
+
+    // floor plan data
+    data.img = floorImg0;
+    // light data
+    data.lights = [];
+    var tmp = new Light("test", [1.2, 0]);
+    var tmp0 = new Light("test2", [5.6, 4]);
+    var tmp1 = new Light("test3", [-4, -4]);
+    data.lights.push(tmp);
+    data.lights.push(tmp0);
+    data.lights.push(tmp1);
+
+    return data;
+}
+
 export {getNotifications, getVersion, getCurrUser, getUsers, getBlockData, getActiveLightsData,
-        getEnergyData, getActivityData, getGatewayData, getStatusData};
+        getEnergyData, getActivityData, getGatewayData, getStatusData, getThreeData};

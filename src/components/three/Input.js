@@ -12,6 +12,7 @@ function useKeyDown(key, action)
         {
             if (e.key === key) action();
         }
+
         window.addEventListener("keydown", onKeydown);
         return () => window.removeEventListener("keydown", onKeydown);   
     }, []);
@@ -24,6 +25,7 @@ function useKeyUp(key, action)
         {
             if (e.key === key) action();
         }
+
         window.addEventListener("keyup", onKeyup);
         return () => window.removeEventListener("keyup", onKeyup);   
     }, []);
@@ -42,6 +44,7 @@ function useCtrlCombo(key, action)
         {
             if (e.key === key && ctrl) action();
         }
+
         window.addEventListener("keydown", onKeydown);
         window.addEventListener("keyup", onCtrlcombo);
         return () => {
@@ -51,7 +54,41 @@ function useCtrlCombo(key, action)
     }, []);
 }
 
-// mouse hooks
+// mouse hooks 0 - lmb 2 - rmb
 
+function useLMBUp(action)
+{
+    useEffect(() => {
+        function onLMBUp(e)
+        {
+            if (e.button === 0) action();
+        }
+    
+        window.addEventListener("pointerup", onLMBUp);
+        return () => window.removeEventListener("pointerup", onLMBUp);
+    }, []);
+}
 
-export {useKeyDown, useKeyUp, useCtrlCombo};
+function useRMBUp(action)
+{
+    useEffect(() => {
+        function onRMBUp(e)
+        {
+            if (e.button === 2) action();
+        }
+
+        function disableContext(e)
+        {
+            e.preventDefault();
+        }
+
+        window.addEventListener("contextmenu", disableContext);
+        window.addEventListener("pointerup", onRMBUp);
+        return () => {
+            window.addEventListener("contextmenu", disableContext);
+            window.removeEventListener("pointerup", onRMBUp);
+        }
+    }, []);
+}
+
+export {useKeyDown, useKeyUp, useCtrlCombo, useLMBUp, useRMBUp};

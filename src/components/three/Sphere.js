@@ -1,5 +1,4 @@
 import React, {useRef, useState} from "react";
-//import {useFrame} from "@react-three/fiber";
 
 function Sphere(props) 
 {
@@ -7,9 +6,6 @@ function Sphere(props)
 
     const [hovered, setHover] = useState(false)
     const [active, setActive] = useState(false)
-
-    // called every frame
-    //useFrame(() => (mesh.current.rotation.x += 0.01))
 
     return (
         <mesh
