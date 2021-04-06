@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.0783f293.chunk.css",
-    "main.js": "/static/js/main.5f9ff795.chunk.js",
-    "main.js.map": "/static/js/main.5f9ff795.chunk.js.map",
+    "main.css": "/static/css/main.15611022.chunk.css",
+    "main.js": "/static/js/main.085cb108.chunk.js",
+    "main.js.map": "/static/js/main.085cb108.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.88f0382b.js",
     "runtime-main.js.map": "/static/js/runtime-main.88f0382b.js.map",
-    "static/js/2.cdaffb73.chunk.js": "/static/js/2.cdaffb73.chunk.js",
-    "static/js/2.cdaffb73.chunk.js.map": "/static/js/2.cdaffb73.chunk.js.map",
+    "static/js/2.23ef7884.chunk.js": "/static/js/2.23ef7884.chunk.js",
+    "static/js/2.23ef7884.chunk.js.map": "/static/js/2.23ef7884.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.0783f293.chunk.css.map": "/static/css/main.0783f293.chunk.css.map",
-    "static/js/2.cdaffb73.chunk.js.LICENSE.txt": "/static/js/2.cdaffb73.chunk.js.LICENSE.txt",
+    "static/css/main.15611022.chunk.css.map": "/static/css/main.15611022.chunk.css.map",
+    "static/js/2.23ef7884.chunk.js.LICENSE.txt": "/static/js/2.23ef7884.chunk.js.LICENSE.txt",
     "static/media/fonts.css": "/static/media/WorkSans-SemiBold.8cad3c8f.ttf",
     "static/media/activelights-header-icon.b94218ce.svg": "/static/media/activelights-header-icon.b94218ce.svg",
     "static/media/activelights-refresh.5c8a42b4.svg": "/static/media/activelights-refresh.5c8a42b4.svg",
@@ -20,6 +20,7 @@
     "static/media/blocklights-off.4d6b2058.svg": "/static/media/blocklights-off.4d6b2058.svg",
     "static/media/blocklights-refresh.7e045178.svg": "/static/media/blocklights-refresh.7e045178.svg",
     "static/media/c1basement1.cba5dbd3.png": "/static/media/c1basement1.cba5dbd3.png",
+    "static/media/c1basement2.316e8fc5.png": "/static/media/c1basement2.316e8fc5.png",
     "static/media/calendar-next.162dafbc.svg": "/static/media/calendar-next.162dafbc.svg",
     "static/media/calendar-prev.aa202f56.svg": "/static/media/calendar-prev.aa202f56.svg",
     "static/media/darkness-icon.d0856ffb.svg": "/static/media/darkness-icon.d0856ffb.svg",
@@ -93,8 +94,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.88f0382b.js",
-    "static/js/2.cdaffb73.chunk.js",
-    "static/css/main.0783f293.chunk.css",
-    "static/js/main.5f9ff795.chunk.js"
+    "static/js/2.23ef7884.chunk.js",
+    "static/css/main.15611022.chunk.css",
+    "static/js/main.085cb108.chunk.js"
   ]
 }
