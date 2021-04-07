@@ -6,6 +6,7 @@ import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png
 import DefaultUser from "../resources/dashboard/user-profile-default.svg";
 
 // three scene stuff
+import defaultImg from "../resources/three/default.png";
 import floorImg0 from "../resources/three/c1basement1.png";
 import floorImg1 from "../resources/three/c1basement2.png";
 
@@ -248,21 +249,22 @@ function getStatusData()
 
 function getThreeData(id)
 {
-    var data = new SceneDataObject();
-    data.lights = [];
+    var data = new SceneDataObject([], []);
 
     switch(id)
     {
         case 0:
-            var tmp = new Light("test", [1.2, 0]);
-            var tmp0 = new Light("test2", [5.6, 4]);
-            var tmp1 = new Light("test3", [-4, -4]);
-            data.lights.push(tmp);
-            data.lights.push(tmp0);
-            data.lights.push(tmp1);
-            data.img = floorImg0;
+            data.img = defaultImg;
             break;
         case 1:
+            var tmp = [];
+            tmp.push(new Light("test", [1.2, 0, 0]));
+            tmp.push(new Light("test2", [5.6, 0, 4]));
+            tmp.push(new Light("test3", [-4, 0, -4]));
+            data.lights = tmp;
+            data.img = floorImg0;
+            break;
+        case 2:
             data.img = floorImg1;
             break;
         default:

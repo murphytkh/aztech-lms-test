@@ -14,12 +14,7 @@ const Plane = forwardRef((props, ref) =>
     }, [ref]);
 
     return (
-        <mesh
-            {...props}
-            ref = {ref}
-            // default scale 1
-            scale = {1}
-        >
+        <mesh {...props} ref = {ref} scale = {1}>
             {/* width, height */}
             <planeBufferGeometry args = {[props.width, props.height]} />
             <meshLambertMaterial attach = "material" map = {img} />

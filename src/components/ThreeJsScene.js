@@ -4,6 +4,7 @@ import React, {useState, useEffect, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
+import {Light} from "./Utility.js";
 import {getThreeData} from "./MockAPI";
 
 // three components
@@ -13,6 +14,10 @@ import RaycastManager from "./three/RaycastManager";
 import Sphere from "./three/Sphere";
 import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
+
+// i'm not sure why the states aren't working,
+// but these are for file saving and loading
+let lightDataTmp = [];
 
 function ThreeJsScene(props)
 {
@@ -26,31 +31,46 @@ function ThreeJsScene(props)
 
     // data
     const [floorPlan, setFloorPlan] = useState([]);
-    const [lightPos, setLightPos] = useState([]);
+    const [lightData, setLightData] = useState([]);
 
     // array of light positions
-    let lights = lightPos.length && lightPos.map((obj, i) =>
-        <Sphere key = {i} radius = {0.5} position = {obj} colour = {0x808080} />
+    let lights = lightData.length && lightData.map((obj, i) =>
+        <Sphere key = {i} radius = {0.5} position = {obj.pos} colour = {0x808080} />
     );
 
     // data loading
     function loadData(id)
     {
+        console.log("load called");
         var data = getThreeData(id);
-        let tmp = data.lights.map(obj => 
-            [obj.pos[0], 0, obj.pos[1]]
-        );
-
         setFloorPlan(data.img);
-        setLightPos(tmp);
+        setLightData(data.lights);
+        lightDataTmp = [...data.lights];
+        console.log(data);
     }
 
-    // simulate getting data (move to MockAPI or JSON later)
+    // simulate getting data (from MockAPI)
     useEffect(() =>
     {
         // load c1basement1 by default
         loadData(0);
     }, []);
+
+    // file saving/loading
+    function saveScene(name)
+    {
+        console.log("save called");
+        console.log(lightDataTmp);
+        var array = [floorPlan];
+        array = array.concat(lightData);
+        //const json = JSON.stringify(array);
+        //const blob = new Blob([json], {type: "text/plain"});
+        //const url = URL.createObjectURL(blob);
+        //const link = document.createElement("a");
+        //link.download = `${name}.json`;
+        //link.href = url;
+        //link.click();
+    }
 
     // ui state handling
     function toggleAdd()
@@ -77,9 +97,9 @@ function ThreeJsScene(props)
     {
         if (addMode)
         {
-            var arr = [...lightPos];
-            arr.push(currPoint);
-            setLightPos(arr);
+            var arr = [...lightData];
+            arr.push(new Light("testadd", currPoint));
+            setLightData(arr);
         }
     }
 
@@ -90,11 +110,15 @@ function ThreeJsScene(props)
     });
 
     useKeyUp("1", () => {
-        loadData(0);
+        loadData(1);
     });
 
     useKeyUp("2", () => {
-        loadData(1);
+        loadData(2);
+    });
+
+    useKeyUp("s", () => {
+        saveScene("test");
     });
 
     //useLMBUp(() => {
@@ -119,7 +143,7 @@ function ThreeJsScene(props)
                 <Camera controlsEnabled = {!addMode} />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}
-                <directionalLight color = {0xFFFFFF} intensity = {1.0} />
+                <directionalLight color = {0xFFFFFF} intensity = {2.0} />
                 {/* elements */}
                 <Suspense fallback = {null}>
                     <Plane 

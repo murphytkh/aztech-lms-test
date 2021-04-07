@@ -31,7 +31,12 @@ current task:
 - data saving and loading
   - just light position for now, ignore floor plan
     and properties
-  - preventDefault is not working everywhere
+  - having issues with data of floorPlan and 
+    lightData
+  - why are the states not updating when calling
+    the set functions?
+  - just use global variables and be done with it,
+    wasted too much time
 
 list of npm packages installed (other than the
 usual react stuff)
@@ -73,12 +78,16 @@ three scene stuff
   - RMB - rotate
   - 1 - c1basement1
   - 2 - c1basement2
+  - s - save scene to json
 - sphere props used
   - radius
   - colour
 - plane props used
   - width
   - height
+- data structures for objects can be found
+  in Utility.js
+
 
 useful code fragments:
 
