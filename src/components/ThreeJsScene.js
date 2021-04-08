@@ -34,6 +34,13 @@ function ThreeJsScene(props)
         <Sphere key = {i} radius = {0.5} position = {obj.pos} colour = {0x808080} />
     );
 
+    // simulate getting data (from MockAPI)
+    useEffect(() =>
+    {
+        loadData(0);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     // data loading
     function loadData(id)
     {
@@ -41,13 +48,6 @@ function ThreeJsScene(props)
         setFloorPlan(data.img);
         setLightData(data.lights);
     }
-
-    // simulate getting data (from MockAPI)
-    useEffect(() =>
-    {
-        loadData(0);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     
     // file saving/loading
     function saveScene(name)
@@ -58,16 +58,16 @@ function ThreeJsScene(props)
         //    return x;
         //})
 
-        //var array = [floorPlanTmp];
-        //array = array.concat(lightDataTmp);
-        //const json = JSON.stringify(array);
-        //const blob = new Blob([json], {type: "text/plain"});
-        //const url = URL.createObjectURL(blob);
-        //const link = document.createElement("a");
-        //link.download = `${name}.json`;
-        //link.href = url;
-        //link.click();
-        //URL.revokeObjectURL(url);
+        var array = [floorPlan.current];
+        array = array.concat(lightData.current);
+        const json = JSON.stringify(array);
+        const blob = new Blob([json], {type: "text/plain"});
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download = `${name}.json`;
+        link.href = url;
+        link.click();
+        URL.revokeObjectURL(url);
     }
 
     // ui state handling
@@ -95,7 +95,7 @@ function ThreeJsScene(props)
     {
         if (addMode)
         {
-            var arr = [...lightData];
+            var arr = [...lightData.current];
             arr.push(new Light("testadd", currPoint));
             setLightData(arr);
         }
