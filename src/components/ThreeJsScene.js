@@ -1,6 +1,6 @@
 import "../resources/css/three-js-scene.css";
 
-import React, {useState, useEffect, createRef, useRef, Suspense} from "react";
+import React, {useState, useEffect, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
@@ -26,7 +26,7 @@ function ThreeJsScene(props)
     const planeRef = createRef();
 
     // data
-    const [floorPlan, setFloorPlan] = useState([]);
+    const [floorPlan, setFloorPlan] = useRefState([]);
     const [lightData, setLightData] = useRefState([]);
 
     // array of light positions
@@ -46,12 +46,12 @@ function ThreeJsScene(props)
     useEffect(() =>
     {
         loadData(0);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     // file saving/loading
     function saveScene(name)
     {
-        console.log(lightData.current);
         // this works but its so hacky lol
         //setLightData(x => {
         //    console.log(x);
@@ -127,11 +127,6 @@ function ThreeJsScene(props)
     //    console.log("rmb");
     //});
 
-    function testing(e)
-    {
-        console.log(e);
-    }
-
     return(
         // prevent right click context menu
         <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
@@ -153,7 +148,7 @@ function ThreeJsScene(props)
                         ref = {planeRef} 
                         width = {100} 
                         height = {71}
-                        img = {floorPlan}
+                        img = {floorPlan.current}
                         onClick = {handlePlaneClick}
                     />
                 </Suspense>
