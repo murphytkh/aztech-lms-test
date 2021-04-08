@@ -48,6 +48,7 @@ function ThreeJsScene(props)
     // file saving/loading
     function loadData(name)
     {
+        // load from local without .json if default
         if (name === "default")
         {
             setFloorPlan("default");
@@ -55,6 +56,7 @@ function ThreeJsScene(props)
         }
         else
         {
+        // get data from api
             getSceneData(url.current, name)
             // api call successful
             .then((res) => {
@@ -102,6 +104,7 @@ function ThreeJsScene(props)
 
     function handlePlaneClick()
     {
+        // add light
         if (addMode)
         {
             var arr = [...lightData.current];
@@ -141,9 +144,11 @@ function ThreeJsScene(props)
         <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
             {/* ui elements */}
             <div className = "three-btn-container">
-                <div onClick = {toggleAdd}>{addMode ? "ADD" : "VIEW"}</div>
-                <div onClick = {togglePlaceholder}>{phMode ? "TEST1" : "TEST0"}</div>
-                <div onClick = {toggleAdd}>QWE</div>
+                <div className = "btn" onClick = {toggleAdd}>{addMode ? "ADD" : "VIEW"}</div>
+                <div className = "btn" onClick = {togglePlaceholder}>{
+                    phMode ? "TEST1" : "TEST0"}
+                </div>
+                <div className = "btn" onClick = {toggleAdd}>QWE</div>
             </div>
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
@@ -165,11 +170,7 @@ function ThreeJsScene(props)
                 </Suspense>
                 {/* placement indicator */}
                 {addMode && 
-                <IndicatorSphere 
-                    radius = {0.5} 
-                    position = {currPoint} 
-                    colour = {0x808080}
-                />}
+                <IndicatorSphere radius = {0.5} position = {currPoint} colour = {0x808080} />}
                 {lights}
             </Canvas>
         </div>

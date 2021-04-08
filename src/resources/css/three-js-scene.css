@@ -21,7 +21,7 @@
     height: 50%;
 }
 
-.three-btn-container div
+.three-btn-container div.btn
 {
     box-sizing: border-box;
     border: 1px solid #000000;
@@ -32,7 +32,7 @@
     cursor: pointer;
 }
 
-.three-btn-container div:hover
+.three-btn-container div.btn:hover
 {
     color: #C7C7C7;
 }

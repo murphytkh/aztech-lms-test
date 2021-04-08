@@ -28,6 +28,11 @@ what in the fucks going on
 current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
+- create input for light name
+  - unique names
+  - can change dynamically
+  - add this parameter to light data and update
+    saving/loading interfaces
 
 list of npm packages installed (other than the
 usual react stuff)
