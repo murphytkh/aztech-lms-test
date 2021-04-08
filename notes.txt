@@ -111,6 +111,21 @@ function relocate(name, location)
     setViewData(updatedArray);
 }
 
+allow state usage in DOM event handlers:
+function useRefState(initial)
+{
+    const [state, setState] = useState(initial);
+    const ref = useRef(state);
+
+    const setRefState = val =>
+    {
+        ref.current = val;
+        setState(val);
+    };
+
+    return [ref.current, setRefState];
+}
+
 missing assets:
 user dropdown hover icons
 ====================================================

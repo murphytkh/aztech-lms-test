@@ -1,3 +1,5 @@
+import {useState, useRef} from "react";
+
 // objects for storing data
 
 class NotificationObject
@@ -89,5 +91,23 @@ function Rad(deg)
     return deg * Math.PI / 180;
 }
 
+// use this if using states in DOM event handlers
+// it would allow you to get the updated state
+// note: use .current to access the data
+function useRefState(initial)
+{
+    const [state, setState] = useState(initial);
+    const ref = useRef(state);
+
+    const setRefState = val =>
+    {
+        ref.current = val;
+        setState(val);
+    };
+
+    return [ref, setRefState];
+}
+
 export {NotificationObject, PageObject, UserObject, ActiveLightObject, 
-        ActivityObject, LightStatusObject, Light, SceneDataObject, Rad};
+        ActivityObject, LightStatusObject, Light, SceneDataObject, Rad,
+        useRefState};

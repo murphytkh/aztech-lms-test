@@ -1,10 +1,10 @@
 import "../resources/css/three-js-scene.css";
 
-import React, {useState, useEffect, createRef, Suspense} from "react";
+import React, {useState, useEffect, createRef, useRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
-import {Light} from "./Utility.js";
+import {Light, useRefState} from "./Utility.js";
 import {getThreeData} from "./MockAPI";
 
 // three components
@@ -14,10 +14,6 @@ import RaycastManager from "./three/RaycastManager";
 import Sphere from "./three/Sphere";
 import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
-
-// i'm not sure why the states aren't working,
-// but these are for file saving and loading
-let lightDataTmp = [];
 
 function ThreeJsScene(props)
 {
@@ -31,38 +27,39 @@ function ThreeJsScene(props)
 
     // data
     const [floorPlan, setFloorPlan] = useState([]);
-    const [lightData, setLightData] = useState([]);
+    const [lightData, setLightData] = useRefState([]);
 
     // array of light positions
-    let lights = lightData.length && lightData.map((obj, i) =>
+    let lights = lightData.current.length && lightData.current.map((obj, i) =>
         <Sphere key = {i} radius = {0.5} position = {obj.pos} colour = {0x808080} />
     );
 
     // data loading
     function loadData(id)
     {
-        console.log("load called");
         var data = getThreeData(id);
         setFloorPlan(data.img);
         setLightData(data.lights);
-        lightDataTmp = [...data.lights];
-        console.log(data);
     }
 
     // simulate getting data (from MockAPI)
     useEffect(() =>
     {
-        // load c1basement1 by default
         loadData(0);
     }, []);
-
+    
     // file saving/loading
     function saveScene(name)
     {
-        console.log("save called");
-        console.log(lightDataTmp);
-        var array = [floorPlan];
-        array = array.concat(lightData);
+        console.log(lightData.current);
+        // this works but its so hacky lol
+        //setLightData(x => {
+        //    console.log(x);
+        //    return x;
+        //})
+
+        //var array = [floorPlanTmp];
+        //array = array.concat(lightDataTmp);
         //const json = JSON.stringify(array);
         //const blob = new Blob([json], {type: "text/plain"});
         //const url = URL.createObjectURL(blob);
@@ -70,6 +67,7 @@ function ThreeJsScene(props)
         //link.download = `${name}.json`;
         //link.href = url;
         //link.click();
+        //URL.revokeObjectURL(url);
     }
 
     // ui state handling
@@ -129,6 +127,11 @@ function ThreeJsScene(props)
     //    console.log("rmb");
     //});
 
+    function testing(e)
+    {
+        console.log(e);
+    }
+
     return(
         // prevent right click context menu
         <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
@@ -143,7 +146,7 @@ function ThreeJsScene(props)
                 <Camera controlsEnabled = {!addMode} />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}
-                <directionalLight color = {0xFFFFFF} intensity = {2.0} />
+                <directionalLight color = {0xFFFFFF} intensity = {1.5} />
                 {/* elements */}
                 <Suspense fallback = {null}>
                     <Plane 
