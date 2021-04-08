@@ -249,40 +249,17 @@ function getStatusData()
     return a;
 }
 
-function getSceneData(name)
+function getSceneData(url, name)
 {
-    return axios.get("http://10.1.11.181:8080/resources/c1basement1.png")
+    return axios.get(url + name + ".json")
         // get response
         .then(function (response) {
-            return response.data;
+            return response;
         })
         // error catching
         .catch(function (error) {
             console.log(error);
         })
-    //var data = new SceneDataObject([], []);
-//
-    //switch(id)
-    //{
-    //    case 0:
-    //        data.img = img;
-    //        break;
-    //    case 1:
-    //        var tmp = [];
-    //        tmp.push(new Light("test", [1.2, 0, 0]));
-    //        tmp.push(new Light("test2", [5.6, 0, 4]));
-    //        tmp.push(new Light("test3", [-4, 0, -4]));
-    //        data.lights = tmp;
-    //        data.img = floorImg0;
-    //        break;
-    //    case 2:
-    //        data.img = floorImg1;
-    //        break;
-    //    default:
-    //        break;
-    //}
-//
-    //return data;
 }
 
 export {getNotifications, getVersion, getCurrUser, getUsers, getBlockData, getActiveLightsData,

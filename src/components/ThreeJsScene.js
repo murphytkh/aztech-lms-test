@@ -4,7 +4,7 @@ import React, {useState, useEffect, createRef, Suspense, useRef} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
-import {Light, useRefState} from "./Utility.js";
+import {Light, SceneDataObject, useRefState} from "./Utility.js";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -40,40 +40,21 @@ function ThreeJsScene(props)
     useEffect(() =>
     {
         setUrl("http://10.1.11.181:8080/resources/");
-        loadData("c1basement1");
+        loadData("default");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    //return axios.get("http://10.1.11.181:8080/resources/c1basement1.png")
-    //    // get response
-    //    .then(function (response) {
-    //        return response.data;
-    //    })
-    //    // error catching
-    //    .catch(function (error) {
-    //        console.log(error);
-    //    })
 
     // file saving/loading
     function loadData(name)
     {
-        setFloorPlan(name);
-
-        //axios.get("http://10.1.11.181:8080/resources/c1basement1.png")
-        //    .then(res => {
-        //        console.log(res);
-        //    })
-        //    .catch(err => {
-        //        console.log(err);
-        //    });
-
-        //var data = getSceneData(name).then(response => {
-        //    //setFloorPlan(response);
-        //    console.log(response);
-        //})
-        //setFloorPlan(data);
-        //setFloorPlan(data.img);
-        //setLightData(data.lights);
+        getSceneData(url.current, name)
+        // api call successful
+        .then((res) => {
+            setFloorPlan(res.data.img);
+            setLightData(res.data.lights);
+        })
+        // error
+        .catch((err) => {console.log(err)});
     }
     
     function saveScene(name)
@@ -84,9 +65,8 @@ function ThreeJsScene(props)
         //    return x;
         //})
 
-        var array = [floorPlan.current];
-        array = array.concat(lightData.current);
-        const json = JSON.stringify(array);
+        var obj = new SceneDataObject(floorPlan.current, lightData.current);
+        const json = JSON.stringify(obj);
         const blob = new Blob([json], {type: "text/plain"});
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
