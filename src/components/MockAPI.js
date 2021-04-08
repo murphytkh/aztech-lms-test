@@ -249,63 +249,41 @@ function getStatusData()
     return a;
 }
 
-//// Make a request for a user with a given ID
-//axios.get('/user?ID=12345')
-//  .then(function (response) {
-//    // handle success
-//    console.log(response);
-//  })
-//  .catch(function (error) {
-//    // handle error
-//    console.log(error);
-//  })
-//  .then(function () {
-//    // always executed
-//  });
-
-function getThreeData(id)
+function getSceneData(name)
 {
-    var img;
-
-    axios.get("http://10.1.11.181:8080/resources/c1basement1.png")
+    return axios.get("http://10.1.11.181:8080/resources/c1basement1.png")
         // get response
         .then(function (response) {
-            img = response.data;
-            console.log(img);
+            return response.data;
         })
         // error catching
         .catch(function (error) {
             console.log(error);
         })
-        // always called
-        .then(function () {
-
-        });
-
-    var data = new SceneDataObject([], []);
-
-    switch(id)
-    {
-        case 0:
-            data.img = img;
-            break;
-        case 1:
-            var tmp = [];
-            tmp.push(new Light("test", [1.2, 0, 0]));
-            tmp.push(new Light("test2", [5.6, 0, 4]));
-            tmp.push(new Light("test3", [-4, 0, -4]));
-            data.lights = tmp;
-            data.img = floorImg0;
-            break;
-        case 2:
-            data.img = floorImg1;
-            break;
-        default:
-            break;
-    }
-
-    return data;
+    //var data = new SceneDataObject([], []);
+//
+    //switch(id)
+    //{
+    //    case 0:
+    //        data.img = img;
+    //        break;
+    //    case 1:
+    //        var tmp = [];
+    //        tmp.push(new Light("test", [1.2, 0, 0]));
+    //        tmp.push(new Light("test2", [5.6, 0, 4]));
+    //        tmp.push(new Light("test3", [-4, 0, -4]));
+    //        data.lights = tmp;
+    //        data.img = floorImg0;
+    //        break;
+    //    case 2:
+    //        data.img = floorImg1;
+    //        break;
+    //    default:
+    //        break;
+    //}
+//
+    //return data;
 }
 
 export {getNotifications, getVersion, getCurrUser, getUsers, getBlockData, getActiveLightsData,
-        getEnergyData, getActivityData, getGatewayData, getStatusData, getThreeData};
+        getEnergyData, getActivityData, getGatewayData, getStatusData, getSceneData};

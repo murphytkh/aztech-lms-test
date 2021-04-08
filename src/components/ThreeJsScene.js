@@ -1,11 +1,11 @@
 import "../resources/css/three-js-scene.css";
 
-import React, {useState, useEffect, createRef, Suspense} from "react";
+import React, {useState, useEffect, createRef, Suspense, useRef} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
 import {Light, useRefState} from "./Utility.js";
-import {getThreeData} from "./MockAPI";
+import {getSceneData} from "./MockAPI";
 
 // three components
 import Camera from "./three/Camera";
@@ -14,6 +14,7 @@ import RaycastManager from "./three/RaycastManager";
 import Sphere from "./three/Sphere";
 import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
+import axios from "axios";
 
 function ThreeJsScene(props)
 {
@@ -26,8 +27,8 @@ function ThreeJsScene(props)
     const planeRef = createRef();
 
     // data
-    const [sceneId, setSceneId] = useRefState(0);
-    const [floorPlan, setFloorPlan] = useRefState([]);
+    const [url, setUrl] = useRefState("");
+    const [floorPlan, setFloorPlan] = useRefState("");
     const [lightData, setLightData] = useRefState([]);
 
     // array of light positions
@@ -38,16 +39,41 @@ function ThreeJsScene(props)
     // simulate getting data (from MockAPI)
     useEffect(() =>
     {
-        loadData(0);
+        setUrl("http://10.1.11.181:8080/resources/");
+        loadData("c1basement1");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    //return axios.get("http://10.1.11.181:8080/resources/c1basement1.png")
+    //    // get response
+    //    .then(function (response) {
+    //        return response.data;
+    //    })
+    //    // error catching
+    //    .catch(function (error) {
+    //        console.log(error);
+    //    })
+
     // file saving/loading
-    function loadData(id)
+    function loadData(name)
     {
-        var data = getThreeData(id);
-        setFloorPlan(data.img);
-        setLightData(data.lights);
+        setFloorPlan(name);
+
+        //axios.get("http://10.1.11.181:8080/resources/c1basement1.png")
+        //    .then(res => {
+        //        console.log(res);
+        //    })
+        //    .catch(err => {
+        //        console.log(err);
+        //    });
+
+        //var data = getSceneData(name).then(response => {
+        //    //setFloorPlan(response);
+        //    console.log(response);
+        //})
+        //setFloorPlan(data);
+        //setFloorPlan(data.img);
+        //setLightData(data.lights);
     }
     
     function saveScene(name)
@@ -108,11 +134,11 @@ function ThreeJsScene(props)
     });
 
     useKeyUp("1", () => {
-        loadData(1);
+        loadData("c1basement1");
     });
 
     useKeyUp("2", () => {
-        loadData(2);
+        loadData("c1basement2");
     });
 
     useKeyUp("s", () => {
@@ -148,7 +174,7 @@ function ThreeJsScene(props)
                         ref = {planeRef} 
                         width = {100} 
                         height = {71}
-                        img = {floorPlan.current}
+                        img = {url.current + floorPlan.current + ".png"}
                         onClick = {handlePlaneClick}
                     />
                 </Suspense>
