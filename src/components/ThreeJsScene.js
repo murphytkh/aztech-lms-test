@@ -1,6 +1,6 @@
 import "../resources/css/three-js-scene.css";
 
-import React, {useState, useEffect, createRef, Suspense, useRef} from "react";
+import React, {useState, useEffect, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
@@ -14,7 +14,8 @@ import RaycastManager from "./three/RaycastManager";
 import Sphere from "./three/Sphere";
 import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
-import axios from "axios";
+
+import defaultImg from "../resources/three/default.png";
 
 function ThreeJsScene(props)
 {
@@ -47,24 +48,26 @@ function ThreeJsScene(props)
     // file saving/loading
     function loadData(name)
     {
-        getSceneData(url.current, name)
-        // api call successful
-        .then((res) => {
-            setFloorPlan(res.data.img);
-            setLightData(res.data.lights);
-        })
-        // error
-        .catch((err) => {console.log(err)});
+        if (name === "default")
+        {
+            setFloorPlan("default");
+            setLightData([]);
+        }
+        else
+        {
+            getSceneData(url.current, name)
+            // api call successful
+            .then((res) => {
+                setFloorPlan(res.data.img);
+                setLightData(res.data.lights);
+            })
+            // error
+            .catch((err) => {console.log(err)});
+        }
     }
     
     function saveScene(name)
     {
-        // this works but its so hacky lol
-        //setLightData(x => {
-        //    console.log(x);
-        //    return x;
-        //})
-
         var obj = new SceneDataObject(floorPlan.current, lightData.current);
         const json = JSON.stringify(obj);
         const blob = new Blob([json], {type: "text/plain"});
@@ -154,7 +157,9 @@ function ThreeJsScene(props)
                         ref = {planeRef} 
                         width = {100} 
                         height = {71}
-                        img = {url.current + floorPlan.current + ".png"}
+                        img = {floorPlan.current === "default" ? 
+                                defaultImg : 
+                                url.current + floorPlan.current + ".png"}
                         onClick = {handlePlaneClick}
                     />
                 </Suspense>

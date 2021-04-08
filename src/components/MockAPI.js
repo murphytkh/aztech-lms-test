@@ -1,16 +1,11 @@
 import axios from "axios";
 
 import {NotificationObject, UserObject, ActiveLightObject, LightStatusObject,
-        ActivityObject, Light, SceneDataObject} from "./Utility";
+        ActivityObject} from "./Utility";
 
 // hard coded images
 import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png";
 import DefaultUser from "../resources/dashboard/user-profile-default.svg";
-
-// three scene stuff
-import defaultImg from "../resources/three/default.png";
-import floorImg0 from "../resources/three/c1basement1.png";
-import floorImg1 from "../resources/three/c1basement2.png";
 
 // dashboard persistent elements
 
@@ -256,7 +251,7 @@ function getSceneData(url, name)
         .then(function (response) {
             return response;
         })
-        // error catching
+        // error
         .catch(function (error) {
             console.log(error);
         })
