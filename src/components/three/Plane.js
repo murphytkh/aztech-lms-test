@@ -6,7 +6,7 @@ import {Rad} from "../Utility";
 
 const Plane = forwardRef((props, ref) => 
 {
-    const img = useLoader(THREE.TextureLoader, props.img);
+    //const img = useLoader(THREE.TextureLoader, props.img);
     // place it flat facing up by default
     useEffect(() =>
     {
@@ -17,7 +17,7 @@ const Plane = forwardRef((props, ref) =>
         <mesh {...props} ref = {ref} scale = {1}>
             {/* width, height */}
             <planeBufferGeometry args = {[props.width, props.height]} />
-            <meshLambertMaterial attach = "material" map = {img} />
+            <meshLambertMaterial attach = "material" map = {props.img} />
         </mesh>
     )
 });

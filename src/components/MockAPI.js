@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import {NotificationObject, UserObject, ActiveLightObject, LightStatusObject,
         ActivityObject, Light, SceneDataObject} from "./Utility";
 
@@ -247,14 +249,45 @@ function getStatusData()
     return a;
 }
 
+//// Make a request for a user with a given ID
+//axios.get('/user?ID=12345')
+//  .then(function (response) {
+//    // handle success
+//    console.log(response);
+//  })
+//  .catch(function (error) {
+//    // handle error
+//    console.log(error);
+//  })
+//  .then(function () {
+//    // always executed
+//  });
+
 function getThreeData(id)
 {
+    var img;
+
+    axios.get("http://10.1.11.181:8080/resources/c1basement1.png")
+        // get response
+        .then(function (response) {
+            img = response.data;
+            console.log(img);
+        })
+        // error catching
+        .catch(function (error) {
+            console.log(error);
+        })
+        // always called
+        .then(function () {
+
+        });
+
     var data = new SceneDataObject([], []);
 
     switch(id)
     {
         case 0:
-            data.img = defaultImg;
+            data.img = img;
             break;
         case 1:
             var tmp = [];

@@ -49,6 +49,7 @@ usual react stuff)
 - paho-mqtt
 - three
 - @react-three/fiber
+- axios
 
 - don't let calendar card make any changes for now
   - radio buttons will do nothing
@@ -125,6 +126,22 @@ function useRefState(initial)
 
     return [ref.current, setRefState];
 }
+
+fetch from http server using axios
+axios.get("http://10.1.11.181:8080/resources/c1basement1.png")
+    // get response
+    .then(function (response) {
+        img = response.data;
+        console.log(img);
+    })
+    // error catching
+    .catch(function (error) {
+        console.log(error);
+    })
+    // always called
+    .then(function () {
+      
+    });
 
 missing assets:
 user dropdown hover icons

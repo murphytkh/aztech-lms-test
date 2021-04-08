@@ -26,6 +26,7 @@ function ThreeJsScene(props)
     const planeRef = createRef();
 
     // data
+    const [sceneId, setSceneId] = useRefState(0);
     const [floorPlan, setFloorPlan] = useRefState([]);
     const [lightData, setLightData] = useRefState([]);
 
@@ -41,7 +42,7 @@ function ThreeJsScene(props)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // data loading
+    // file saving/loading
     function loadData(id)
     {
         var data = getThreeData(id);
@@ -49,7 +50,6 @@ function ThreeJsScene(props)
         setLightData(data.lights);
     }
     
-    // file saving/loading
     function saveScene(name)
     {
         // this works but its so hacky lol
