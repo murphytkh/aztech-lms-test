@@ -33,6 +33,7 @@ current task:
     - enable iterating over it and getting data
     - need this before proceeding with all other
       features
+    - store id inside sphere so i can pass it up?
 
 list of npm packages installed (other than the
 usual react stuff)

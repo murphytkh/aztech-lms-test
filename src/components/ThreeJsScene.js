@@ -193,7 +193,10 @@ function ThreeJsScene(props)
             />
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
-                <Camera disableHotkeys = {disableHotkeys.current} controlsEnabled = {!addMode} />
+                <Camera 
+                    disableHotkeys = {disableHotkeys.current} 
+                    controlsEnabled = {!addMode} 
+                />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}
                 <directionalLight color = {0xFFFFFF} intensity = {1.5} />

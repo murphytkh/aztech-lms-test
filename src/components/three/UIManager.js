@@ -6,6 +6,7 @@ function UIManager(props)
 {
     return(
         <div className = "three-ui-container">
+            {/* buttons */}
             <div className = "btn-container">
                 <div className = "btn" onClick = {props.toggleAdd}>
                     {props.add ? "ADD" : "VIEW"}
@@ -15,6 +16,7 @@ function UIManager(props)
                 </div>
                 <div className = "btn" onClick = {props.toggleAdd}>QWE</div>
             </div>
+            {/* inputs */}
             <input
                 id = {props.add ? "" : "hide"}
                 type = "text"
