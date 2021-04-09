@@ -4,7 +4,7 @@ import React, {useState, useEffect, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
-import {Light, SceneDataObject, useRefState} from "./Utility.js";
+import {Light, SceneDataObject, useRefState, saveObj} from "./Utility.js";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -48,7 +48,7 @@ function ThreeJsScene(props)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // file saving/loading
+    // file loading
     function loadData(name)
     {
         // load from local without .json if default
@@ -73,15 +73,7 @@ function ThreeJsScene(props)
     
     function saveScene(name)
     {
-        var obj = new SceneDataObject(floorPlan.current, lightData.current);
-        const json = JSON.stringify(obj);
-        const blob = new Blob([json], {type: "text/plain"});
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.download = `${name}.json`;
-        link.href = url;
-        link.click();
-        URL.revokeObjectURL(url);
+        saveObj(new SceneDataObject(floorPlan.current, lightData.current), name);
     }
 
     // ui state handling
@@ -146,11 +138,11 @@ function ThreeJsScene(props)
 
     //useLMBUp(() => {
     //    console.log("akjsas");
-    //}, disableHotkeys.current);
+    //});
 
     //useRMBUp(() => {
     //    console.log("rmb");
-    //}, disableHotkeys.current);
+    //});
 
     function handleChangeLightName(e)
     {
@@ -162,11 +154,17 @@ function ThreeJsScene(props)
         <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
             {/* ui elements */}
             <div className = "three-ui-container">
-                <div className = "btn" onClick = {toggleAdd}>{addMode ? "ADD" : "VIEW"}</div>
-                <div className = "btn" onClick = {togglePlaceholder}>{
-                    phMode ? "TEST1" : "TEST0"}
+                <div className = "btn-container">
+                    <div className = "btn" onClick = {toggleAdd}>
+                        {addMode ? "ADD" : "VIEW"}
+                    </div>
+                    <div className = "btn" onClick = {togglePlaceholder}>{
+                        phMode ? "TEST1" : "TEST0"}
+                    </div>
+                    <div className = "btn" onClick = {toggleAdd}>QWE</div>
                 </div>
                 <input
+                    id = {addMode ? "" : "hide"}
                     type = "text"
                     name = "light-name"
                     value = {lightName}
@@ -176,8 +174,6 @@ function ThreeJsScene(props)
                     onBlur = {handleBlur}
                     disabled = {!addMode}
                 />
-
-                <div className = "btn" onClick = {toggleAdd}>QWE</div>
             </div>
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>

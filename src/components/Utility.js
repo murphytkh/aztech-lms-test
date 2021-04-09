@@ -108,6 +108,18 @@ function useRefState(initial)
     return [ref, setRefState];
 }
 
+function saveObj(obj, name)
+{
+    const json = JSON.stringify(obj);
+    const blob = new Blob([json], {type: "text/plain"});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.download = `${name}.json`;
+    link.href = url;
+    link.click();
+    URL.revokeObjectURL(url);
+}
+
 export {NotificationObject, PageObject, UserObject, ActiveLightObject, 
         ActivityObject, LightStatusObject, Light, SceneDataObject, Rad,
-        useRefState};
+        useRefState, saveObj};
