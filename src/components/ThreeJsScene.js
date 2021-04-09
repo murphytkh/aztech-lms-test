@@ -20,9 +20,11 @@ import defaultImg from "../resources/three/default.png";
 function ThreeJsScene(props)
 {
     // ui
+    const [disableHotkeys, setDisableHotkeys] = useRefState(false);
     const [addMode, setAddMode] = useState(false);
     const [phMode, setPhMode] = useState(false);
     const [currPoint, setCurrPoint] = useState([]);
+    const [lightName, setLightName] = useState("");
 
     // refs
     const planeRef = createRef();
@@ -41,6 +43,7 @@ function ThreeJsScene(props)
     useEffect(() =>
     {
         setUrl("http://10.1.11.181:8080/resources/");
+        setDisableHotkeys(false);
         loadData("default");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -115,39 +118,65 @@ function ThreeJsScene(props)
 
     // input
 
+    function handleFocus()
+    {
+        setDisableHotkeys(true);
+    }
+
+    function handleBlur()
+    {
+        setDisableHotkeys(false);
+    }
+
     useKeyUp(" ", () => {
-        toggleAdd();
+        if (!disableHotkeys.current) toggleAdd();
     });
 
     useKeyUp("1", () => {
-        loadData("c1basement1");
+        if (!disableHotkeys.current) loadData("c1basement1");
     });
 
     useKeyUp("2", () => {
-        loadData("c1basement2");
+        if (!disableHotkeys.current) loadData("c1basement2");
     });
 
     useKeyUp("s", () => {
-        saveScene("test");
+        if (!disableHotkeys.current) saveScene("test");
     });
 
     //useLMBUp(() => {
     //    console.log("akjsas");
-    //});
+    //}, disableHotkeys.current);
 
     //useRMBUp(() => {
     //    console.log("rmb");
-    //});
+    //}, disableHotkeys.current);
+
+    function handleChangeLightName(e)
+    {
+        setLightName(e.target.value);
+    }
 
     return(
         // prevent right click context menu
         <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
             {/* ui elements */}
-            <div className = "three-btn-container">
+            <div className = "three-ui-container">
                 <div className = "btn" onClick = {toggleAdd}>{addMode ? "ADD" : "VIEW"}</div>
                 <div className = "btn" onClick = {togglePlaceholder}>{
                     phMode ? "TEST1" : "TEST0"}
                 </div>
+                <input
+                    type = "text"
+                    name = "light-name"
+                    value = {lightName}
+                    placeholder = "Enter light name"
+                    onChange = {handleChangeLightName}
+                    onFocus = {handleFocus}
+                    onBlur = {handleBlur}
+                    disabled = {!addMode}
+                />
+
                 <div className = "btn" onClick = {toggleAdd}>QWE</div>
             </div>
             {/* set bg colour on canvas */}

@@ -8,9 +8,9 @@
     height: 75%;
 }
 
-/* test ui elements */
+/* ui elements */
 
-.three-btn-container
+.three-ui-container
 {
     z-index: 1;
     position: absolute;
@@ -21,7 +21,7 @@
     height: 50%;
 }
 
-.three-btn-container div.btn
+.three-ui-container .btn
 {
     box-sizing: border-box;
     border: 1px solid #000000;
@@ -32,7 +32,28 @@
     cursor: pointer;
 }
 
-.three-btn-container div.btn:hover
+.three-ui-container .btn:hover
 {
     color: #C7C7C7;
+}
+
+.three-ui-container input
+{
+    font-size: max(1.2vw, 17.28px);
+    font-weight: 500;
+    text-align: left;
+    margin-top: 17.5%;
+    padding-left: 4%;
+    padding-right: 4%;
+    width: 82.19%;
+    height: 17.05516%;
+}
+
+.three-ui-container input::placeholder
+{ 
+    color: #6D6E71;
+    opacity: 0.5;
+    font-size: max(1.2vw, 17.28px);
+    font-weight: 500;
+    text-align: left;
 }
