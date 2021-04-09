@@ -8,6 +8,7 @@ import {Light, SceneDataObject, useRefState, saveObj} from "./Utility.js";
 import {getSceneData} from "./MockAPI";
 
 // three components
+import UIManager from "./three/UIManager";
 import Camera from "./three/Camera";
 import {useKeyUp, useLMBUp, useRMBUp} from "./three/Input";
 import RaycastManager from "./three/RaycastManager";

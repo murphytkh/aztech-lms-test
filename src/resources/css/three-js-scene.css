@@ -48,14 +48,18 @@
 
 .three-ui-container input
 {
+    position: absolute;
+    background-color: #FFFFFF;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 6px;
     font-size: max(1.2vw, 17.28px);
     font-weight: 500;
     text-align: left;
-    margin-top: 17.5%;
-    padding-left: 4%;
-    padding-right: 4%;
-    width: 82.19%;
-    height: 17.05516%;
+    padding-left: 2%;
+    padding-right: 2%;
+    top: 10%;
+    width: 20%;
+    height: 6%;
     pointer-events: all;
 }
 
