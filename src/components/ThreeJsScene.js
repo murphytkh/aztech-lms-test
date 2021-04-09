@@ -1,6 +1,6 @@
 import "../resources/css/three-js-scene.css";
 
-import React, {useState, useEffect, createRef, Suspense} from "react";
+import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
@@ -29,6 +29,7 @@ function ThreeJsScene(props)
 
     // refs
     const planeRef = createRef();
+    const lightArrayRef = useRef([]);
 
     // data
     const [url, setUrl] = useRefState("");
@@ -37,8 +38,24 @@ function ThreeJsScene(props)
 
     // array of light positions
     let lights = lightData.current.length && lightData.current.map((obj, i) =>
-        <Sphere key = {i} radius = {0.5} position = {obj.pos} colour = {0x808080} />
+        <Sphere 
+            ref = {lightArrayRef.current[i]}
+            key = {i} 
+            radius = {0.5} 
+            position = {obj.pos} 
+            colour = {0x808080}
+            name = {obj.name} 
+        />
     );
+
+    // makes sure that the sizes of the array holding three objects and
+    // lightData are equal (allow for common index)
+    if (lightArrayRef.current.length !== lightData.current.length)
+    {
+        lightArrayRef.current = Array(lightData.current.length)
+            .fill()
+            .map((_, i) => lightArrayRef.current[i] || createRef());
+    }
 
     // simulate getting data (from MockAPI)
     useEffect(() =>
@@ -74,6 +91,12 @@ function ThreeJsScene(props)
     
     function saveScene(name)
     {
+        // this gets access to the array of meshes
+        // the index is the same as lightData
+        // perform operations on lightData and access the three object
+        // via lightArrayRef
+        //console.log(lightArrayRef.current);
+
         saveObj(new SceneDataObject(floorPlan.current, lightData.current), name);
     }
 
@@ -104,7 +127,7 @@ function ThreeJsScene(props)
         if (addMode)
         {
             var arr = [...lightData.current];
-            arr.push(new Light("testadd", currPoint));
+            arr.push(new Light(lightName, currPoint));
             setLightData(arr);
         }
     }
@@ -153,32 +176,24 @@ function ThreeJsScene(props)
     return(
         // prevent right click context menu
         <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
-            {/* ui elements */}
-            <div className = "three-ui-container">
-                <div className = "btn-container">
-                    <div className = "btn" onClick = {toggleAdd}>
-                        {addMode ? "ADD" : "VIEW"}
-                    </div>
-                    <div className = "btn" onClick = {togglePlaceholder}>{
-                        phMode ? "TEST1" : "TEST0"}
-                    </div>
-                    <div className = "btn" onClick = {toggleAdd}>QWE</div>
-                </div>
-                <input
-                    id = {addMode ? "" : "hide"}
-                    type = "text"
-                    name = "light-name"
-                    value = {lightName}
-                    placeholder = "Enter light name"
-                    onChange = {handleChangeLightName}
-                    onFocus = {handleFocus}
-                    onBlur = {handleBlur}
-                    disabled = {!addMode}
-                />
-            </div>
+            {/* ui */}
+            <UIManager 
+                // ui state tracking
+                add = {addMode}
+                ph = {phMode}
+                // buttons
+                toggleAdd = {toggleAdd} 
+                togglePh = {togglePlaceholder}
+                // input fields
+                lightName = {lightName}
+                setLightName = {handleChangeLightName}
+                // focus setting
+                focus = {handleFocus}
+                blur = {handleBlur}
+            />
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
-                <Camera controlsEnabled = {!addMode} />
+                <Camera disableHotkeys = {disableHotkeys.current} controlsEnabled = {!addMode} />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}
                 <directionalLight color = {0xFFFFFF} intensity = {1.5} />

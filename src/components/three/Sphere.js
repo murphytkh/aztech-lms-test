@@ -1,20 +1,23 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, forwardRef, useState} from "react";
 
-function Sphere(props) 
+const Sphere = forwardRef((props, ref) => 
 {
-    const mesh = useRef();
-
     const [hovered, setHover] = useState(false)
-    const [active, setActive] = useState(false)
+
+    function printName()
+    {
+        console.log(props.name);
+    }
 
     return (
         <mesh
             {...props}
-            ref = {mesh}
+            ref = {ref}
             // default scale 1
             scale = {1}
             // on click
-            onClick = {(event) => setActive(!active)}
+            //onClick = {(event) => setActive(!active)}
+            onClick = {printName}
             // on rollover
             onPointerOver = {(event) => setHover(true)}
             // on exit
@@ -26,6 +29,6 @@ function Sphere(props)
             <meshStandardMaterial color = {hovered ? "orange" : props.colour} />
         </mesh>
     )
-}
+});
 
 export default Sphere;
