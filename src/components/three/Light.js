@@ -23,13 +23,13 @@ const Light = forwardRef((props, ref) =>
 
     function handleOnOver()
     {
-        setHover(true);
+        //setHover(true);
         props.enter(props.userData.name);
     }
 
     function handleExit()
     {
-        setHover(false);
+        //setHover(false);
         props.exit(props.userData.name);
     }
 

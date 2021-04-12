@@ -11,7 +11,7 @@ import {getSceneData} from "./MockAPI";
 // three components
 import UIManager from "./three/UIManager";
 import Camera from "./three/Camera";
-import {useKeyUp, useLMBUp, useRMBUp} from "./three/Input";
+import {useKeyDown, useKeyUp, useLMBUp, useRMBUp} from "./three/Input";
 import RaycastManager from "./three/RaycastManager";
 import Light from "./three/Light";
 import IndicatorSphere from "./three/IndicatorSphere";
@@ -25,7 +25,7 @@ function ThreeJsScene(props)
 
     // states
     const [disableHotkeys, setDisableHotkeys] = useRefState(false);
-    const [lightHover, setLightHover] = useRefState(false);
+    const [cameraEnabled, setCameraEnabled] = useRefState(true);
     const [addMode, setAddMode] = useRefState(false);
     const [phMode, setPhMode] = useState(false);
 
@@ -33,6 +33,7 @@ function ThreeJsScene(props)
     const [currPoint, setCurrPoint] = useState([]);
     const [currLightName, setCurrLightName] = useState("");
     const [selectedLights, setSelectedLights] = useRefState([]);
+    const [lightHover, setLightHover] = useRefState(null);
 
     // refs
     const planeRef = createRef();
@@ -62,6 +63,7 @@ function ThreeJsScene(props)
     // lightData are equal (allow for common index)
     if (lightArrayRef.current.length !== lightData.current.length)
     {
+        console.log("update");
         lightArrayRef.current = Array(lightData.current.length)
             .fill()
             .map((_, i) => lightArrayRef.current[i] || createRef());
@@ -87,7 +89,7 @@ function ThreeJsScene(props)
     function removeLight(name)
     {
         var arr = [...lightData.current];
-        removeFromArray(arr, name);
+        arr = removeFromArray(arr, name);
         setLightData(arr);
     }
 
@@ -103,12 +105,12 @@ function ThreeJsScene(props)
 
     function lightEnter(name)
     {
-        setLightHover(true);
+        setLightHover(name);
     }
 
     function lightExit(name)
     {
-        setLightHover(false);
+        setLightHover(null);
     }
 
     function selectLight(name)
@@ -147,7 +149,7 @@ function ThreeJsScene(props)
             var selectedArr = [...selectedLights.current];
             if (findLightByName(selectedArr, name))
             {
-                removeFromArray(selectedArr, name);
+                selectedArr = removeFromArray(selectedArr, name);
                 setSelectedLights(selectedArr);
             }
         }
@@ -160,6 +162,11 @@ function ThreeJsScene(props)
         {
             deselectLight(arr[i].name);
         }
+    }
+
+    function moveToLight(name)
+    {
+
     }
 
     // file loading
@@ -255,20 +262,29 @@ function ThreeJsScene(props)
         if (!disableHotkeys.current) saveScene("test");
     });
 
+    useKeyDown("Control", () => {
+        setCameraEnabled(false);
+    });
+
+    useKeyUp("Control", () => {
+        setCameraEnabled(true);
+    });
+
     useLMBUp(() => {
         // deselect lights if clicked on empty space
         if (selectedLights.current.length)
-        {
             deselectLights();
-        }
     });
 
-    //useRMBUp(() => {
-    //    if (addMode.current)
-    //    {
-    //        console.log("rmb");
-    //    }
-    //});
+    useRMBUp(() => {
+        if (addMode.current)
+        {
+            if (lightHover.current !== null)
+            {
+                removeLight(lightHover.current);
+            }
+        }
+    });
 
     function handleChangeLightName(e)
     {
@@ -297,7 +313,7 @@ function ThreeJsScene(props)
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
                 <Camera 
                     disableHotkeys = {disableHotkeys.current} 
-                    controlsEnabled = {!addMode.current} 
+                    controlsEnabled = {!addMode.current && cameraEnabled.current} 
                 />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}

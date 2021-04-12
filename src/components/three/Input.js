@@ -40,17 +40,23 @@ export function useCtrlCombo(key, action)
         {
             if (e.key === "Control") ctrl = true;
         }
+        function onKeyup(e)
+        {
+            if (e.key === "Control") ctrl = false;
+        }
         function onCtrlcombo(e)
         {
             if (e.key === key && ctrl) action();
         }
 
         window.addEventListener("keydown", onKeydown);
+        window.addEventListener("keyup", onKeyup);
         window.addEventListener("keyup", onCtrlcombo);
         return () => {
             window.removeEventListener("keydown", onKeydown);
+            window.removeEventListener("keyup", onKeyup);
             window.removeEventListener("keyup", onCtrlcombo);
-        };   
+        };
     }, []);
 }
 
@@ -58,14 +64,30 @@ export function useCtrlCombo(key, action)
 
 export function useLMBUp(action)
 {
+    var ctrl = false;
+
     useEffect(() => {
+        function onKeydown(e)
+        {
+            if (e.key === "Control") ctrl = true;
+        }
+        function onKeyup(e)
+        {
+            if (e.key === "Control") ctrl = false;
+        }
         function onLMBUp(e)
         {
-            if (e.button === 0) action();
+            if (e.button === 0 && !ctrl) action();
         }
     
+        window.addEventListener("keydown", onKeydown);
+        window.addEventListener("keyup", onKeyup);
         window.addEventListener("pointerup", onLMBUp);
-        return () => window.removeEventListener("pointerup", onLMBUp);
+        return () => {
+            window.removeEventListener("keydown", onKeydown);
+            window.removeEventListener("keyup", onKeyup);
+            window.removeEventListener("pointerup", onLMBUp);
+        }
     }, []);
 }
 

@@ -95,7 +95,7 @@ export function Rad(deg)
 // used for lightdata only
 export function removeFromArray(arr, val)
 {
-    arr = arr.filter((obj) => {return obj.name !== val;});
+    return arr = arr.filter((obj) => {return obj.name !== val;});
 }
 
 export function findLightByName(arr, val)
