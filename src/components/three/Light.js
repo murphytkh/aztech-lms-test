@@ -1,21 +1,32 @@
-import React, {useRef, forwardRef, useState, useContext, useCallback} from "react";
-import {Canvas, extend, useFrame, useThree} from "@react-three/fiber";
+
+
+import React, {forwardRef, useContext, useCallback} from "react";
 
 // <mesh userData={{hello: "world"}} />
-
-//onPointerOver = {useCallback(() => setHovered(state => [...state, lightArrayRef.current[i]], []))}
-//onPointerOut = {useCallback(() => setHovered(state => state.filter(mesh => mesh !== lightArrayRef.current), []))}
 
 const Light = forwardRef((props, ref) => 
 {
     //const[hover, setHover] = useState(false);
 
     function useHover() {
-        const setHovered = useContext(props.context)
-        const onPointerOver = useCallback(() => setHovered(state => [...state, ref.current]), [])
-        const onPointerOut = useCallback(() => setHovered(state => state.filter(mesh => mesh !== ref.current)), [])
-        return { ref, onPointerOver, onPointerOut }
-      }
+        const setHovered = useContext(props.context);
+        const onPointerOver = useCallback(() => {
+            if (ref)
+            {
+                console.log("wat");
+                setHovered(state => [...state, ref.current]);
+                props.enter(props.userData.name);
+            }
+        }, []);
+        const onPointerOut = useCallback(() => {
+            if (ref)
+            {
+                setHovered(state => state.filter(mesh => mesh !== ref.current));
+                props.exit(props.userData.name);
+            }
+        }, []);
+        return {ref, onPointerOver, onPointerOut}
+    }
 
     function colour()
     {

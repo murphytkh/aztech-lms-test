@@ -1,6 +1,6 @@
 import "../resources/css/three-js-scene.css";
 
-import React, {useState, useEffect, useRef, createRef, useMemo, Suspense, useContext, useCallback} from "react";
+import React, {useState, useEffect, useRef, createRef, useMemo, Suspense} from "react";
 import {Vector2} from "three";
 import {Canvas, extend, useFrame, useThree} from "@react-three/fiber";
 import {EffectComposer} from "three/examples/jsm/postprocessing/EffectComposer";
@@ -80,6 +80,15 @@ function ThreeJsScene(props)
     const [floorPlan, setFloorPlan] = useRefState("");
     const [lightData, setLightData] = useRefState([]);
 
+    // makes sure that the sizes of the array holding three objects and
+    // lightData are equal (allow for common index)
+    if (lightArrayRef.current.length !== lightData.current.length)
+    {
+        lightArrayRef.current = Array(lightData.current.length)
+            .fill()
+            .map((_, i) => lightArrayRef.current[i] || createRef());
+    }
+
     // array of light positions
     let lights = lightData.current.length && lightData.current.map((obj, i) =>
         <Light 
@@ -95,15 +104,6 @@ function ThreeJsScene(props)
             context = {context}
         />
     );
-
-    // makes sure that the sizes of the array holding three objects and
-    // lightData are equal (allow for common index)
-    if (lightArrayRef.current.length !== lightData.current.length)
-    {
-        lightArrayRef.current = Array(lightData.current.length)
-            .fill()
-            .map((_, i) => lightArrayRef.current[i] || createRef());
-    }
 
     // simulate getting data (from MockAPI)
     useEffect(() =>
