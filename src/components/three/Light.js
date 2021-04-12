@@ -1,27 +1,32 @@
-import React, {useRef, forwardRef, useState} from "react";
+import React, {forwardRef, useState} from "react";
 
-const Sphere = forwardRef((props, ref) => 
+// <mesh userData={{hello: "world"}} />
+
+const Light = forwardRef((props, ref) => 
 {
     const [hovered, setHover] = useState(false)
 
     function printName()
     {
-        console.log(props.name);
+        console.log(props.userData.name);
     }
 
     return (
         <mesh
             {...props}
             ref = {ref}
+            // properties
+            userData = {props.userData}
+            position = {props.userData.pos}
             // default scale 1
             scale = {1}
             // on click
             //onClick = {(event) => setActive(!active)}
             onClick = {printName}
             // on rollover
-            onPointerOver = {(event) => setHover(true)}
+            onPointerOver = {(e) => setHover(true)}
             // on exit
-            onPointerOut = {(event) => setHover(false)}
+            onPointerOut = {(e) => setHover(false)}
         >
             {/* radius, width segments, height segments */}
             <sphereBufferGeometry args = {[props.radius, 32, 32]} />
@@ -31,4 +36,4 @@ const Sphere = forwardRef((props, ref) =>
     )
 });
 
-export default Sphere;
+export default Light;

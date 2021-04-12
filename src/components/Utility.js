@@ -2,7 +2,7 @@ import {useState, useRef} from "react";
 
 // objects for storing data
 
-class NotificationObject
+export class NotificationObject
 {
     constructor(title, description, rectify)
     {
@@ -12,7 +12,7 @@ class NotificationObject
     }
 }
 
-class PageObject
+export class PageObject
 {
     constructor(index, active, value, style, id)
     {
@@ -24,7 +24,7 @@ class PageObject
     }
 }
 
-class UserObject
+export class UserObject
 {
     constructor(name, role, image)
     {
@@ -34,7 +34,7 @@ class UserObject
     }
 }
 
-class ActiveLightObject
+export class ActiveLightObject
 {
     constructor(id, detections, date, time, stats)
     {
@@ -46,7 +46,7 @@ class ActiveLightObject
     }
 }
 
-class ActivityObject
+export class ActivityObject
 {
     constructor(user, action)
     {
@@ -55,7 +55,7 @@ class ActivityObject
     }
 }
 
-class LightStatusObject
+export class LightStatusObject
 {
     constructor(name, location, date, time, status)
     {
@@ -67,7 +67,7 @@ class LightStatusObject
     }
 }
 
-class Light
+export class LightData
 {
     constructor(name, pos)
     {
@@ -76,7 +76,7 @@ class Light
     }
 }
 
-class SceneDataObject
+export class SceneDataObject
 {
     constructor(img, lights)
     {
@@ -86,15 +86,21 @@ class SceneDataObject
 }
 
 // utility functions
-function Rad(deg)
+export function Rad(deg)
 {
     return deg * Math.PI / 180;
+}
+
+// used for lightdata only
+export function removeFromArray(arr, val)
+{
+    arr = arr.filter(function(obj) {return obj.name !== val;});
 }
 
 // use this if using states in DOM event handlers
 // it would allow you to get the updated state
 // note: use .current to access the data
-function useRefState(initial)
+export function useRefState(initial)
 {
     const [state, setState] = useState(initial);
     const ref = useRef(state);
@@ -108,7 +114,7 @@ function useRefState(initial)
     return [ref, setRefState];
 }
 
-function saveObj(obj, name)
+export function saveObj(obj, name)
 {
     const json = JSON.stringify(obj);
     const blob = new Blob([json], {type: "text/plain"});
@@ -119,7 +125,3 @@ function saveObj(obj, name)
     link.click();
     URL.revokeObjectURL(url);
 }
-
-export {NotificationObject, PageObject, UserObject, ActiveLightObject, 
-        ActivityObject, LightStatusObject, Light, SceneDataObject, Rad,
-        useRefState, saveObj};

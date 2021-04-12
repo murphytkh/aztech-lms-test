@@ -28,6 +28,7 @@
     right: -8.35%;
     width: 8%;
     height: 50%;
+    pointer-events: all;
 }
 
 .btn-container .btn

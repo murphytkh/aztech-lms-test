@@ -4,7 +4,7 @@ import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
-import {Light, SceneDataObject, useRefState, saveObj} from "./Utility.js";
+import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray} from "./Utility.js";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -12,7 +12,7 @@ import UIManager from "./three/UIManager";
 import Camera from "./three/Camera";
 import {useKeyUp, useLMBUp, useRMBUp} from "./three/Input";
 import RaycastManager from "./three/RaycastManager";
-import Sphere from "./three/Sphere";
+import Light from "./three/Light";
 import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
 
@@ -21,11 +21,16 @@ import defaultImg from "../resources/three/default.png";
 function ThreeJsScene(props)
 {
     // ui
+
+    // states
     const [disableHotkeys, setDisableHotkeys] = useRefState(false);
-    const [addMode, setAddMode] = useState(false);
+    const [addMode, setAddMode] = useRefState(false);
     const [phMode, setPhMode] = useState(false);
+
+    // light selection
     const [currPoint, setCurrPoint] = useState([]);
-    const [lightName, setLightName] = useState("");
+    const [currLightName, setCurrLightName] = useState("");
+    const [selectedLights, setSelectedLights] = useState([]);
 
     // refs
     const planeRef = createRef();
@@ -38,13 +43,12 @@ function ThreeJsScene(props)
 
     // array of light positions
     let lights = lightData.current.length && lightData.current.map((obj, i) =>
-        <Sphere 
+        <Light 
             ref = {lightArrayRef.current[i]}
+            userData = {obj}
             key = {i} 
             radius = {0.5} 
-            position = {obj.pos} 
             colour = {0x808080}
-            name = {obj.name} 
         />
     );
 
@@ -65,6 +69,26 @@ function ThreeJsScene(props)
         loadData("default");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    // oeprations on light data
+    function addLight(data)
+    {
+        var arr = [...lightData.current];
+        arr.push(data);
+        setLightData(arr);
+    }
+
+    function removeLight(name)
+    {
+        var arr = [...lightData.current];
+        removeFromArray(arr, name);
+        setLightData(arr);
+    }
+
+    function selectLight(name)
+    {
+        
+    }
 
     // file loading
     function loadData(name)
@@ -103,7 +127,7 @@ function ThreeJsScene(props)
     // ui state handling
     function toggleAdd()
     {
-        setAddMode(addMode => !addMode);
+        setAddMode(!addMode.current);
     }
 
     function togglePlaceholder()
@@ -117,18 +141,17 @@ function ThreeJsScene(props)
     function setPoint(x, y)
     {
         // update current clicked point
-        if (addMode)
+        if (addMode.current)
             setCurrPoint([x, 0, y]);
     }
 
     function handlePlaneClick()
     {
         // add light
-        if (addMode)
+        if (addMode.current)
         {
-            var arr = [...lightData.current];
-            arr.push(new Light(lightName, currPoint));
-            setLightData(arr);
+            var data = new LightData(currLightName, currPoint);
+            addLight(data);
         }
     }
 
@@ -164,13 +187,16 @@ function ThreeJsScene(props)
     //    console.log("akjsas");
     //});
 
-    //useRMBUp(() => {
-    //    console.log("rmb");
-    //});
+    useRMBUp(() => {
+        if (addMode.current)
+        {
+            console.log("rmb");
+        }
+    });
 
     function handleChangeLightName(e)
     {
-        setLightName(e.target.value);
+        setCurrLightName(e.target.value);
     }
 
     return(
@@ -179,13 +205,13 @@ function ThreeJsScene(props)
             {/* ui */}
             <UIManager 
                 // ui state tracking
-                add = {addMode}
+                add = {addMode.current}
                 ph = {phMode}
                 // buttons
                 toggleAdd = {toggleAdd} 
                 togglePh = {togglePlaceholder}
                 // input fields
-                lightName = {lightName}
+                lightName = {currLightName}
                 setLightName = {handleChangeLightName}
                 // focus setting
                 focus = {handleFocus}
@@ -195,7 +221,7 @@ function ThreeJsScene(props)
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
                 <Camera 
                     disableHotkeys = {disableHotkeys.current} 
-                    controlsEnabled = {!addMode} 
+                    controlsEnabled = {!addMode.current} 
                 />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}
@@ -213,7 +239,7 @@ function ThreeJsScene(props)
                     />
                 </Suspense>
                 {/* placement indicator */}
-                {addMode && 
+                {addMode.current && 
                 <IndicatorSphere radius = {0.5} position = {currPoint} colour = {0x808080} />}
                 {lights}
             </Canvas>

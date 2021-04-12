@@ -28,12 +28,8 @@ what in the fucks going on
 current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
-- priority:
-  - store references to array of lights
-    - enable iterating over it and getting data
-    - need this before proceeding with all other
-      features
-    - store id inside sphere so i can pass it up?
+- toggle on/off/normal
+- remove lights
 
 list of npm packages installed (other than the
 usual react stuff)
