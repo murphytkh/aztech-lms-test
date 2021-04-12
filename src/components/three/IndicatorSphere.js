@@ -13,7 +13,7 @@ function IndicatorSphere(props)
             {/* same size as sphere */}
             <sphereBufferGeometry args = {[props.radius, 32, 32]} />
             {/* semi transparent material */}
-            <meshPhongMaterial color = {props.color} opacity = {0.7} transparent = {true}/>
+            <meshPhongMaterial color = {props.color} opacity = {0.8} transparent = {true}/>
         </mesh>
     );
 }

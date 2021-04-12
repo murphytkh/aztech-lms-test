@@ -30,9 +30,9 @@ extend({EffectComposer, RenderPass, OutlinePass, ShaderPass});
 const context = React.createContext();
 const Outline = ({children}) => 
 {
-    const { gl, scene, camera, size } = useThree();
+    const {gl, scene, camera, size} = useThree();
     const composer = useRef();
-    const [hovered, set] = useState([]);
+    const [selected, set] = useState([]);
     const aspect = useMemo(() => new Vector2(size.width, size.height), [size]);
     useEffect(() => composer.current.setSize(size.width, size.height), [size]);
     useFrame(() => composer.current.render(), 1);
@@ -44,7 +44,7 @@ const Outline = ({children}) =>
                 <outlinePass
                   attachArray = "passes"
                   args = {[aspect, scene, camera]}
-                  selectedObjects = {hovered}
+                  selectedObjects = {selected}
                   visibleEdgeColor = "white"
                   edgeStrength = {50}
                   edgeThickness = {1}
@@ -91,18 +91,22 @@ function ThreeJsScene(props)
 
     // array of light positions
     let lights = lightData.current.length && lightData.current.map((obj, i) =>
-        <Light 
-            ref = {lightArrayRef.current[i]}
-            userData = {obj}
-            key = {i} 
-            radius = {0.5} 
-            colour = {0x808080}
-            // callbacks
-            click = {lightClick}
-            enter = {lightEnter}
-            exit = {lightExit}
-            context = {context}
-        />
+        {
+            return (
+                <Light 
+                    ref = {lightArrayRef.current[i]}
+                    userData = {obj}
+                    key = {i} 
+                    radius = {0.5} 
+                    colour = {0x808080}
+                    // callbacks
+                    click = {lightClick}
+                    enter = {lightEnter}
+                    exit = {lightExit}
+                    context = {context}
+                />
+            );
+        }
     );
 
     // simulate getting data (from MockAPI)
@@ -118,8 +122,16 @@ function ThreeJsScene(props)
     function addLight(data)
     {
         var arr = [...lightData.current];
-        arr.push(data);
-        setLightData(arr);
+
+       if (!findLightByName(arr, data.name))
+       {
+            arr.push(data);
+            setLightData(arr);
+        }
+        else
+        {
+            console.log("duplicate light name found");
+        }
     }
 
     function removeLight(name)
@@ -353,7 +365,8 @@ function ThreeJsScene(props)
                 />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* default scene lighting */}
-                <directionalLight color = {0xFFFFFF} intensity = {1.5} />
+                <directionalLight color = {0xFFFFFF} intensity = {2} />
+                <ambientLight />
                 {/* elements */}
                 <Suspense fallback = {null}>
                     <Plane 
@@ -368,7 +381,7 @@ function ThreeJsScene(props)
                 </Suspense>
                 {/* placement indicator */}
                 {addMode.current && 
-                <IndicatorSphere radius = {0.5} position = {currPoint} colour = {0x808080} />}
+                <IndicatorSphere radius = {0.5} position = {currPoint} colour = {0x000000} />}
                 <Outline>
                     {lights}
                 </Outline>

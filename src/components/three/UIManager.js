@@ -20,7 +20,7 @@ function UIManager(props)
             <input
                 id = {props.add ? "" : "hide"}
                 type = "text"
-                name = "light-name"
+                name = "three-light-name"
                 value = {props.lightName}
                 placeholder = "Enter light name"
                 onChange = {props.setLightName}

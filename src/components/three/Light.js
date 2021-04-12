@@ -1,58 +1,58 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
-
-import React, {forwardRef, useContext, useCallback} from "react";
+import React, {useState, useEffect, forwardRef, useContext, useCallback} from "react";
 
 // <mesh userData={{hello: "world"}} />
 
 const Light = forwardRef((props, ref) => 
 {
-    //const[hover, setHover] = useState(false);
+    const [outlined, setOutlined] = useState(false);
+    const setOutline = useContext(props.context);
 
     function useHover() {
-        const setHovered = useContext(props.context);
         const onPointerOver = useCallback(() => {
-            if (ref)
+            if (ref && !props.userData.selected)
             {
-                console.log("wat");
-                setHovered(state => [...state, ref.current]);
-                props.enter(props.userData.name);
+                setOutline(state => [...state, ref.current]);
+                setOutlined(true);
             }
+            props.enter(props.userData.name);
         }, []);
         const onPointerOut = useCallback(() => {
-            if (ref)
+            if (ref && !props.userData.selected)
             {
-                setHovered(state => state.filter(mesh => mesh !== ref.current));
-                props.exit(props.userData.name);
+                setOutline(state => state.filter(mesh => mesh !== ref.current));
+                setOutlined(false);
             }
+            props.exit(props.userData.name);
         }, []);
         return {ref, onPointerOver, onPointerOut}
     }
 
+    useEffect(() => {
+        if (props.userData.selected)
+        {
+            if (!outlined)
+            {
+                setOutline(state => [...state, ref.current]);
+            }
+        }
+        else
+        {
+            setOutline(state => state.filter(mesh => mesh !== ref.current));
+        }
+    }, [props.userData.selected]);
+
+
+    
     function colour()
     {
-        if (props.userData.selected)
-            return "red";
-        //else if (hover)
-        //    return "orange";
-        else
-            return props.colour;
+        return props.userData.selected ? "red" : props.colour;
     }
 
     function handleOnClick()
     {
         props.click(props.userData.name);
-    }
-
-    function handleOnOver()
-    {
-        //setHover(true);
-        props.enter(props.userData.name);
-    }
-
-    function handleExit()
-    {
-        //setHover(false);
-        props.exit(props.userData.name);
     }
 
     return (
