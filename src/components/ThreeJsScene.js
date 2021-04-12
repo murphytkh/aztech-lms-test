@@ -4,7 +4,8 @@ import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
-import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray} from "./Utility.js";
+import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray,
+        findLightByName} from "./Utility.js";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -24,13 +25,14 @@ function ThreeJsScene(props)
 
     // states
     const [disableHotkeys, setDisableHotkeys] = useRefState(false);
+    const [lightHover, setLightHover] = useRefState(false);
     const [addMode, setAddMode] = useRefState(false);
     const [phMode, setPhMode] = useState(false);
 
     // light selection
     const [currPoint, setCurrPoint] = useState([]);
     const [currLightName, setCurrLightName] = useState("");
-    const [selectedLights, setSelectedLights] = useState([]);
+    const [selectedLights, setSelectedLights] = useRefState([]);
 
     // refs
     const planeRef = createRef();
@@ -49,6 +51,10 @@ function ThreeJsScene(props)
             key = {i} 
             radius = {0.5} 
             colour = {0x808080}
+            // callbacks
+            click = {lightClick}
+            enter = {lightEnter}
+            exit = {lightExit}
         />
     );
 
@@ -85,9 +91,71 @@ function ThreeJsScene(props)
         setLightData(arr);
     }
 
+    function lightClick(name)
+    {
+        if (!addMode.current)
+        {
+            selectLight(name);
+            var arr = [findLightByName([...lightData.current], name)];
+            setSelectedLights(arr);
+        }
+    }
+
+    function lightEnter(name)
+    {
+        setLightHover(true);
+    }
+
+    function lightExit(name)
+    {
+        setLightHover(false);
+    }
+
     function selectLight(name)
     {
-        
+        // toggle light selected state
+        var arr = [...lightData.current];
+        var light = findLightByName(arr, name);
+        light.selected = true;
+
+        // add to array of selected lights
+        // check if already selected first
+        var selectedArr = [...selectedLights.current];
+        if (!findLightByName(selectedArr, name))
+        {
+            selectedArr.push(light);
+            setSelectedLights(selectedArr);
+        }
+    }
+
+    function deselectLight(name)
+    {
+        // toggle light selected state
+        var arr = [...lightData.current];
+        var light = findLightByName(arr, name);
+        console.log(light);
+        if (light)
+        {
+            light.selected = false;
+
+            // remove from aray of selected lights
+            // check if exists in array first
+            var selectedArr = [...selectedLights.current];
+            if (findLightByName(selectedArr, name))
+            {
+                removeFromArray(selectedArr, name);
+                setSelectedLights(selectedArr);
+            }
+        }
+    }
+
+    function deselectLights()
+    {
+        var arr = [...selectedLights.current];
+        for (var i = 0; i < arr.length; ++i)
+        {
+            deselectLight(arr[i].name);
+        }
     }
 
     // file loading
@@ -150,7 +218,7 @@ function ThreeJsScene(props)
         // add light
         if (addMode.current)
         {
-            var data = new LightData(currLightName, currPoint);
+            var data = new LightData(currLightName, currPoint, false);
             addLight(data);
         }
     }
@@ -183,16 +251,20 @@ function ThreeJsScene(props)
         if (!disableHotkeys.current) saveScene("test");
     });
 
-    //useLMBUp(() => {
-    //    console.log("akjsas");
-    //});
-
-    useRMBUp(() => {
-        if (addMode.current)
+    useLMBUp(() => {
+        // deselect lights if clicked on empty space
+        if (selectedLights.current.length)
         {
-            console.log("rmb");
+            deselectLights();
         }
     });
+
+    //useRMBUp(() => {
+    //    if (addMode.current)
+    //    {
+    //        console.log("rmb");
+    //    }
+    //});
 
     function handleChangeLightName(e)
     {

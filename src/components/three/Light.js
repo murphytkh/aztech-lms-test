@@ -4,11 +4,33 @@ import React, {forwardRef, useState} from "react";
 
 const Light = forwardRef((props, ref) => 
 {
-    const [hovered, setHover] = useState(false)
+    const[hover, setHover] = useState(false);
 
-    function printName()
+    function colour()
     {
-        console.log(props.userData.name);
+        if (props.userData.selected)
+            return "red";
+        else if (hover)
+            return "orange";
+        else
+            return props.colour;
+    }
+
+    function handleOnClick()
+    {
+        props.click(props.userData.name);
+    }
+
+    function handleOnOver()
+    {
+        setHover(true);
+        props.enter(props.userData.name);
+    }
+
+    function handleExit()
+    {
+        setHover(false);
+        props.exit(props.userData.name);
     }
 
     return (
@@ -22,16 +44,16 @@ const Light = forwardRef((props, ref) =>
             scale = {1}
             // on click
             //onClick = {(event) => setActive(!active)}
-            onClick = {printName}
+            onClick = {handleOnClick}
             // on rollover
-            onPointerOver = {(e) => setHover(true)}
+            onPointerOver = {handleOnOver}
             // on exit
-            onPointerOut = {(e) => setHover(false)}
+            onPointerOut = {handleExit}
         >
             {/* radius, width segments, height segments */}
             <sphereBufferGeometry args = {[props.radius, 32, 32]} />
             {/* colour */}
-            <meshStandardMaterial color = {hovered ? "orange" : props.colour} />
+            <meshStandardMaterial color = {colour()} />
         </mesh>
     )
 });

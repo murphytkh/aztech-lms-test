@@ -69,10 +69,11 @@ export class LightStatusObject
 
 export class LightData
 {
-    constructor(name, pos)
+    constructor(name, pos, selected)
     {
         this.name = name;
         this.pos = pos;
+        this.selected = selected;
     }
 }
 
@@ -94,7 +95,12 @@ export function Rad(deg)
 // used for lightdata only
 export function removeFromArray(arr, val)
 {
-    arr = arr.filter(function(obj) {return obj.name !== val;});
+    arr = arr.filter((obj) => {return obj.name !== val;});
+}
+
+export function findLightByName(arr, val)
+{
+    return arr.find(obj => obj.name === val);
 }
 
 // use this if using states in DOM event handlers

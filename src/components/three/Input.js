@@ -5,7 +5,7 @@ import {useEffect} from "react";
 
 // key hooks
 
-function useKeyDown(key, action)
+export function useKeyDown(key, action)
 {
     useEffect(() => {
         function onKeydown(e)
@@ -18,7 +18,7 @@ function useKeyDown(key, action)
     }, []);
 }
 
-function useKeyUp(key, action)
+export function useKeyUp(key, action)
 {
     useEffect(() => {
         function onKeyup(e)
@@ -32,7 +32,7 @@ function useKeyUp(key, action)
 }
 
 // ctrl + key
-function useCtrlCombo(key, action)
+export function useCtrlCombo(key, action)
 {
     var ctrl = false;
     useEffect(() => {
@@ -56,7 +56,7 @@ function useCtrlCombo(key, action)
 
 // mouse hooks 0 - lmb 2 - rmb
 
-function useLMBUp(action)
+export function useLMBUp(action)
 {
     useEffect(() => {
         function onLMBUp(e)
@@ -69,7 +69,7 @@ function useLMBUp(action)
     }, []);
 }
 
-function useRMBUp(action)
+export function useRMBUp(action)
 {
     useEffect(() => {
         function onRMBUp(e)
@@ -82,4 +82,16 @@ function useRMBUp(action)
     }, []);
 }
 
-export {useKeyDown, useKeyUp, useCtrlCombo, useLMBUp, useRMBUp};
+//export function useCtrlMouseDown(action)
+//{
+//    useEffect(() => {
+//        
+//    }, []);
+//}
+
+//export function useCtrlMouseUp(action)
+//{
+//    useEffect(() => {
+//        
+//    }, []);
+//}
