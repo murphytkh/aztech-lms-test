@@ -1,17 +1,28 @@
-import React, {forwardRef, useState} from "react";
+import React, {useRef, forwardRef, useState, useContext, useCallback} from "react";
+import {Canvas, extend, useFrame, useThree} from "@react-three/fiber";
 
 // <mesh userData={{hello: "world"}} />
 
+//onPointerOver = {useCallback(() => setHovered(state => [...state, lightArrayRef.current[i]], []))}
+//onPointerOut = {useCallback(() => setHovered(state => state.filter(mesh => mesh !== lightArrayRef.current), []))}
+
 const Light = forwardRef((props, ref) => 
 {
-    const[hover, setHover] = useState(false);
+    //const[hover, setHover] = useState(false);
+
+    function useHover() {
+        const setHovered = useContext(props.context)
+        const onPointerOver = useCallback(() => setHovered(state => [...state, ref.current]), [])
+        const onPointerOut = useCallback(() => setHovered(state => state.filter(mesh => mesh !== ref.current)), [])
+        return { ref, onPointerOver, onPointerOut }
+      }
 
     function colour()
     {
         if (props.userData.selected)
             return "red";
-        else if (hover)
-            return "orange";
+        //else if (hover)
+        //    return "orange";
         else
             return props.colour;
     }
@@ -36,19 +47,18 @@ const Light = forwardRef((props, ref) =>
     return (
         <mesh
             {...props}
+            
             ref = {ref}
             // properties
             userData = {props.userData}
             position = {props.userData.pos}
             // default scale 1
             scale = {1}
-            // on click
-            //onClick = {(event) => setActive(!active)}
+
             onClick = {handleOnClick}
-            // on rollover
-            onPointerOver = {handleOnOver}
-            // on exit
-            onPointerOut = {handleExit}
+            //onPointerOver = {handleOnOver}
+            //onPointerOut = {handleExit}
+            {...useHover()}
         >
             {/* radius, width segments, height segments */}
             <sphereBufferGeometry args = {[props.radius, 32, 32]} />

@@ -1,7 +1,13 @@
 import "../resources/css/three-js-scene.css";
 
-import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
-import {Canvas} from "@react-three/fiber";
+import React, {useState, useEffect, useRef, createRef, useMemo, Suspense, useContext, useCallback} from "react";
+import {Vector2} from "three";
+import {Canvas, extend, useFrame, useThree} from "@react-three/fiber";
+import {EffectComposer} from "three/examples/jsm/postprocessing/EffectComposer";
+import {OutlinePass} from "three/examples/jsm/postprocessing/OutlinePass";
+import {RenderPass} from "three/examples/jsm/postprocessing/RenderPass";
+import {ShaderPass} from "three/examples/jsm/postprocessing/ShaderPass";
+import {FXAAShader} from "three/examples/jsm/shaders/FXAAShader";
 
 // data
 import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray,
@@ -18,6 +24,36 @@ import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
 
 import defaultImg from "../resources/three/default.png";
+
+extend({EffectComposer, RenderPass, OutlinePass, ShaderPass});
+
+const context = React.createContext();
+const Outline = ({children}) => 
+{
+    const { gl, scene, camera, size } = useThree();
+    const composer = useRef();
+    const [hovered, set] = useState([]);
+    const aspect = useMemo(() => new Vector2(size.width, size.height), [size]);
+    useEffect(() => composer.current.setSize(size.width, size.height), [size]);
+    useFrame(() => composer.current.render(), 1);
+    return (
+        <context.Provider value = {set}>
+            {children}
+            <effectComposer ref = {composer} args = {[gl]}>
+                <renderPass attachArray = "passes" args = {[scene, camera]} />
+                <outlinePass
+                  attachArray = "passes"
+                  args = {[aspect, scene, camera]}
+                  selectedObjects = {hovered}
+                  visibleEdgeColor = "white"
+                  edgeStrength = {50}
+                  edgeThickness = {1}
+                />
+                <shaderPass attachArray = "passes" args = {[FXAAShader]} uniforms-resolution-value = {[1 / size.width, 1 / size.height]} />
+            </effectComposer>
+        </context.Provider>
+    )
+};
 
 function ThreeJsScene(props)
 {
@@ -56,6 +92,7 @@ function ThreeJsScene(props)
             click = {lightClick}
             enter = {lightEnter}
             exit = {lightExit}
+            context = {context}
         />
     );
 
@@ -63,7 +100,6 @@ function ThreeJsScene(props)
     // lightData are equal (allow for common index)
     if (lightArrayRef.current.length !== lightData.current.length)
     {
-        console.log("update");
         lightArrayRef.current = Array(lightData.current.length)
             .fill()
             .map((_, i) => lightArrayRef.current[i] || createRef());
@@ -333,7 +369,9 @@ function ThreeJsScene(props)
                 {/* placement indicator */}
                 {addMode.current && 
                 <IndicatorSphere radius = {0.5} position = {currPoint} colour = {0x808080} />}
-                {lights}
+                <Outline>
+                    {lights}
+                </Outline>
             </Canvas>
         </div>
     );
