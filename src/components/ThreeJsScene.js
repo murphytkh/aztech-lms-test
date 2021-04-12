@@ -116,15 +116,19 @@ function ThreeJsScene(props)
         // toggle light selected state
         var arr = [...lightData.current];
         var light = findLightByName(arr, name);
-        light.selected = true;
 
-        // add to array of selected lights
-        // check if already selected first
-        var selectedArr = [...selectedLights.current];
-        if (!findLightByName(selectedArr, name))
+        if (light)
         {
-            selectedArr.push(light);
-            setSelectedLights(selectedArr);
+            light.selected = true;
+
+            // add to array of selected lights
+            // check if already selected first
+            var selectedArr = [...selectedLights.current];
+            if (!findLightByName(selectedArr, name))
+            {
+                selectedArr.push(light);
+                setSelectedLights(selectedArr);
+            }
         }
     }
 
@@ -132,8 +136,8 @@ function ThreeJsScene(props)
     {
         // toggle light selected state
         var arr = [...lightData.current];
-        var light = findLightByName(arr, name);
-        console.log(light);
+        var light = findLightByName(arr, name); 
+
         if (light)
         {
             light.selected = false;
