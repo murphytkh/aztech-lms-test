@@ -28,8 +28,6 @@ what in the fucks going on
 current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
-- priority:
-  - fix remove bug with calling usestate
 - toggle on/off/normal
 - move to light function
 - error popup for duplicate lightname
