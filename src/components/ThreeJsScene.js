@@ -82,6 +82,7 @@ function ThreeJsScene(props)
 
     // data
     const [url, setUrl] = useRefState("");
+    const [sceneName, setSceneName] = useRefState("");
     const [floorPlan, setFloorPlan] = useRefState("");
     const [lightData, setLightData] = useRefState([]);
 
@@ -105,7 +106,6 @@ function ThreeJsScene(props)
                     radius = {0.5} 
                     colour = {0x808080}
                     // callbacks
-                    click = {lightClick}
                     enter = {lightEnter}
                     exit = {lightExit}
                     context = {context}
@@ -128,8 +128,8 @@ function ThreeJsScene(props)
     {
         var arr = [...lightData.current];
 
-       if (!findLightByName(arr, data.name))
-       {
+        if (!findLightByName(arr, data.name))
+        {
             arr.push(data);
             setLightData(arr);
         }
@@ -144,16 +144,6 @@ function ThreeJsScene(props)
         var arr = [...lightData.current];
         arr = removeFromArray(arr, name);
         setLightData(arr);
-    }
-
-    function lightClick(name)
-    {
-        if (!addMode.current)
-        {
-            selectLight(name);
-            //var arr = [findLightByName([...lightData.current], name)];
-            //setSelectedLights(arr);
-        }
     }
 
     function lightEnter(name)
@@ -225,6 +215,7 @@ function ThreeJsScene(props)
     // file loading
     function loadData(name)
     {
+        setSceneName(name);
         // load from local without .json if default
         if (name === "default")
         {
@@ -233,7 +224,7 @@ function ThreeJsScene(props)
         }
         else
         {
-        // get data from api
+            // get data from api
             getSceneData(url.current, name)
             // api call successful
             .then((res) => {
@@ -247,12 +238,6 @@ function ThreeJsScene(props)
     
     function saveScene(name)
     {
-        // this gets access to the array of meshes
-        // the index is the same as lightData
-        // perform operations on lightData and access the three object
-        // via lightArrayRef
-        //console.log(lightArrayRef.current);
-
         saveObj(new SceneDataObject(floorPlan.current, lightData.current), name);
     }
 
@@ -312,7 +297,7 @@ function ThreeJsScene(props)
     });
 
     useKeyUp("s", () => {
-        if (!disableHotkeys.current) saveScene("test");
+        if (!disableHotkeys.current) saveScene(sceneName.current);
     });
 
     useKeyDown("Control", () => {
@@ -327,6 +312,11 @@ function ThreeJsScene(props)
         // deselect lights if clicked on empty space
         if (selectedLights.current.length)
             deselectLights();
+        if (lightHover.current !== null)
+        {
+            console.log("yo");
+            selectLight(lightHover.current);
+        }
     });
 
     useRMBUp(() => {
@@ -339,11 +329,17 @@ function ThreeJsScene(props)
         }
     });
 
-    // not necessary for now as useLMBUp ignores ctlr-click
-    // multi-select functionality is achieved implicitly
-    //useCtrlMouseUp(() => {
-    //    console.log("ctrl click");
-    //});
+    useCtrlMouseUp(() => {
+        if (lightHover.current !== null)
+        {
+            var light = findLightByName(lightData.current, lightHover.current);
+            if (light)
+            {
+                light.selected ? deselectLight(lightHover.current) : 
+                                 selectLight(lightHover.current);
+            }
+        }
+    });
 
     function handleChangeLightName(e)
     {
@@ -367,6 +363,8 @@ function ThreeJsScene(props)
                 // focus setting
                 focus = {handleFocus}
                 blur = {handleBlur}
+                // display messages
+                error = {"error"}
             />
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>

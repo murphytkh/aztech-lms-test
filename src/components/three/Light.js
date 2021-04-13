@@ -57,11 +57,6 @@ const Light = forwardRef((props, ref) =>
         return props.userData.selected ? "red" : props.colour;
     }
 
-    function handleOnClick()
-    {
-        props.click(props.userData.name);
-    }
-
     return (
         <mesh
             {...props}
@@ -73,7 +68,6 @@ const Light = forwardRef((props, ref) =>
             // default scale 1
             scale = {1}
 
-            onClick = {handleOnClick}
             // spread the rollover and onexit functions
             {...useHover()}
         >

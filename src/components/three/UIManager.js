@@ -30,7 +30,8 @@ function UIManager(props)
             />
             {/* readme */}
             <div className = "readme-container">
-                
+                <h1>read me please</h1>
+                <h1>line 2</h1>
             </div>
         </div>
     );
