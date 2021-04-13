@@ -69,6 +69,7 @@ function ThreeJsScene(props)
     const [phMode, setPhMode] = useState(false);
     const [displayedMsg, setDisplayedMsg] = useState(false);
     const [displayTimeID, setDisplayTimeID] = useState(null);
+    const [displayedMsgColour, setDisplayedMsgColour] = useState("#000000");
 
     // light selection
     const [currPoint, setCurrPoint] = useState([]);
@@ -134,7 +135,7 @@ function ThreeJsScene(props)
         }
         else
         {
-            showMsg("Error: Duplicate light name found", 3000);
+            showMsg("Error: Duplicate light name found", 3000, "#FF0000");
         }
     }
 
@@ -254,14 +255,14 @@ function ThreeJsScene(props)
         setPhMode(phMode => !phMode);
     }
 
-    function showMsg(msg, time)
+    function showMsg(msg, time, colour)
     {
         setDisplayedMsg(msg);
         if (displayTimeID)
             clearTimeout(displayTimeID);
         var id = setTimeout(() => {setDisplayedMsg(""); setDisplayTimeID(null);}, time);
         setDisplayTimeID(id);
-        console.log(msg);
+        setDisplayedMsgColour(colour);
     }
 
     // input
@@ -373,6 +374,7 @@ function ThreeJsScene(props)
                 blur = {handleBlur}
                 // display messages
                 displayText = {displayedMsg}
+                displayColour = {displayedMsgColour}
             />
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>

@@ -31,8 +31,16 @@ function UIManager(props)
             {/* readme */}
             <div className = "three-ui-textbox" id = "readme">
                 <h1>read me please</h1>
-                <h1>{props.displayText}</h1>
             </div>
+            {/* message display */}
+            {props.displayText &&
+            <div 
+                className = "three-ui-textbox" 
+                id = "display-msg" 
+                style = {{color: props.displayColour}}
+            >
+                {props.displayText}
+            </div>}
         </div>
     );
 }

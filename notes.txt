@@ -30,9 +30,6 @@ current task:
   - fuck filtering the view for now
 - toggle on/off/normal
 - move to light function
-- error popup for duplicate lightname
-- multi select support (ctrl + click)
-  - leave selection box for later
 - clean up code (a lot of repetition)
 
 list of npm packages installed (other than the
@@ -142,6 +139,8 @@ setLightData(x => {
     console.log(x);
     return x;
 })
+
+
 
 missing assets:
 user dropdown hover icons
