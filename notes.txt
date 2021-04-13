@@ -29,6 +29,7 @@ current task:
 - figure out solution for showing blocks
   - fuck filtering the view for now
 - toggle on/off/normal
+  - deal with deselecting ligts every click
 - move to light function
 - clean up code (a lot of repetition)
 
@@ -139,8 +140,6 @@ setLightData(x => {
     console.log(x);
     return x;
 })
-
-
 
 missing assets:
 user dropdown hover icons

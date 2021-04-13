@@ -244,6 +244,17 @@ function ThreeJsScene(props)
         saveObj(new SceneDataObject(floorPlan.current, lightData.current), name);
     }
 
+    // config
+
+    function setMode(mode)
+    {
+        showMsg(mode, 3000, "#000000");
+        var arr = [...selectedLights.current];
+        for (var i = 0; i < arr.length; ++i)
+            arr[i].mode = mode;
+        setSelectedLights(arr);
+    }
+
     // ui state handling
     function toggleAdd()
     {
@@ -277,12 +288,21 @@ function ThreeJsScene(props)
 
     function handlePlaneClick()
     {
+        // deselect lights if clicked on empty space
+        if (selectedLights.current.length && lightHover.current === null)
+            deselectLights();
+
         // add light
         if (addMode.current)
         {
             var data = new LightData(currLightName, currPoint, false, "ON");
             addLight(data);
         }
+    }
+
+    function handleChangeLightName(e)
+    {
+        setCurrLightName(e.target.value);
     }
 
     function handleFocus()
@@ -320,9 +340,6 @@ function ThreeJsScene(props)
     });
 
     useLMBUp(() => {
-        // deselect lights if clicked on empty space
-        if (selectedLights.current.length)
-            deselectLights();
         // select light if rollover-ed any
         if (lightHover.current !== null)
             selectLight(lightHover.current);
@@ -350,11 +367,6 @@ function ThreeJsScene(props)
         }
     });
 
-    function handleChangeLightName(e)
-    {
-        setCurrLightName(e.target.value);
-    }
-
     return(
         // prevent right click context menu
         <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
@@ -363,12 +375,14 @@ function ThreeJsScene(props)
                 // ui state tracking
                 add = {addMode.current}
                 ph = {phMode}
+                config = {selectedLights.current.length}
                 // buttons
                 toggleAdd = {toggleAdd} 
                 togglePh = {togglePlaceholder}
                 // input fields
                 lightName = {currLightName}
                 setLightName = {handleChangeLightName}
+                setMode = {setMode}
                 // focus setting
                 focus = {handleFocus}
                 blur = {handleBlur}

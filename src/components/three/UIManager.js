@@ -2,6 +2,24 @@ import "../../resources/css/three-js-ui.css";
 
 import React from "react";
 
+function ThreeConfigButton(props)
+{
+    function handleClick()
+    {
+        props.click(props.text);
+    }
+
+    return(
+        <div 
+            className = "three-btn" 
+            style = {{backgroundColor: props.colour}}
+            onClick = {handleClick}
+        >
+            {props.text}
+        </div>
+    );
+}
+
 function UIManager(props)
 {
     return(
@@ -14,7 +32,7 @@ function UIManager(props)
                 <div className = "btn" onClick = {props.togglePh}>
                     {props.ph ? "TEST1" : "TEST0"}
                 </div>
-                <div className = "btn" onClick = {props.toggleAdd}>QWE</div>
+                <div className = "btn" onClick = {props.toggleAdd}>123</div>
             </div>
             {/* inputs */}
             <input
@@ -30,8 +48,39 @@ function UIManager(props)
             />
             {/* readme */}
             <div className = "three-ui-textbox" id = "readme">
-                <h1>read me please</h1>
+                <h1>View Mode:</h1>
+                <h1>LMB - Pan/Select Light</h1>
+                <h1>RMB - Rotate</h1>
+                <h1>CTRL + LMB - Multiselect</h1>
+                <h1>Scroll Wheel - Zoom</h1>
+                <h1>Space - Toggle Add Mode</h1>
+                <h1>S - Save</h1>
+                <h1> </h1>
+                <h1>Add Mode:</h1>
+                <h1>LMB - Add Light</h1>
+                <h1>RMB - Remove</h1>
             </div>
+            {/* config */}
+            {props.config > 0 &&
+            <div className = "three-ui-textbox" id = "config">
+                <div className = "btn-group">
+                    <ThreeConfigButton 
+                        click = {props.setMode} 
+                        text = "ON" 
+                        colour = {"#3497fD"}
+                    />
+                    <ThreeConfigButton 
+                        click = {props.setMode} 
+                        text = "OFF" 
+                        colour = {"#6D6E71"}
+                    />
+                    <ThreeConfigButton 
+                        click = {props.setMode} 
+                        text = "NORMAL" 
+                        colour = {"#A0BC34"}
+                    />
+                </div>
+            </div>}
             {/* message display */}
             {props.displayText &&
             <div 
