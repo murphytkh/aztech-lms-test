@@ -212,7 +212,7 @@ function ThreeJsScene(props)
 
     function moveToLight(name)
     {
-
+        console.log("move to " + name);
     }
 
     // file loading
@@ -342,7 +342,10 @@ function ThreeJsScene(props)
     useLMBUp(() => {
         // select light if rollover-ed any
         if (lightHover.current !== null)
+        {
             selectLight(lightHover.current);
+            moveToLight(lightHover.current);
+        }
     });
 
     useRMBUp(() => {
@@ -375,7 +378,8 @@ function ThreeJsScene(props)
                 // ui state tracking
                 add = {addMode.current}
                 ph = {phMode}
-                config = {selectedLights.current.length}
+                // data
+                selectedLights = {selectedLights.current}
                 // buttons
                 toggleAdd = {toggleAdd} 
                 togglePh = {togglePlaceholder}

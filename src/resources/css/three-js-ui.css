@@ -82,6 +82,7 @@
     right: 1.3%;
     width: 20%;
     height: 40%;
+    pointer-events: all;
 }
 
 #config .btn-group

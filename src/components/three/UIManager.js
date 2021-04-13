@@ -61,8 +61,13 @@ function UIManager(props)
                 <h1>RMB - Remove</h1>
             </div>
             {/* config */}
-            {props.config > 0 &&
+            {props.selectedLights.length > 0 &&
             <div className = "three-ui-textbox" id = "config">
+                <div className = "light-name">
+                    {props.selectedLights.length > 1 ? 
+                        "Multple Lights Selected" : 
+                        props.selectedLights[0].name}
+                </div>
                 <div className = "btn-group">
                     <ThreeConfigButton 
                         click = {props.setMode} 
