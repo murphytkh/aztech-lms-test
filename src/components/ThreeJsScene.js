@@ -62,13 +62,13 @@ const Outline = ({children}) =>
 
 function ThreeJsScene(props)
 {
-    // ui
-
-    // states
+    // ui states
     const [disableHotkeys, setDisableHotkeys] = useRefState(false);
     const [cameraEnabled, setCameraEnabled] = useRefState(true);
     const [addMode, setAddMode] = useRefState(false);
     const [phMode, setPhMode] = useState(false);
+    const [displayedMsg, setDisplayedMsg] = useState(false);
+    const [displayTimeID, setDisplayTimeID] = useState(null);
 
     // light selection
     const [currPoint, setCurrPoint] = useState([]);
@@ -134,7 +134,7 @@ function ThreeJsScene(props)
         }
         else
         {
-            console.log("duplicate light name found");
+            showMsg("Error: Duplicate light name found", 3000);
         }
     }
 
@@ -157,6 +157,9 @@ function ThreeJsScene(props)
 
     function selectLight(name)
     {
+        // disable light selection if currently in add mode
+        if (addMode.current)
+            return;
         // toggle light selected state
         var arr = [...lightData.current];
         var light = findLightByName(arr, name);
@@ -251,7 +254,17 @@ function ThreeJsScene(props)
         setPhMode(phMode => !phMode);
     }
 
-    // ui events
+    function showMsg(msg, time)
+    {
+        setDisplayedMsg(msg);
+        if (displayTimeID)
+            clearTimeout(displayTimeID);
+        var id = setTimeout(() => {setDisplayedMsg(""); setDisplayTimeID(null);}, time);
+        setDisplayTimeID(id);
+        console.log(msg);
+    }
+
+    // input
 
     // called when mouse is moved on plane
     function setPoint(x, y)
@@ -270,8 +283,6 @@ function ThreeJsScene(props)
             addLight(data);
         }
     }
-
-    // input
 
     function handleFocus()
     {
@@ -361,7 +372,7 @@ function ThreeJsScene(props)
                 focus = {handleFocus}
                 blur = {handleBlur}
                 // display messages
-                error = {"error"}
+                displayText = {displayedMsg}
             />
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>

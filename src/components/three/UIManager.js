@@ -31,7 +31,7 @@ function UIManager(props)
             {/* readme */}
             <div className = "three-ui-textbox" id = "readme">
                 <h1>read me please</h1>
-                <h1>line 2</h1>
+                <h1>{props.displayText}</h1>
             </div>
         </div>
     );
