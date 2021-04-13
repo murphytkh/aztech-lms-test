@@ -17,7 +17,7 @@ import {getSceneData} from "./MockAPI";
 // three components
 import UIManager from "./three/UIManager";
 import Camera from "./three/Camera";
-import {useKeyDown, useKeyUp, useLMBUp, useRMBUp} from "./three/Input";
+import {useKeyDown, useKeyUp, useLMBUp, useRMBUp, useCtrlMouseUp} from "./three/Input";
 import RaycastManager from "./three/RaycastManager";
 import Light from "./three/Light";
 import IndicatorSphere from "./three/IndicatorSphere";
@@ -123,7 +123,7 @@ function ThreeJsScene(props)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // oeprations on light data
+    // operations on light data
     function addLight(data)
     {
         var arr = [...lightData.current];
@@ -151,8 +151,8 @@ function ThreeJsScene(props)
         if (!addMode.current)
         {
             selectLight(name);
-            var arr = [findLightByName([...lightData.current], name)];
-            setSelectedLights(arr);
+            //var arr = [findLightByName([...lightData.current], name)];
+            //setSelectedLights(arr);
         }
     }
 
@@ -338,6 +338,12 @@ function ThreeJsScene(props)
             }
         }
     });
+
+    // not necessary for now as useLMBUp ignores ctlr-click
+    // multi-select functionality is achieved implicitly
+    //useCtrlMouseUp(() => {
+    //    console.log("ctrl click");
+    //});
 
     function handleChangeLightName(e)
     {

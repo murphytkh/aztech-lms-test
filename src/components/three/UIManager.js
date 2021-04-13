@@ -28,6 +28,10 @@ function UIManager(props)
                 onBlur = {props.blur}
                 disabled = {!props.add}
             />
+            {/* readme */}
+            <div className = "readme-container">
+                
+            </div>
         </div>
     );
 }

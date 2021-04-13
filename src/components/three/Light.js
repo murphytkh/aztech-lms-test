@@ -17,7 +17,7 @@ const Light = forwardRef((props, ref) =>
             {
                 setOutline(state => [...state, ref.current]);
                 if (mounted)
-                setOutlined(true);
+                    setOutlined(true);
             }
             props.enter(props.userData.name);
         }, []);
@@ -26,7 +26,7 @@ const Light = forwardRef((props, ref) =>
             {
                 setOutline(state => state.filter(mesh => mesh !== ref.current));
                 if (mounted)
-                setOutlined(false);
+                    setOutlined(false);
             }
             props.exit(props.userData.name);
         }, []);
@@ -74,8 +74,7 @@ const Light = forwardRef((props, ref) =>
             scale = {1}
 
             onClick = {handleOnClick}
-            //onPointerOver = {handleOnOver}
-            //onPointerOut = {handleExit}
+            // spread the rollover and onexit functions
             {...useHover()}
         >
             {/* radius, width segments, height segments */}

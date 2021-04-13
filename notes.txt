@@ -72,17 +72,14 @@ usual react stuff)
 three scene stuff
 - controls
   - LMB - pan
+  - LMB (add) - add light
+  - RMB (add) - delete light
+  - CTRL + LMB - multi select
   - scroll - zoom
   - RMB - rotate
   - 1 - c1basement1
   - 2 - c1basement2
   - s - save scene to json
-- sphere props used
-  - radius
-  - colour
-- plane props used
-  - width
-  - height
 - data structures for objects can be found
   in Utility.js
 
