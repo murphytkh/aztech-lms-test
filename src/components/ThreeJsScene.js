@@ -27,6 +27,7 @@ import defaultImg from "../resources/three/default.png";
 
 extend({EffectComposer, RenderPass, OutlinePass, ShaderPass});
 
+// outline of lights when selecting/hovering
 const context = React.createContext();
 const Outline = ({children}) => 
 {
@@ -49,7 +50,11 @@ const Outline = ({children}) =>
                   edgeStrength = {50}
                   edgeThickness = {1}
                 />
-                <shaderPass attachArray = "passes" args = {[FXAAShader]} uniforms-resolution-value = {[1 / size.width, 1 / size.height]} />
+                <shaderPass 
+                    attachArray = "passes" 
+                    args = {[FXAAShader]} uniforms-resolution-value = 
+                        {[1 / size.width, 1 / size.height]} 
+                />
             </effectComposer>
         </context.Provider>
     )
@@ -81,7 +86,7 @@ function ThreeJsScene(props)
     const [lightData, setLightData] = useRefState([]);
 
     // makes sure that the sizes of the array holding three objects and
-    // lightData are equal (allow for common index)
+    // lightData are equal
     if (lightArrayRef.current.length !== lightData.current.length)
     {
         lightArrayRef.current = Array(lightData.current.length)
