@@ -4,6 +4,8 @@ import React, {useState, useEffect, forwardRef, useContext, useCallback} from "r
 
 // <mesh userData={{hello: "world"}} />
 
+// 0x808080
+
 const Light = forwardRef((props, ref) => 
 {
     const [outlined, setOutlined] = useState(false);
@@ -54,7 +56,12 @@ const Light = forwardRef((props, ref) =>
     // colour selection
     function colour()
     {
-        return props.userData.selected ? "red" : props.colour;
+        if (props.userData.mode === "OFF")
+            return 0x808080;
+        else if (props.userData.mode === "ON")
+            return 0x7EC0EE;
+        else
+            return 0x00FF00;
     }
 
     return (

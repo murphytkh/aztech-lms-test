@@ -104,7 +104,6 @@ function ThreeJsScene(props)
                     userData = {obj}
                     key = {i} 
                     radius = {0.5} 
-                    colour = {0x808080}
                     // callbacks
                     enter = {lightEnter}
                     exit = {lightExit}
@@ -267,7 +266,7 @@ function ThreeJsScene(props)
         // add light
         if (addMode.current)
         {
-            var data = new LightData(currLightName, currPoint, false);
+            var data = new LightData(currLightName, currPoint, false, "ON");
             addLight(data);
         }
     }
@@ -312,11 +311,9 @@ function ThreeJsScene(props)
         // deselect lights if clicked on empty space
         if (selectedLights.current.length)
             deselectLights();
+        // select light if rollover-ed any
         if (lightHover.current !== null)
-        {
-            console.log("yo");
             selectLight(lightHover.current);
-        }
     });
 
     useRMBUp(() => {

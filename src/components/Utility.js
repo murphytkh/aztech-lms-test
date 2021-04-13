@@ -69,11 +69,12 @@ export class LightStatusObject
 
 export class LightData
 {
-    constructor(name, pos, selected)
+    constructor(name, pos, selected, mode)
     {
         this.name = name;
         this.pos = pos;
         this.selected = selected;
+        this.mode = mode;
     }
 }
 
