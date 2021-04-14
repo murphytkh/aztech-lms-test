@@ -59,6 +59,9 @@ function UIManager(props)
                 <h1>Add Mode:</h1>
                 <h1>LMB - Add Light</h1>
                 <h1>RMB - Remove</h1>
+                <h1> </h1>
+                <h1>Dynamic loading only works locally for now, 
+                    loads c1basement1 by default.</h1>
             </div>
             {/* config */}
             {props.selectedLights.length > 0 &&

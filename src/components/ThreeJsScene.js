@@ -11,7 +11,7 @@ import {FXAAShader} from "three/examples/jsm/shaders/FXAAShader";
 
 // data
 import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray,
-        findLightByName} from "./Utility.js";
+        findLightByName} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -24,6 +24,7 @@ import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
 
 import defaultImg from "../resources/three/default.png";
+import demoDefaultImg from "../resources/three/c1basement1.png";
 
 extend({EffectComposer, RenderPass, OutlinePass, ShaderPass});
 
@@ -266,7 +267,7 @@ function ThreeJsScene(props)
         setPhMode(phMode => !phMode);
     }
 
-    function showMsg(msg, time, colour)
+    function showMsg(msg, time = 3000, colour = "#FF0000")
     {
         setDisplayedMsg(msg);
         if (displayTimeID)
@@ -296,7 +297,10 @@ function ThreeJsScene(props)
         if (addMode.current)
         {
             var data = new LightData(currLightName, currPoint, false, "ON");
-            addLight(data);
+            if (currLightName !== "")
+                addLight(data);
+            else
+                showMsg("Error: Please enter light name", 3000, "#FF0000");
         }
     }
 
@@ -410,8 +414,13 @@ function ThreeJsScene(props)
                         ref = {planeRef} 
                         width = {100} 
                         height = {71}
+                        /* 
                         img = {floorPlan.current === "default" ? 
                                 defaultImg : 
+                                url.current + floorPlan.current + ".png"}
+                        */
+                       img = {floorPlan.current === "default" ?
+                                demoDefaultImg :
                                 url.current + floorPlan.current + ".png"}
                         onClick = {handlePlaneClick}
                     />
