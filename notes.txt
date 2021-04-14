@@ -141,6 +141,8 @@ setLightData(x => {
     return x;
 })
 
+use onBlur for tracking onfinishchange?
+
 missing assets:
 user dropdown hover icons
 ====================================================

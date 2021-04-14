@@ -23,10 +23,19 @@ import Light from "./three/Light";
 import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
 
-import defaultImg from "../resources/three/default.png";
+//import defaultImg from "../resources/three/default.png";
 import demoDefaultImg from "../resources/three/c1basement1.png";
 
 extend({EffectComposer, RenderPass, OutlinePass, ShaderPass});
+
+// colours
+const COLOUR = {
+    BLACK : "#000000",
+    WHITE : "#FFFFFF",
+    RED : "#FF0000",
+    GREEN : "#00FF00",
+    BLUE : "#0000FF"
+}
 
 // outline of lights when selecting/hovering
 const context = React.createContext();
@@ -69,8 +78,8 @@ function ThreeJsScene(props)
     const [addMode, setAddMode] = useRefState(false);
     const [phMode, setPhMode] = useState(false);
     const [displayedMsg, setDisplayedMsg] = useState(false);
-    const [displayTimeID, setDisplayTimeID] = useState(null);
-    const [displayedMsgColour, setDisplayedMsgColour] = useState("#000000");
+    const [displayTimeID, setDisplayTimeID] = useRefState(null);
+    const [displayedMsgColour, setDisplayedMsgColour] = useState(COLOUR.BLACK);
 
     // light selection
     const [currPoint, setCurrPoint] = useState([]);
@@ -133,10 +142,11 @@ function ThreeJsScene(props)
         {
             arr.push(data);
             setLightData(arr);
+            showMsg("Added " + data.name, 3000, COLOUR.GREEN);
         }
         else
         {
-            showMsg("Error: Duplicate light name found", 3000, "#FF0000");
+            showMsg("Error: Duplicate light name found", 3000, COLOUR.RED);
         }
     }
 
@@ -234,9 +244,13 @@ function ThreeJsScene(props)
             .then((res) => {
                 setFloorPlan(res.data.img);
                 setLightData(res.data.lights);
+                showMsg("Loaded " + res.data.img, 3000, COLOUR.GREEN);
             })
             // error
-            .catch((err) => {console.log(err)});
+            .catch((err) => {
+                console.log(err);
+                showMsg("Error: Failed to load floorplan");
+            });
         }
     }
     
@@ -249,7 +263,7 @@ function ThreeJsScene(props)
 
     function setMode(mode)
     {
-        showMsg(mode, 3000, "#000000");
+        showMsg(mode, 3000, COLOUR.BLACK);
         var arr = [...selectedLights.current];
         for (var i = 0; i < arr.length; ++i)
             arr[i].mode = mode;
@@ -267,12 +281,18 @@ function ThreeJsScene(props)
         setPhMode(phMode => !phMode);
     }
 
-    function showMsg(msg, time = 3000, colour = "#FF0000")
+    function clearMsg()
+    {
+        setDisplayedMsg("");
+        setDisplayTimeID(null);
+    }
+
+    function showMsg(msg, time = 3000, colour = COLOUR.RED)
     {
         setDisplayedMsg(msg);
-        if (displayTimeID)
-            clearTimeout(displayTimeID);
-        var id = setTimeout(() => {setDisplayedMsg(""); setDisplayTimeID(null);}, time);
+        if (displayTimeID.current)
+            clearTimeout(displayTimeID.current);
+        var id = setTimeout(clearMsg, time);
         setDisplayTimeID(id);
         setDisplayedMsgColour(colour);
     }
@@ -300,7 +320,7 @@ function ThreeJsScene(props)
             if (currLightName !== "")
                 addLight(data);
             else
-                showMsg("Error: Please enter light name", 3000, "#FF0000");
+                showMsg("Error: Please enter light name", 3000, COLOUR.RED);
         }
     }
 
