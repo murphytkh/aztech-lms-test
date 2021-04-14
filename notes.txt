@@ -29,6 +29,9 @@ current task:
 - clean up code (a lot of repetition)
   - split up code in UIManager.js
   - split up code in three-js-ui.css
+- selection box multiselect
+- group
+- triggers
 
 list of npm packages installed (other than the
 usual react stuff)
