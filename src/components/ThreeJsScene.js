@@ -1,11 +1,11 @@
 import "../resources/css/three-js-scene.css";
 
 import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
-import {Canvas, useThree} from "@react-three/fiber";
+import {Canvas} from "@react-three/fiber";
 
 // data
 import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray,
-        findLightByName} from "./Utility";
+        findLightByName, selectLight, deselectLight} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -62,6 +62,7 @@ function ThreeJsScene(props)
     const [lightHover, setLightHover] = useRefState(null);
 
     // refs
+    const cameraRef = useRef();
     const planeRef = createRef();
     const lightArrayRef = useRef([]);
 
@@ -141,63 +142,20 @@ function ThreeJsScene(props)
         setLightHover(null);
     }
 
-    function selectLight(name)
-    {
-        // disable light selection if currently in add mode
-        if (addMode.current)
-            return;
-        // toggle light selected state
-        var arr = [...lightData.current];
-        var light = findLightByName(arr, name);
-
-        if (light)
-        {
-            light.selected = true;
-
-            // add to array of selected lights
-            // check if already selected first
-            var selectedArr = [...selectedLights.current];
-            if (!findLightByName(selectedArr, name))
-            {
-                selectedArr.push(light);
-                setSelectedLights(selectedArr);
-            }
-        }
-    }
-
-    function deselectLight(name)
-    {
-        // toggle light selected state
-        var arr = [...lightData.current];
-        var light = findLightByName(arr, name); 
-
-        if (light)
-        {
-            light.selected = false;
-
-            // remove from aray of selected lights
-            // check if exists in array first
-            var selectedArr = [...selectedLights.current];
-            if (findLightByName(selectedArr, name))
-            {
-                selectedArr = removeFromArray(selectedArr, name);
-                setSelectedLights(selectedArr);
-            }
-        }
-    }
-
     function deselectLights()
     {
         var arr = [...selectedLights.current];
         for (var i = 0; i < arr.length; ++i)
         {
-            deselectLight(arr[i].name);
+            deselectLight(arr[i].name, selectedLights.current, setSelectedLights);
         }
     }
 
     function moveToLight(name)
     {
-        console.log("move to " + name);
+        var light = findLightByName(lightData.current, name);
+        if (light)
+            cameraRef.current.setMoveCamera(light.pos[0], light.pos[1], light.pos[2]);
     }
 
     // file loading
@@ -332,11 +290,13 @@ function ThreeJsScene(props)
     });
 
     useLMBUp(() => {
+        var light = lightHover.current;
         // select light if rollover-ed any
-        if (lightHover.current !== null)
+        if (light !== null)
         {
-            selectLight(lightHover.current);
-            moveToLight(lightHover.current);
+            deselectLights();
+            selectLight(light, lightData.current, selectedLights.current, setSelectedLights);
+            moveToLight(light);
         }
     });
 
@@ -356,8 +316,10 @@ function ThreeJsScene(props)
             var light = findLightByName(lightData.current, lightHover.current);
             if (light)
             {
-                light.selected ? deselectLight(lightHover.current) : 
-                                 selectLight(lightHover.current);
+                if (light.selected)
+                    deselectLight(light.name, selectedLights.current, setSelectedLights);
+                else if (!addMode.current)
+                    selectLight(light.name, lightData.current, selectedLights.current, setSelectedLights);
             }
         }
     });
@@ -389,6 +351,7 @@ function ThreeJsScene(props)
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
                 <Camera 
+                    ref = {cameraRef}
                     disableHotkeys = {disableHotkeys.current} 
                     controlsEnabled = {!addMode.current && cameraEnabled.current} 
                 />

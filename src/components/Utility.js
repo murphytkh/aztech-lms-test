@@ -93,17 +93,6 @@ export function Rad(deg)
     return deg * Math.PI / 180;
 }
 
-// used for lightdata only
-export function removeFromArray(arr, val)
-{
-    return arr = arr.filter((obj) => {return obj.name !== val;});
-}
-
-export function findLightByName(arr, val)
-{
-    return arr.find(obj => obj.name === val);
-}
-
 // use this if using states in DOM event handlers
 // it would allow you to get the updated state
 // note: use .current to access the data
@@ -131,4 +120,58 @@ export function saveObj(obj, name)
     link.href = url;
     link.click();
     URL.revokeObjectURL(url);
+}
+
+// three.js scene utility functions
+
+export function removeFromArray(arr, val)
+{
+    return arr = arr.filter((obj) => {return obj.name !== val;});
+}
+
+export function findLightByName(arr, val)
+{
+    return arr.find(obj => obj.name === val);
+}
+
+export function selectLight(name, array, selected, set)
+{
+    // toggle light selected state
+    var arr = [...array];
+    var light = findLightByName(arr, name);
+
+    if (light)
+    {
+        light.selected = true;
+
+        // add to array of selected lights
+        // check if already selected first
+        var selectedArr = [...selected];
+        if (!findLightByName(selectedArr, name))
+        {
+            selectedArr.push(light);
+            set(selectedArr);
+        }
+    }
+}
+
+export function deselectLight(name, selected, set)
+{
+    // toggle light selected state
+    var arr = [...selected];
+    var light = findLightByName(arr, name); 
+
+    if (light)
+    {
+        light.selected = false;
+
+        // remove from aray of selected lights
+        // check if exists in array first
+        var selectedArr = [...selected];
+        if (findLightByName(selectedArr, name))
+        {
+            selectedArr = removeFromArray(selectedArr, name);
+            set(selectedArr);
+        }
+    }
 }

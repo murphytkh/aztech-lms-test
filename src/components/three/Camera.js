@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useImperativeHandle} from "react";
 import * as THREE from "three";
 import {useFrame, useThree} from "@react-three/fiber";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
@@ -13,10 +13,10 @@ const Camera = React.forwardRef((props, ref) =>
     // get default elements from scene
     const {camera, gl} = useThree();
 
-    function ResetCamera()
+    function moveCamera(x, y, z)
     {
-        controls.target.set(0.0, 0.0, 0.0);
-        camera.position.set(0.0, 45.4, 0.0);
+        controls.target.set(x, y, z);
+        camera.position.set(x, y + 15, z);
         controls.update();
     }
 
@@ -28,7 +28,7 @@ const Camera = React.forwardRef((props, ref) =>
 
     // key input
     useKeyUp("r", () => {
-        if (!props.disableHotkeys) ResetCamera();
+        if (!props.disableHotkeys) moveCamera(0.0, 35.4, 0.0);
     });
 
     // initialise camera
@@ -51,6 +51,14 @@ const Camera = React.forwardRef((props, ref) =>
         
         return() => {controls.dispose();};
     }, [camera, gl]);
+
+    // allow access from scene
+    useImperativeHandle(ref, () => ({
+        setMoveCamera(x, y, z)
+        {
+            moveCamera(x, y, z);
+        }
+    }));
 
     return null;
 });

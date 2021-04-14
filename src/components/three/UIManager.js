@@ -68,7 +68,7 @@ function UIManager(props)
             <div className = "three-ui-textbox" id = "config">
                 <div className = "light-name">
                     {props.selectedLights.length > 1 ? 
-                        "Multple Lights Selected" : 
+                        "Multiple Lights Selected" : 
                         props.selectedLights[0].name}
                 </div>
                 <div className = "btn-group">

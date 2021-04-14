@@ -26,12 +26,10 @@ what in the fucks going on
                      FRONT END
 ====================================================
 current task:
-- edit light name
 - move to light function
+- edit light name
 - clean up code (a lot of repetition)
   - split up code in UIManager.js
-  - figure out if any functions can be moved out
-    of the scene file
 
 list of npm packages installed (other than the
 usual react stuff)
