@@ -1,13 +1,7 @@
 import "../resources/css/three-js-scene.css";
 
-import React, {useState, useEffect, useRef, createRef, useMemo, Suspense} from "react";
-import {Vector2} from "three";
-import {Canvas, extend, useFrame, useThree} from "@react-three/fiber";
-import {EffectComposer} from "three/examples/jsm/postprocessing/EffectComposer";
-import {OutlinePass} from "three/examples/jsm/postprocessing/OutlinePass";
-import {RenderPass} from "three/examples/jsm/postprocessing/RenderPass";
-import {ShaderPass} from "three/examples/jsm/postprocessing/ShaderPass";
-import {FXAAShader} from "three/examples/jsm/shaders/FXAAShader";
+import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
+import {Canvas, useThree} from "@react-three/fiber";
 
 // data
 import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray,
@@ -15,6 +9,7 @@ import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray,
 import {getSceneData} from "./MockAPI";
 
 // three components
+import Effects from "./three/Effects";
 import UIManager from "./three/UIManager";
 import Camera from "./three/Camera";
 import {useKeyDown, useKeyUp, useLMBUp, useRMBUp, useCtrlMouseUp} from "./three/Input";
@@ -25,8 +20,6 @@ import Plane from "./three/Plane";
 
 //import defaultImg from "../resources/three/default.png";
 import demoDefaultImg from "../resources/three/c1basement1.png";
-
-extend({EffectComposer, RenderPass, OutlinePass, ShaderPass});
 
 // colours
 const COLOUR = {
@@ -41,31 +34,12 @@ const COLOUR = {
 const context = React.createContext();
 const Outline = ({children}) => 
 {
-    const {gl, scene, camera, size} = useThree();
     const composer = useRef();
     const [selected, set] = useState([]);
-    const aspect = useMemo(() => new Vector2(size.width, size.height), [size]);
-    useEffect(() => composer.current.setSize(size.width, size.height), [size]);
-    useFrame(() => composer.current.render(), 1);
     return (
         <context.Provider value = {set}>
             {children}
-            <effectComposer ref = {composer} args = {[gl]}>
-                <renderPass attachArray = "passes" args = {[scene, camera]} />
-                <outlinePass
-                  attachArray = "passes"
-                  args = {[aspect, scene, camera]}
-                  selectedObjects = {selected}
-                  visibleEdgeColor = "white"
-                  edgeStrength = {50}
-                  edgeThickness = {1}
-                />
-                <shaderPass 
-                    attachArray = "passes" 
-                    args = {[FXAAShader]} uniforms-resolution-value = 
-                        {[1 / size.width, 1 / size.height]} 
-                />
-            </effectComposer>
+            <Effects ref = {composer} selected = {selected} />
         </context.Provider>
     )
 };
@@ -249,7 +223,7 @@ function ThreeJsScene(props)
             // error
             .catch((err) => {
                 console.log(err);
-                showMsg("Error: Failed to load floorplan");
+                showMsg("Error: Failed to load " + name);
             });
         }
     }
@@ -281,18 +255,12 @@ function ThreeJsScene(props)
         setPhMode(phMode => !phMode);
     }
 
-    function clearMsg()
-    {
-        setDisplayedMsg("");
-        setDisplayTimeID(null);
-    }
-
     function showMsg(msg, time = 3000, colour = COLOUR.RED)
     {
         setDisplayedMsg(msg);
         if (displayTimeID.current)
             clearTimeout(displayTimeID.current);
-        var id = setTimeout(clearMsg, time);
+        var id = setTimeout(() => {setDisplayedMsg(""); setDisplayTimeID(null);}, time);
         setDisplayTimeID(id);
         setDisplayedMsgColour(colour);
     }
