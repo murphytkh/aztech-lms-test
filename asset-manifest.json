@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.9ce2ab14.chunk.css",
-    "main.js": "/static/js/main.0be60707.chunk.js",
-    "main.js.map": "/static/js/main.0be60707.chunk.js.map",
+    "main.js": "/static/js/main.e78a38d8.chunk.js",
+    "main.js.map": "/static/js/main.e78a38d8.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.88f0382b.js",
     "runtime-main.js.map": "/static/js/runtime-main.88f0382b.js.map",
     "static/js/2.6c7eaf74.chunk.js": "/static/js/2.6c7eaf74.chunk.js",
@@ -19,6 +19,7 @@
     "static/media/blocklights-header-icon.1a51a313.svg": "/static/media/blocklights-header-icon.1a51a313.svg",
     "static/media/blocklights-off.4d6b2058.svg": "/static/media/blocklights-off.4d6b2058.svg",
     "static/media/blocklights-refresh.7e045178.svg": "/static/media/blocklights-refresh.7e045178.svg",
+    "static/media/c1basement1.cba5dbd3.png": "/static/media/c1basement1.cba5dbd3.png",
     "static/media/calendar-next.162dafbc.svg": "/static/media/calendar-next.162dafbc.svg",
     "static/media/calendar-prev.aa202f56.svg": "/static/media/calendar-prev.aa202f56.svg",
     "static/media/darkness-icon.d0856ffb.svg": "/static/media/darkness-icon.d0856ffb.svg",
@@ -94,6 +95,6 @@
     "static/js/runtime-main.88f0382b.js",
     "static/js/2.6c7eaf74.chunk.js",
     "static/css/main.9ce2ab14.chunk.css",
-    "static/js/main.0be60707.chunk.js"
+    "static/js/main.e78a38d8.chunk.js"
   ]
 }
