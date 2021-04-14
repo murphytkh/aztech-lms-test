@@ -15,7 +15,7 @@ const Camera = React.forwardRef((props, ref) =>
 
     function moveCamera(x, y, z)
     {
-        controls.target.set(x, y, z);
+        controls.target.set(x, 0.0, z);
         camera.position.set(x, y + 15, z);
         controls.update();
     }
@@ -28,7 +28,7 @@ const Camera = React.forwardRef((props, ref) =>
 
     // key input
     useKeyUp("r", () => {
-        if (!props.disableHotkeys) moveCamera(0.0, 35.4, 0.0);
+        if (!props.disableHotkeys) moveCamera(0.0, 30.4, 0.0);
     });
 
     // initialise camera
