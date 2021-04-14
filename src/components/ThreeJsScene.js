@@ -375,7 +375,7 @@ function ThreeJsScene(props)
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
                 <Camera 
                     ref = {cameraRef}
-                    disableHotkeys = {disableHotkeys.current} 
+                    disableHotkeys = {disableHotkeys} 
                     controlsEnabled = {!addMode.current && cameraEnabled.current} 
                 />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />

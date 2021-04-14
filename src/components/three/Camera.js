@@ -28,7 +28,7 @@ const Camera = React.forwardRef((props, ref) =>
 
     // key input
     useKeyUp("r", () => {
-        if (!props.disableHotkeys) moveCamera(0.0, 30.4, 0.0);
+        if (!props.disableHotkeys.current) moveCamera(0.0, 30.4, 0.0);
     });
 
     // initialise camera
