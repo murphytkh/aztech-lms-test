@@ -1,6 +1,79 @@
 import "../../resources/css/three-js-ui.css";
 
-import React from "react";
+import React, {useState} from "react";
+
+function ThreeConfigLightName(props)
+{
+    const [editLightName, setEditLightName] = useState(props.selectedLights[0].name);
+
+    function disabledUpdateCheck()
+    {
+        if (editLightName === props.selectedLights[0].name ||
+            props.selectedLights.length > 1 ||
+            editLightName === "")
+            return "disabled";
+        else
+            return "";
+    }
+
+    function disabledCheck()
+    {
+        if (editLightName === props.selectedLights[0].name ||
+            props.selectedLights.length > 1)
+            return "disabled";
+        else
+            return "";
+    }
+
+    function handleChange(e)
+    {
+        setEditLightName(e.target.value);
+    }
+
+    function handleUpdate()
+    {
+        props.setLightName(props.selectedLights[0].name, editLightName);
+    }
+
+    function handleReset()
+    {
+        setEditLightName(props.selectedLights[0].name);
+    }
+
+    return(
+        <div className = "edit-name">
+            <div className = "label">Light: </div>
+            <input
+                className = "edit-name"
+                type = "text"
+                name = "edit-light-name"
+                value = {props.selectedLights.length > 1 ? 
+                        "Multiple Lights Selected" : editLightName}
+                placeholder = "Enter light name"
+                onChange = {handleChange}
+                onFocus = {props.focus}
+                onBlur = {props.blur}
+                disabled = {props.selectedLights.length > 1}
+            />
+            <div 
+                className = "btn" 
+                id = {disabledUpdateCheck()}
+                onClick = {handleUpdate}
+                style = {{backgroundColor: "#7F849F"}}
+            >
+                UPDATE
+            </div>
+            <div 
+                className = "btn"
+                id = {disabledCheck()}
+                onClick = {handleReset}
+                style = {{backgroundColor: "#E65B65"}}
+            >
+                RESET
+            </div>
+        </div>
+    );
+}
 
 function ThreeConfigButton(props)
 {
@@ -39,9 +112,9 @@ function UIManager(props)
                 id = {props.add ? "" : "hide"}
                 type = "text"
                 name = "three-light-name"
-                value = {props.lightName}
+                value = {props.currLightName}
                 placeholder = "Enter light name"
-                onChange = {props.setLightName}
+                onChange = {props.setCurrLightName}
                 onFocus = {props.focus}
                 onBlur = {props.blur}
                 disabled = {!props.add}
@@ -66,11 +139,13 @@ function UIManager(props)
             {/* config */}
             {props.selectedLights.length > 0 &&
             <div className = "three-ui-textbox" id = "config">
-                <div className = "light-name">
-                    {props.selectedLights.length > 1 ? 
-                        "Multiple Lights Selected" : 
-                        props.selectedLights[0].name}
-                </div>
+                <ThreeConfigLightName 
+                    focus = {props.focus}
+                    blur = {props.blur}
+                    selectedLights = {props.selectedLights}
+                    setCurrLightName = {props.setCurrLightName}
+                    setLightName = {props.setLightName}
+                />
                 <div className = "btn-group">
                     <ThreeConfigButton 
                         click = {props.setMode} 

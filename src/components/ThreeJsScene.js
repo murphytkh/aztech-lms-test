@@ -117,7 +117,7 @@ function ThreeJsScene(props)
         {
             arr.push(data);
             setLightData(arr);
-            showMsg("Added " + data.name, 3000, COLOUR.GREEN);
+            showMsg("Added " + data.name, 3000, "#A0BC34");
         }
         else
         {
@@ -156,6 +156,27 @@ function ThreeJsScene(props)
         var light = findLightByName(lightData.current, name);
         if (light)
             cameraRef.current.setMoveCamera(light.pos[0], light.pos[1], light.pos[2]);
+    }
+
+    function setLightName(name, newName)
+    {
+        var arr = [...lightData.current];
+        var light = findLightByName(arr, name);
+
+        if (light)
+        {
+            if (findLightByName(arr, newName))
+            {
+                showMsg("Error: Name already exists", 3000, COLOUR.RED);
+            }
+            else
+            {
+                light.name = newName;
+                setLightData(arr);
+                showMsg("Updated successfully", 3000, "#A0BC34");
+            }
+
+        }
     }
 
     // file loading
@@ -338,8 +359,10 @@ function ThreeJsScene(props)
                 toggleAdd = {toggleAdd} 
                 togglePh = {togglePlaceholder}
                 // input fields
-                lightName = {currLightName}
-                setLightName = {handleChangeLightName}
+                currLightName = {currLightName}
+                setCurrLightName = {handleChangeLightName}
+                setLightName = {setLightName}
+                //setEditLightName = {}
                 setMode = {setMode}
                 // focus setting
                 focus = {handleFocus}

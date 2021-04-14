@@ -9,7 +9,7 @@
     pointer-events: none;
 }
 
-/* buttons */
+/* out-of-canvas buttons */
 
 .btn-container
 {
@@ -39,7 +39,7 @@
     color: #C7C7C7;
 }
 
-/* input */
+/* in-canvas input */
 
 .three-ui-container input
 {
@@ -65,7 +65,7 @@
     display: none;
 }
 
-.three-ui-container input::placeholder
+.three-ui-container > input::placeholder
 { 
     color: #6D6E71;
     opacity: 0.5;
@@ -80,16 +80,86 @@
 {
     top: 2%;
     right: 1.3%;
-    width: 20%;
+    width: 25%;
     height: 40%;
     pointer-events: all;
 }
 
-#config .btn-group
+#config input
+{
+    position: relative;
+    display: inline-block;
+    background-color: rgb(255, 255, 255, 0.9);
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 6px;
+    border-style: none;
+    font-size: max(1vw, 14.4px);
+    font-weight: 500;
+    text-align: left;
+    padding: 2% 2% 1% 1%;
+}
+
+#config input::placeholder
+{
+    text-align: left;
+    font-size: max(1vw, 14.4px);
+}
+
+#config .edit-name
 {
     vertical-align: middle;
+    text-align: left;
+    padding-left: 3.25%;
+    padding-right: 3.25%;
+    line-height: 200%;
+}
+
+.edit-name .label
+{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.edit-name input
+{
+    width: 75%;
+}
+
+.edit-name .btn
+{
+    display: inline-block;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: max(1vw, 14.4px);
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 14%;
+    width: 29%;
+    line-height: 200%;
+    cursor: pointer;
+}
+
+.edit-name .btn:hover
+{
+    filter: brightness(120%);
+}
+
+.edit-name .btn#disabled
+{
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+.btn-group
+{
+    /* position: relative; */
+    position: absolute;
+    display: inline-block;
+    bottom: 5%;
     width: 100%;
-    line-height: 300%;
+    line-height: 220%;
 }
 
 .btn-group .three-btn
