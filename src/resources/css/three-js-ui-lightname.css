@@ -1,0 +1,9 @@
+.three-ui-container input#hide
+{
+    display: none;
+}
+
+.three-ui-container > input::placeholder
+{ 
+    text-align: left;
+}

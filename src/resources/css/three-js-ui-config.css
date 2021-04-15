@@ -1,0 +1,106 @@
+.three-ui-box#config
+{
+    top: 2%;
+    right: 1.3%;
+    width: 25%;
+    height: 40%;
+    pointer-events: all;
+}
+
+/* text input */
+
+#config input
+{
+    position: relative;
+    display: inline-block;
+    font-size: max(1vw, 14.4px);
+    padding: 2% 2% 1% 1%;
+}
+
+#config input::placeholder
+{
+    text-align: left;
+    font-size: max(1vw, 14.4px);
+}
+
+/* edit light name */
+
+#config .edit-name
+{
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 3.25%;
+    padding-right: 3.25%;
+    line-height: 200%;
+}
+
+.edit-name .label
+{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.edit-name input
+{
+    width: 75%;
+}
+
+.edit-name .btn
+{
+    display: inline-block;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: max(1vw, 14.4px);
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 14%;
+    width: 29%;
+    line-height: 200%;
+    cursor: pointer;
+}
+
+.edit-name .btn:hover
+{
+    filter: brightness(120%);
+}
+
+.edit-name .btn#disabled
+{
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+/* mode toggle */
+
+.btn-group
+{
+    /* position: relative; */
+    position: absolute;
+    display: inline-block;
+    bottom: 5%;
+    width: 100%;
+    line-height: 220%;
+}
+
+.btn-group .three-btn
+{
+    display: inline-block;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: max(1vw, 14.4px);
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 3.25%;
+    width: 29%;
+    line-height: 200%;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.btn-group .three-btn:hover
+{
+    filter: brightness(120%);
+}
