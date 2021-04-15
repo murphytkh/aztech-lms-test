@@ -61,6 +61,8 @@ function ThreeJsScene(props)
     const [selectedLights, setSelectedLights] = useRefState([]);
     const [lightHover, setLightHover] = useRefState(null);
 
+    // selection box
+
     // refs
     const cameraRef = useRef();
     const planeRef = createRef();
