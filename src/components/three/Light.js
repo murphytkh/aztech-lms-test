@@ -2,10 +2,6 @@
 
 import React, {useState, useEffect, forwardRef, useContext, useCallback} from "react";
 
-// <mesh userData={{hello: "world"}} />
-
-// 0x808080
-
 const Light = forwardRef((props, ref) => 
 {
     const [outlined, setOutlined] = useState(false);
@@ -15,21 +11,21 @@ const Light = forwardRef((props, ref) =>
     // update outline states on rollover
     function useHover() {
         const onPointerOver = useCallback(() => {
-            if (ref && !props.userData.selected)
-            {
-                setOutline(state => [...state, ref.current]);
-                if (mounted)
-                    setOutlined(true);
-            }
+            //if (ref && !props.userData.selected)
+            //{
+            //    setOutline(state => [...state, ref.current]);
+            //    if (mounted)
+            //        setOutlined(true);
+            //}
             props.enter(props.userData.name);
         }, []);
         const onPointerOut = useCallback(() => {
-            if (ref && !props.userData.selected)
-            {
-                setOutline(state => state.filter(mesh => mesh !== ref.current));
-                if (mounted)
-                    setOutlined(false);
-            }
+            //if (ref && !props.userData.selected)
+            //{
+            //    setOutline(state => state.filter(mesh => mesh !== ref.current));
+            //    if (mounted)
+            //        setOutlined(false);
+            //}
             props.exit(props.userData.name);
         }, []);
         return {ref, onPointerOver, onPointerOut}

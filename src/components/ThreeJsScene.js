@@ -1,7 +1,7 @@
 import "../resources/css/three-js-scene.css";
 
 import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
-import {Canvas} from "@react-three/fiber";
+import {Canvas,} from "@react-three/fiber";
 
 // data
 import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray,
@@ -14,6 +14,7 @@ import UIManager from "./three/UIManager";
 import Camera from "./three/Camera";
 import {useKeyDown, useKeyUp, useLMBUp, useRMBUp, useCtrlMouseUp} from "./three/Input";
 import RaycastManager from "./three/RaycastManager";
+import SelectionBoxHelper from "./three/SelectionBoxHelper";
 import Light from "./three/Light";
 import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
@@ -60,8 +61,6 @@ function ThreeJsScene(props)
     const [currLightName, setCurrLightName] = useState("");
     const [selectedLights, setSelectedLights] = useRefState([]);
     const [lightHover, setLightHover] = useRefState(null);
-
-    // selection box
 
     // refs
     const cameraRef = useRef();
@@ -259,13 +258,13 @@ function ThreeJsScene(props)
     function handlePlaneClick()
     {
         // deselect lights if clicked on empty space
-        if (selectedLights.current.length && lightHover.current === null)
+        if (selectedLights.current.length && lightHover.current === null && cameraEnabled.current)
             deselectLights();
 
         // add light
         if (addMode.current)
         {
-            var data = new LightData(currLightName, currPoint, false, "ON");
+            var data = new LightData(currLightName, currPoint, false, false, "ON");
             if (currLightName !== "")
                 addLight(data);
             else
@@ -347,6 +346,16 @@ function ThreeJsScene(props)
         }
     });
 
+    // tmp
+    function selectInBox(selection)
+    {
+        for (var i = 0; i < selection.length; ++i)
+        {
+            selection[i].userData.selected = true;
+            selectLight(selection[i].userData.name, lightData.current, selectedLights.current, setSelectedLights)
+        }
+    }
+
     return(
         // prevent right click context menu
         <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
@@ -381,6 +390,11 @@ function ThreeJsScene(props)
                     controlsEnabled = {!addMode.current && cameraEnabled.current} 
                 />
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
+                {/* multiselect selection box */}
+                <SelectionBoxHelper 
+                    setSelection = {selectInBox}
+                    selected = {selectedLights.current}
+                />
                 {/* default scene lighting */}
                 <directionalLight color = {0xFFFFFF} intensity = {2} />
                 <ambientLight />
