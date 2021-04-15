@@ -14,8 +14,8 @@ const Light = forwardRef((props, ref) =>
             //if (ref && !props.userData.selected)
             //{
             //    setOutline(state => [...state, ref.current]);
-                //if (mounted)
-                //    setOutlined(true);
+                if (mounted)
+                    setOutlined(true);
             //}
             props.enter(props.userData.name);
         }, []);
@@ -23,8 +23,8 @@ const Light = forwardRef((props, ref) =>
             //if (ref && !props.userData.selected)
             //{
             //    setOutline(state => state.filter(mesh => mesh !== ref.current));
-                //if (mounted)
-                //    setOutlined(false);
+                if (mounted)
+                    setOutlined(false);
             //}
             props.exit(props.userData.name);
         }, []);
@@ -35,6 +35,7 @@ const Light = forwardRef((props, ref) =>
     useEffect(() => {
         if (props.userData.selected || props.userData.highlight)
         {
+            // deal with setting outlined true/false, its probably the issue here
             if (!outlined)
             {
                 console.log("set me");

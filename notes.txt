@@ -26,10 +26,8 @@ what in the fucks going on
                      FRONT END
 ====================================================
 current task:
-- clean up code (a lot of repetition)
-  - split up code in UIManager.js
-  - split up code in three-js-ui.css
 - selection box multiselect
+  - fix bug with selecting and highlight
 - group
 - triggers
 
