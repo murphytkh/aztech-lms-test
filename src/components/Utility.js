@@ -176,3 +176,15 @@ export function deselectLight(name, selected, set)
         }
     }
 }
+
+export function highlightLight(name, val, array, set)
+{
+    var arr = [...array];
+    var light = findLightByName(arr, name);
+
+    if (light)
+    {
+        light.highlight = val;
+        set(arr);
+    }
+}

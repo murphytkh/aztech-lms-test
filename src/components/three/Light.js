@@ -14,8 +14,8 @@ const Light = forwardRef((props, ref) =>
             //if (ref && !props.userData.selected)
             //{
             //    setOutline(state => [...state, ref.current]);
-            //    if (mounted)
-            //        setOutlined(true);
+                //if (mounted)
+                //    setOutlined(true);
             //}
             props.enter(props.userData.name);
         }, []);
@@ -23,20 +23,21 @@ const Light = forwardRef((props, ref) =>
             //if (ref && !props.userData.selected)
             //{
             //    setOutline(state => state.filter(mesh => mesh !== ref.current));
-            //    if (mounted)
-            //        setOutlined(false);
+                //if (mounted)
+                //    setOutlined(false);
             //}
             props.exit(props.userData.name);
         }, []);
-        return {ref, onPointerOver, onPointerOut}
+        return {onPointerOver, onPointerOut}
     }
 
     // update outline states on selected status change
     useEffect(() => {
-        if (props.userData.selected)
+        if (props.userData.selected || props.userData.highlight)
         {
             if (!outlined)
             {
+                console.log("set me");
                 setOutline(state => [...state, ref.current]);
             }
         }
@@ -47,7 +48,7 @@ const Light = forwardRef((props, ref) =>
         
         return (() => mounted = false)
 
-    }, [props.userData.selected]);
+    }, [props.userData.selected, props.userData.highlight]);
 
     // colour selection
     function colour()

@@ -5,7 +5,7 @@ import {Canvas,} from "@react-three/fiber";
 
 // data
 import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray,
-        findLightByName, selectLight, deselectLight} from "./Utility";
+        findLightByName, selectLight, deselectLight, highlightLight} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -136,11 +136,13 @@ function ThreeJsScene(props)
     function lightEnter(name)
     {
         setLightHover(name);
+        highlightLight(name, true, lightData.current, setLightData);
     }
 
     function lightExit(name)
     {
         setLightHover(null);
+        highlightLight(name, false, lightData.current, setLightData);
     }
 
     function deselectLights()
