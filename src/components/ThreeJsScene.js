@@ -61,6 +61,10 @@ function ThreeJsScene(props)
     const [currLightName, setCurrLightName] = useState("");
     const [selectedLights, setSelectedLights] = useRefState([]);
     const [lightHover, setLightHover] = useRefState(null);
+
+    // selection box (mouse drag)
+    const [top, setTop] = useState("0");
+    const [left, setLeft] = useState("0");
     const [width, setWidth] = useState("0");
     const [height, setHeight] = useState("0");
 
@@ -394,9 +398,16 @@ function ThreeJsScene(props)
                 displayText = {displayedMsg}
                 displayColour = {displayedMsgColour}
             />
+            {/* selection box for mouse drag */}
             <div 
-                className = "testing-box"
-                style = {{width: width + "px", height: height + "px"}}
+                className = "selection-box"
+                style = {{
+                            display: (width === "0" || height === "0") ? "none" : "block",
+                            top: top + "%",
+                            left: left + "%",
+                            width: width + "%", 
+                            height: height + "%"
+                        }}
             />
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
@@ -411,6 +422,8 @@ function ThreeJsScene(props)
                     setSelection = {selectInBox}
                     setHighlight = {setHighlight}
                     selected = {selectedLights.current}
+                    setTop = {setTop}
+                    setLeft = {setLeft}
                     setWidth = {setWidth}
                     setHeight = {setHeight}
                 />

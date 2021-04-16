@@ -1,6 +1,7 @@
 import {useEffect, useRef} from "react";
 import {useThree} from "@react-three/fiber";
 import {SelectionBox} from "three/examples/jsm/interactive/SelectionBox";
+import {Vector2} from "three";
 
 function SelectionBoxHelper(props)
 {
@@ -35,11 +36,26 @@ function SelectionBoxHelper(props)
 
             var s = selectionBox.startPoint;
             var e = selectionBox.endPoint;
+
+            var topLeft = new Vector2();
+            var top, left, width, height;
+
             var t = {x: Math.abs(s.x - e.x), y: Math.abs(s.y - e.y)};
-            console.log(t.x, t.y);
-            //console.log(e.x, e.y);
-            props.setWidth((t.x * 1000).toString());
-            props.setHeight((t.y * 1000).toString());
+
+            topLeft.x = Math.min(s.x, e.x);
+            topLeft.y = Math.max(s.y, e.y);
+
+            top = 100 - (topLeft.y + 1) * 50;
+            left = (topLeft.x + 1) * 50;
+            width = t.x * 50;
+            height = t.y * 50;
+
+            console.log(top, left);
+
+            props.setTop(top.toString());
+            props.setLeft(left.toString());
+            props.setWidth(width.toString());
+            props.setHeight(height.toString());
         }
     }
 
@@ -52,6 +68,8 @@ function SelectionBoxHelper(props)
             let curr = selectionBox.select();
             curr = curr.filter((obj) => obj.userData.hasOwnProperty("selected"));
             props.setSelection(curr);
+            props.setTop("0");
+            props.setLeft("0");
             props.setWidth("0");
             props.setHeight("0");
         }
