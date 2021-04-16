@@ -17,7 +17,6 @@ function SelectionBoxHelper(props)
             if (ctrlKey)
             {
                 selecting.current = true;
-                props.isSelecting(true);
                 selectionBox.startPoint.set(mouse.x, mouse.y, 0.5);
                 selectionBox.endPoint.set(mouse.x, mouse.y, 0.5);
             }

@@ -5,7 +5,7 @@ import {Canvas,} from "@react-three/fiber";
 
 // data
 import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray,
-        findLightByName, selectLight, deselectLight, highlightLight} from "./Utility";
+        findLightByName, selectLight, deselectLight, setLightsProperty} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -61,7 +61,6 @@ function ThreeJsScene(props)
     const [currLightName, setCurrLightName] = useState("");
     const [selectedLights, setSelectedLights] = useRefState([]);
     const [lightHover, setLightHover] = useRefState(null);
-    const [isSelecting, setIsSelecting] = useRefState(false);
 
     // refs
     const cameraRef = useRef();
@@ -137,14 +136,13 @@ function ThreeJsScene(props)
     function lightEnter(name)
     {
         setLightHover(name);
-        highlightLight(name, true, lightData.current, setLightData);
+        setLightsProperty([name], "highlight", true, lightData.current, setLightData);
     }
 
     function lightExit(name)
     {
-        if (!addMode.current)
-            setLightHover(null);
-        highlightLight(name, false, lightData.current, setLightData);
+        setLightHover(null);
+        setLightsProperty([name], "highlight", false, lightData.current, setLightData);
     }
 
     function deselectLights()
@@ -180,7 +178,6 @@ function ThreeJsScene(props)
                 setLightData(arr);
                 showMsg("Updated successfully", 3000, "#A0BC34");
             }
-
         }
     }
 
@@ -196,11 +193,8 @@ function ThreeJsScene(props)
 
     function setHighlight(selection)
     {
-        for (var i = 0; i < selection.length; ++i)
-        {
-            highlightLight(selection[i].userData.name, true, 
-                           lightData.current, setLightData);
-        }
+        var names = selection.map((obj) => obj.userData.name);
+        setLightsProperty(names, "highlight", true, lightData.current, setLightData);
     }
 
     // file loading
@@ -408,7 +402,6 @@ function ThreeJsScene(props)
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* multiselect selection box */}
                 <SelectionBoxHelper 
-                    isSelecting = {setIsSelecting}
                     setSelection = {selectInBox}
                     setHighlight = {setHighlight}
                     selected = {selectedLights.current}

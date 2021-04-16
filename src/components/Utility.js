@@ -166,7 +166,7 @@ export function deselectLight(name, selected, set)
     {
         light.selected = false;
         light.highlight = false;
-        
+
         // remove from aray of selected lights
         // check if exists in array first
         var selectedArr = [...selected];
@@ -178,14 +178,27 @@ export function deselectLight(name, selected, set)
     }
 }
 
-export function highlightLight(name, val, array, set)
+// generic function to modify light properties
+// takes in array of names
+export function setLightsProperty(names, prop, val, array, set)
 {
     var arr = [...array];
-    var light = findLightByName(arr, name);
 
-    if (light)
+    // modify properties of all lights whose names are in input
+    for (var j = 0; j < arr.length; ++j)
     {
-        light.highlight = val;
-        set(arr);
+        var found = false;
+        for (var k = 0; k < names.length; ++k)
+        {
+            if (names[k] === arr[j].name)
+            {
+                found = true;
+                break;
+            }
+        }
+        if (found)
+            arr[j][prop] = val;
     }
+
+    set(arr);
 }
