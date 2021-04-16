@@ -11,21 +11,19 @@ const Light = forwardRef((props, ref) =>
     // update outline states on rollover
     function useHover() {
         const onPointerOver = useCallback(() => {
-            //if (ref && !props.userData.selected)
-            //{
-            //    setOutline(state => [...state, ref.current]);
-                if (mounted)
-                    setOutlined(true);
-            //}
+            if (mounted && !outlined)
+            {
+                setOutlined(true);
+                setOutline(state => [...state, ref.current]);
+            }
             props.enter(props.userData.name);
         }, []);
         const onPointerOut = useCallback(() => {
-            //if (ref && !props.userData.selected)
-            //{
-            //    setOutline(state => state.filter(mesh => mesh !== ref.current));
-                if (mounted)
-                    setOutlined(false);
-            //}
+            if (mounted && outlined)
+            {
+                setOutlined(false);
+                setOutline(state => [...state, ref.current]);
+            }
             props.exit(props.userData.name);
         }, []);
         return {onPointerOver, onPointerOut}
@@ -35,15 +33,15 @@ const Light = forwardRef((props, ref) =>
     useEffect(() => {
         if (props.userData.selected || props.userData.highlight)
         {
-            // deal with setting outlined true/false, its probably the issue here
             if (!outlined)
             {
-                console.log("set me");
+                setOutlined(true);
                 setOutline(state => [...state, ref.current]);
             }
         }
         else
         {
+            setOutlined(false);
             setOutline(state => state.filter(mesh => mesh !== ref.current));
         }
         
