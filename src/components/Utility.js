@@ -79,15 +79,6 @@ export class LightData
     }
 }
 
-export class SceneDataObject
-{
-    constructor(img, lights)
-    {
-        this.img = img;
-        this.lights = lights;
-    }
-}
-
 // utility functions
 export function Rad(deg)
 {

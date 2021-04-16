@@ -4,8 +4,8 @@ import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
 import {Canvas,} from "@react-three/fiber";
 
 // data
-import {LightData, SceneDataObject, useRefState, saveObj, removeFromArray,
-        findLightByName, selectLight, deselectLight, setLightsProperty} from "./Utility";
+import {LightData, useRefState, saveObj, removeFromArray, findLightByName,
+        selectLight, deselectLight, setLightsProperty} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -227,7 +227,7 @@ function ThreeJsScene(props)
     
     function saveScene(name)
     {
-        saveObj(new SceneDataObject(floorPlan.current, lightData.current), name);
+        saveObj({img: floorPlan.current, lights: lightData.current}, name);
     }
 
     // config
