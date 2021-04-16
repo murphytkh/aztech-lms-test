@@ -26,7 +26,6 @@ what in the fucks going on
                      FRONT END
 ====================================================
 current task:
-- selection box multiselect
 - group
 - triggers
 

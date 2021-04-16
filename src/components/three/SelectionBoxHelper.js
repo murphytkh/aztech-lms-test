@@ -12,7 +12,7 @@ function SelectionBoxHelper(props)
 
     let pointerDown = (event) =>
     {
-        if (!selecting.current)
+        if (event.button !== 2 && !selecting.current)
         {
             let {ctrlKey} = event;
             if (ctrlKey)
@@ -58,7 +58,7 @@ function SelectionBoxHelper(props)
 
     let pointerUp = (event) =>
     {
-        if (selecting.current || !event.button)
+        if (event.button !== 2 && (selecting.current || !event.button))
         {
             selecting.current = false;
             selectionBox.endPoint.set(mouse.x, mouse.y, 0.5);
