@@ -27,7 +27,6 @@ what in the fucks going on
 ====================================================
 current task:
 - selection box multiselect
-  - fix bug with selecting and highlight
 - group
 - triggers
 

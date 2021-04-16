@@ -1,7 +1,7 @@
 import {useEffect, useRef} from "react";
 import {useThree} from "@react-three/fiber";
 import {SelectionBox} from "three/examples/jsm/interactive/SelectionBox";
-import {Vector2} from "three";
+import {Vector2, Vector3} from "three";
 
 function SelectionBoxHelper(props)
 {
@@ -35,13 +35,21 @@ function SelectionBoxHelper(props)
             props.setHighlight(curr);
 
             var s = selectionBox.startPoint;
-            var e = selectionBox.endPoint;
+            var e = new Vector3(mouse.x, mouse.y, 0.5);
 
+            var btmRight = new Vector2();
             var topLeft = new Vector2();
             var top, left, width, height;
 
             var t = {x: Math.abs(s.x - e.x), y: Math.abs(s.y - e.y)};
 
+            //this.pointBottomRight.x = Math.max( this.startPoint.x, event.clientX );
+            //this.pointBottomRight.y = Math.max( this.startPoint.y, event.clientY );
+            //this.pointTopLeft.x = Math.min( this.startPoint.x, event.clientX );
+            //this.pointTopLeft.y = Math.min( this.startPoint.y, event.clientY );
+
+            btmRight.x = Math.max(s.x, e.x);
+            btmRight.y = Math.min(s.y, e.y);
             topLeft.x = Math.min(s.x, e.x);
             topLeft.y = Math.max(s.y, e.y);
 
@@ -50,7 +58,7 @@ function SelectionBoxHelper(props)
             width = t.x * 50;
             height = t.y * 50;
 
-            console.log(top, left);
+            console.log(topLeft.x, topLeft.y);
 
             props.setTop(top.toString());
             props.setLeft(left.toString());
