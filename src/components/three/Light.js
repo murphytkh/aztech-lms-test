@@ -55,7 +55,7 @@ const Light = forwardRef((props, ref) =>
         if (props.userData.mode === "OFF")
             return 0x808080;
         else if (props.userData.mode === "ON")
-            return 0x7EC0EE;
+            return props.colour;
         else
             return 0x00FF00;
     }

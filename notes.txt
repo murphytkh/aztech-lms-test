@@ -27,7 +27,16 @@ what in the fucks going on
 ====================================================
 current task:
 - group
+  - as 0-255 or as string?
+  - control scheme?
+  - storage of colour settings?
+    - object in scene to hold data?
+    - map?
+  - 
 - triggers
+- mqtt integration
+- api calls from backend?
+- document for handover
 
 list of npm packages installed (other than the
 usual react stuff)
@@ -62,21 +71,6 @@ usual react stuff)
     - end time (string)
     - days active (array of bools)
     - active/inactive (bool)
-
-three scene stuff
-- controls
-  - LMB - pan
-  - LMB (add) - add light
-  - RMB (add) - delete light
-  - CTRL + LMB - multi select
-  - scroll - zoom
-  - RMB - rotate
-  - 1 - c1basement1
-  - 2 - c1basement2
-  - s - save scene to json
-- data structures for objects can be found
-  in Utility.js
-
 
 useful code fragments:
 

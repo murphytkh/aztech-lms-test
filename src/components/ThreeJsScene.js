@@ -94,6 +94,7 @@ function ThreeJsScene(props)
             return (
                 <Light 
                     ref = {lightArrayRef.current[i]}
+                    colour = {0x7EC0EE}
                     userData = {obj}
                     key = {i} 
                     radius = {0.5} 
