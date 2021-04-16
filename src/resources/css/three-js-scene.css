@@ -10,8 +10,8 @@
 
 .three-scene-page .selection-box
 {
-    position: absolute;
     z-index: 10;
+    position: absolute;
     border: 1px solid #000000;
     pointer-events: none;
 }

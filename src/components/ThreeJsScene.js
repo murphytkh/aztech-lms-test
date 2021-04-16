@@ -199,7 +199,9 @@ function ThreeJsScene(props)
 
     function setHighlight(selection)
     {
-        var names = selection.map((obj) => obj.userData.name);
+        var allNames = lightData.current.map(obj => obj.name);
+        setLightsProperty(allNames, "highlight", false, lightData.current, setLightData);
+        var names = selection.map(obj => obj.userData.name);
         setLightsProperty(names, "highlight", true, lightData.current, setLightData);
     }
 
