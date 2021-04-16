@@ -11,7 +11,7 @@ const Light = forwardRef((props, ref) =>
     // update outline states on rollover
     function useHover() {
         const onPointerOver = useCallback(() => {
-            if (mounted && !outlined)
+            if (mounted)
             {
                 setOutlined(true);
                 setOutline(state => [...state, ref.current]);
@@ -19,10 +19,10 @@ const Light = forwardRef((props, ref) =>
             props.enter(props.userData.name);
         }, []);
         const onPointerOut = useCallback(() => {
-            if (mounted && outlined)
+            if (mounted)
             {
                 setOutlined(false);
-                setOutline(state => [...state, ref.current]);
+                setOutline(state => state.filter(mesh => mesh !== ref.current));
             }
             props.exit(props.userData.name);
         }, []);

@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
-import {Canvas, useThree} from "@react-three/fiber";
+import {useEffect, useRef} from "react";
+import {useThree} from "@react-three/fiber";
 import {SelectionBox} from "three/examples/jsm/interactive/SelectionBox";
 
 function SelectionBoxHelper(props)
@@ -8,12 +8,6 @@ function SelectionBoxHelper(props)
     const {mouse, camera, scene, gl} = useThree();
     let selecting = useRef(false);
     let selectionBox = new SelectionBox(camera, scene);
-    let selection = useRef([]);
-    let appendSelection = (toAppend) =>
-    {
-        selection.current = Array.from(new Set(selection.current.concat(toAppend)));
-        props.setSelection(selection.current);
-    }
 
     let pointerDown = (event) =>
     {

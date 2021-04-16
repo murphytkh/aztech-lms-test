@@ -284,12 +284,8 @@ function ThreeJsScene(props)
         if (selectedLights.current.length && 
             lightHover.current === null && 
             cameraEnabled.current)
-        {
-            if (!isSelecting.current)
-                deselectLights();
-            else
-                setIsSelecting(false);
-        }
+            deselectLights();
+
         // add light
         if (addMode.current)
         {
