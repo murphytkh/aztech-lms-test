@@ -165,7 +165,8 @@ export function deselectLight(name, selected, set)
     if (light)
     {
         light.selected = false;
-
+        light.highlight = false;
+        
         // remove from aray of selected lights
         // check if exists in array first
         var selectedArr = [...selected];

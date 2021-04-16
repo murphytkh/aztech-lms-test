@@ -61,6 +61,7 @@ function ThreeJsScene(props)
     const [currLightName, setCurrLightName] = useState("");
     const [selectedLights, setSelectedLights] = useRefState([]);
     const [lightHover, setLightHover] = useRefState(null);
+    const [isSelecting, setIsSelecting] = useRefState(false);
 
     // refs
     const cameraRef = useRef();
@@ -182,6 +183,25 @@ function ThreeJsScene(props)
         }
     }
 
+    function selectInBox(selection)
+    {
+        for (var i = 0; i < selection.length; ++i)
+        {
+            selection[i].userData.selected = true;
+            selectLight(selection[i].userData.name, lightData.current, 
+                        selectedLights.current, setSelectedLights)
+        }
+    }
+
+    function setHighlight(selection)
+    {
+        for (var i = 0; i < selection.length; ++i)
+        {
+            highlightLight(selection[i].userData.name, true, 
+                           lightData.current, setLightData);
+        }
+    }
+
     // file loading
     function loadData(name)
     {
@@ -260,9 +280,15 @@ function ThreeJsScene(props)
     function handlePlaneClick()
     {
         // deselect lights if clicked on empty space
-        if (selectedLights.current.length && lightHover.current === null && cameraEnabled.current)
-            deselectLights();
-
+        if (selectedLights.current.length && 
+            lightHover.current === null && 
+            cameraEnabled.current)
+        {
+            if (!isSelecting.current)
+                deselectLights();
+            else
+                setIsSelecting(false);
+        }
         // add light
         if (addMode.current)
         {
@@ -343,20 +369,11 @@ function ThreeJsScene(props)
                 if (light.selected)
                     deselectLight(light.name, selectedLights.current, setSelectedLights);
                 else if (!addMode.current)
-                    selectLight(light.name, lightData.current, selectedLights.current, setSelectedLights);
+                    selectLight(light.name, lightData.current, 
+                                selectedLights.current, setSelectedLights);
             }
         }
     });
-
-    // tmp
-    function selectInBox(selection)
-    {
-        for (var i = 0; i < selection.length; ++i)
-        {
-            selection[i].userData.selected = true;
-            selectLight(selection[i].userData.name, lightData.current, selectedLights.current, setSelectedLights)
-        }
-    }
 
     return(
         // prevent right click context menu
@@ -394,7 +411,9 @@ function ThreeJsScene(props)
                 <RaycastManager plane = {planeRef} setPoint = {setPoint} />
                 {/* multiselect selection box */}
                 <SelectionBoxHelper 
+                    isSelecting = {setIsSelecting}
                     setSelection = {selectInBox}
+                    setHighlight = {setHighlight}
                     selected = {selectedLights.current}
                 />
                 {/* default scene lighting */}
@@ -419,7 +438,11 @@ function ThreeJsScene(props)
                 </Suspense>
                 {/* placement indicator */}
                 {addMode.current && 
-                <IndicatorSphere radius = {0.5} position = {currPoint} colour = {0x000000} />}
+                <IndicatorSphere 
+                    radius = {0.5} 
+                    position = {currPoint} 
+                    colour = {0x000000} 
+                />}
                 <Outline>
                     {lights}
                 </Outline>
