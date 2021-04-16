@@ -32,6 +32,14 @@ function SelectionBoxHelper(props)
             let curr = selectionBox.select();
             curr = curr.filter((obj) => obj.userData.hasOwnProperty("selected"));
             props.setHighlight(curr);
+
+            var s = selectionBox.startPoint;
+            var e = selectionBox.endPoint;
+            var t = {x: Math.abs(s.x - e.x), y: Math.abs(s.y - e.y)};
+            console.log(t.x, t.y);
+            //console.log(e.x, e.y);
+            props.setWidth((t.x * 1000).toString());
+            props.setHeight((t.y * 1000).toString());
         }
     }
 
@@ -44,6 +52,8 @@ function SelectionBoxHelper(props)
             let curr = selectionBox.select();
             curr = curr.filter((obj) => obj.userData.hasOwnProperty("selected"));
             props.setSelection(curr);
+            props.setWidth("0");
+            props.setHeight("0");
         }
     }
 

@@ -61,6 +61,8 @@ function ThreeJsScene(props)
     const [currLightName, setCurrLightName] = useState("");
     const [selectedLights, setSelectedLights] = useRefState([]);
     const [lightHover, setLightHover] = useRefState(null);
+    const [width, setWidth] = useState("0");
+    const [height, setHeight] = useState("0");
 
     // refs
     const cameraRef = useRef();
@@ -392,6 +394,10 @@ function ThreeJsScene(props)
                 displayText = {displayedMsg}
                 displayColour = {displayedMsgColour}
             />
+            <div 
+                className = "testing-box"
+                style = {{width: width + "px", height: height + "px"}}
+            />
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
                 <Camera 
@@ -405,6 +411,8 @@ function ThreeJsScene(props)
                     setSelection = {selectInBox}
                     setHighlight = {setHighlight}
                     selected = {selectedLights.current}
+                    setWidth = {setWidth}
+                    setHeight = {setHeight}
                 />
                 {/* default scene lighting */}
                 <directionalLight color = {0xFFFFFF} intensity = {2} />
