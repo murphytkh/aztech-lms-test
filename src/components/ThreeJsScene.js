@@ -142,7 +142,8 @@ function ThreeJsScene(props)
 
     function lightExit(name)
     {
-        setLightHover(null);
+        if (!addMode.current)
+            setLightHover(null);
         highlightLight(name, false, lightData.current, setLightData);
     }
 
