@@ -347,11 +347,11 @@ function ThreeJsScene(props)
 
     useKeyUp("q", () => {
         if (!disableHotkeys.current) loadData("c1basement1");
-    })
+    });
 
     useKeyUp("w", () => {
         if (!disableHotkeys.current) loadData("c1basement2");
-    })
+    });
 
     useKeyUp("s", () => {
         if (!disableHotkeys.current) saveScene(sceneName.current);

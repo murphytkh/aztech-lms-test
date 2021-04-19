@@ -6,6 +6,24 @@
     /* original: height: 36%; */
 }
 
+.three-ui-box .toggle
+{
+    z-index: 5;
+    display: block;
+    font-size: max(1vw, 14.4px);
+    font-weight: 500;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    text-align: center;
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.three-ui-box .toggle:hover
+{
+    color: grey;
+}
+
 .three-ui-box#readme h1
 {
     font-size: max(1vw, 14.4px);
