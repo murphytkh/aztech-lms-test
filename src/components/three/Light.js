@@ -80,7 +80,7 @@ const Light = forwardRef((props, ref) =>
             {/* colour */}
             <meshStandardMaterial color = {colour()} />
             {props.showNames &&
-                <Html scaleFactor={10}>
+                <Html scaleFactor = {10}>
                     <div className = "three-light-overlay">
                         {props.userData.name}
                     </div>

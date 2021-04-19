@@ -62,6 +62,50 @@ export function useCtrlCombo(key, action)
 
 // mouse hooks 0 - lmb 2 - rmb
 
+export function useMouseMove(action)
+{
+    useEffect(() => {
+        function onMouseMove(e)
+        {            
+            action();
+        }
+
+        window.addEventListener("pointermove", onMouseMove);
+        return() => {
+            window.removeEventListener("pointermove", onMouseMove);
+        }
+    }, []);
+}
+
+export function useLMBDown(action)
+{
+    var ctrl = false;
+
+    useEffect(() => {
+        function onKeydown(e)
+        {
+            if (e.key === "Control") ctrl = true;
+        }
+        function onKeyup(e)
+        {
+            if (e.key === "Control") ctrl = false;
+        }
+        function onLMBDown(e)
+        {
+            if (e.button === 0 && !ctrl) action();
+        }
+    
+        window.addEventListener("keydown", onKeydown);
+        window.addEventListener("keyup", onKeyup);
+        window.addEventListener("pointerdown", onLMBDown);
+        return () => {
+            window.removeEventListener("keydown", onKeydown);
+            window.removeEventListener("keyup", onKeyup);
+            window.removeEventListener("pointerdown", onLMBDown);
+        }
+    }, []);
+}
+
 export function useLMBUp(action)
 {
     var ctrl = false;

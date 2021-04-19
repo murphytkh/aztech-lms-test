@@ -12,7 +12,8 @@ import {getSceneData} from "./MockAPI";
 import Effects from "./three/Effects";
 import UIManager from "./three/UIManager";
 import Camera from "./three/Camera";
-import {useKeyDown, useKeyUp, useLMBUp, useRMBUp, useCtrlMouseUp} from "./three/Input";
+import {useKeyDown, useKeyUp, useLMBDown, useMouseMove,
+        useLMBUp, useRMBUp, useCtrlMouseUp} from "./three/Input";
 import RaycastManager from "./three/RaycastManager";
 import SelectionBoxHelper from "./three/SelectionBoxHelper";
 import Light from "./three/Light";
@@ -56,6 +57,7 @@ function ThreeJsScene(props)
     const [displayTimeID, setDisplayTimeID] = useRefState(null);
     const [displayedMsgColour, setDisplayedMsgColour] = useState(COLOUR.BLACK);
     const [showNames, setShowNames] = useRefState(true);
+    const [mouseMoved, setMouseMoved] = useRefState(false);
 
     // light selection
     const [currPoint, setCurrPoint] = useState([]);
@@ -292,7 +294,8 @@ function ThreeJsScene(props)
         // deselect lights if clicked on empty space
         if (selectedLights.current.length && 
             lightHover.current === null && 
-            cameraEnabled.current)
+            cameraEnabled.current &&
+            !mouseMoved.current)
             deselectLights();
 
         // add light
@@ -303,6 +306,8 @@ function ThreeJsScene(props)
             else
                 showMsg("Error: Please enter light name", 3000, COLOUR.RED);
         }
+
+        setMouseMoved(false);
     }
 
     function handleChangeLightName(e)
@@ -346,6 +351,14 @@ function ThreeJsScene(props)
 
     useKeyUp("Control", () => {
         setCameraEnabled(true);
+    });
+
+    useMouseMove(() => {
+        setMouseMoved(true);
+    });
+
+    useLMBDown(() => {
+        setMouseMoved(false);
     });
 
     useLMBUp(() => {

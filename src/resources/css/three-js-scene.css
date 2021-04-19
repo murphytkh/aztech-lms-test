@@ -22,6 +22,8 @@
 
 .three-light-overlay
 {
+    display: block;
     font-size: max(1.5vw, 21.6px);
     font-weight: 500;
+    pointer-events: none;
 }
