@@ -88,7 +88,7 @@ function ThreeJsScene(props)
             .map((_, i) => lightArrayRef.current[i] || createRef());
     }
 
-    // array of light positions
+    // array of light objects
     let lights = lightData.current.length && lightData.current.map((obj, i) =>
         {
             return (
@@ -117,9 +117,10 @@ function ThreeJsScene(props)
     }, []);
 
     // operations on light data
-    function addLight(data)
+    function addLight()
     {
         var arr = [...lightData.current];
+        var data = new LightData(currLightName, currPoint);
 
         if (!findLightByName(arr, data.name))
         {
@@ -156,9 +157,7 @@ function ThreeJsScene(props)
     {
         var arr = [...selectedLights.current];
         for (var i = 0; i < arr.length; ++i)
-        {
             deselectLight(arr[i].name, selectedLights.current, setSelectedLights);
-        }
     }
 
     function moveToLight(name)
@@ -244,16 +243,21 @@ function ThreeJsScene(props)
     function setMode(mode)
     {
         showMsg(mode, 3000, COLOUR.BLACK);
-        var arr = [...selectedLights.current];
-        for (var i = 0; i < arr.length; ++i)
-            arr[i].mode = mode;
-        setSelectedLights(arr);
+        var names = selectedLights.current.map(obj => obj.name);
+        setLightsProperty(names, "mode", mode, selectedLights.current, setSelectedLights);
     }
 
     // ui state handling
     function toggleAdd()
     {
         setAddMode(!addMode.current);
+        // set focus on input on switching to add mode
+        if (addMode.current)
+        {
+            var tmp = document.getElementsByTagName("INPUT");
+            if (tmp[1])
+                tmp[1].focus();
+        }
     }
 
     function togglePlaceholder()
@@ -292,9 +296,8 @@ function ThreeJsScene(props)
         // add light
         if (addMode.current)
         {
-            var data = new LightData(currLightName, currPoint, false, false, "ON");
             if (currLightName !== "")
-                addLight(data);
+                addLight();
             else
                 showMsg("Error: Please enter light name", 3000, COLOUR.RED);
         }
