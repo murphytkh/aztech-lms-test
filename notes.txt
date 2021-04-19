@@ -29,6 +29,10 @@ current task:
 - group
   - as 0-255 or as string?
   - control scheme?
+    - press g to switch to group mode?
+      - searchbar for group selection
+      - colour setting for that specific group
+      - colours are overriden to show group colours
   - storage of colour settings?
     - object in scene to hold data?
     - map?

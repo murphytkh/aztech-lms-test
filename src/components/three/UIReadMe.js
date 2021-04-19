@@ -14,7 +14,7 @@ function UIReadMe(props)
     return (
         <div className = "three-ui-box" id = "readme">
             <div className = "toggle" onClick = {handleClick}>
-                {hide ? "Show" : "Hide"}
+                {hide ? "Show Controls" : "Hide Controls"}
             </div>
             {!hide && 
                 <div>
