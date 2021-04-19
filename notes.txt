@@ -48,6 +48,7 @@ usual react stuff)
 - paho-mqtt
 - three
 - @react-three/fiber
+- @react-three/drei
 - axios
 
 - don't let calendar card make any changes for now

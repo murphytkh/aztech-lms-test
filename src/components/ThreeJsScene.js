@@ -1,7 +1,7 @@
 import "../resources/css/three-js-scene.css";
 
 import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
-import {Canvas,} from "@react-three/fiber";
+import {Canvas} from "@react-three/fiber";
 
 // data
 import {LightData, useRefState, saveObj, removeFromArray, findLightByName,
@@ -55,6 +55,7 @@ function ThreeJsScene(props)
     const [displayedMsg, setDisplayedMsg] = useState(false);
     const [displayTimeID, setDisplayTimeID] = useRefState(null);
     const [displayedMsgColour, setDisplayedMsgColour] = useState(COLOUR.BLACK);
+    const [showNames, setShowNames] = useRefState(true);
 
     // light selection
     const [currPoint, setCurrPoint] = useState([]);
@@ -97,7 +98,8 @@ function ThreeJsScene(props)
                     colour = {0x7EC0EE}
                     userData = {obj}
                     key = {i} 
-                    radius = {0.5} 
+                    radius = {0.5}
+                    showNames = {showNames.current}
                     // callbacks
                     enter = {lightEnter}
                     exit = {lightExit}
@@ -332,6 +334,10 @@ function ThreeJsScene(props)
 
     useKeyUp("s", () => {
         if (!disableHotkeys.current) saveScene(sceneName.current);
+    });
+
+    useKeyUp("n", () => {
+        if (!disableHotkeys.current) setShowNames(!showNames.current);
     });
 
     useKeyDown("Control", () => {

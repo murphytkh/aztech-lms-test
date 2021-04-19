@@ -17,3 +17,11 @@
     border: 1px solid #6B92FF;
     pointer-events: none;
 }
+
+/* light name overlay */
+
+.three-light-overlay
+{
+    font-size: max(1.5vw, 21.6px);
+    font-weight: 500;
+}

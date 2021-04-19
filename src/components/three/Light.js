@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, {useState, useEffect, forwardRef, useContext, useCallback} from "react";
+import {Html} from "@react-three/drei";
 
 const Light = forwardRef((props, ref) => 
 {
@@ -78,6 +79,13 @@ const Light = forwardRef((props, ref) =>
             <sphereBufferGeometry args = {[props.radius, 32, 32]} />
             {/* colour */}
             <meshStandardMaterial color = {colour()} />
+            {props.showNames &&
+                <Html scaleFactor={10}>
+                    <div className = "three-light-overlay">
+                        {props.userData.name}
+                    </div>
+                </Html>
+            }
         </mesh>
     )
 });

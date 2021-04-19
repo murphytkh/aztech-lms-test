@@ -12,6 +12,7 @@ function UIReadMe(props)
             <h1>CTRL + LMB - Multiselect</h1>
             <h1>Scroll Wheel - Zoom</h1>
             <h1>Space - Toggle Add Mode</h1>
+            <h1>N - Toggle Names</h1>
             <h1>R - Reset Camera</h1>
             <h1>S - Save</h1>
             <h1> </h1>
