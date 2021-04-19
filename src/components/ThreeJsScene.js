@@ -5,7 +5,8 @@ import {Canvas} from "@react-three/fiber";
 
 // data
 import {LightData, useRefState, saveObj, removeFromArray, findLightByName,
-        selectLight, deselectLight, setLightsProperty} from "./Utility";
+        selectLight, deselectLight, setLightsProperty, 
+        selectLightsByProperty} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -330,12 +331,27 @@ function ThreeJsScene(props)
     });
 
     useKeyUp("1", () => {
-        if (!disableHotkeys.current) loadData("c1basement1");
+        if (!disableHotkeys.current) 
+            selectLightsByProperty("group", 0, lightData.current, setSelectedLights);
     });
 
     useKeyUp("2", () => {
-        if (!disableHotkeys.current) loadData("c1basement2");
+        if (!disableHotkeys.current) 
+            selectLightsByProperty("group", 1, lightData.current, setSelectedLights);
     });
+
+    useKeyUp("3", () => {
+        if (!disableHotkeys.current) 
+            selectLightsByProperty("group", 2, lightData.current, setSelectedLights);
+    });
+
+    useKeyUp("q", () => {
+        if (!disableHotkeys.current) loadData("c1basement1");
+    })
+
+    useKeyUp("w", () => {
+        if (!disableHotkeys.current) loadData("c1basement2");
+    })
 
     useKeyUp("s", () => {
         if (!disableHotkeys.current) saveScene(sceneName.current);

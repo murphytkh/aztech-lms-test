@@ -197,3 +197,12 @@ export function setLightsProperty(names, prop, val, array, set)
 
     set(arr);
 }
+
+// generic function to select all lights by property
+export function selectLightsByProperty(prop, val, array, set)
+{
+    var arr = [...array];
+    var selArr = arr.filter(obj => {return obj[prop] === val;})
+    selArr.map(obj => obj.selected = true);
+    set(selArr);
+}
