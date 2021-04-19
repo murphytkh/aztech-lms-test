@@ -78,7 +78,7 @@ const Light = forwardRef((props, ref) =>
             {/* radius, width segments, height segments */}
             <sphereBufferGeometry args = {[props.radius, 32, 32]} />
             {/* colour */}
-            <meshStandardMaterial color = {colour()} />
+            <meshStandardMaterial color = {colour()} emissive = {0x000000} />
             {props.showNames &&
                 <Html scaleFactor = {10}>
                     <div className = "three-light-overlay">

@@ -58,8 +58,9 @@ function SelectionBoxHelper(props)
 
     let pointerUp = (event) =>
     {
-        if (event.button !== 2 && (selecting.current || !event.button))
+        if (event.button !== 2 && selecting.current)
         {
+            // here
             selecting.current = false;
             selectionBox.endPoint.set(mouse.x, mouse.y, 0.5);
             let curr = selectionBox.select();
