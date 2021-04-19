@@ -32,7 +32,6 @@ current task:
   - storage of colour settings?
     - object in scene to hold data?
     - map?
-  - 
 - triggers
 - mqtt integration
 - api calls from backend?
