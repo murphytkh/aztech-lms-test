@@ -126,12 +126,6 @@ export function removeLight(arr, val)
     arr.splice(i, 1);
 }
 
-export function removeLightRef(arr, val)
-{
-    var i = arr.findIndex(obj => obj.current.name === val);
-    arr.splice(i, 1);
-}
-
 export function findLightByName(arr, val)
 {
     return arr.find(obj => obj.name === val);

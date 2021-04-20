@@ -4,9 +4,9 @@ import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
-import {LightData, useRefState, saveObj, removeLight, removeLightRef, 
-        findLightByName, selectLight, deselectLight, setLightsProperty, 
-        selectLightsByProperty} from "./Utility";
+import {LightData, useRefState, saveObj, removeLight, findLightByName, 
+        selectLight, deselectLight, setLightsProperty, selectLightsByProperty} 
+        from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -78,7 +78,6 @@ function ThreeJsScene(props)
     // refs
     const cameraRef = useRef();
     const planeRef = createRef();
-    const lightArrayRef = useRef([]);
 
     // data
     const [url, setUrl] = useRefState("");
@@ -87,23 +86,11 @@ function ThreeJsScene(props)
     const [lightData, setLightData] = useRefState([]);
     const [groupColours, setGroupColours] = useRefState([]);
 
-    // bug here
-
-    // makes sure that the sizes of the array holding three objects and
-    // lightData are equal
-    if (lightArrayRef.current.length !== lightData.current.length)
-    {
-        lightArrayRef.current = Array(lightData.current.length)
-            .fill()
-            .map((_, i) => lightArrayRef.current[i] || createRef());
-    }
-
     // array of light objects
     let lights = lightData.current.length && lightData.current.map((obj, i) =>
         {
             return (
                 <Light 
-                    ref = {lightArrayRef.current[i]}
                     colour = {0x7EC0EE}
                     groupColours = {groupColours.current}
                     userData = {obj}
@@ -151,9 +138,7 @@ function ThreeJsScene(props)
     {
         showMsg(name + " removed", 3000, COLOUR.BLACK);
         var arr = [...lightData.current];
-        var refArr = lightArrayRef.current;
         removeLight(arr, name);
-        removeLightRef(refArr, name);
         setLightData(arr);
     }
 

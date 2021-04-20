@@ -1,34 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, {useState, useEffect, forwardRef, useContext, useCallback} from "react";
+import React, {useState, useEffect, useRef, useContext, useCallback} from "react";
 import {Html} from "@react-three/drei";
 
-const Light = forwardRef((props, ref) => 
+function Light(props)
 {
+    const ref = useRef();
     const [outlined, setOutlined] = useState(false);
     const setOutline = useContext(props.context);
     let mounted = true;
 
+    // bug here
+
     // update outline states on rollover
-    function useHover() {
-        const onPointerOver = useCallback(() => {
-            if (mounted)
-            {
-                setOutlined(true);
-                setOutline(state => [...state, ref.current]);
-            }
-            props.enter(props.userData.name);
-        }, []);
-        const onPointerOut = useCallback(() => {
-            if (mounted)
-            {
-                setOutlined(false);
-                setOutline(state => state.filter(mesh => mesh !== ref.current));
-            }
-            props.exit(props.userData.name);
-        }, []);
-        return {onPointerOver, onPointerOut}
-    }
+    const handleOver = useCallback(() => {
+        if (mounted)
+        {
+            setOutlined(true);
+            setOutline(state => [...state, ref.current]);
+        }
+        props.enter(props.userData.name);
+    }, [props.userData]);
+
+    const handleOut = useCallback(() => {
+        if (mounted)
+        {
+            setOutlined(false);
+            setOutline(state => state.filter(mesh => mesh !== ref.current));
+        }
+        props.exit(props.userData.name);
+    }, [props.userData]);
 
     // update outline states on selected status change
     useEffect(() => {
@@ -72,8 +73,8 @@ const Light = forwardRef((props, ref) =>
             // default scale 1
             scale = {1}
 
-            // spread the rollover and onexit functions
-            {...useHover()}
+            onPointerOver = {handleOver}
+            onPointerOut = {handleOut}
         >
             {/* radius, width segments, height segments */}
             <sphereBufferGeometry args = {[props.radius, 32, 32]} />
@@ -88,6 +89,6 @@ const Light = forwardRef((props, ref) =>
             }
         </mesh>
     )
-});
+};
 
 export default Light;
