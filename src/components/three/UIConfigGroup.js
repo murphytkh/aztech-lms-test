@@ -1,25 +1,30 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import {allEqual} from "../Utility";
 
 function UIConfigGroup(props)
 {
+    const [initial, setInitial] = useState("-");
     const [editGroupID, setEditGroupID] = useState(props.selectedLights[0].group);
-
-    function valueDisplay()
-    {
-        return editGroupID;
-    }
 
     function disabledUpdateCheck()
     {
-        if (editGroupID === props.selectedLights[0].group || editGroupID === "")
+        if (editGroupID === "" || editGroupID === "-")
+        {
             return "disabled";
+        }
         else
-            return "";
+        {
+            if (allEqual("group", props.selectedLights[0].group, props.selectedLights) &&
+                props.selectedLights[0].group === editGroupID)
+                return "disabled";
+            else
+                return "";
+        }
     }
 
-    function disabledCheck()
+    function disabledResetCheck()
     {
-        if (editGroupID === props.selectedLights[0].group)
+        if (initial === editGroupID)
             return "disabled";
         else
             return "";
@@ -37,8 +42,28 @@ function UIConfigGroup(props)
 
     function handleReset()
     {
-        setEditGroupID(props.selectedLights[0].group);
+        setEditGroupID(initial);
     }
+
+    useEffect(() =>
+    {
+        var tmp = "";
+
+        if (props.selectedLights.length === 1)
+        {
+            tmp = props.selectedLights[0].group;
+        }
+        else
+        {
+            if (allEqual("group", props.selectedLights[0].group, props.selectedLights))
+                tmp = props.selectedLights[0].group;
+            else
+                tmp = "-";
+        }
+
+        setInitial(tmp);
+        setEditGroupID(tmp);
+    }, [props.selectedLights])
 
     return(
         <div className = "block" id = "edit-group">
@@ -47,7 +72,7 @@ function UIConfigGroup(props)
                 className = "edit-group"
                 type = "text"
                 name = "edit-group-name"
-                value = {valueDisplay()}
+                value = {editGroupID}
                 placeholder = "Enter group ID (default 0)"
                 onChange = {handleChange}
                 onFocus = {props.focus}
@@ -63,7 +88,7 @@ function UIConfigGroup(props)
             </div>
             <div 
                 className = "three-btn reset"
-                id = {disabledCheck()}
+                id = {disabledResetCheck()}
                 onClick = {handleReset}
                 style = {{backgroundColor: "#E65B65"}}
             >

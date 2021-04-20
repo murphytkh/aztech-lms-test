@@ -336,18 +336,27 @@ function ThreeJsScene(props)
     });
 
     useKeyUp("1", () => {
-        if (!disableHotkeys.current) 
+        if (!disableHotkeys.current)
+        {
+            deselectLights();
             selectLightsByProperty("group", "0", lightData.current, setSelectedLights);
+        }
     });
 
     useKeyUp("2", () => {
-        if (!disableHotkeys.current) 
+        if (!disableHotkeys.current)
+        {
+            deselectLights();
             selectLightsByProperty("group", "1", lightData.current, setSelectedLights);
+        }
     });
 
     useKeyUp("3", () => {
-        if (!disableHotkeys.current) 
+        if (!disableHotkeys.current)
+        {
+            deselectLights();
             selectLightsByProperty("group", "2", lightData.current, setSelectedLights);
+        }
     });
 
     useKeyUp("q", () => {

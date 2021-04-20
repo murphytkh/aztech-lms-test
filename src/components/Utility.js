@@ -207,3 +207,9 @@ export function selectLightsByProperty(prop, val, array, set)
     selArr.map(obj => obj.selected = true);
     set(selArr);
 }
+
+export function allEqual(prop, val, array)
+{
+    const func = arr => arr.every(obj => obj[prop] === val);
+    return func(array);
+}

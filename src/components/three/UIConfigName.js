@@ -14,7 +14,7 @@ function UIConfigName(props)
             return "";
     }
 
-    function disabledCheck()
+    function disabledResetCheck()
     {
         if (editLightName === props.selectedLights[0].name ||
             props.selectedLights.length > 1)
@@ -63,7 +63,7 @@ function UIConfigName(props)
             </div>
             <div 
                 className = "three-btn reset"
-                id = {disabledCheck()}
+                id = {disabledResetCheck()}
                 onClick = {handleReset}
                 style = {{backgroundColor: "#E65B65"}}
             >
