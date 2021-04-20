@@ -27,7 +27,6 @@ what in the fucks going on
 ====================================================
 current task:
 - group
-  - numbers
   - control scheme?
     - add input in config box
     - press g to switch to group mode?

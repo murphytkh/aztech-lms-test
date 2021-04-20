@@ -39,7 +39,7 @@ function UIConfigName(props)
     }
 
     return(
-        <div className = "edit-name">
+        <div className = "block" id = "edit-name">
             <div className = "label">Light: </div>
             <input
                 className = "edit-name"
@@ -54,7 +54,7 @@ function UIConfigName(props)
                 disabled = {props.selectedLights.length > 1}
             />
             <div 
-                className = "btn" 
+                className = "three-btn update" 
                 id = {disabledUpdateCheck()}
                 onClick = {handleUpdate}
                 style = {{backgroundColor: "#7F849F"}}
@@ -62,7 +62,7 @@ function UIConfigName(props)
                 UPDATE
             </div>
             <div 
-                className = "btn"
+                className = "three-btn reset"
                 id = {disabledCheck()}
                 onClick = {handleReset}
                 style = {{backgroundColor: "#E65B65"}}

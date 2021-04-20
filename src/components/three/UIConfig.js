@@ -20,6 +20,7 @@ function UIConfig(props)
             <UIConfigGroup 
                 focus = {props.focus}
                 blur = {props.blur}
+                selectedLights = {props.selectedLights}
                 setGroup = {props.setGroup}
             />
     </div>

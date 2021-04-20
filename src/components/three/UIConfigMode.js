@@ -21,7 +21,7 @@ function UIConfigModeButton(props)
 function UIConfigMode(props)
 {
     return(
-        <div className = "btn-group">
+        <div className = "block" id = "btn-group">
             <UIConfigModeButton 
                 click = {props.click} 
                 text = "ON" 
