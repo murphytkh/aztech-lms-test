@@ -1,0 +1,76 @@
+import React, {useState} from "react";
+
+function UIConfigName(props)
+{
+    const [editLightName, setEditLightName] = useState(props.selectedLights[0].name);
+
+    function disabledUpdateCheck()
+    {
+        if (editLightName === props.selectedLights[0].name ||
+            props.selectedLights.length > 1 ||
+            editLightName === "")
+            return "disabled";
+        else
+            return "";
+    }
+
+    function disabledCheck()
+    {
+        if (editLightName === props.selectedLights[0].name ||
+            props.selectedLights.length > 1)
+            return "disabled";
+        else
+            return "";
+    }
+
+    function handleChange(e)
+    {
+        setEditLightName(e.target.value);
+    }
+
+    function handleUpdate()
+    {
+        props.setLightName(props.selectedLights[0].name, editLightName);
+    }
+
+    function handleReset()
+    {
+        setEditLightName(props.selectedLights[0].name);
+    }
+
+    return(
+        <div className = "edit-name">
+            <div className = "label">Light: </div>
+            <input
+                className = "edit-name"
+                type = "text"
+                name = "edit-light-name"
+                value = {props.selectedLights.length > 1 ? 
+                        "Multiple Lights Selected" : editLightName}
+                placeholder = "Enter light name"
+                onChange = {handleChange}
+                onFocus = {props.focus}
+                onBlur = {props.blur}
+                disabled = {props.selectedLights.length > 1}
+            />
+            <div 
+                className = "btn" 
+                id = {disabledUpdateCheck()}
+                onClick = {handleUpdate}
+                style = {{backgroundColor: "#7F849F"}}
+            >
+                UPDATE
+            </div>
+            <div 
+                className = "btn"
+                id = {disabledCheck()}
+                onClick = {handleReset}
+                style = {{backgroundColor: "#E65B65"}}
+            >
+                RESET
+            </div>
+        </div>
+    );
+}
+
+export default UIConfigName;

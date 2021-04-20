@@ -122,7 +122,7 @@ export function saveObj(obj, name)
 
 export function removeFromArray(arr, val)
 {
-    return arr = arr.filter((obj) => {return obj.name !== val;});
+    return arr.filter((obj) => {return obj.name !== val;});
 }
 
 export function findLightByName(arr, val)

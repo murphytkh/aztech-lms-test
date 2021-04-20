@@ -35,9 +35,9 @@ function UIManager(props)
                     focus = {props.focus}
                     blur = {props.blur}
                     selectedLights = {props.selectedLights}
-                    setCurrLightName = {props.setCurrLightName}
                     setLightName = {props.setLightName}
                     setMode = {props.setMode}
+                    setGroup = {props.setGroup}
                 />
             }
             {/* message display */}

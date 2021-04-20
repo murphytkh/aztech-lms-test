@@ -30,7 +30,8 @@ const COLOUR = {
     WHITE : "#FFFFFF",
     RED : "#FF0000",
     GREEN : "#00FF00",
-    BLUE : "#0000FF"
+    BLUE : "#0000FF",
+    SUCCESS_GREEN: "#A0BC34"
 }
 
 // outline of lights when selecting/hovering
@@ -39,12 +40,12 @@ const Outline = ({children}) =>
 {
     const composer = useRef();
     const [selected, set] = useState([]);
-    return (
+    return(
         <context.Provider value = {set}>
             {children}
             <Effects ref = {composer} selected = {selected} />
         </context.Provider>
-    )
+    );
 };
 
 function ThreeJsScene(props)
@@ -58,6 +59,7 @@ function ThreeJsScene(props)
     const [displayTimeID, setDisplayTimeID] = useRefState(null);
     const [displayedMsgColour, setDisplayedMsgColour] = useState(COLOUR.BLACK);
     const [showNames, setShowNames] = useRefState(true);
+    const [showGroups, setShowGroups] = useRefState(false);
     const [mouseMoved, setMouseMoved] = useRefState(false);
 
     // light selection
@@ -82,6 +84,9 @@ function ThreeJsScene(props)
     const [sceneName, setSceneName] = useRefState("");
     const [floorPlan, setFloorPlan] = useRefState("");
     const [lightData, setLightData] = useRefState([]);
+    const [groupColours, setGroupColours] = useRefState([]);
+
+    // bug here
 
     // makes sure that the sizes of the array holding three objects and
     // lightData are equal
@@ -99,10 +104,12 @@ function ThreeJsScene(props)
                 <Light 
                     ref = {lightArrayRef.current[i]}
                     colour = {0x7EC0EE}
+                    groupColours = {groupColours.current}
                     userData = {obj}
                     key = {i} 
                     radius = {0.5}
                     showNames = {showNames.current}
+                    showGroups = {showGroups.current}
                     // callbacks
                     enter = {lightEnter}
                     exit = {lightExit}
@@ -131,7 +138,7 @@ function ThreeJsScene(props)
         {
             arr.push(data);
             setLightData(arr);
-            showMsg("Added " + data.name, 3000, "#A0BC34");
+            showMsg("Added " + data.name, 3000, COLOUR.SUCCESS_GREEN);
         }
         else
         {
@@ -187,7 +194,7 @@ function ThreeJsScene(props)
             {
                 light.name = newName;
                 setLightData(arr);
-                showMsg("Updated successfully", 3000, "#A0BC34");
+                showMsg("Updated successfully", 3000, COLOUR.SUCCESS_GREEN);
             }
         }
     }
@@ -210,6 +217,20 @@ function ThreeJsScene(props)
         setLightsProperty(names, "highlight", true, lightData.current, setLightData);
     }
 
+    function setMode(mode)
+    {
+        showMsg(mode, 3000, COLOUR.BLACK);
+        var names = selectedLights.current.map(obj => obj.name);
+        setLightsProperty(names, "mode", mode, selectedLights.current, setSelectedLights);
+    }
+
+    function setGroup(group)
+    {
+        showMsg("Assigned to " + group, 3000, COLOUR.SUCCESS_GREEN);
+        var names = selectedLights.current.map(obj => obj.name);
+        setLightsProperty(names, "group", group, selectedLights.current, setSelectedLights);
+    }
+
     // file loading
     function loadData(name)
     {
@@ -228,6 +249,7 @@ function ThreeJsScene(props)
             .then((res) => {
                 setFloorPlan(res.data.img);
                 setLightData(res.data.lights);
+                setGroupColours(res.data.groupColours);
                 showMsg("Loaded " + res.data.img, 3000, COLOUR.GREEN);
             })
             // error
@@ -240,16 +262,10 @@ function ThreeJsScene(props)
     
     function saveScene(name)
     {
-        saveObj({img: floorPlan.current, lights: lightData.current}, name);
-    }
-
-    // config
-
-    function setMode(mode)
-    {
-        showMsg(mode, 3000, COLOUR.BLACK);
-        var names = selectedLights.current.map(obj => obj.name);
-        setLightsProperty(names, "mode", mode, selectedLights.current, setSelectedLights);
+        saveObj({img: floorPlan.current, 
+                lights: lightData.current, 
+                groupColours: groupColours.current}, 
+                name);
     }
 
     // ui state handling
@@ -430,8 +446,8 @@ function ThreeJsScene(props)
                 currLightName = {currLightName}
                 setCurrLightName = {handleChangeLightName}
                 setLightName = {setLightName}
-                //setEditLightName = {}
                 setMode = {setMode}
+                setGroup = {setGroup}
                 // focus setting
                 focus = {handleFocus}
                 blur = {handleBlur}
