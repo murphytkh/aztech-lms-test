@@ -120,9 +120,16 @@ export function saveObj(obj, name)
 
 // three.js scene utility functions
 
-export function removeFromArray(arr, val)
+export function removeLight(arr, val)
 {
-    return arr.filter((obj) => {return obj.name !== val;});
+    var i = arr.findIndex(obj => obj.name === val);
+    arr.splice(i, 1);
+}
+
+export function removeLightRef(arr, val)
+{
+    var i = arr.findIndex(obj => obj.current.name === val);
+    arr.splice(i, 1);
 }
 
 export function findLightByName(arr, val)
@@ -167,7 +174,7 @@ export function deselectLight(name, selected, set)
         var selectedArr = [...selected];
         if (findLightByName(selectedArr, name))
         {
-            selectedArr = removeFromArray(selectedArr, name);
+            removeLight(selectedArr, name);
             set(selectedArr);
         }
     }

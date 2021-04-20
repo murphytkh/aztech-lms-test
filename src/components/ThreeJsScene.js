@@ -4,8 +4,8 @@ import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 
 // data
-import {LightData, useRefState, saveObj, removeFromArray, findLightByName,
-        selectLight, deselectLight, setLightsProperty, 
+import {LightData, useRefState, saveObj, removeLight, removeLightRef, 
+        findLightByName, selectLight, deselectLight, setLightsProperty, 
         selectLightsByProperty} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
@@ -40,6 +40,7 @@ const Outline = ({children}) =>
 {
     const composer = useRef();
     const [selected, set] = useState([]);
+
     return(
         <context.Provider value = {set}>
             {children}
@@ -146,10 +147,13 @@ function ThreeJsScene(props)
         }
     }
 
-    function removeLight(name)
+    function deleteLight(name)
     {
+        showMsg(name + " removed", 3000, COLOUR.BLACK);
         var arr = [...lightData.current];
-        arr = removeFromArray(arr, name);
+        var refArr = lightArrayRef.current;
+        removeLight(arr, name);
+        removeLightRef(refArr, name);
         setLightData(arr);
     }
 
@@ -408,9 +412,7 @@ function ThreeJsScene(props)
         if (addMode.current)
         {
             if (lightHover.current !== null)
-            {
-                removeLight(lightHover.current);
-            }
+                deleteLight(lightHover.current);
         }
     });
 
