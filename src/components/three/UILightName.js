@@ -6,6 +6,7 @@ function UILightName(props)
 {
     return(
         <input
+            className = "light-name"
             id = {props.add ? "" : "hide"}
             type = "text"
             name = "three-light-name"

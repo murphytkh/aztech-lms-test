@@ -367,6 +367,10 @@ function ThreeJsScene(props)
         if (!disableHotkeys.current) loadData("c1basement2");
     });
 
+    useKeyUp("g", () => {
+        if (!disableHotkeys.current) setShowGroups(!showGroups.current);
+    });
+
     useKeyUp("s", () => {
         if (!disableHotkeys.current) saveScene(sceneName.current);
     });
@@ -433,6 +437,7 @@ function ThreeJsScene(props)
                 // ui state tracking
                 add = {addMode.current}
                 ph = {phMode}
+                group = {showGroups.current}
                 // data
                 selectedLights = {selectedLights.current}
                 // buttons

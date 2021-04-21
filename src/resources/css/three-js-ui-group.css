@@ -1,0 +1,22 @@
+.three-ui-box#group
+{
+    position: absolute;
+    left: 37.5%;
+    bottom: 2%;
+    width: 25%;
+    height: 20%;
+    pointer-events: all;
+}
+
+/*
+
+position: absolute;
+background-color: #FFFFFF;
+box-shadow: 0px 3px 6px #00000029;
+border-radius: 6px;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 38.02%;
+
+*/

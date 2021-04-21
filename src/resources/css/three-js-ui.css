@@ -9,9 +9,9 @@
     pointer-events: none;
 }
 
-/* in-canvas input */
+/* light name */
 
-.three-ui-container input
+.three-ui-container .light-name
 {
     position: absolute;
     background-color: rgb(255, 255, 255, 0.9);
@@ -34,8 +34,8 @@
 
 .three-ui-box
 {
-    background-color: rgb(238, 238, 238, 0.85);
     position: absolute;
+    background-color: rgb(238, 238, 238, 0.85);
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 6px;
     border-style: none;
