@@ -1,6 +1,6 @@
 import "../../resources/css/three-js-ui-group.css";
 
-import React, {useState, forwardRef} from "react";
+import React, {useState, useEffect, forwardRef} from "react";
 
 const UIGroup = forwardRef((props, ref) =>
 {
@@ -15,6 +15,15 @@ const UIGroup = forwardRef((props, ref) =>
     function handleSelect()
     {
         props.setCurrGroup(group);
+
+        if (group in props.groupColours)
+        {
+            setColour(props.groupColours[group]);
+        }
+        else
+        {
+            setColour("#808080");
+        }
     }
 
     function handleColour()
@@ -40,7 +49,7 @@ const UIGroup = forwardRef((props, ref) =>
                 <div
                     className = "colour-display"
                     style = {{backgroundColor: colour, 
-                              visibility: group ? "visible" : "hidden"}}
+                              visibility: props.currGroup ? "visible" : "hidden"}}
                 >
                     &nbsp;
                 </div>

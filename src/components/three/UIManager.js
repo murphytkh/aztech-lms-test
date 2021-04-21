@@ -36,7 +36,10 @@ function UIManager(props)
                     focus = {props.focus}
                     blur = {props.blur}
                     ref = {props.groupSearchRef}
+                    currGroup = {props.currGroup}
                     setCurrGroup = {props.setCurrGroup}
+                    groupColours = {props.groupColours}
+                    setGroupColours = {props.setGroupColours}
                 />
             }
             {/* config */}

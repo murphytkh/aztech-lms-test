@@ -86,7 +86,7 @@ function ThreeJsScene(props)
     const [sceneName, setSceneName] = useRefState("");
     const [floorPlan, setFloorPlan] = useRefState("");
     const [lightData, setLightData] = useRefState([]);
-    const [groupColours, setGroupColours] = useRefState([]);
+    const [groupColours, setGroupColours] = useRefState({});
 
     // array of light objects
     let lights = lightData.current.length && lightData.current.map((obj, i) =>
@@ -237,6 +237,7 @@ function ThreeJsScene(props)
         {
             setFloorPlan("default");
             setLightData([]);
+            setGroupColours({});
         }
         else
         {
@@ -457,6 +458,8 @@ function ThreeJsScene(props)
                 setCurrLightName = {setCurrLightName}
                 currGroup = {currGroup}
                 setCurrGroup = {selectGroup}
+                groupColours = {groupColours.current}
+                setGroupColours = {setGroupColours}
                 setLightName = {setLightName}
                 setMode = {setMode}
                 setGroup = {setGroup}
