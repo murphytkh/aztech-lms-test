@@ -68,6 +68,7 @@ function ThreeJsScene(props)
     const [currLightName, setCurrLightName] = useState("");
     const [selectedLights, setSelectedLights] = useRefState([]);
     const [lightHover, setLightHover] = useRefState(null);
+    const [currGroup, setCurrGroup] = useState("");
 
     // selection box (mouse drag)
     const [top, setTop] = useState("0");
@@ -221,6 +222,12 @@ function ThreeJsScene(props)
         setLightsProperty(names, "group", group, selectedLights.current, setSelectedLights);
     }
 
+    function selectGroup(group)
+    {
+        setCurrGroup(group);
+        selectLightsByProperty("group", group, lightData.current, setSelectedLights);
+    }
+
     // file loading
     function loadData(name)
     {
@@ -317,11 +324,6 @@ function ThreeJsScene(props)
         setMouseMoved(false);
     }
 
-    function handleChangeLightName(e)
-    {
-        setCurrLightName(e.target.value);
-    }
-
     function handleFocus()
     {
         setDisableHotkeys(true);
@@ -412,6 +414,7 @@ function ThreeJsScene(props)
     });
 
     useRMBUp(() => {
+        // removing lights while in add mode
         if (addMode.current)
         {
             if (lightHover.current !== null)
@@ -420,6 +423,7 @@ function ThreeJsScene(props)
     });
 
     useCtrlMouseUp(() => {
+        // single ctrl + click multiselect
         if (lightHover.current !== null)
         {
             var light = findLightByName(lightData.current, lightHover.current);
@@ -450,7 +454,9 @@ function ThreeJsScene(props)
                 togglePh = {togglePlaceholder}
                 // input fields
                 currLightName = {currLightName}
-                setCurrLightName = {handleChangeLightName}
+                setCurrLightName = {setCurrLightName}
+                currGroup = {currGroup}
+                setCurrGroup = {selectGroup}
                 setLightName = {setLightName}
                 setMode = {setMode}
                 setGroup = {setGroup}

@@ -4,7 +4,7 @@
     left: 37.5%;
     bottom: 2%;
     width: 25%;
-    height: 20%;
+    height: 14%;
     pointer-events: all;
 }
 
@@ -46,4 +46,48 @@
     text-align: right;
     vertical-align: middle;
     width: 30%;
+}
+
+.three-ui-box#group .colour-display
+{
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #C6C6C6;
+    font-size: max(0.8vw, 14.4px);
+    vertical-align: middle;
+    margin-top: 3%;
+    margin-left: 7%;
+    width: 20%;
+    line-height: 150%;
+}
+
+.three-ui-box#group .three-btn
+{
+    display: inline-block;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: max(0.8vw, 14.4px);
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 3%;
+    width: 29%;
+    line-height: 150%;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.three-ui-box#group .three-btn:hover
+{
+    filter: brightness(120%);
+}
+
+.three-ui-box#group .three-btn.select
+{
+    margin-left: 8.5%;
+}
+
+.three-ui-box#group .three-btn.colour
+{
+    margin-left: 3.25%;
 }

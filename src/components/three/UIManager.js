@@ -36,6 +36,7 @@ function UIManager(props)
                     focus = {props.focus}
                     blur = {props.blur}
                     ref = {props.groupSearchRef}
+                    setCurrGroup = {props.setCurrGroup}
                 />
             }
             {/* config */}

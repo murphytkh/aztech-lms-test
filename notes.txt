@@ -28,9 +28,9 @@ what in the fucks going on
 current task:
 - group
   - g to activate panel
-    - input to enter group name
     - select button to select lights
-    - colour picker/viewer
+    - colour button to open colour picker to set 
+      group colour
 - triggers
 - mqtt integration
 - api calls from backend?
