@@ -10,7 +10,7 @@ export function useKeyDown(key, action)
     useEffect(() => {
         function onKeydown(e)
         {
-            if (e.key === key) action();
+            if (e.key === key) action(e);
         }
 
         window.addEventListener("keydown", onKeydown);
@@ -23,7 +23,7 @@ export function useKeyUp(key, action)
     useEffect(() => {
         function onKeyup(e)
         {
-            if (e.key === key) action();
+            if (e.key === key) action(e);
         }
 
         window.addEventListener("keyup", onKeyup);
@@ -46,7 +46,7 @@ export function useCtrlCombo(key, action)
         }
         function onCtrlcombo(e)
         {
-            if (e.key === key && ctrl) action();
+            if (e.key === key && ctrl) action(e);
         }
 
         window.addEventListener("keydown", onKeydown);
@@ -67,7 +67,7 @@ export function useMouseMove(action)
     useEffect(() => {
         function onMouseMove(e)
         {            
-            action();
+            action(e);
         }
 
         window.addEventListener("pointermove", onMouseMove);
@@ -92,7 +92,7 @@ export function useLMBDown(action)
         }
         function onLMBDown(e)
         {
-            if (e.button === 0 && !ctrl) action();
+            if (e.button === 0 && !ctrl) action(e);
         }
     
         window.addEventListener("keydown", onKeydown);
@@ -121,7 +121,7 @@ export function useLMBUp(action)
         }
         function onLMBUp(e)
         {
-            if (e.button === 0 && !ctrl) action();
+            if (e.button === 0 && !ctrl) action(e);
         }
     
         window.addEventListener("keydown", onKeydown);
@@ -150,7 +150,7 @@ export function useRMBUp(action)
         }
         function onRMBUp(e)
         {
-            if (e.button === 2 && !ctrl) action();
+            if (e.button === 2 && !ctrl) action(e);
         }
 
         window.addEventListener("keydown", onKeydown);
@@ -178,7 +178,7 @@ export function useCtrlMouseDown(action)
     }
     function onLMBDown(e)
     {
-        if (ctrl && e.button === 0) action();
+        if (ctrl && e.button === 0) action(e);
     }
 
     useEffect(() => {
@@ -207,7 +207,7 @@ export function useCtrlMouseUp(action)
     }
     function onLMBUp(e)
     {
-        if (ctrl && e.button === 0) action();
+        if (ctrl && e.button === 0) action(e);
     }
 
     useEffect(() => {

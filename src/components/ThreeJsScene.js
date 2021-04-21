@@ -78,6 +78,7 @@ function ThreeJsScene(props)
     // refs
     const cameraRef = useRef();
     const planeRef = createRef();
+    const groupSearchRef = useRef();
 
     // data
     const [url, setUrl] = useRefState("");
@@ -395,7 +396,7 @@ function ThreeJsScene(props)
         setMouseMoved(false);
     });
 
-    useLMBUp(() => {
+    useLMBUp((e) => {
         var light = lightHover.current;
         // select light if rollover-ed any
         if (light !== null)
@@ -404,6 +405,10 @@ function ThreeJsScene(props)
             selectLight(light, lightData.current, selectedLights.current, setSelectedLights);
             moveToLight(light);
         }
+
+        // remove focus on group search input 
+        if (groupSearchRef.current && !groupSearchRef.current.contains(e.target))
+            groupSearchRef.current.blur();
     });
 
     useRMBUp(() => {
@@ -452,6 +457,7 @@ function ThreeJsScene(props)
                 // focus setting
                 focus = {handleFocus}
                 blur = {handleBlur}
+                groupSearchRef = {groupSearchRef}
                 // display messages
                 displayText = {displayedMsg}
                 displayColour = {displayedMsgColour}
