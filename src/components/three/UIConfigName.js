@@ -41,6 +41,7 @@ function UIConfigName(props)
     return(
         <div className = "block" id = "edit-name">
             <div className = "label">Light: </div>
+            {/* text input */}
             <input
                 className = "edit-name"
                 type = "text"
@@ -53,6 +54,7 @@ function UIConfigName(props)
                 onBlur = {props.blur}
                 disabled = {props.selectedLights.length > 1}
             />
+            {/* buttons */}
             <div 
                 className = "three-btn update" 
                 id = {disabledUpdateCheck()}

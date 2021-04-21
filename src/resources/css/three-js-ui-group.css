@@ -77,6 +77,12 @@
     pointer-events: all;
 }
 
+.three-ui-box#group .three-btn#disabled
+{
+    pointer-events: none;
+    opacity: 0.2;
+}
+
 .three-ui-box#group .three-btn:hover
 {
     filter: brightness(120%);

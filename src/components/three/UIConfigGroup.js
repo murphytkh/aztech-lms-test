@@ -68,6 +68,7 @@ function UIConfigGroup(props)
     return(
         <div className = "block" id = "edit-group">
             <div className = "label">Group ID:</div>
+            {/* text input */}
             <input
                 className = "edit-group"
                 type = "text"
@@ -78,6 +79,7 @@ function UIConfigGroup(props)
                 onFocus = {props.focus}
                 onBlur = {props.blur}
             />
+            {/* buttons */}
             <div 
                 className = "three-btn update" 
                 id = {disabledUpdateCheck()}

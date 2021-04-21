@@ -27,10 +27,9 @@ what in the fucks going on
 ====================================================
 current task:
 - group
-  - g to activate panel
-    - select button to select lights
     - colour button to open colour picker to set 
       group colour
+        - style the picker
 - triggers
 - mqtt integration
 - api calls from backend?
@@ -49,6 +48,7 @@ usual react stuff)
 - @react-three/fiber
 - @react-three/drei
 - axios
+- react-color
 
 - don't let calendar card make any changes for now
   - radio buttons will do nothing

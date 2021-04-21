@@ -1,11 +1,13 @@
 import "../../resources/css/three-js-ui-group.css";
 
 import React, {useState, useEffect, forwardRef} from "react";
+import {PhotoshopPicker} from 'react-color';
 
 const UIGroup = forwardRef((props, ref) =>
 {
     const [group, setGroup] = useState("");
     const [colour, setColour] = useState("#FFFFFF");
+    const [showPicker, setShowPicker] = useState(false);
 
     function handleChange(e)
     {
@@ -28,13 +30,14 @@ const UIGroup = forwardRef((props, ref) =>
 
     function handleColour()
     {
-
+        setShowPicker(showPicker => !showPicker);
     }
 
     return(
         <div className = "three-ui-box" id = "group">
             <div className = "block" id = "group-select">
                 <div className = "label">Group ID:</div>
+                {/* text input */}
                 <input
                     ref = {ref}
                     className = "group-select"
@@ -53,8 +56,14 @@ const UIGroup = forwardRef((props, ref) =>
                 >
                     &nbsp;
                 </div>
+                {/* colour picker */}
+                {showPicker && 
+                    <PhotoshopPicker />
+                }
+                {/* buttons */}
                 <div 
-                    className = "three-btn select" 
+                    className = "three-btn select"
+                    id = {group !== "" ? "" : "disabled"}
                     onClick = {handleSelect}
                     style = {{backgroundColor: "#7F849F"}}
                 >
@@ -62,6 +71,7 @@ const UIGroup = forwardRef((props, ref) =>
                 </div>
                 <div 
                     className = "three-btn colour" 
+                    id = {props.currGroup ? "" : "disabled"}
                     onClick = {handleColour}
                     style = {{backgroundColor: "#7F849F"}}
                 >
