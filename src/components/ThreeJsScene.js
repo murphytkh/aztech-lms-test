@@ -93,7 +93,6 @@ function ThreeJsScene(props)
         {
             return (
                 <Light 
-                    colour = {0x7EC0EE}
                     groupColours = {groupColours.current}
                     userData = {obj}
                     key = {i} 

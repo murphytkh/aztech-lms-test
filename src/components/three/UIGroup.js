@@ -8,6 +8,7 @@ const UIGroup = forwardRef((props, ref) =>
     const [group, setGroup] = useState("");
     const [colour, setColour] = useState("#FFFFFF");
     const [showPicker, setShowPicker] = useState(false);
+    const [showColour, setShowColour] = useState(false);
 
     function handleChange(e)
     {
@@ -19,13 +20,11 @@ const UIGroup = forwardRef((props, ref) =>
         props.setCurrGroup(group);
 
         if (group in props.groupColours)
-        {
             setColour(props.groupColours[group]);
-        }
         else
-        {
             setColour("#808080");
-        }
+
+        setShowColour(true);
     }
 
     function handleColour()
@@ -67,7 +66,7 @@ const UIGroup = forwardRef((props, ref) =>
                 <div
                     className = "colour-display"
                     style = {{backgroundColor: colour, 
-                              visibility: props.currGroup ? "visible" : "hidden"}}
+                              visibility: showColour ? "visible" : "hidden"}}
                 >
                     &nbsp;
                 </div>
