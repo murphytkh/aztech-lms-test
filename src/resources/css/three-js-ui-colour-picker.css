@@ -1,0 +1,56 @@
+.three-ui-box#colour-picker
+{
+    top: -190%;
+    right: 0%;
+    width: 67.75%;
+    height: 180%;
+}
+
+.three-ui-box#colour-picker .three-btn
+{
+    margin-left: 4.8%;
+    width: 42.8%;
+}
+
+.three-ui-box#colour-picker .react-colorful
+{
+    margin-top: 4%;
+    margin-left: 4.8%;
+    height: 70%;
+    width: 90.4%;
+}
+
+.three-ui-box#colour-picker .react-colorful__saturation-pointer
+{
+    width: 12px;
+    height: 12px;
+}
+
+.three-ui-box#colour-picker .react-colorful__hue
+{
+    height: 10%;
+}
+
+.three-ui-box#colour-picker .react-colorful__hue-pointer
+{
+    width: 12px;
+    height: 12px;
+}
+
+/*
+.your-component .react-colorful {
+    height: 240px;
+  }
+  .your-component .react-colorful__saturation {
+    border-radius: 4px 4px 0 0;
+  }
+  .your-component .react-colorful__hue {
+    height: 40px;
+    border-radius: 0 0 4px 4px;
+  }
+  .your-component .react-colorful__hue-pointer {
+    width: 12px;
+    height: inherit;
+    border-radius: 0;
+  }
+*/

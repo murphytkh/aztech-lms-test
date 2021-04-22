@@ -1,7 +1,7 @@
 import "../../resources/css/three-js-ui-group.css";
 
 import React, {useState, useEffect, forwardRef} from "react";
-import {PhotoshopPicker} from 'react-color';
+import UIColourPicker from "./UIColourPicker";
 
 const UIGroup = forwardRef((props, ref) =>
 {
@@ -33,6 +33,17 @@ const UIGroup = forwardRef((props, ref) =>
         setShowPicker(showPicker => !showPicker);
     }
 
+    function handleAccept()
+    {
+        setShowPicker(false);
+        
+    }
+
+    function handleCancel()
+    {
+        setShowPicker(false);
+    }
+
     return(
         <div className = "three-ui-box" id = "group">
             <div className = "block" id = "group-select">
@@ -58,7 +69,10 @@ const UIGroup = forwardRef((props, ref) =>
                 </div>
                 {/* colour picker */}
                 {showPicker && 
-                    <PhotoshopPicker />
+                    <UIColourPicker
+                        colour = {colour}
+                        setColour = {setColour}
+                    />
                 }
                 {/* buttons */}
                 <div 
