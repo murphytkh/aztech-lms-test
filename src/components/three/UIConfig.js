@@ -5,6 +5,7 @@ import React from "react";
 import UIConfigName from "./UIConfigName";
 import UIConfigMode from "./UIConfigMode";
 import UIConfigGroup from "./UIConfigGroup";
+import UIConfigTrigger from "./UIConfigTrigger";
 
 function UIConfig(props)
 {
@@ -23,6 +24,11 @@ function UIConfig(props)
                 selectedLights = {props.selectedLights}
                 setGroup = {props.setGroup}
             />
+            <UIConfigTrigger
+                
+            />
+            {/* add separate panel here */}
+
     </div>
     );
 }

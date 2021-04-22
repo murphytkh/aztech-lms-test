@@ -79,6 +79,8 @@ export class LightData
         this.highlight = false;
         this.mode = "OFF";
         this.group = "0";
+        this.triggerers = [];
+        this.triggerees = [];
 
     }
 }

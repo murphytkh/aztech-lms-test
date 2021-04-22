@@ -34,6 +34,8 @@ current task:
     - edit mode
         - left click to add
         - right click to remove
+        - on add and remove, related triggerers and
+          triggerees have to be removed as well
     - view data
         - separate panel to view triggerer/triggeree 
           data
