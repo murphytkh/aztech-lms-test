@@ -88,12 +88,12 @@
     filter: brightness(120%);
 }
 
-.three-ui-box#group .three-btn.select
+.three-ui-box#group .three-btn.colour
 {
     margin-left: 8.5%;
 }
 
-.three-ui-box#group .three-btn.colour
+.three-ui-box#group .three-btn.select
 {
     margin-left: 3.25%;
 }

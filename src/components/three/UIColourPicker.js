@@ -31,18 +31,18 @@ function UIColourPicker(props)
                 />
                 {/* buttons */}
                 <div 
-                    className = "three-btn cancel"
-                    onClick = {handleCancel}
-                    style = {{backgroundColor: "#7F849F"}}
-                >
-                    CANCEL
-                </div>
-                <div 
-                    className = "three-btn confirm" 
+                    className = "three-btn confirm"
                     onClick = {handleConfirm}
                     style = {{backgroundColor: "#7F849F"}}
                 >
                     CONFIRM
+                </div>
+                <div 
+                    className = "three-btn cancel" 
+                    onClick = {handleCancel}
+                    style = {{backgroundColor: "#7F849F"}}
+                >
+                    CANCEL
                 </div>
         </div>
     );

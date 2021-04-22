@@ -81,20 +81,20 @@ const UIGroup = forwardRef((props, ref) =>
                 }
                 {/* buttons */}
                 <div 
-                    className = "three-btn select"
-                    id = {group !== "" ? "" : "disabled"}
-                    onClick = {handleSelect}
-                    style = {{backgroundColor: "#7F849F"}}
-                >
-                    SELECT
-                </div>
-                <div 
-                    className = "three-btn colour" 
+                    className = "three-btn colour"
                     id = {showColour ? "" : "disabled"}
                     onClick = {handleColour}
                     style = {{backgroundColor: "#7F849F"}}
                 >
                     COLOUR
+                </div>
+                <div 
+                    className = "three-btn select" 
+                    id = {group !== "" ? "" : "disabled"}
+                    onClick = {handleSelect}
+                    style = {{backgroundColor: "#7F849F"}}
+                >
+                    SELECT
                 </div>
             </div>
         </div>

@@ -224,6 +224,7 @@ function ThreeJsScene(props)
 
     function selectGroup(group)
     {
+        deselectLights();
         setCurrGroup(group);
         selectLightsByProperty("group", group, lightData.current, setSelectedLights);
     }

@@ -47,7 +47,7 @@ function UIConfigName(props)
                 type = "text"
                 name = "edit-light-name"
                 value = {props.selectedLights.length > 1 ? 
-                        "Multiple Lights Selected" : editLightName}
+                        "-" : editLightName}
                 placeholder = "Enter light name"
                 onChange = {handleChange}
                 onFocus = {props.focus}
