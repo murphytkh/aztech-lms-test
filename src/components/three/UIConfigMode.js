@@ -24,7 +24,7 @@ function UIConfigMode(props)
         <div className = "block" id = "btn-group">
             <UIConfigModeButton 
                 click = {props.click} 
-                text = "ON" 
+                text = "VIEW" 
                 colour = {"#3497fD"}
             />
             <UIConfigModeButton 

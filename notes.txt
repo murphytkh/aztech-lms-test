@@ -26,10 +26,26 @@ what in the fucks going on
                      FRONT END
 ====================================================
 current task:
-- group
-    - set lights to display group colours
 - triggers
-- mqtt integration
+    - T to toggle trigger view (arrow overlay)
+    - add following trigger buttons to config panel
+        - edit
+        - view data
+    - edit mode
+        - left click to add
+        - right click to remove
+    - view data
+        - separate panel to view triggerer/triggeree 
+          data
+        - nested within config panel hierarchy
+    - trigger overlay
+        - three.js arrowhelper
+        - generate manually using mesh?
+    - data
+        - stored as array of names of 
+          triggerers/triggerees in light data
+        - render arrows from inside light component
+
 - api calls from backend?
 - document for handover
 

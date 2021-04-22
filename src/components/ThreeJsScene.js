@@ -61,6 +61,7 @@ function ThreeJsScene(props)
     const [displayedMsgColour, setDisplayedMsgColour] = useState(COLOUR.BLACK);
     const [showNames, setShowNames] = useRefState(true);
     const [showGroups, setShowGroups] = useRefState(false);
+    const [showTriggers, setShowTriggers] = useRefState(false);
     const [mouseMoved, setMouseMoved] = useRefState(false);
 
     // light selection
@@ -372,6 +373,10 @@ function ThreeJsScene(props)
 
     useKeyUp("g", () => {
         if (!disableHotkeys.current) setShowGroups(!showGroups.current);
+    });
+
+    useKeyUp("t", () => {
+        if (!disableHotkeys.current) setShowTriggers(!showTriggers.current);
     });
 
     useKeyUp("s", () => {
