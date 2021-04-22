@@ -27,9 +27,7 @@ what in the fucks going on
 ====================================================
 current task:
 - group
-    - colour button to open colour picker to set 
-      group colour
-        - style the picker
+    - set lights to display group colours
 - triggers
 - mqtt integration
 - api calls from backend?

@@ -54,12 +54,22 @@ function Light(props)
     // colour selection
     function colour()
     {
-        if (props.userData.mode === "OFF")
-            return 0x808080;
-        else if (props.userData.mode === "ON")
-            return props.colour;
+        if (props.showGroups)
+        {
+            if (props.userData.group in props.groupColours)
+                return props.groupColours[props.userData.group];
+            else
+                return "#808080";
+        }
         else
-            return 0x00FF00;
+        {
+            if (props.userData.mode === "OFF")
+                return "#808080";
+            else if (props.userData.mode === "ON")
+                return "#7EC0EE";
+            else
+                return "#00FF00";
+        }
     }
 
     return (
