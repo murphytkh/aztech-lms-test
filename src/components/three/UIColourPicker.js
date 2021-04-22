@@ -14,12 +14,12 @@ function UIColourPicker(props)
 
     function handleCancel()
     {
-
+        props.cancel();
     }
 
     function handleConfirm()
     {
-
+        props.confirm(currValue);
     }
 
     return(
@@ -49,8 +49,3 @@ function UIColourPicker(props)
 }
 
 export default UIColourPicker;
-
-//<HexColorPicker
-//color = {currValue}
-//onChange = {handleChange}
-///>

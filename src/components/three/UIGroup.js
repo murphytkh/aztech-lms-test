@@ -1,6 +1,6 @@
 import "../../resources/css/three-js-ui-group.css";
 
-import React, {useState, useEffect, forwardRef} from "react";
+import React, {useState, forwardRef} from "react";
 import UIColourPicker from "./UIColourPicker";
 
 const UIGroup = forwardRef((props, ref) =>
@@ -33,15 +33,19 @@ const UIGroup = forwardRef((props, ref) =>
         setShowPicker(showPicker => !showPicker);
     }
 
-    function handleAccept()
+    function handleCancel()
     {
         setShowPicker(false);
         
     }
 
-    function handleCancel()
+    function handleConfirm(colour)
     {
         setShowPicker(false);
+        setColour(colour);
+        var obj = {...props.groupColours};
+        obj[props.currGroup] = colour;
+        props.setGroupColours(obj);
     }
 
     return(
@@ -72,6 +76,8 @@ const UIGroup = forwardRef((props, ref) =>
                     <UIColourPicker
                         colour = {colour}
                         setColour = {setColour}
+                        cancel = {handleCancel}
+                        confirm = {handleConfirm}
                     />
                 }
                 {/* buttons */}
