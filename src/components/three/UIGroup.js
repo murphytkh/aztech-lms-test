@@ -90,7 +90,7 @@ const UIGroup = forwardRef((props, ref) =>
                 </div>
                 <div 
                     className = "three-btn colour" 
-                    id = {props.currGroup ? "" : "disabled"}
+                    id = {showColour ? "" : "disabled"}
                     onClick = {handleColour}
                     style = {{backgroundColor: "#7F849F"}}
                 >
