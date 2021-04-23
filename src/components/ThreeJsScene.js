@@ -62,7 +62,7 @@ function ThreeJsScene(props)
     const [displayedMsgColour, setDisplayedMsgColour] = useState(COLOUR.BLACK);
     const [showNames, setShowNames] = useRefState(true);
     const [showGroups, setShowGroups] = useRefState(false);
-    const [showTriggers, setShowTriggers] = useRefState(false);
+    const [showTriggers, setShowTriggers] = useRefState(true);
     const [mouseMoved, setMouseMoved] = useRefState(false);
 
     // light selection
@@ -140,26 +140,68 @@ function ThreeJsScene(props)
 
     function deleteLight(name)
     {
-        showMsg(name + " removed", 3000, COLOUR.BLACK);
         var arr = [...lightData.current];
+
+        // remove this light from all trigger groups
+        var light = findLightByName(arr, name);
+        light.triggerers.map((obj) => {
+            var tmp = findLightByName(arr, obj);
+            var i = tmp.triggerees.findIndex(obj => obj === name);
+            tmp.triggerees.splice(i, 1);
+            return tmp;
+        });
+        light.triggerees.map((obj) => {
+            var tmp = findLightByName(arr, obj);
+            var i = tmp.triggerers.findIndex(obj => obj === name);
+            tmp.triggerers.splice(i, 1);
+            return tmp;
+        });
+
         removeLight(arr, name);
         setLightData(arr);
+        showMsg(name + " removed", 3000, COLOUR.BLACK);
     }
 
-    function addTrigger(triggerer, triggeree)
+    function editTrigger(triggerer, triggeree, add)
     {
         if (triggerer === triggeree)
             return;
+        
+        var arr = [...lightData.current];
+        var triggererLight = findLightByName(arr, triggerer);
+        var triggereeLight = findLightByName(arr, triggeree);
+        var exists = triggererLight.triggerees.includes(triggeree);
 
-        console.log("add " + triggeree + " to " + triggerer);
-    }
+        if (add)
+        {
+            if (exists)
+            {
+                showMsg("Error: Trigger already exists", 3000, COLOUR.RED);
+            }
+            else
+            {
+                triggererLight.triggerees.push(triggeree);
+                triggereeLight.triggerers.push(triggerer);
+                showMsg(triggeree + " added as triggeree of " + triggerer, 3000, COLOUR.GREEN);
+            }
+        }
+        else
+        {
+            if (exists)
+            {
+                var i = triggererLight.triggerees.findIndex(obj => obj === triggeree);
+                var j = triggereeLight.triggerers.findIndex(obj => obj === triggerer);
+                triggererLight.triggerees.splice(i, 1);
+                triggereeLight.triggerers.splice(j, 1);
+                showMsg(triggeree + " removed as triggeree of " + triggerer, 3000, COLOUR.GREEN);
+            }
+            else
+            {
+                showMsg("Error: Trigger does not exist", 3000, COLOUR.RED);
+            }
+        }
 
-    function removeTrigger(triggerer, triggeree)
-    {
-        if (triggerer === triggeree)
-            return;
-
-        console.log("remove " + triggeree + " from " + triggerer);
+        setLightData(arr);
     }
 
     function lightEnter(name)
@@ -234,16 +276,31 @@ function ThreeJsScene(props)
 
     function setMode(mode)
     {
-        showMsg(mode, 3000, COLOUR.BLACK);
         var names = selectedLights.current.map(obj => obj.name);
+
+        if (mode === "ON")
+        {
+            var triggerees = [];
+
+            for (var i = 0; i < names.length; ++i)
+            {
+                var tmp = findLightByName(lightData.current, names[i]);
+                triggerees.push(...tmp.triggerees);
+            }
+    
+            triggerees = [...new Set(triggerees)];
+            setLightsProperty(triggerees, "mode", mode, lightData.current, setLightData);
+        }
+
         setLightsProperty(names, "mode", mode, selectedLights.current, setSelectedLights);
+        showMsg(mode, 3000, COLOUR.BLACK);
     }
 
     function setGroup(group)
     {
-        showMsg("Assigned to " + group, 3000, COLOUR.SUCCESS_GREEN);
         var names = selectedLights.current.map(obj => obj.name);
         setLightsProperty(names, "group", group, selectedLights.current, setSelectedLights);
+        showMsg("Assigned to " + group, 3000, COLOUR.SUCCESS_GREEN);
     }
 
     function selectGroup(group)
@@ -449,12 +506,15 @@ function ThreeJsScene(props)
             if (!editTriggerMode.current)
             {
                 deselectLights();
-                selectLight(light, lightData.current, selectedLights.current, setSelectedLights);
+                selectLight(light, 
+                            lightData.current, 
+                            selectedLights.current, 
+                            setSelectedLights);
                 moveToLight(light);
             }
             else
             {
-                addTrigger(selectedLights.current[0].name, lightHover.current);
+                editTrigger(selectedLights.current[0].name, lightHover.current, true);
             }
         }
 
@@ -475,7 +535,7 @@ function ThreeJsScene(props)
         if (editTriggerMode.current)
         {
             if (lightHover.current !== null)
-                removeTrigger(selectedLights.current[0].name, lightHover.current);
+                editTrigger(selectedLights.current[0].name, lightHover.current, false);
         }
     });
 

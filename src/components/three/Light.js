@@ -100,6 +100,11 @@ function Light(props)
             }
             {/* trigger arrows */}
             {props.showTriggers &&
+                //<Html style = {{pointerEvents: "none"}}>
+                //    <div className = "three-light-overlay">
+                //        WHAT THE FUCK
+                //    </div>
+                //</Html>
                 <mesh>
                     
                 </mesh>
