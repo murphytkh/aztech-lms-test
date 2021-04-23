@@ -49,7 +49,6 @@ usual react stuff)
 - react-router-dom
 - recharts
 - react-helmet
-- paho-mqtt
 - three
 - @react-three/fiber
 - @react-three/drei
