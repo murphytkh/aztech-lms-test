@@ -489,8 +489,12 @@ function ThreeJsScene(props)
                 if (light.selected)
                     deselectLight(light.name, selectedLights.current, setSelectedLights);
                 else if (!addMode.current)
+                {
                     selectLight(light.name, lightData.current, 
-                                selectedLights.current, setSelectedLights);
+                        selectedLights.current, setSelectedLights);
+                    setEditTriggerMode(false);
+                }
+
             }
         }
     });
