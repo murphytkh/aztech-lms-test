@@ -51,6 +51,8 @@ function UIManager(props)
                     setLightName = {props.setLightName}
                     setMode = {props.setMode}
                     setGroup = {props.setGroup}
+                    editTriggerMode = {props.editTriggerMode}
+                    setEditTriggerMode = {props.setEditTriggerMode}
                 />
             }
             {/* message display */}

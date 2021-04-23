@@ -28,9 +28,6 @@ what in the fucks going on
 current task:
 - triggers
     - T to toggle trigger view (arrow overlay)
-    - add following trigger buttons to config panel
-        - edit
-        - view data
     - edit mode
         - left click to add
         - right click to remove

@@ -4,12 +4,12 @@ function UIConfigTrigger(props)
 {
     function handleEdit()
     {
-
+        props.setEditTriggerMode(!props.editTriggerMode);
     }
 
     function handleViewData()
     {
-
+        console.log("view trigger data");
     }
 
     return(
@@ -18,7 +18,7 @@ function UIConfigTrigger(props)
             {/* buttons */}
             <div 
                 className = "three-btn trigger-edit"
-                //id = {showColour ? "" : "disabled"}
+                id = {props.selectedLights.length > 1 ? "disabled" : ""}
                 onClick = {handleEdit}
                 style = {{backgroundColor: "#7F849F"}}
             >
@@ -26,7 +26,7 @@ function UIConfigTrigger(props)
             </div>
             <div 
                 className = "three-btn trigger-data" 
-                //id = {group !== "" ? "" : "disabled"}
+                id = {props.selectedLights.length > 1 ? "disabled" : ""}
                 onClick = {handleViewData}
                 style = {{backgroundColor: "#7F849F"}}
             >

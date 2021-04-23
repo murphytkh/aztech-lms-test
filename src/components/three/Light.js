@@ -90,12 +90,19 @@ function Light(props)
             <sphereBufferGeometry args = {[props.radius, 32, 32]} />
             {/* colour */}
             <meshStandardMaterial color = {colour()} />
+            {/* name overlay */}
             {props.showNames &&
                 <Html style = {{pointerEvents: "none"}}>
                     <div className = "three-light-overlay">
                         {props.userData.name}
                     </div>
                 </Html>
+            }
+            {/* trigger arrows */}
+            {props.showTriggers &&
+                <mesh>
+                    
+                </mesh>
             }
         </mesh>
     )

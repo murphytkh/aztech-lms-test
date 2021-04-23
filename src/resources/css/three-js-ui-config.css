@@ -130,3 +130,12 @@
 
 /* trigger */
 
+.three-ui-box#config .three-btn.trigger-edit
+{
+    margin-left: 5.5%;
+}
+
+.three-ui-box#config .three-btn.trigger-data
+{
+    margin-left: 3.25%;
+}

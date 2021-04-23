@@ -25,10 +25,12 @@ function UIConfig(props)
                 setGroup = {props.setGroup}
             />
             <UIConfigTrigger
-                
+                selectedLights = {props.selectedLights}
+                editTriggerMode = {props.editTriggerMode}
+                setEditTriggerMode = {props.setEditTriggerMode}
             />
             {/* add separate panel here */}
-
+            
     </div>
     );
 }

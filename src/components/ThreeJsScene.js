@@ -55,6 +55,7 @@ function ThreeJsScene(props)
     const [disableHotkeys, setDisableHotkeys] = useRefState(false);
     const [cameraEnabled, setCameraEnabled] = useRefState(true);
     const [addMode, setAddMode] = useRefState(false);
+    const [editTriggerMode, setEditTriggerMode] = useRefState(false);
     const [phMode, setPhMode] = useState(false);
     const [displayedMsg, setDisplayedMsg] = useState(false);
     const [displayTimeID, setDisplayTimeID] = useRefState(null);
@@ -100,6 +101,7 @@ function ThreeJsScene(props)
                     radius = {0.5}
                     showNames = {showNames.current}
                     showGroups = {showGroups.current}
+                    showTriggers = {showTriggers.current}
                     // callbacks
                     enter = {lightEnter}
                     exit = {lightExit}
@@ -144,6 +146,22 @@ function ThreeJsScene(props)
         setLightData(arr);
     }
 
+    function addTrigger(triggerer, triggeree)
+    {
+        if (triggerer === triggeree)
+            return;
+
+        console.log("add " + triggeree + " to " + triggerer);
+    }
+
+    function removeTrigger(triggerer, triggeree)
+    {
+        if (triggerer === triggeree)
+            return;
+
+        console.log("remove " + triggeree + " from " + triggerer);
+    }
+
     function lightEnter(name)
     {
         setLightHover(name);
@@ -158,6 +176,9 @@ function ThreeJsScene(props)
 
     function deselectLights()
     {
+        // cancel trigger editing if started
+        setEditTriggerMode(false);
+
         var arr = [...selectedLights.current];
         for (var i = 0; i < arr.length; ++i)
             deselectLight(arr[i].name, selectedLights.current, setSelectedLights);
@@ -196,8 +217,11 @@ function ThreeJsScene(props)
         {
             selection[i].userData.selected = true;
             selectLight(selection[i].userData.name, lightData.current, 
-                        selectedLights.current, setSelectedLights)
+                        selectedLights.current, setSelectedLights);
         }
+
+        if (selection.length > 1)
+            setEditTriggerMode(false);
     }
 
     function setHighlight(selection)
@@ -278,6 +302,19 @@ function ThreeJsScene(props)
             if (tmp[1])
                 tmp[1].focus();
         }
+    }
+
+    function toggleEditTriggerMode(state)
+    {
+        var result;
+
+        if(state === undefined)
+            result = !editTriggerMode.current;
+        else
+            result = state;
+
+        setEditTriggerMode(result);
+        showMsg("Edit triggers " + (result ? "ON" : "OFF"), 3000, COLOUR.BLACK);
     }
 
     function togglePlaceholder()
@@ -409,9 +446,16 @@ function ThreeJsScene(props)
         // select light if rollover-ed any
         if (light !== null)
         {
-            deselectLights();
-            selectLight(light, lightData.current, selectedLights.current, setSelectedLights);
-            moveToLight(light);
+            if (!editTriggerMode.current)
+            {
+                deselectLights();
+                selectLight(light, lightData.current, selectedLights.current, setSelectedLights);
+                moveToLight(light);
+            }
+            else
+            {
+                addTrigger(selectedLights.current[0].name, lightHover.current);
+            }
         }
 
         // remove focus on group search input 
@@ -425,6 +469,13 @@ function ThreeJsScene(props)
         {
             if (lightHover.current !== null)
                 deleteLight(lightHover.current);
+        }
+
+        // remove triggers while in edit trigger mode
+        if (editTriggerMode.current)
+        {
+            if (lightHover.current !== null)
+                removeTrigger(selectedLights.current[0].name, lightHover.current);
         }
     });
 
@@ -468,6 +519,8 @@ function ThreeJsScene(props)
                 setLightName = {setLightName}
                 setMode = {setMode}
                 setGroup = {setGroup}
+                editTriggerMode = {editTriggerMode.current}
+                setEditTriggerMode = {toggleEditTriggerMode}
                 // focus setting
                 focus = {handleFocus}
                 blur = {handleBlur}
