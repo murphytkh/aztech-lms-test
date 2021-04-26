@@ -2,7 +2,6 @@ import "../resources/css/three-js-scene.css";
 
 import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
-import {Stats} from "@react-three/drei";
 
 // data
 import {LightData, useRefState, saveObj, removeLight, findLightByName, 
@@ -608,10 +607,6 @@ function ThreeJsScene(props)
             />
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
-                <Stats
-                    showPanel={0}
-                    className="stats"
-                />
                 <Camera 
                     ref = {cameraRef}
                     disableHotkeys = {disableHotkeys} 
