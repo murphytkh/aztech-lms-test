@@ -79,6 +79,7 @@ function SelectionBoxHelper(props)
         gl.domElement.onpointerdown = pointerDown;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    
     return null;
 }
 
