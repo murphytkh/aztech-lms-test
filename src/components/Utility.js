@@ -210,6 +210,21 @@ export function selectLightsByProperty(prop, val, array, set)
     set(selArr);
 }
 
+// more specific and efficient function to help with highlighting
+export function selectionBoxHighlight(selection, array, set)
+{
+    var names = selection.map(obj => obj.userData.name);
+    var arr = [...array];
+    for (var i = 0; i < arr.length; ++i)
+    {
+        if (names.includes(arr[i].name))
+            arr[i].highlight = true;
+        else
+            arr[i].highlight = false;
+    }
+    set(arr);
+}
+
 export function allEqual(prop, val, array)
 {
     const func = arr => arr.every(obj => obj[prop] === val);

@@ -2,11 +2,12 @@ import "../resources/css/three-js-scene.css";
 
 import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
+import {Stats} from "@react-three/drei";
 
 // data
 import {LightData, useRefState, saveObj, removeLight, findLightByName, 
-        selectLight, deselectLight, setLightsProperty, selectLightsByProperty} 
-        from "./Utility";
+        selectLight, deselectLight, setLightsProperty, selectLightsByProperty, 
+        selectionBoxHighlight} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -95,6 +96,7 @@ function ThreeJsScene(props)
         {
             return (
                 <Light 
+                    lightData = {lightData.current}
                     groupColours = {groupColours.current}
                     userData = {obj}
                     key = {i} 
@@ -160,6 +162,8 @@ function ThreeJsScene(props)
         removeLight(arr, name);
         setLightData(arr);
         showMsg(name + " removed", 3000, COLOUR.BLACK);
+
+        setLightHover(null);
     }
 
     function editTrigger(triggerer, triggeree, add)
@@ -268,10 +272,7 @@ function ThreeJsScene(props)
 
     function setHighlight(selection)
     {
-        var allNames = lightData.current.map(obj => obj.name);
-        setLightsProperty(allNames, "highlight", false, lightData.current, setLightData);
-        var names = selection.map(obj => obj.userData.name);
-        setLightsProperty(names, "highlight", true, lightData.current, setLightData);
+        selectionBoxHighlight(selection, lightData.current, setLightData);
     }
 
     function setMode(mode)
@@ -391,7 +392,7 @@ function ThreeJsScene(props)
 
     // input
 
-    // called when mouse is moved on plane
+    // update mouse-plane position when moved
     function setPoint(x, y)
     {
         // update current clicked point
@@ -606,6 +607,10 @@ function ThreeJsScene(props)
             />
             {/* set bg colour on canvas */}
             <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
+                <Stats
+                    showPanel={0}
+                    className="stats"
+                />
                 <Camera 
                     ref = {cameraRef}
                     disableHotkeys = {disableHotkeys} 

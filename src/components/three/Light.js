@@ -2,8 +2,10 @@
 
 import React, {useState, useEffect, useRef, useContext, useCallback} from "react";
 import {Html} from "@react-three/drei";
+import {Vector3} from "three";
+import { findLightByName } from "../Utility";
 
-function Light(props)
+function LightSphere(props)
 {
     const ref = useRef();
     const [outlined, setOutlined] = useState(false);
@@ -98,19 +100,49 @@ function Light(props)
                     </div>
                 </Html>
             }
-            {/* trigger arrows */}
-            {props.showTriggers &&
-                //<Html style = {{pointerEvents: "none"}}>
-                //    <div className = "three-light-overlay">
-                //        WHAT THE FUCK
-                //    </div>
-                //</Html>
-                <mesh>
-                    
-                </mesh>
-            }
+
         </mesh>
     )
 };
+
+function Light(props)
+{
+    let arrows = props.userData.triggerees.length && props.userData.triggerees.map((obj, i) =>
+    {
+        let offset = props.radius * 0.6;
+        let pos = props.userData.pos;
+        let origin = new Vector3(pos[0], pos[1] + offset, pos[2]);
+        let destpos = findLightByName(props.lightData, obj).pos;
+        let dest = new Vector3(destpos[0], destpos[1] + offset, destpos[2]);
+        let dir = new Vector3();
+        dir.subVectors(dest, origin).normalize();
+        let dist = origin.distanceTo(dest);
+
+        return (
+            <arrowHelper
+                key = {i}
+                args = {[
+                    dir,
+                    origin,
+                    dist - offset,
+                    0xFF0000,
+                    0.5,
+                    0.3
+                ]}
+            />
+        );
+    });
+
+    return (
+        <group>
+            {/* light object itself */}
+            <LightSphere {...props} />
+            {/* trigger arrows */}
+            {props.showTriggers &&
+                arrows
+            }
+        </group>
+    );
+}
 
 export default Light;
