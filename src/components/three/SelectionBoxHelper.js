@@ -49,10 +49,10 @@ function SelectionBoxHelper(props)
             width = t.x * 50;
             height = t.y * 50;
 
-            props.setTop(top.toString());
-            props.setLeft(left.toString());
-            props.setWidth(width.toString());
-            props.setHeight(height.toString());
+            props.setTop(top);
+            props.setLeft(left);
+            props.setWidth(width);
+            props.setHeight(height);
         }
     }
 
@@ -66,10 +66,10 @@ function SelectionBoxHelper(props)
             let curr = selectionBox.select();
             curr = curr.filter((obj) => obj.userData.hasOwnProperty("selected"));
             props.setSelection(curr);
-            props.setTop("0");
-            props.setLeft("0");
-            props.setWidth("0");
-            props.setHeight("0");
+            props.setTop(0);
+            props.setLeft(0);
+            props.setWidth(0);
+            props.setHeight(0);
         }
     }
 

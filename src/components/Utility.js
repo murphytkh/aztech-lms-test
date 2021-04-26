@@ -125,7 +125,8 @@ export function saveObj(obj, name)
 export function removeLight(arr, val)
 {
     var i = arr.findIndex(obj => obj.name === val);
-    arr.splice(i, 1);
+    if (i !== -1)
+        arr.splice(i, 1);
 }
 
 export function findLightByName(arr, val)

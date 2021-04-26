@@ -74,10 +74,10 @@ function ThreeJsScene(props)
     const [currGroup, setCurrGroup] = useState("");
 
     // selection box (mouse drag)
-    const [top, setTop] = useState("0");
-    const [left, setLeft] = useState("0");
-    const [width, setWidth] = useState("0");
-    const [height, setHeight] = useState("0");
+    const [top, setTop] = useState(0);
+    const [left, setLeft] = useState(0);
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
 
     // refs
     const cameraRef = useRef();
@@ -143,7 +143,7 @@ function ThreeJsScene(props)
     function deleteLight(name)
     {
         var arr = [...lightData.current];
-
+        
         // remove this light from all trigger groups
         var light = findLightByName(arr, name);
         light.triggerers.map((obj) => {
@@ -160,6 +160,7 @@ function ThreeJsScene(props)
         });
 
         removeLight(arr, name);
+        deselectLight(name, selectedLights.current, setSelectedLights);
         setLightData(arr);
         showMsg(name + " removed", 3000, COLOUR.BLACK);
 
@@ -598,7 +599,7 @@ function ThreeJsScene(props)
             <div 
                 className = "selection-box"
                 style = {{
-                            display: (width === "0" || height === "0") ? "none" : "block",
+                            display: (width === 0 || height === 0) ? "none" : "block",
                             top: top + "%",
                             left: left + "%",
                             width: width + "%", 

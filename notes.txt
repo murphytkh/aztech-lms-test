@@ -27,19 +27,8 @@ what in the fucks going on
 ====================================================
 current task:
 - bugs
-    - adding arrowhelper causes object to disappear
-      on creation and moving cursor
-      - selection box affected as well
-- triggers
-    -threejsscene code cleanup
-    - view data
-        - separate panel to view triggerer/triggeree 
-          data
-        - nested within config panel hierarchy
-    - trigger overlay
-        - three.js arrowhelper
-    - data
-        - render arrows from inside light component
+    - selection box sometimes causes lights to 
+      disappear
 
 - api calls from backend?
 - document for handover

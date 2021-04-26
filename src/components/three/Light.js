@@ -3,7 +3,7 @@
 import React, {useState, useEffect, useRef, useContext, useCallback} from "react";
 import {Html} from "@react-three/drei";
 import {Vector3} from "three";
-import { findLightByName } from "../Utility";
+import {findLightByName} from "../Utility";
 
 function LightSphere(props)
 {
@@ -100,7 +100,6 @@ function LightSphere(props)
                     </div>
                 </Html>
             }
-
         </mesh>
     )
 };
@@ -121,14 +120,7 @@ function Light(props)
         return (
             <arrowHelper
                 key = {i}
-                args = {[
-                    dir,
-                    origin,
-                    dist - offset,
-                    0xFF0000,
-                    0.5,
-                    0.3
-                ]}
+                args = {[dir, origin, dist - offset, 0xFF0000, 0.5, 0.3]}
             />
         );
     });
