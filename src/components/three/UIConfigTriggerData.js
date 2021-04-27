@@ -7,13 +7,15 @@ function UIConfigTriggerData(props)
             <div className = "block" id = "triggerers">
                 <div className = "label">Triggerers: </div>
                 <div className = "trigger-list">
-                    {props.selectedLights[0].triggerers.join(", ")}
+                    {props.selectedLights[0].triggerers.length > 0 ?
+                        props.selectedLights[0].triggerers.join(", ") : "-"}
                 </div>
             </div>
             <div className = "block" id = "triggerees">
                 <div className = "label">Triggerees: </div>
                 <div className = "trigger-list">
-                {props.selectedLights[0].triggerees.join(", ")}
+                    {props.selectedLights[0].triggerees.length > 0 ?
+                            props.selectedLights[0].triggerees.join(", ") : "-"}
                 </div>
             </div>
         </div>

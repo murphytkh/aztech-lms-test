@@ -315,7 +315,6 @@ function ThreeJsScene(props)
         deselectLights();
         setCurrGroup(group);
         selectLightsByProperty("group", group, lightData.current, setSelectedLights);
-        selectLightsByProperty("highlight", true, lightData.current, setSelectedLights);
     }
 
     // file loading

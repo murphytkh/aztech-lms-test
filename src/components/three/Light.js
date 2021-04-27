@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, {useState, useEffect, useRef, useContext} from "react";
+import React, {useEffect, useRef, useContext} from "react";
 import {Html} from "@react-three/drei";
 import {Vector3} from "three";
 import {findLightByName} from "../Utility";
@@ -8,7 +8,6 @@ import {findLightByName} from "../Utility";
 function LightSphere(props)
 {
     const ref = useRef();
-    const [outlined, setOutlined] = useState(false);
     const setOutline = useContext(props.context);
 
     function handleOver()
@@ -24,20 +23,9 @@ function LightSphere(props)
     // update outline states on selected status change
     useEffect(() => {
         if (props.userData.highlight)
-        {
-            if (!outlined)
-            {
-                setOutlined(true);
-                setOutline(state => [...state, ref.current]);
-                console.log("set outline");
-            }
-        }
+            setOutline(state => [...state, ref.current]);
         else
-        {
-            setOutlined(false);
             setOutline(state => state.filter(mesh => mesh !== ref.current));
-            console.log("disable outline");
-        }
     }, [props.userData.highlight]);
 
     // colour selection
