@@ -26,12 +26,10 @@ what in the fucks going on
                      FRONT END
 ====================================================
 current task:
-- bugs
-    - selection box causes disappearing lights
-      when moving too quickly
+- api calls from backend
 
-- api calls from backend?
 - document for handover
+    - many many things
 
 list of npm packages installed (other than the
 usual react stuff)
