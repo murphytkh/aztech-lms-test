@@ -24,8 +24,8 @@ function UIReadMe(props)
                     <h1>CTRL + LMB - Multiselect</h1>
                     <h1>Scroll Wheel - Zoom</h1>
                     <h1>Space - Toggle Add Mode</h1>
-                    <h1>G - Toggle Group Mode</h1>
-                    <h1>T - Toggle Trigger Mode</h1>
+                    <h1>G - Toggle Group View</h1>
+                    <h1>T - Toggle Trigger View</h1>
                     <h1>1/2/3 - Select Groups 0/1/2</h1>
                     <h1>Q - Load c1basement1</h1>
                     <h1>W - Load c1basement2</h1>

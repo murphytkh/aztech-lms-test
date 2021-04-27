@@ -28,9 +28,8 @@ function SelectionBoxHelper(props)
     {
         if (selecting.current)
         {
-            selectionBox.select();
-            selectionBox.endPoint.set(mouse.x, mouse.y, 0.5);
             let curr = selectionBox.select();
+            selectionBox.endPoint.set(mouse.x, mouse.y, 0.5);
             curr = curr.filter((obj) => obj.userData.hasOwnProperty("selected"));
             props.setHighlight(curr);
 

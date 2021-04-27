@@ -29,6 +29,8 @@ current task:
 - bugs
     - selection box sometimes causes lights to 
       disappear
+    - try to isolate and reproduce bug with 
+      disappearing lights when deleting shit
 
 - api calls from backend?
 - document for handover

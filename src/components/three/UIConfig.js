@@ -17,7 +17,10 @@ function UIConfig(props)
                 selectedLights = {props.selectedLights}
                 setLightName = {props.setLightName}
             />
-            <UIConfigMode click = {props.setMode} />
+            <UIConfigMode 
+                click = {props.setMode} 
+                selectedLights = {props.selectedLights}
+            />
             <UIConfigGroup 
                 focus = {props.focus}
                 blur = {props.blur}
