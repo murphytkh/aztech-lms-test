@@ -140,10 +140,30 @@
     margin-left: 3.25%;
 }
 
+/* trigger data side panel */
+
 .three-ui-box#trigger-data
 {
-    top: -190%;
-    right: 0%;
-    width: 67.75%;
-    height: 180%;
+    top: 0%;
+    left: -107%;
+    width: 100%;
+}
+
+.three-ui-box#trigger-data .label
+{
+    vertical-align: top;
+}
+
+.three-ui-box#trigger-data .block#triggerees
+{
+    margin-bottom: 4%;
+}
+
+.three-ui-box#trigger-data .block .trigger-list
+{
+    display: inline-block;
+    overflow-wrap: break-word;
+    margin-left: 4%;
+    margin-right: 3.25%;
+    width: 62.75%;
 }

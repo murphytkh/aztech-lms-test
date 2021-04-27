@@ -216,8 +216,15 @@ function ThreeJsScene(props)
 
     function lightExit(name)
     {
-        setLightHover(null);
-        setLightsProperty([name], "highlight", false, lightData.current, setLightData);
+        var light = findLightByName(lightData.current, name);
+        if (light)
+        {
+            if (light.selected !== true)
+            {
+                setLightsProperty([name], "highlight", false, lightData.current, setLightData);
+            }
+            setLightHover(null);
+        }
     }
 
     function deselectLights()
@@ -261,7 +268,6 @@ function ThreeJsScene(props)
     {
         for (var i = 0; i < selection.length; ++i)
         {
-            selection[i].userData.selected = true;
             selectLight(selection[i].userData.name, lightData.current, 
                         selectedLights.current, setSelectedLights);
         }
@@ -309,6 +315,7 @@ function ThreeJsScene(props)
         deselectLights();
         setCurrGroup(group);
         selectLightsByProperty("group", group, lightData.current, setSelectedLights);
+        selectLightsByProperty("highlight", true, lightData.current, setSelectedLights);
     }
 
     // file loading

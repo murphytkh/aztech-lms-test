@@ -46,7 +46,7 @@ function UIConfig(props)
                 toggleShowData = {toggleShowData}
             />
             {/* add separate panel here */}
-            {showTriggerData && 
+            {showTriggerData && props.selectedLights.length === 1 &&
                 <UIConfigTriggerData
                     selectedLights = {props.selectedLights}
                 />

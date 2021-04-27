@@ -20,7 +20,7 @@ function UIConfigTrigger(props)
                 onClick = {props.toggleShowData}
                 style = {{backgroundColor: "#7F849F"}}
             >
-                VIEW DATA
+                VIEW
             </div>
         </div>
     );

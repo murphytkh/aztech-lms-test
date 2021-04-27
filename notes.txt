@@ -27,11 +27,8 @@ what in the fucks going on
 ====================================================
 current task:
 - bugs
-    - selection box sometimes causes lights to 
-      disappear
-    - try to isolate and reproduce bug with 
-      disappearing lights when deleting shit
-- trigger data viewing box
+    - selection box causes disappearing lights
+      when moving too quickly
 
 - api calls from backend?
 - document for handover

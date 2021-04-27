@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, {useState, useEffect, useRef, useContext, useCallback} from "react";
+import React, {useState, useEffect, useRef, useContext} from "react";
 import {Html} from "@react-three/drei";
 import {Vector3} from "three";
 import {findLightByName} from "../Utility";
@@ -10,48 +10,35 @@ function LightSphere(props)
     const ref = useRef();
     const [outlined, setOutlined] = useState(false);
     const setOutline = useContext(props.context);
-    let mounted = true;
 
-    // bug here
-
-    // update outline states on rollover
-    const handleOver = useCallback(() => {
-        if (mounted)
-        {
-            setOutlined(true);
-            setOutline(state => [...state, ref.current]);
-        }
+    function handleOver()
+    {
         props.enter(props.userData.name);
-    }, [props.userData]);
+    }
 
-    const handleOut = useCallback(() => {
-        if (mounted)
-        {
-            setOutlined(false);
-            setOutline(state => state.filter(mesh => mesh !== ref.current));
-        }
+    function handleOut()
+    {
         props.exit(props.userData.name);
-    }, [props.userData]);
+    }
 
     // update outline states on selected status change
     useEffect(() => {
-        if (props.userData.selected || props.userData.highlight)
+        if (props.userData.highlight)
         {
             if (!outlined)
             {
                 setOutlined(true);
                 setOutline(state => [...state, ref.current]);
+                console.log("set outline");
             }
         }
         else
         {
             setOutlined(false);
             setOutline(state => state.filter(mesh => mesh !== ref.current));
+            console.log("disable outline");
         }
-        
-        return (() => mounted = false)
-
-    }, [props.userData.selected, props.userData.highlight]);
+    }, [props.userData.highlight]);
 
     // colour selection
     function colour()

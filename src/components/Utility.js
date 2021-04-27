@@ -142,13 +142,13 @@ export function selectLight(name, array, selected, set)
 
     if (light)
     {
-        light.selected = true;
-
+        console.log(name);
         // add to array of selected lights
         // check if already selected first
         var selectedArr = [...selected];
         if (!findLightByName(selectedArr, name))
         {
+            light.selected = true;
             selectedArr.push(light);
             set(selectedArr);
         }
@@ -207,7 +207,10 @@ export function selectLightsByProperty(prop, val, array, set)
 {
     var arr = [...array];
     var selArr = arr.filter(obj => {return obj[prop] === val;})
-    selArr.map(obj => obj.selected = true);
+    selArr.map((obj) => {
+        obj.highlight = true;
+        obj.selected = true;
+    });
     set(selArr);
 }
 
