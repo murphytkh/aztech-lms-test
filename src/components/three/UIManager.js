@@ -14,12 +14,14 @@ function UIManager(props)
     return(
         <div className = "three-ui-container">
             {/* out of canvas elements */}
+            {/*
             <UIExternal 
                 add = {props.add}
                 toggleAdd = {props.toggleAdd} 
                 ph = {props.ph} 
                 togglePh = {props.togglePh}
             />
+            */}
             {/* light name input box */}
             <UILightName
                 add = {props.add}
