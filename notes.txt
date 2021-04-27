@@ -31,6 +31,7 @@ current task:
       disappear
     - try to isolate and reproduce bug with 
       disappearing lights when deleting shit
+- trigger data viewing box
 
 - api calls from backend?
 - document for handover
