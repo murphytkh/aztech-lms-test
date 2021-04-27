@@ -1,14 +1,27 @@
 import "../../resources/css/three-js-ui-config.css";
 
-import React from "react";
+import React, {useState} from "react";
 
 import UIConfigName from "./UIConfigName";
 import UIConfigMode from "./UIConfigMode";
 import UIConfigGroup from "./UIConfigGroup";
 import UIConfigTrigger from "./UIConfigTrigger";
+import UIConfigTriggerData from "./UIConfigTriggerData";
 
 function UIConfig(props)
 {
+    const [showTriggerData, setShowTriggerData] = useState(false);
+
+    function toggleEditTrigger()
+    {
+        props.setEditTriggerMode(!props.editTriggerMode);
+    }
+
+    function toggleShowData()
+    {
+        setShowTriggerData(showData => !showData);
+    }
+
     return(
         <div className = "three-ui-box" id = "config">
             <UIConfigName 
@@ -29,11 +42,15 @@ function UIConfig(props)
             />
             <UIConfigTrigger
                 selectedLights = {props.selectedLights}
-                editTriggerMode = {props.editTriggerMode}
-                setEditTriggerMode = {props.setEditTriggerMode}
+                toggleEditTrigger = {toggleEditTrigger}
+                toggleShowData = {toggleShowData}
             />
             {/* add separate panel here */}
-            
+            {showTriggerData && 
+                <UIConfigTriggerData
+                    selectedLights = {props.selectedLights}
+                />
+            }
     </div>
     );
 }
