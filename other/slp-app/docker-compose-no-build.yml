@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+  spsdb:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: spsdb_sg
+      MYSQL_USER: spsclient
+      MYSQL_PASSWORD: spsclient
+    volumes:
+      - type: bind
+        source: ./db-schema
+        target: /docker-entrypoint-initdb.d
+        read_only: true
+      - type: volume
+        source: spsdb
+        target: /var/lib/mysql
+      - type: bind
+        source: /etc/timezone
+        target: /etc/timezone
+        read_only: true
+  collector:
+    image: aztechsg/lms-collector:latest
+    ports:
+      - "9091:9090"
+    environment:
+      TZ: Asia/Singapore
+      SERVER_PORT: 9090
+      DB_HOST: spsdb
+      DB_PORT: "3306"
+      DB_SERVICE: spsdb:3306
+      MQTT_BROKER_URI: ssl://sls.aztech.com:8883
+      spring_profiles_active: default
+    volumes:
+      - type: bind
+        source: /etc/timezone
+        target: /etc/timezone
+        read_only: true
+    dns: 8.8.8.8
+    secrets:
+      - mysql_username
+      - mysql_password
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+  slp-api:
+    image: aztechsg/slp-api:latest
+    ports:
+      - "8888:8888"
+    environment:
+      TZ: Asia/Singapore
+      DB_SERVICE: "spsdb:3306"
+      DB_HOST: spsdb
+      DB_PORT: "3306"
+    secrets:
+      - mysql_username
+      - mysql_password
+    volumes:
+      - type: bind
+        source: /etc/timezone
+        target: /etc/timezone
+        read_only: true
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+volumes:
+  spsdb:
+
+secrets:
+  mysql_username:
+    file: ./mysql_username.txt
+  mysql_password:
+    file: ./mysql_password.txt

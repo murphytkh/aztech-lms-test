@@ -4,7 +4,8 @@ import "../resources/css/dashboard-landing.css";
 import React, {useState, useRef, useEffect} from "react";
 import {useHistory, useLocation} from "react-router-dom";
 
-import {getCurrUser, getUsers, getNotifications, getVersion} from "./MockAPI";
+import {getCurrUser, getUsers, getNotifications, getVersion,
+        getAreas} from "./MockAPI";
 import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
@@ -40,6 +41,10 @@ function Dashboard(props)
     const [currUser, setCurrUser] = useState(null);
     const [userList, setUserList] = useState(null);
 
+    // lms data
+    const [areaList, setAreaList] = useState([]);
+    const [blockList, setBlockList] = useState([]);
+
     // selectors
     const [selectedLocation, setSelectedLocation] = useState("");
     const [selectedArea, setSelectedArea] = useState("");
@@ -61,6 +66,17 @@ function Dashboard(props)
         setAlerts(getNotifications());
         setCurrUser(getCurrUser());
         setUserList(getUsers());
+
+        // lms data
+        getAreas("SINGAPORE")
+        .then((res) => {
+            let list = res.data.map(obj => obj.name);
+            setAreaList(list);
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }, []);
 
     function goToPath(path)
@@ -284,7 +300,7 @@ function Dashboard(props)
         <SelectorDropdown
             ref = {areaDDRef}
             title = "AREA"
-            options = {["GEYLANG"]}
+            options = {areaList}
             initial = {selectedArea}
             selectOption = {setSelectedAreaHelper}
         ></SelectorDropdown>

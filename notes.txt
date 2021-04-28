@@ -26,8 +26,20 @@ what in the fucks going on
                      FRONT END
 ====================================================
 current task:
+- adding redux
+    - wat do
 - api calls from backend
-- add redux to app?
+
+redux store:
+- 
+
+docker commands (in slp-app folder)
+docker-compose -f docker-compose-no-build.yml up
+docker-compose -f docker-compose-no-build.yml down
+
+api calls
+http://localhost:8888/api/v1/areas
+http://localhost:8888/api/v1/block/(id)
 
 - document for handover
     - many many things
@@ -45,6 +57,8 @@ usual react stuff)
 - @react-three/drei
 - axios
 - react-colorful
+- @reduxjs/toolkit
+- react-redux
 
 - don't let calendar card make any changes for now
   - radio buttons will do nothing

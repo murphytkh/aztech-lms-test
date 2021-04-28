@@ -9,7 +9,7 @@ import DefaultUser from "../resources/dashboard/user-profile-default.svg";
 
 // dashboard persistent elements
 
-function getNotifications()
+export function getNotifications()
 {
     let n0 = new NotificationObject("Alert For Light Offline", 
                                     "Light 1.2.8 AC Failure", "true");
@@ -20,17 +20,30 @@ function getNotifications()
     return ([n0, n1, n2]);
 }
 
-function getVersion()
+export function getVersion()
 {
     return "3.0.0";
 }
 
-function getCurrUser()
+export function getAreas(location)
+{
+    return axios.get("http://localhost:8888/api/v1/areas")
+    // get response
+    .then(function (response) {
+        return response;
+    })
+    // error
+    .catch(function (error) {
+        console.log(error);
+    })
+}
+
+export function getCurrUser()
 {
     return new UserObject("office_admin", "Project Manager", PlaceholderUser);
 }
 
-function getUsers()
+export function getUsers()
 {
     let u0 = new UserObject("VIOLA CHAN", "Design Manager", DefaultUser);
     let u1 = new UserObject("MANMO WONG", "Designer", DefaultUser);
@@ -38,7 +51,7 @@ function getUsers()
     return ([u0, u1]);
 }
 
-function getBlockData()
+export function getBlockData()
 {
     let data = new Map();
     data.set("total", 800000);
@@ -50,7 +63,7 @@ function getBlockData()
     return data;
 }
 
-function getActiveLightsData()
+export function getActiveLightsData()
 {
     var data = [];
 
@@ -67,7 +80,7 @@ function getActiveLightsData()
     return data;
 }
 
-function getEnergyData()
+export function getEnergyData()
 {
     const data0 = [
         {t: 59400, Present: 0.02},
@@ -164,7 +177,7 @@ function getEnergyData()
     return([data0, data1, data2, data3, data4, data5, data6, data7, data8, data9]);
 }
 
-function getActivityData()
+export function getActivityData()
 {
     var a = [];
 
@@ -201,12 +214,12 @@ function getActivityData()
     return a;
 }
 
-function getGatewayData()
+export function getGatewayData()
 {
     return "{“lpAddress”:{“wlp2s0”:”192.168.1.188”,”lo”:”127.0.0.1”}}";
 }
 
-function getStatusData()
+export function getStatusData()
 {
     var a = [];
 
@@ -244,7 +257,7 @@ function getStatusData()
     return a;
 }
 
-function getSceneData(url, name)
+export function getSceneData(url, name)
 {
     return axios.get(url + name + ".json")
         // get response
@@ -256,6 +269,3 @@ function getSceneData(url, name)
             console.log(error);
         })
 }
-
-export {getNotifications, getVersion, getCurrUser, getUsers, getBlockData, getActiveLightsData,
-        getEnergyData, getActivityData, getGatewayData, getStatusData, getSceneData};
