@@ -2,7 +2,7 @@ import "../../resources/css/three-js-ui.css";
 
 import React from "react";
 
-import UIExternal from "./UIExternal";
+//import UIExternal from "./UIExternal";
 import UILightName from "./UILightName";
 import UIReadMe from "./UIReadMe";
 import UIGroup from "./UIGroup";

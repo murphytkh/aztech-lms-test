@@ -19,6 +19,7 @@ function LoginForm(props)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // routing
     function handleNext()
     {
         console.log({email});
@@ -26,6 +27,7 @@ function LoginForm(props)
         history.push("/dashboard")
     }
 
+    // input handling
     function handleForgotPW()
     {
         history.push("/signup");
@@ -44,50 +46,50 @@ function LoginForm(props)
     return (
         <div>
             {/* backgorund image */}
-            <img alt = "" src = {BG} className = "main-bg"></img>
+            <img alt="" src = {BG} className="main-bg"></img>
             {/* footer */}
-            <div className = "footer">
-                <h1 className = "footer-center">{copyright}</h1>
-                <h1 className = "footer-right">{privacy}</h1>
+            <div className="footer">
+                <h1 className="footer-center">{copyright}</h1>
+                <h1 className="footer-right">{privacy}</h1>
             </div>
             {/* login form */}
-            <div className = "entry-form" id = "login">
+            <div className="entry-form" id="login">
                 {/* labels and images */}
-                <img alt = "" src = {LoginRect} className = "bg"></img>
-                <img alt = "" src = {Logo} className = "logo"></img>
-                <img alt = "" src = {Line} className = "line"></img>
+                <img alt="" src={LoginRect} className="bg"></img>
+                <img alt="" src={Logo} className="logo"></img>
+                <img alt="" src={Line} className="line"></img>
 
                 <h1>Welcome Back!</h1>
                 <h2>LOGIN</h2>
                 <h3>Lighting Management System (LMS)</h3>
                 <h4>FORGOT PASSWORD?</h4>
-                <h5 onClick = {handleForgotPW}>CHECK HERE</h5>
+                <h5 onClick={handleForgotPW}>CHECK HERE</h5>
                 <h6>{agree}</h6>
 
                 {/* inputs */}
                 <input
-                    type = "text"
-                    id = "login-email"
-                    className = "input0"
-                    name = "email"
-                    value = {email}
-                    placeholder = "EMAIL"
-                    onChange = {handleChangeEmail}
+                    type="text"
+                    id="login-email"
+                    className="input0"
+                    name="email"
+                    value={email}
+                    placeholder="EMAIL"
+                    onChange={handleChangeEmail}
                 ></input>
                 <input
-                    type = "password"
-                    id = "login-password"
-                    className = "input1"
-                    name = "password"
-                    value = {password}
-                    placeholder = "PASSWORD"
-                    onChange = {handleChangePassword}
+                    type="password"
+                    id="login-password"
+                    className="input1"
+                    name="password"
+                    value={password}
+                    placeholder="PASSWORD"
+                    onChange={handleChangePassword}
                 ></input>
                 <img 
-                    alt = "" 
-                    src = {Button} 
-                    className = "btn"
-                    onClick = {handleNext}
+                    alt="" 
+                    src={Button} 
+                    className="btn"
+                    onClick={handleNext}
                 ></img>
             </div>
         </div>

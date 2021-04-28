@@ -21,9 +21,12 @@ const privacy = "PRIVACY POLICY · TERMS & CONDITIONS";
 
 function Dashboard(props)
 {
+    // used for managing routes
     const history = useHistory();
     const location = useLocation();
 
+    // refs for dropdown lists to control closing when
+    // clicked outside of element
     const locationDDRef = useRef();
     const areaDDRef = useRef();
     const blockDDRef = useRef();
@@ -31,6 +34,7 @@ function Dashboard(props)
     const lightDDRef = useRef();
     const notificationRef = useRef();
 
+    // sidebar display and user data
     const [version, setVersion] = useState(null);
     const [alerts, setAlerts] = useState(null);
     const [currUser, setCurrUser] = useState(null);
@@ -43,10 +47,11 @@ function Dashboard(props)
     const [selectedLevel, setSelectedLevel] = useState("");
     const [selectedLight, setSelectedLight] = useState("");
 
-    // bool for displaying popups
+    // modal states
     const [editProfile, setEditProfile] = useState(false);
     const [relocation, setRelocation] = useState(false);
 
+    // dark mode toggle (unused)
     const [darkMode, setDarkMode] = useState(false);
 
     // simulate getting data

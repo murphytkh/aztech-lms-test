@@ -19,6 +19,7 @@ function SignUpForm(props)
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
 
+    // routing
     function handleNext()
     {
         console.log({email});
@@ -26,6 +27,7 @@ function SignUpForm(props)
         console.log({verifyPassword});
     }
 
+    // input handling
     function handleLogin(e)
     {
         e.preventDefault();
@@ -50,60 +52,55 @@ function SignUpForm(props)
     return (
         <div>
             {/* backgorund image */}
-            <img alt = "" src = {BG} className = "main-bg"></img>
+            <img alt="" src={BG} className="main-bg"></img>
             {/* footer */}
-            <div className = "footer">
-                <h1 className = "footer-center">{copyright}</h1>
-                <h1 className = "footer-right">{privacy}</h1>
+            <div className="footer">
+                <h1 className="footer-center">{copyright}</h1>
+                <h1 className="footer-right">{privacy}</h1>
             </div>
             {/* signup form */}
-            <div className = "entry-form" id = "signup">
+            <div className="entry-form" id="signup">
                 {/* labels and images */}
-                <img alt = "" src = {LoginRect} className = "bg"></img>
-                <img alt = "" src = {Logo} className = "logo"></img>
-                <img alt = "" src = {Line} className = "line"></img>
+                <img alt="" src={LoginRect} className="bg"></img>
+                <img alt="" src={Logo} className="logo"></img>
+                <img alt="" src={Line} className="line"></img>
 
                 <h1>Welcome to</h1>
                 <h2>SIGN UP</h2>
                 <h3>Lighting Management System (LMS)</h3>
                 <h4>LOGIN</h4>
-                <h5 onClick = {handleLogin}>ALREADY REGISTERED?</h5>
+                <h5 onClick={handleLogin}>ALREADY REGISTERED?</h5>
                 <h6>{agree}</h6>
 
                 {/* inputs */}
                 <input
-                    type = "text"
-                    id = "signup-email"
-                    className = "input0"
-                    name = "email"
-                    value = {email}
-                    placeholder = "EMAIL"
-                    onChange = {handleChangeEmail}
+                    type="text"
+                    id="signup-email"
+                    className="input0"
+                    name="email"
+                    value={email}
+                    placeholder="EMAIL"
+                    onChange={handleChangeEmail}
                 ></input>
                 <input
-                    type = "password"
-                    id = "signup-password"
-                    className = "input1"
-                    name = "password"
-                    value = {password}
-                    placeholder = "PASSWORD"
-                    onChange = {handleChangePassword}
+                    type="password"
+                    id="signup-password"
+                    className="input1"
+                    name="password"
+                    value={password}
+                    placeholder="PASSWORD"
+                    onChange={handleChangePassword}
                 ></input>
                 <input
-                    type = "password"
-                    id = "signup-verifypassword"
-                    className = "input2"
-                    name = "verifypassword"
-                    value = {verifyPassword}
-                    placeholder = "VERIFY PASSWORD"
-                    onChange = {handleChangeVerifyPassword}
+                    type="password"
+                    id="signup-verifypassword"
+                    className="input2"
+                    name="verifypassword"
+                    value={verifyPassword}
+                    placeholder="VERIFY PASSWORD"
+                    onChange={handleChangeVerifyPassword}
                 ></input>
-                <img 
-                    alt = "" 
-                    src = {Button} 
-                    className = "btn"
-                    onClick = {handleNext}
-                ></img>
+                <img alt="" src={Button} className="btn" onClick={handleNext} />
             </div>
         </div>
     );
