@@ -1,7 +1,10 @@
 import "../resources/css/dashboard-sidebar.css";
 
 import React from "react";
+import {useSelector, useDispatch} from "react-redux";
 import {useHistory, useLocation} from "react-router-dom";
+
+import {setDarkMode} from "../redux/miscInfoSlice";
 
 import Toggle from "../resources/sidebar/sidebar-toggle.svg";
 import SidebarLogo from "../resources/sidebar/sidebar-logo.svg";
@@ -27,6 +30,10 @@ function Sidebar(props)
 {
     const history = useHistory();
     const location = useLocation();
+    const dispatch = useDispatch();
+
+    const version = useSelector((state) => state.version.value);
+    const darkMode = useSelector((state) => state.darkMode.valuie);
 
     // sliding animations
     function sidebarToggle()
@@ -41,7 +48,7 @@ function Sidebar(props)
 
     function handleSidebarDarkModeToggle()
     {
-        props.setDarkMode(!props.darkMode);
+        dispatch(setDarkMode(!darkMode));
 
         var dm = document.getElementsByClassName("darkmode-circle");
 
@@ -63,82 +70,82 @@ function Sidebar(props)
     }
 
     return(
-        <div className = "sidebar">
+        <div className="sidebar">
             {/* path buttons */}
             {props.pathHelper()}
             {/* sidebar toggle button */}
             <button 
-                onClick = {sidebarToggle} 
-                className = "toggle">
-                <img alt = "" src = {Toggle}></img>
+                onClick={sidebarToggle} 
+                className="toggle">
+                <img alt="" src={Toggle}></img>
             </button>
             {/* logo */}
-            <img alt = "" src = {SidebarLogo} className = "logo"></img>
+            <img alt="" src={SidebarLogo} className="logo"></img>
             {/* sidebar buttons */}
-            <div className = "icon-container">
+            <div className="icon-container">
                 <SidebarIcon 
-                    onClick = {handleSidebarButton}
-                    path = "/dashboard/view" 
-                    default = {Dashboard} 
-                    active = {DashboardActive} 
-                    tooltip = "Dashboard"
+                    onClick={handleSidebarButton}
+                    path="/dashboard/view" 
+                    default={Dashboard} 
+                    active={DashboardActive} 
+                    tooltip="Dashboard"
                 ></SidebarIcon>
                 <SidebarIcon 
-                    onClick = {handleSidebarButton} 
-                    path = "/dashboard/config" 
-                    default = {Config}
-                    active = {ConfigActive}
-                    tooltip = "Configuration"
+                    onClick={handleSidebarButton} 
+                    path="/dashboard/config" 
+                    default={Config}
+                    active={ConfigActive}
+                    tooltip="Configuration"
                 ></SidebarIcon>
                 <SidebarIcon 
-                    onClick = {handleSidebarButton} 
-                    path = "/dashboard/photosensor" 
-                    default = {Photosensor}
-                    active = {PhotosensorActive}
-                    tooltip = "Photosensor"
+                    onClick={handleSidebarButton} 
+                    path="/dashboard/photosensor" 
+                    default={Photosensor}
+                    active={PhotosensorActive}
+                    tooltip="Photosensor"
                 ></SidebarIcon>
                 <SidebarIcon 
-                    onClick = {handleSidebarButton} 
-                    path = "/dashboard/datacharts" 
-                    default = {Datacharts}
-                    active = {DatachartsActive} 
-                    tooltip = "Data charts"
+                    onClick={handleSidebarButton} 
+                    path="/dashboard/datacharts" 
+                    default={Datacharts}
+                    active={DatachartsActive} 
+                    tooltip="Data charts"
                 ></SidebarIcon>
                 <SidebarIcon 
-                    onClick = {handleSidebarButton} 
-                    path = "/dashboard/placeholder" 
-                    default = {LightCycle}
-                    active = {LightCycleActive} 
-                    tooltip = "Placeholder"
+                    onClick={handleSidebarButton} 
+                    path="/dashboard/placeholder" 
+                    default={LightCycle}
+                    active={LightCycleActive} 
+                    tooltip="Placeholder"
                 ></SidebarIcon>
                 <SidebarIcon 
-                    onClick = {handleSidebarButton} 
-                    path = "/dashboard/usermanagement" 
-                    default = {UserManagement}
-                    active = {UserManagementActive} 
-                    tooltip = "Users"
+                    onClick={handleSidebarButton} 
+                    path="/dashboard/usermanagement" 
+                    default={UserManagement}
+                    active={UserManagementActive} 
+                    tooltip="Users"
                 ></SidebarIcon>
                 <SidebarIcon 
-                    onClick = {handleSidebarButton} 
-                    path = "/dashboard/three" 
-                    default = {Add}
-                    active = {AddActive}
-                    tooltip = "Add"
+                    onClick={handleSidebarButton} 
+                    path="/dashboard/three" 
+                    default={Add}
+                    active={AddActive}
+                    tooltip="Add"
                 ></SidebarIcon>
             </div>
             {/* dark mode toggle button */}
             <div
-                title = "Dark Mode"
-                className = "darkmode-container"
-                onClick = {handleSidebarDarkModeToggle}
+                title="Dark Mode"
+                className="darkmode-container"
+                onClick={handleSidebarDarkModeToggle}
             >
-                <div className = "darkmode-circle"></div>
+                <div className="darkmode-circle"></div>
             </div>
             {/* bottom text */}
-            <div className = "text-container">
+            <div className="text-container">
                 <Timestamp />
-                {props.version != null && 
-                <h1 className = "version">VER {props.version}</h1>}
+                {version != null && 
+                <h1 className="version">VER {version}</h1>}
             </div>
         </div>
     );

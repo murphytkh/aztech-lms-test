@@ -8,6 +8,7 @@ import {setLocationData, setLocations, setAreas, setBlocks, setSelectedLocation,
         setSelectedArea, setSelectedBlock, setSelectedLevel, setSelectedLights} 
         from "../redux/locationDataSlice";
 import {setRelocation} from "../redux/dashboardUISlice";
+import {setVersion} from "../redux/miscInfoSlice";
 import {getCurrUser, getUsers, getNotifications, getVersion,
         getLocationData, getLocations, getAreas, getBlocks} from "./MockAPI";
 
@@ -45,7 +46,6 @@ function Dashboard(props)
 
     // sidebar display and user data
     const [currUser, setCurrUser] = useState(null);
-    const [version, setVersion] = useState(null);
     const [alerts, setAlerts] = useState(null);
     const [userList, setUserList] = useState(null);
 
@@ -68,15 +68,12 @@ function Dashboard(props)
     const editProfile = useSelector((state) => state.editProfile.value);
     const relocation = useSelector((state) => state.relocation.value);
 
-    // dark mode toggle (unused)
-    const [darkMode, setDarkMode] = useState(false);
-
     // simulate getting data
     useEffect(() =>
     {
         // initialise data into redux store
 
-        setVersion(getVersion());
+        dispatch(setVersion(getVersion()));
         setAlerts(getNotifications());
         setCurrUser(getCurrUser());
         setUserList(getUsers());
@@ -373,12 +370,7 @@ function Dashboard(props)
                 />}
             </div>
             {/* sidebar */}
-            <Sidebar 
-                pathHelper={pathHelper} 
-                version={version} 
-                darkMode={darkMode}
-                setDarkMode={setDarkMode}
-            />
+            <Sidebar pathHelper={pathHelper} />
             {/* default selectors, non-config page */}
             {(location.pathname !== "/dashboard/config" && 
               location.pathname !== "/dashboard/photosensor" && 
