@@ -7,7 +7,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {setLocationData, setLocations, setAreas, setBlocks, setSelectedLocation, 
         setSelectedArea, setSelectedBlock, setSelectedLevel, setSelectedLights} 
         from "../redux/locationDataSlice";
-import {setEditProfile, setRelocation} from "../redux/dashboardUISlice";
+import {setRelocation} from "../redux/dashboardUISlice";
 import {getCurrUser, getUsers, getNotifications, getVersion,
         getLocationData, getLocations, getAreas, getBlocks} from "./MockAPI";
 
@@ -190,11 +190,6 @@ function Dashboard(props)
         goToPath("/dashboard/usermanagement");
     }
 
-    function userSettings()
-    {
-        dispatch(setEditProfile(true));
-    }
-
     function logout()
     {
         history.push("/login");
@@ -374,7 +369,6 @@ function Dashboard(props)
                     userList={userList}
                     changeUser={changeUser}
                     addUser={addUser}
-                    userSettings={userSettings}
                     logout={logout}
                 />}
             </div>
