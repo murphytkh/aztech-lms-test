@@ -1,6 +1,9 @@
 import "../resources/css/edit-profile.css";
 
 import React, {useState, useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
+
+import {setEditProfile} from "../redux/dashboardUISlice";
 
 import {UserObject} from "./Utility";
 
@@ -13,6 +16,9 @@ import EyeOffIcon from "../resources/dashboard/icon-eye-off.svg";
 function EditProfile(props)
 {
     //const [image, setImage] = useState(null);
+    const dispatch = useDispatch();
+    const editProfile = useSelector((state) => state.editProfile.value);
+
     const [username, setUsername] = useState("");
     const [position, setPosition] = useState("");
     const [email, setEmail] = useState("");
@@ -117,7 +123,7 @@ function EditProfile(props)
 
     function handleCancel()
     {
-        props.setEditProfile();
+        dispatch(setEditProfile(!editProfile));
     }
 
     function handleSubmit()
@@ -125,122 +131,122 @@ function EditProfile(props)
         // update current user parameters
         let user = new UserObject(username, position, props.currUser.image);
         props.setCurrUser(user);
-        props.setEditProfile();
+        dispatch(setEditProfile(!editProfile));
         console.log("submitted profile edit");
     }
 
     return(
-        <div className = "pop-up" style = {{zIndex: 15}}>
+        <div className="pop-up" style={{zIndex: 15}}>
             {/* edit profile card */}
-            <div className = "fade" style = {{zIndex: 0}}></div>
-            <div className = "container" id = "edit-profile" style = {{zIndex: 1}}>
+            <div className="fade" style={{zIndex: 0}}></div>
+            <div className="container" id="edit-profile" style={{zIndex: 1}}>
                 {/* header */}
-                <div className = "pop-up-header" id = "edit-profile">
-                    <h1 className = "title">USER SETTINGS</h1>
-                    <h1 className = "subtitle">EDIT PROFILE</h1>
-                    <img alt = "" src = {props.currUser.image} className = "user-img"></img>
+                <div className="pop-up-header" id="edit-profile">
+                    <h1 className="title">USER SETTINGS</h1>
+                    <h1 className="subtitle">EDIT PROFILE</h1>
+                    <img alt="" src={props.currUser.image} className="user-img"></img>
                     <img 
-                        alt = "" 
-                        src = {EditPhoto} 
-                        className = "user-img-btn"
-                        onClick = {handleImageChange}
+                        alt="" 
+                        src={EditPhoto} 
+                        className="user-img-btn"
+                        onClick={handleImageChange}
                     ></img>
                 </div>
                 {/* inputs */}
                 <input
-                    type = "text"
-                    className = "input-top"
-                    name = "username"
-                    value = {username}
-                    placeholder = "USERNAME"
-                    onChange = {handleChangeUsername}
+                    type="text"
+                    className="input-top"
+                    name="username"
+                    value={username}
+                    placeholder="USERNAME"
+                    onChange={handleChangeUsername}
                 ></input>
-                <div style = {{position: "relative"}}>
+                <div style={{position: "relative"}}>
                     <input
-                        style = {{pointerEvents: "none"}}
-                        type = "text"
-                        name = "position"
-                        value = {position}
-                        placeholder = "POSITION"
-                        onChange = {placeholder}
+                        style={{pointerEvents: "none"}}
+                        type="text"
+                        name="position"
+                        value={position}
+                        placeholder="POSITION"
+                        onChange={placeholder}
                     ></input>
                     <img
-                        alt = ""
-                        src = {UpArrowIcon}
-                        className = "arrow"
-                        id = "up"
-                        onClick = {handleUpArrow}
+                        alt=""
+                        src={UpArrowIcon}
+                        className="arrow"
+                        id="up"
+                        onClick={handleUpArrow}
                     ></img>
                     <img
-                        alt = ""
-                        src = {DownArrowIcon}
-                        className = "arrow"
-                        id = "down"
-                        onClick = {handleDownArrow}
+                        alt=""
+                        src={DownArrowIcon}
+                        className="arrow"
+                        id="down"
+                        onClick={handleDownArrow}
                     ></img>
                 </div>
                 <input
-                    type = "text"
-                    name = "email"
-                    value = {email}
-                    placeholder = "EMAIL"
-                    onChange = {handleChangeEmail}
+                    type="text"
+                    name="email"
+                    value={email}
+                    placeholder="EMAIL"
+                    onChange={handleChangeEmail}
                 ></input>
                 <input
-                    type = "text"
-                    name = "contact-number"
-                    value = {contactNumber}
-                    placeholder = "CONTACT NUMBER"
-                    onChange = {handleChangeContactNumber}
+                    type="text"
+                    name="contact-number"
+                    value={contactNumber}
+                    placeholder="CONTACT NUMBER"
+                    onChange={handleChangeContactNumber}
                 ></input>
-                <div style = {{position: "relative"}}>
+                <div style={{position: "relative"}}>
                     <input
-                        type = {showCurrPassword ? "text" : "password"}
-                        name = "curr-password"
-                        value = {currPassword}
-                        placeholder = "CURRENT PASSWORD"
-                        onChange = {handleChangeCurrPassword}
+                        type={showCurrPassword ? "text" : "password"}
+                        name="curr-password"
+                        value={currPassword}
+                        placeholder="CURRENT PASSWORD"
+                        onChange={handleChangeCurrPassword}
                     ></input>
                     <img 
-                        alt = "" 
-                        src = {showCurrPassword ? EyeIcon : EyeOffIcon} 
-                        className = "hide"
-                        onClick = {handleToggleCurrPasswordHide}
+                        alt="" 
+                        src={showCurrPassword ? EyeIcon : EyeOffIcon} 
+                        className="hide"
+                        onClick={handleToggleCurrPasswordHide}
                     ></img>
                 </div>
-                <div style = {{position: "relative"}}>
+                <div style={{position: "relative"}}>
                     <input
-                        type = {showNewPassword ? "text" : "password"}
-                        name = "new-password"
-                        value = {newPassword}
-                        placeholder = "NEW PASSWORD"
-                        onChange = {handleChangeNewPassword}
+                        type={showNewPassword ? "text" : "password"}
+                        name="new-password"
+                        value={newPassword}
+                        placeholder="NEW PASSWORD"
+                        onChange={handleChangeNewPassword}
                     ></input>
                     <img 
-                        alt = "" 
-                        src = {showNewPassword ? EyeIcon : EyeOffIcon} 
-                        className = "hide"
-                        onClick = {handleToggleNewPasswordHide}
+                        alt="" 
+                        src={showNewPassword ? EyeIcon : EyeOffIcon} 
+                        className="hide"
+                        onClick={handleToggleNewPasswordHide}
                     ></img>
                 </div>
-                <div style = {{position: "relative"}}>
+                <div style={{position: "relative"}}>
                     <input
-                        type = {showConfirmPassword ? "text" : "password"}
-                        name = "confirm-password"
-                        value = {confirmPassword}
-                        placeholder = "CONFIRM PASSWORD"
-                        onChange = {handleChangeConfirmPassword}
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirm-password"
+                        value={confirmPassword}
+                        placeholder="CONFIRM PASSWORD"
+                        onChange={handleChangeConfirmPassword}
                     ></input>
                     <img 
-                        alt = "" 
-                        src = {showConfirmPassword ? EyeIcon : EyeOffIcon} 
-                        className = "hide"
-                        onClick = {handleToggleConfirmPasswordHide}
+                        alt="" 
+                        src={showConfirmPassword ? EyeIcon : EyeOffIcon} 
+                        className="hide"
+                        onClick={handleToggleConfirmPasswordHide}
                     ></img>
                 </div>
                 {/* buttons */}
-                <div className = "btn" id = "cancel" onClick = {handleCancel}>CANCEL</div>
-                <div className = "btn" id = "submit" onClick = {handleSubmit}>SUBMIT</div>
+                <div className="btn" id="cancel" onClick={handleCancel}>CANCEL</div>
+                <div className="btn" id="submit" onClick={handleSubmit}>SUBMIT</div>
             </div>
         </div>
     );

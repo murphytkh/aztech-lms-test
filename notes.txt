@@ -26,12 +26,11 @@ what in the fucks going on
                      FRONT END
 ====================================================
 current task:
-- adding redux
-    - wat do
 - api calls from backend
 
-redux store:
-- 
+redux
+- userdropdown
+- sidebar
 
 docker commands (in slp-app folder)
 docker-compose -f docker-compose-no-build.yml up

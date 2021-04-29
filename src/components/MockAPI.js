@@ -25,6 +25,8 @@ export function getVersion()
     return "3.0.0";
 }
 
+// location data
+
 export function getLocationData()
 {
     return axios.get("http://localhost:8888/api/v1/areas")
@@ -50,6 +52,16 @@ export function getBlocks(area, data)
 {
     var result = data.find(obj => {return obj.name === area})
     return result.blocks.map(obj => obj.blockName);
+}
+
+export function getLevel(area, block, data)
+{
+    return (["ALL SELECTED"]);
+}
+
+export function getLights(area, block, level, data)
+{
+    return (["ALL SELECTED"]);
 }
 
 export function getCurrUser()

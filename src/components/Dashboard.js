@@ -5,10 +5,12 @@ import React, {useState, useRef, useEffect} from "react";
 import {useHistory, useLocation} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {setLocationData, setLocations, setAreas, setBlocks, setSelectedLocation, 
-        setSelectedArea, setSelectedBlock} from "../redux/locationDataSlice";
-
+        setSelectedArea, setSelectedBlock, setSelectedLevel, setSelectedLights} 
+        from "../redux/locationDataSlice";
+import {setEditProfile, setRelocation} from "../redux/dashboardUISlice";
 import {getCurrUser, getUsers, getNotifications, getVersion,
         getLocationData, getLocations, getAreas, getBlocks} from "./MockAPI";
+
 import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
@@ -42,9 +44,9 @@ function Dashboard(props)
     const notificationRef = useRef();
 
     // sidebar display and user data
+    const [currUser, setCurrUser] = useState(null);
     const [version, setVersion] = useState(null);
     const [alerts, setAlerts] = useState(null);
-    const [currUser, setCurrUser] = useState(null);
     const [userList, setUserList] = useState(null);
 
     // lms data
@@ -52,19 +54,19 @@ function Dashboard(props)
     const locations = useSelector((state) => state.locations.value);
     const areas = useSelector((state) => state.areas.value);
     const blocks = useSelector((state) => state.blocks.value);
+    const levels = ["ALL SELECTED"];
+    const lights = ["ALL SELECTED"];
 
     // selected parameters
     const selectedLocation = useSelector((state) => state.selectedLocation.value);
     const selectedArea = useSelector((state) => state.selectedArea.value);
     const selectedBlock = useSelector((state) => state.selectedBlock.value);
-
-    // selectors
-    const [selectedLevel, setSelectedLevel] = useState("");
-    const [selectedLight, setSelectedLight] = useState("");
+    const selectedLevel = useSelector((state) => state.selectedLevel.value);
+    const selectedLights = useSelector((state) => state.selectedLights.value);
 
     // modal states
-    const [editProfile, setEditProfile] = useState(false);
-    const [relocation, setRelocation] = useState(false);
+    const editProfile = useSelector((state) => state.editProfile.value);
+    const relocation = useSelector((state) => state.relocation.value);
 
     // dark mode toggle (unused)
     const [darkMode, setDarkMode] = useState(false);
@@ -72,6 +74,8 @@ function Dashboard(props)
     // simulate getting data
     useEffect(() =>
     {
+        // initialise data into redux store
+
         setVersion(getVersion());
         setAlerts(getNotifications());
         setCurrUser(getCurrUser());
@@ -79,7 +83,7 @@ function Dashboard(props)
 
         // get overall data and initialise list of locations
         getLocationData()
-        .then((res) =>{
+        .then((res) => {
             dispatch(setLocationData(res.data));
         })
         .catch((err) => {
@@ -123,10 +127,10 @@ function Dashboard(props)
 
     function handleBlockButton()
     {
-        setSelectedLevel("");
+        dispatch(setSelectedLevel(""));
         if (levelDDRef.current)
             levelDDRef.current.clearChoice();
-        setSelectedLight("");
+        dispatch(setSelectedLights(""));
         if (lightDDRef.current)
             lightDDRef.current.clearChoice();
     }
@@ -160,15 +164,15 @@ function Dashboard(props)
 
     function setSelectedLevelHelper(level)
     {
-        setSelectedLevel(level);
-        setSelectedLight("");
+        dispatch(setSelectedLevel(level));
+        dispatch(setSelectedLights(""));
         if (lightDDRef.current)
             lightDDRef.current.clearChoice();
     }
 
-    function setSelectedLightHelper(light)
+    function setSelectedLightsHelper(light)
     {
-        setSelectedLight(light);
+        dispatch(setSelectedLights(light));
     }
 
     function handleSearch(search)
@@ -188,7 +192,7 @@ function Dashboard(props)
 
     function userSettings()
     {
-        setEditProfile(true);
+        dispatch(setEditProfile(true));
     }
 
     function logout()
@@ -202,36 +206,12 @@ function Dashboard(props)
     }
 
     // path helper blocks
-    const showLocation =
-    (
-        <span>
-            <h1 className = "arrow">{arrowVar}</h1>
-            <h1 onClick = {handleLocationButton}>{selectedLocation}</h1>
-        </span>
-    );
-
-    const showArea =
-    (   
-        <span>
-            <h1 className = "arrow">{arrowVar}</h1>
-            <h1 onClick = {handleAreaButton}>{selectedArea}</h1>
-        </span>
-    )
-
-    const showBlock =
-    (
-        <span>
-            <h1 className = "arrow">{arrowVar}</h1>
-            <h1 onClick = {handleBlockButton}>{selectedBlock}</h1>
-        </span>
-    );
-
-    function showText(text)
+    function showText(text, click = () => {})
     {
         return(
             <span>
-                <h1 className = "arrow">{arrowVar}</h1>
-                <h1>{text}</h1>
+                <h1 className="arrow">{arrowVar}</h1>
+                <h1 onClick={click}>{text}</h1>
             </span>
         );
     }
@@ -256,119 +236,93 @@ function Dashboard(props)
     // header paths
     const defaultPaths =
     (
-        <div className = "path-container">
-            <h1 className = "left" onClick = {handleDashboardButton}>DASHBOARD</h1>
-            {selectedLocation && showLocation}
-            {selectedArea && showArea}
-            {selectedBlock && showBlock}
+        <div className="path-container">
+            <h1 className="left" onClick={handleDashboardButton}>DASHBOARD</h1>
+            {selectedLocation && showText(selectedLocation, handleLocationButton)}
+            {selectedArea && showText(selectedArea, handleAreaButton)}
+            {selectedBlock && showText(selectedBlock, handleBlockButton)}
         </div>
     );
 
     const configPaths =
     (
-        <div className = "path-container">
-            <h1 className = "left">CONFIGURATIONS</h1>
-            {selectedArea && showArea}
+        <div className="path-container">
+            <h1 className="left">CONFIGURATIONS</h1>
+            {selectedArea && showText(selectedArea, handleAreaButton)}
             {selectedArea && showText("GENERAL")}
         </div>
     );
 
     const photosensorPaths =
     (
-        <div className = "path-container">
-            <h1 className = "left">CONFIGURATIONS</h1>
-            {selectedArea && showArea}
+        <div className="path-container">
+            <h1 className="left">CONFIGURATIONS</h1>
+            {selectedArea && showText(selectedArea, handleAreaButton)}
             {selectedArea && showText("PHOTOSENSOR")}
         </div>
     );
 
     const datachartsPaths =
     (
-        <div className = "path-container">
-            <h1 className = "left">DATA CHARTS</h1>
+        <div className="path-container">
+            <h1 className="left">DATA CHARTS</h1>
+            {selectedArea && showText(selectedArea, handleAreaButton)}
             {selectedArea && showText("ENERGY CONSUMPTION")}
-            {selectedArea && showText(selectedArea)}
         </div>
     );
 
     const umPaths =
     (
-        <div className = "path-container">
-            <h1 className = "left" onClick = {handleDashboardButton}>DASHBOARD</h1>
+        <div className="path-container">
+            <h1 className="left" onClick={handleDashboardButton}>DASHBOARD</h1>
             {selectedArea && showText("USER MANAGEMENT")}
         </div>
     );
 
     // selector helper blocks
-    const locationDropdown =
-    (
-        <SelectorDropdown 
-            ref = {locationDDRef}
-            title = "LOCATION"
-            options = {locations}
-            initial = {selectedLocation}
-            selectOption = {setSelectedLocationHelper}
-        ></SelectorDropdown>
-    );
+    const selectorDropDown = (ref, title, options, initial, click) =>
+    {
+        return (
+            <SelectorDropdown
+                ref={ref}
+                title={title}
+                options={options}
+                initial={initial}
+                selectOption={click}
+            />
+        );
+    }
 
-    const areaDropdown =
-    (
-        <SelectorDropdown
-            ref = {areaDDRef}
-            title = "AREA"
-            options = {areas}
-            initial = {selectedArea}
-            selectOption = {setSelectedAreaHelper}
-        ></SelectorDropdown>
-    );
-
-    const blockDropdown =
-    (
-        <SelectorDropdown
-            ref = {blockDDRef}
-            title = "BLOCK"
-            options = {blocks}
-            initial = {selectedBlock}
-            selectOption = {setSelectedBlockHelper}
-        ></SelectorDropdown>
-    );
-
+    const locationDropdown = selectorDropDown(locationDDRef, "LOCATION", locations, 
+                                              selectedLocation, setSelectedLocationHelper);
+    const areaDropdown = selectorDropDown(areaDDRef, "AREA", areas, 
+                                          selectedArea, setSelectedAreaHelper);
+    const blockDropdown = selectorDropDown(blockDDRef, "BLOCK", blocks, 
+                                           selectedBlock, setSelectedBlockHelper);
+    const levelDropdown = selectorDropDown(levelDDRef, "LEVEL", levels,
+                                           selectedLevel, setSelectedLevelHelper);
+    const lightsDropdown = selectorDropDown(lightDDRef, "LIGHT(S)", lights,
+                                            selectedLights, setSelectedLightsHelper);
     // selector dropdown templates
     const defaultTemplate =
     (
-        <div className = "dropdown-container">
+        <div className="dropdown-container">
             {locationDropdown}
             {selectedLocation && areaDropdown}
             {selectedLocation && selectedArea && blockDropdown}
             {location.pathname === "/dashboard" && selectedLocation &&
-                <img alt = "" src = {Map} className = "map"></img>
+                <img alt="" src={Map} className="map"></img>
             }
         </div>
     );
 
     const configTemplate =
     (
-        <div className = "dropdown-container">
+        <div className="dropdown-container">
             {areaDropdown}
             {selectedArea && blockDropdown}
-            {selectedArea && selectedBlock &&
-                <SelectorDropdown
-                    ref = {levelDDRef}
-                    title = "LEVEL"
-                    options = {["ALL SELECTED"]}
-                    initial = {selectedLevel}
-                    selectOption = {setSelectedLevelHelper}
-                ></SelectorDropdown>
-            }
-            {selectedArea && selectedBlock && selectedLevel &&
-                <SelectorDropdown
-                    ref = {lightDDRef}
-                    title = "LIGHT(S)"
-                    options = {["ALL SELECTED"]}
-                    initial = {selectedLight}
-                    selectOption = {setSelectedLightHelper}
-                ></SelectorDropdown>
-            }
+            {selectedArea && selectedBlock && levelDropdown}
+            {selectedArea && selectedBlock && selectedLevel && lightsDropdown}
         </div>
     );
 
@@ -382,61 +336,55 @@ function Dashboard(props)
             page = "config";
 
         return(
-            <div className = "footer" id = {page}>
-                <h1 className = "footer-center">{copyright}</h1>
-                <h1 className = "footer-right">{privacy}</h1>
+            <div className="footer" id={page}>
+                <h1 className="footer-center">{copyright}</h1>
+                <h1 className="footer-right">{privacy}</h1>
             </div>
         );
     }
 
-    function setEditProfileHelper()
-    {
-        setEditProfile(!editProfile);
-    }
-
     function setRelocationHelper()
     {
-        setRelocation(!relocation);
+        dispatch(setRelocation(!relocation));
     }
 
     return(
         // enable/disable scrollbar
-        <div className = "dashboard" id = {(editProfile || relocation) ? "popup" : ""}>
+        <div className="dashboard" id={(editProfile || relocation) ? "popup" : ""}>
             {/* edit profile popup */}
             {editProfile && 
-                <EditProfile
-                    setEditProfile = {setEditProfileHelper}
+                <EditProfile 
+                    userTypes={["Project Manager", "Operator", "Area Admin"]}
                     currUser = {currUser}
                     setCurrUser = {setCurrUser}
-                    userTypes = {["Project Manager", "Operator", "Area Admin"]}
                 />
             }
             {/* page header */}
-            <div className = "header">
+            <div className="header">
                 {/* search bar */}
-                <SearchBar handleSearch = {handleSearch}/>
+                <SearchBar handleSearch={handleSearch}/>
                 {/* notification dropdown button */}
-                {alerts != null && <Notification ref = {notificationRef} notifications = {alerts}/>}
+                {alerts !== null && <Notification ref={notificationRef} notifications={alerts}/>}
                 {/* header divider */}
-                <div className = "divider"></div>
+                <div className="divider"></div>
                 {/* user dropdown button */}
-                {currUser != null && userList != null && 
+                {currUser !== null && userList !== null && 
                 <UserDropdown 
-                    currUser = {currUser} 
-                    userList = {userList}
-                    changeUser = {changeUser}
-                    addUser = {addUser}
-                    userSettings = {userSettings}
-                    logout = {logout}
+                    currUser={currUser} 
+                    userList={userList}
+                    changeUser={changeUser}
+                    addUser={addUser}
+                    userSettings={userSettings}
+                    logout={logout}
                 />}
             </div>
             {/* sidebar */}
             <Sidebar 
-                pathHelper = {pathHelper} 
-                version = {version} 
-                darkMode = {darkMode}
-                setDarkMode = {setDarkMode}
-            ></Sidebar>
+                pathHelper={pathHelper} 
+                version={version} 
+                darkMode={darkMode}
+                setDarkMode={setDarkMode}
+            />
             {/* default selectors, non-config page */}
             {(location.pathname !== "/dashboard/config" && 
               location.pathname !== "/dashboard/photosensor" && 
@@ -451,14 +399,14 @@ function Dashboard(props)
             {footerDisplayHelper()}
             {/* routing and passing of data to children */}
             <RouteManager 
-                relocation = {relocation}
-                setRelocation = {setRelocationHelper}
-                location = {selectedLocation}
-                area = {selectedArea}
-                block = {selectedBlock}
-                level = {selectedLevel}
-                lights = {selectedLight}
-                cancel = {handleConfigCancel}
+                relocation={relocation}
+                setRelocation={setRelocationHelper}
+                location={selectedLocation}
+                area={selectedArea}
+                block={selectedBlock}
+                level={selectedLevel}
+                lights={selectedLights}
+                cancel={handleConfigCancel}
             ></RouteManager>
         </div>
     );

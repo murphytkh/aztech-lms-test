@@ -30,3 +30,11 @@ export const selectedAreaReducer = selectedAreaSlice.reducer;
 export const selectedBlockSlice = create("selectedBlock", "setSelectedBlock");
 export const {setSelectedBlock} = selectedBlockSlice.actions;
 export const selectedBlockReducer = selectedBlockSlice.reducer;
+
+export const selectedLevelSlice = create("selectedLevel", "setSelectedLevel");
+export const {setSelectedLevel} = selectedLevelSlice.actions;
+export const selectedLevelReducer = selectedLevelSlice.reducer;
+
+export const selectedLightsSlice = create("selectedLights", "setSelectedLights");
+export const {setSelectedLights} = selectedLightsSlice.actions;
+export const selectedLightsReducer = selectedLightsSlice.reducer;
