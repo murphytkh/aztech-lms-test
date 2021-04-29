@@ -1,12 +1,24 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+const cap = (s) => {return s.charAt(0).toUpperCase() + s.slice(1)};
+
 const set = (state, action) => {state.value = action.payload};
 
-export const areasSlice = createSlice({
-    name: "areas",
-    initialState: {value: null},
-    reducers: {setAreas: set},
-});
+const func = (id) => {
+    return createSlice({
+        name: id,
+        initialState: {value: null},
+        reducers: {["set" + cap(id)]: set},
+    });
+}
+
+export const areasSlice = func("areas");
+
+//export const areasSlice = createSlice({
+//    name: "areas",
+//    initialState: {value: null},
+//    reducers: {"setAreas": set},
+//});
 
 export const {setAreas} = areasSlice.actions;
 export const areasReducer = areasSlice.reducer;
