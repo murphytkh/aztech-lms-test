@@ -25,17 +25,31 @@ export function getVersion()
     return "3.0.0";
 }
 
-export function getAreas(location)
+export function getLocationData()
 {
     return axios.get("http://localhost:8888/api/v1/areas")
-    // get response
     .then(function (response) {
         return response;
     })
-    // error
-    .catch(function (error) {
-        console.log(error);
+    .catch(function (err) {
+        console.log(err);
     })
+}
+
+export function getLocations()
+{
+    return ["SINGAPORE"];
+}
+
+export function getAreas(location, data)
+{
+    return data.map(obj => obj.name);
+}
+
+export function getBlocks(area, data)
+{
+    var result = data.find(obj => {return obj.name === area})
+    return result.blocks.map(obj => obj.blockName);
 }
 
 export function getCurrUser()

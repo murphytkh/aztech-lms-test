@@ -4,10 +4,11 @@ import "../resources/css/dashboard-landing.css";
 import React, {useState, useRef, useEffect} from "react";
 import {useHistory, useLocation} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {setAreas, setBlocks} from "../redux/locationDataSlice";
+import {setLocationData, setLocations, setAreas, setBlocks, setSelectedLocation, 
+        setSelectedArea, setSelectedBlock} from "../redux/locationDataSlice";
 
 import {getCurrUser, getUsers, getNotifications, getVersion,
-        getAreas} from "./MockAPI";
+        getLocationData, getLocations, getAreas, getBlocks} from "./MockAPI";
 import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
@@ -47,13 +48,17 @@ function Dashboard(props)
     const [userList, setUserList] = useState(null);
 
     // lms data
+    const locationData = useSelector((state) => state.locationData.value);
+    const locations = useSelector((state) => state.locations.value);
     const areas = useSelector((state) => state.areas.value);
     const blocks = useSelector((state) => state.blocks.value);
 
+    // selected parameters
+    const selectedLocation = useSelector((state) => state.selectedLocation.value);
+    const selectedArea = useSelector((state) => state.selectedArea.value);
+    const selectedBlock = useSelector((state) => state.selectedBlock.value);
+
     // selectors
-    const [selectedLocation, setSelectedLocation] = useState("");
-    const [selectedArea, setSelectedArea] = useState("");
-    const [selectedBlock, setSelectedBlock] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
     const [selectedLight, setSelectedLight] = useState("");
 
@@ -72,15 +77,15 @@ function Dashboard(props)
         setCurrUser(getCurrUser());
         setUserList(getUsers());
 
-        // lms data
-        getAreas("SINGAPORE")
-        .then((res) => {
-            let list = res.data.map(obj => obj.name);
-            dispatch(setAreas(list));
+        // get overall data and initialise list of locations
+        getLocationData()
+        .then((res) =>{
+            dispatch(setLocationData(res.data));
         })
         .catch((err) => {
             console.log(err);
         });
+        dispatch(setLocations(getLocations()));
 
     }, [dispatch]);
 
@@ -92,7 +97,7 @@ function Dashboard(props)
 
     function handleDashboardButton()
     {
-        setSelectedLocation("");
+        dispatch(setSelectedLocation(null));
         if (locationDDRef.current) 
             locationDDRef.current.clearChoice();
         handleLocationButton();
@@ -102,7 +107,7 @@ function Dashboard(props)
 
     function handleLocationButton()
     {
-        setSelectedArea("");
+        dispatch(setSelectedArea(null));
         if (areaDDRef.current)
             areaDDRef.current.clearChoice();
         handleAreaButton();
@@ -110,7 +115,7 @@ function Dashboard(props)
 
     function handleAreaButton()
     {
-        setSelectedBlock("");
+        dispatch(setSelectedBlock(null));
         if (blockDDRef.current)
             blockDDRef.current.clearChoice();
         handleBlockButton();
@@ -128,19 +133,25 @@ function Dashboard(props)
 
     function setSelectedLocationHelper(location)
     {
-        setSelectedLocation(location);
+        dispatch(setSelectedLocation(location));
         handleLocationButton();
+
+        // get areas data based on location
+        dispatch(setAreas(getAreas(location, locationData)));
     }
 
     function setSelectedAreaHelper(area)
     {
-        setSelectedArea(area);
+        dispatch(setSelectedArea(area));
         handleAreaButton();
+
+        // get blocks data based on location
+        dispatch(setBlocks(getBlocks(area, locationData)));
     }
 
     function setSelectedBlockHelper(block)
     {
-        setSelectedBlock(block);
+        dispatch(setSelectedBlock(block));
         handleBlockButton();
         
         if (location.pathname === "/dashboard")
@@ -211,7 +222,7 @@ function Dashboard(props)
     (
         <span>
             <h1 className = "arrow">{arrowVar}</h1>
-            <h1 onClick = {handleBlockButton}>{selectedBlock.toUpperCase()}</h1>
+            <h1 onClick = {handleBlockButton}>{selectedBlock}</h1>
         </span>
     );
 
@@ -294,7 +305,7 @@ function Dashboard(props)
         <SelectorDropdown 
             ref = {locationDDRef}
             title = "LOCATION"
-            options = {["SINGAPORE"]}
+            options = {locations}
             initial = {selectedLocation}
             selectOption = {setSelectedLocationHelper}
         ></SelectorDropdown>

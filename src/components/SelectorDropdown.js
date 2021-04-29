@@ -10,9 +10,9 @@ const SelectorDropdown = forwardRef((props, ref) =>
     const [choice, setChoice] = useState(props.initial);
     const [isOpen, setIsOpen] = useState(false);
 
-    const optionsList = props.options && props.options.map(option =>
+    const optionsList = props.options && props.options.map((option, i) =>
         <li 
-             key = {option}
+             key = {i}
              onClick = {() => {
                                 props.selectOption(option);
                                 setChoice(option);
