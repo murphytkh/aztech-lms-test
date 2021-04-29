@@ -10,7 +10,7 @@ const SelectorDropdown = forwardRef((props, ref) =>
     const [choice, setChoice] = useState(props.initial);
     const [isOpen, setIsOpen] = useState(false);
 
-    const optionsList = props.options.map(option =>
+    const optionsList = props.options && props.options.map(option =>
         <li 
              key = {option}
              onClick = {() => {
@@ -54,7 +54,7 @@ const SelectorDropdown = forwardRef((props, ref) =>
             <h1 className = "title">{props.title}</h1>
             <h1 className = "choice">{choice}</h1>
             <img  alt = ""src = {isOpen ? UpArrow : DownArrow} className = "arrow"></img>
-            {isOpen && <ul>{optionsList}</ul>}
+            {isOpen && props.options && <ul>{optionsList}</ul>}
         </div>
     );
 })

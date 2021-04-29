@@ -3,6 +3,8 @@ import "../resources/css/dashboard-landing.css";
 
 import React, {useState, useRef, useEffect} from "react";
 import {useHistory, useLocation} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
+import {setAreas, setBlocks} from "../redux/locationDataSlice";
 
 import {getCurrUser, getUsers, getNotifications, getVersion,
         getAreas} from "./MockAPI";
@@ -22,6 +24,9 @@ const privacy = "PRIVACY POLICY · TERMS & CONDITIONS";
 
 function Dashboard(props)
 {
+    // redux dispatcher
+    const dispatch = useDispatch();
+
     // used for managing routes
     const history = useHistory();
     const location = useLocation();
@@ -42,8 +47,8 @@ function Dashboard(props)
     const [userList, setUserList] = useState(null);
 
     // lms data
-    const [areaList, setAreaList] = useState([]);
-    const [blockList, setBlockList] = useState([]);
+    const areas = useSelector((state) => state.areas.value);
+    const blocks = useSelector((state) => state.blocks.value);
 
     // selectors
     const [selectedLocation, setSelectedLocation] = useState("");
@@ -71,13 +76,13 @@ function Dashboard(props)
         getAreas("SINGAPORE")
         .then((res) => {
             let list = res.data.map(obj => obj.name);
-            setAreaList(list);
-            console.log(res);
+            dispatch(setAreas(list));
         })
         .catch((err) => {
             console.log(err);
         });
-    }, []);
+
+    }, [dispatch]);
 
     function goToPath(path)
     {
@@ -300,7 +305,7 @@ function Dashboard(props)
         <SelectorDropdown
             ref = {areaDDRef}
             title = "AREA"
-            options = {areaList}
+            options = {areas}
             initial = {selectedArea}
             selectOption = {setSelectedAreaHelper}
         ></SelectorDropdown>
@@ -311,7 +316,7 @@ function Dashboard(props)
         <SelectorDropdown
             ref = {blockDDRef}
             title = "BLOCK"
-            options = {["Office_Lights"]}
+            options = {blocks}
             initial = {selectedBlock}
             selectOption = {setSelectedBlockHelper}
         ></SelectorDropdown>
