@@ -7,7 +7,6 @@ import {useSelector, useDispatch} from "react-redux";
 import {setLocationData, setLocations, setAreas, setBlocks, setSelectedLocation, 
         setSelectedArea, setSelectedBlock, setSelectedLevel, setSelectedLights} 
         from "../redux/locationDataSlice";
-import {setRelocation} from "../redux/dashboardUISlice";
 import {setVersion} from "../redux/miscInfoSlice";
 import {getCurrUser, getUsers, getNotifications, getVersion,
         getLocationData, getLocations, getAreas, getBlocks} from "./MockAPI";
@@ -335,11 +334,6 @@ function Dashboard(props)
         );
     }
 
-    function setRelocationHelper()
-    {
-        dispatch(setRelocation(!relocation));
-    }
-
     return(
         // enable/disable scrollbar
         <div className="dashboard" id={(editProfile || relocation) ? "popup" : ""}>
@@ -347,8 +341,8 @@ function Dashboard(props)
             {editProfile && 
                 <EditProfile 
                     userTypes={["Project Manager", "Operator", "Area Admin"]}
-                    currUser = {currUser}
-                    setCurrUser = {setCurrUser}
+                    currUser={currUser}
+                    setCurrUser={setCurrUser}
                 />
             }
             {/* page header */}
@@ -384,16 +378,7 @@ function Dashboard(props)
             {/* footer */}
             {footerDisplayHelper()}
             {/* routing and passing of data to children */}
-            <RouteManager 
-                relocation={relocation}
-                setRelocation={setRelocationHelper}
-                location={selectedLocation}
-                area={selectedArea}
-                block={selectedBlock}
-                level={selectedLevel}
-                lights={selectedLights}
-                cancel={handleConfigCancel}
-            ></RouteManager>
+            <RouteManager cancel={handleConfigCancel} />
         </div>
     );
 }

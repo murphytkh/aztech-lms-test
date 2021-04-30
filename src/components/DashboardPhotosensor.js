@@ -1,12 +1,19 @@
 import "../resources/css/dashboard-photosensor.css";
 
 import React, {useState, useEffect} from "react";
+import {useSelector} from "react-redux";
 
 import PhotosensorDarkness from "./PhotosensorDarkness";
 import PhotosensorBrightness from "./PhotosensorBrightness";
 
 function DashboardPhotosensor(props)
 {
+    //const location = useSelector((state) => state.selectedLocation.value);
+    const area = useSelector((state) => state.selectedArea.value);
+    const block = useSelector((state) => state.selectedBlock.value);
+    const level = useSelector((state) => state.selectedLevel.value);
+    const lights = useSelector((state) => state.selectedLights.value);
+
     const [darknessDetection, setDarknessDetection] = useState("ON");
     const [brightnessDetection, setBrightnessDetection] = useState("ON");
     const [environmentalOffset, setEnvironmentalOffset] = useState(25);
@@ -24,8 +31,8 @@ function DashboardPhotosensor(props)
 
     function handleSubmitButton()
     {
-        console.log("selected light info: " + props.area + ", " + props.block + ", " + props.level +
-                    ", " + props.lights);
+        console.log("selected light info: " + area + ", " + block + ", " + level +
+                    ", " + lights);
         console.log("darkness detection: " + darknessDetection);
         console.log("environmental offset: " + environmentalOffset);
         console.log("darkness intensity: " + darknessIntensity);
@@ -45,7 +52,7 @@ function DashboardPhotosensor(props)
         <div className = "photosensor-page">
             {/* cards */}
             <PhotosensorDarkness
-                lights = {props.lights}
+                lights = {lights}
                 darknessDetection = {darknessDetection}
                 environmentalOffset = {environmentalOffset}
                 darknessIntensity = {darknessIntensity}
@@ -56,7 +63,7 @@ function DashboardPhotosensor(props)
                 setDarknessDetection = {setDarknessDetection}
             />
             <PhotosensorBrightness
-                lights = {props.lights}
+                lights = {lights}
                 brightnessDetection = {brightnessDetection}
                 lightingOffset = {lightingOffset}
                 brightnessIntensity = {brightnessIntensity}
@@ -67,17 +74,13 @@ function DashboardPhotosensor(props)
                 setBrightnessDetection = {setBrightnessDetection}
             />
             {/* buttons */}
-            <div 
-                className = "photosensor-page-btn" 
-                id = "cancel"
-                onClick = {props.cancel}
-            >
+            <div className="photosensor-page-btn" id="cancel"onClick={props.cancel}>
                 CANCEL
             </div>
             <div
-                className = "photosensor-page-btn" 
-                id = "submit"
-                onClick = {props.lights ? handleSubmitButton : placeholder}
+                className="photosensor-page-btn" 
+                id="submit"
+                onClick={lights ? handleSubmitButton : placeholder}
             >
                 SUBMIT
             </div>

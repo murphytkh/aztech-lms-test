@@ -1,6 +1,7 @@
 import "../resources/css/dashboard-config.css";
 
 import React, {useState, useEffect} from "react";
+import {useSelector} from "react-redux";
 
 import ConfigMotionSensor from "./ConfigMotionSensor";
 import ConfigSettings from "./ConfigSettings";
@@ -10,6 +11,12 @@ import ConfigCalendar from "./ConfigCalendar";
 
 function DashboardConfig(props)
 {
+    const location = useSelector((state) => state.selectedLocation.value);
+    const area = useSelector((state) => state.selectedArea.value);
+    const block = useSelector((state) => state.selectedBlock.value);
+    const level = useSelector((state) => state.selectedLevel.value);
+    const lights = useSelector((state) => state.selectedLights.value);
+
     const [motionDetection, setMotionDetection] = useState("ON");
     const [motionSensitivity, setMotionSensitivity] = useState("Medium-High");
     const [sync, setSync] = useState("ON");
@@ -33,8 +40,8 @@ function DashboardConfig(props)
 
     function handleSubmitButton()
     {
-        console.log("selected light info: " + props.area + ", " + props.block + ", " + props.level +
-                    ", " + props.lights);
+        console.log("selected light info: " + area + ", " + block + ", " + level +
+                    ", " + lights);
         console.log("motion detection: " + motionDetection);
         console.log("motion sensitivity: " + motionSensitivity);
         console.log("clock sync: " + sync);
@@ -55,22 +62,22 @@ function DashboardConfig(props)
         <div className = "config-page">
             {/* cards */}
             <ConfigMotionSensor 
-                location = {props.location}
-                area = {props.area}
-                block = {props.block}
-                level = {props.level}
-                lights = {props.lights}
+                location = {location}
+                area = {area}
+                block = {block}
+                level = {level}
+                lights = {lights}
                 motionDetection = {motionDetection}
                 motionSensitivity = {motionSensitivity}
                 setMD = {setMotionDetection}
                 setMS = {setMotionSensitivity}    
             />
             <ConfigSettings 
-                location = {props.location}
-                area = {props.area}
-                block = {props.block}
-                level = {props.level}
-                lights = {props.lights}
+                location = {location}
+                area = {area}
+                block = {block}
+                level = {level}
+                lights = {lights}
                 sync = {sync}
                 setSync = {setSync}
                 setIntensity = {setIntensity}
@@ -80,14 +87,14 @@ function DashboardConfig(props)
             <ConfigSchedule
                 schedule = {schedule}
                 setSchedule = {setSchedule}
-                location = {props.location}
-                area = {props.area}
-                block = {props.block}
-                level = {props.level}
-                lights = {props.lights}
+                location = {location}
+                area = {area}
+                block = {block}
+                level = {level}
+                lights = {lights}
             />
             <ConfigBrightness
-                lights = {props.lights}
+                lights = {lights}
                 dimmedBrightness = {dimmedBrightness}
                 motionBrightness = {motionBrightness}
                 maxBrightness = {maxBrightness}
@@ -99,24 +106,20 @@ function DashboardConfig(props)
                 currDate = {currentSelectedDate}
                 setDate = {setCurrentSelectedDate}
                 schedule = {schedule}
-                location = {props.location}
-                area = {props.area}
-                block = {props.block}
-                level = {props.level}
-                lights = {props.lights}
+                location = {location}
+                area = {area}
+                block = {block}
+                level = {level}
+                lights = {lights}
             />
             {/* buttons */}
-            <div 
-                className = "config-page-btn" 
-                id = "cancel"
-                onClick = {props.cancel}
-            >
+            <div className="config-page-btn" id="cancel"onClick={props.cancel}>
                 CANCEL
             </div>
             <div
-                className = "config-page-btn"
-                id = "submit" 
-                onClick = {props.lights ? handleSubmitButton : placeholder}
+                className="config-page-btn"
+                id="submit" 
+                onClick = {lights ? handleSubmitButton : placeholder}
             >
                 SUBMIT
             </div>

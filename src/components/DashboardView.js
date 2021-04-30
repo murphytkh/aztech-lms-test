@@ -1,6 +1,9 @@
 import "../resources/css/dashboard-view.css";
 
 import React, {useState, useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
+
+import {setRelocation} from "../redux/dashboardUISlice";
 
 import {getBlockData, getActiveLightsData, getEnergyData, getStatusData,
         getActivityData, getGatewayData} from "./MockAPI";
@@ -18,6 +21,12 @@ import Map from "../resources/dashboard/map-sg.png";
 
 function DashboardView(props)
 {
+    const dispatch = useDispatch();
+    const location = useSelector((state) => state.selectedLocation.value);
+    const area = useSelector((state) => state.selectedArea.value);
+    const block = useSelector((state) => state.selectedBlock.value);
+    const relocation = useSelector((state) => state.relocation.value);
+
     // store data used in cards
     const [blockData, setBlockData] = useState(null);
     const [activeLightsData, setActiveLightsData] = useState(null);
@@ -45,7 +54,7 @@ function DashboardView(props)
     function handleRelocationClick(name, location)
     {
         // toggle popup, update current selected light
-        props.setRelocation();
+        dispatch(setRelocation(!relocation));
         setCurrName(name);
         setCurrLocation(location);
     }
@@ -73,61 +82,60 @@ function DashboardView(props)
 
     return(
         <div>
-            {props.block ?
+            {block ?
                 <div className = "view-page">
                     {/* cards */}
                     {blockData && 
                     <BlockLights    
                         data = {blockData}
-                        location = {props.location}
-                        area = {props.area}
-                        block = {props.block} 
+                        location = {location}
+                        area = {area}
+                        block = {block} 
                     />}
                     {activeLightsData && 
                     <ActiveLights    
                        data = {activeLightsData}
-                       location = {props.location}
-                       area = {props.area}
-                       block = {props.block} 
+                       location = {location}
+                       area = {area}
+                       block = {block} 
                     />}
                     {energyData &&
                     <EnergyConsumption
                         data = {energyData}
-                        location = {props.location}
-                        area = {props.area}
-                        block = {props.block}
+                        location = {location}
+                        area = {area}
+                        block = {block}
                     />}
                     <LightControl
-                        location = {props.location}
-                        area = {props.area}
-                        block = {props.block} 
+                        location = {location}
+                        area = {area}
+                        block = {block} 
                     />
                     {activityData &&
                     <ActivityLog
                         data = {activityData}
-                        location = {props.location}
-                        area = {props.area}
-                        block = {props.block} 
+                        location = {location}
+                        area = {area}
+                        block = {block} 
                     />}
                     {gatewayData &&
                     <GatewayInfo
                         data = {gatewayData}
-                        location = {props.location}
-                        area = {props.area}
-                        block = {props.block} 
+                        location = {location}
+                        area = {area}
+                        block = {block} 
                     />}
                     {statusData &&
                     <LightStatus
                         data = {statusData}
-                        location = {props.location}
-                        area = {props.area}
-                        block = {props.block}
+                        location = {location}
+                        area = {area}
+                        block = {block}
                         relocation = {handleRelocationClick}
                     />}
                     {/* relocation popup - placed below due to css issues */}
-                    {props.relocation && 
+                    {relocation && 
                         <Relocation
-                            setRelocation = {props.setRelocation}
                             relocate = {relocate}
                             name = {currName}
                             location = {currLocation}
@@ -135,15 +143,13 @@ function DashboardView(props)
                     }
                     {/* export button */}
                     <img 
-                        alt = "" 
-                        src = {ExportButton} 
-                        className = "export-btn"
-                        onClick = {handleExportClick}
+                        alt="" 
+                        src={ExportButton} 
+                        className="export-btn"
+                        onClick={handleExportClick}
                     ></img>
                 </div> :
-                <div>
-                    {props.location && <img alt = "" src = {Map} className = "map"></img>}
-                </div>
+                <div>{location && <img alt="" src={Map} className="map"></img>}</div>
             }
         </div>
 

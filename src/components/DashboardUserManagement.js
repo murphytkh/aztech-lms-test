@@ -1,6 +1,7 @@
 import "../resources/css/dashboard-user-management.css";
 
 import React, {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 
 import DefaultUser from "../resources/user-management/usermanagement-default-user.svg";
 import HDBIcon from "../resources/dashboard/hdb.png";
@@ -39,6 +40,9 @@ class Group
 
 function DashboardUserManagement(props)
 {
+    const location = useSelector((state) => state.selectedLocation.value);
+    const block = useSelector((state) => state.selectedBlock.value);
+
     const [addGroupOpen, setAddGroupOpen] = useState(false);
     const [addUserOpen, setAddUserOpen] = useState(false);
 
@@ -139,33 +143,33 @@ function DashboardUserManagement(props)
             {/* add group and add user cards */}
             <div className = "add-container">
                 <UserManagementAddGroup
-                    enabled = {props.block}
+                    enabled = {block}
                     open = {addGroupOpen}
                     setOpen = {toggleAddGroupOpen}
                     add = {createGroup}
                 />
                 <UserManagementAddUser
-                    enabled = {props.block}
+                    enabled = {block}
                     open = {addUserOpen}
                     setOpen = {toggleAddUserOpen}
                     userTypes = {["Operator", "Area Admin"]}
-                    add = {addUser}
+                    add={addUser}
                 />
             </div>
             {/* group cards */}
-            {props.location && groupList}
+            {location && groupList}
             {/* buttons */}
             <div 
-                className = "user-management-btn"
-                id = "revoke"
-                onClick = {props.block ? handleRevoke : placeholder}
+                className="user-management-btn"
+                id="revoke"
+                onClick={block ? handleRevoke : placeholder}
             >
                 REVOKE ALL ACCESS
             </div>
             <div
-                className = "user-management-btn"
-                id = "update"
-                onClick = {props.block ? handleUpdate : placeholder}
+                className="user-management-btn"
+                id="update"
+                onClick={block ? handleUpdate : placeholder}
             >
                 UPDATE ACCESS
             </div>
