@@ -11,8 +11,6 @@ import On from "../resources/dashboard/icon-light-empty.svg";
 import Off from "../resources/view/blocklights-off.svg";
 import Dimmed from "../resources/view/blocklights-dimmed.svg";
 
-let tmp = 123333;
-
 function BlockLights(props)
 {
     const blockData = useSelector((state) => state.blockData.value);
@@ -46,7 +44,7 @@ function BlockLights(props)
             let floor = blockData.floors[i];
             workTotal += floor.lights.length;
             
-            floor.lights.map((obj) => {
+            floor.lights.forEach((obj) => {
                 if (obj.fault !== null)
                     workFaults += 1;
                 if (obj.offline === "false")

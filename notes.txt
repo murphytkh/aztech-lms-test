@@ -29,7 +29,8 @@ current task:
 - api calls from backend
 
 redux
-- dashboard view (and api calls as well)
+- dashboard view
+    - fix warning with variable outside loop
 
 docker commands (in slp-app folder)
 docker-compose -f docker-compose-no-build.yml up
