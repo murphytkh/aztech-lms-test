@@ -10,6 +10,8 @@ import {editProfileReducer, relocationReducer} from "./dashboardUISlice";
 import {versionReducer, darkModeReducer} from "./miscInfoSlice";
 // notifications
 
+// individual block data
+import {blockDataReducer} from "./blockDataSlice";
 
 export default configureStore({
     reducer: {
@@ -36,5 +38,7 @@ export default configureStore({
 
         // notifications
 
+        // individual block data
+        blockData: blockDataReducer,
     },
 })

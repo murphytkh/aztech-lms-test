@@ -29,7 +29,7 @@ current task:
 - api calls from backend
 
 redux
-- route manager
+- dashboard view (and api calls as well)
 
 docker commands (in slp-app folder)
 docker-compose -f docker-compose-no-build.yml up

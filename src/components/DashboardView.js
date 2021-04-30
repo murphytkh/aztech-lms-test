@@ -4,8 +4,9 @@ import React, {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 
 import {setRelocation} from "../redux/dashboardUISlice";
+import {setBlockData} from "../redux/blockDataSlice";
 
-import {getBlockData, getActiveLightsData, getEnergyData, getStatusData,
+import {getBlockId, getBlockData, getActiveLightsData, getEnergyData, getStatusData,
         getActivityData, getGatewayData} from "./MockAPI";
 import BlockLights from "./BlockLights";
 import ActiveLights from "./ActiveLights";
@@ -22,13 +23,14 @@ import Map from "../resources/dashboard/map-sg.png";
 function DashboardView(props)
 {
     const dispatch = useDispatch();
+    const locationData = useSelector((state) => state.locationData.value);
+    const blockData = useSelector((state) => state.blockData.value);
     const location = useSelector((state) => state.selectedLocation.value);
     const area = useSelector((state) => state.selectedArea.value);
     const block = useSelector((state) => state.selectedBlock.value);
     const relocation = useSelector((state) => state.relocation.value);
 
     // store data used in cards
-    const [blockData, setBlockData] = useState(null);
     const [activeLightsData, setActiveLightsData] = useState(null);
     const [energyData, setEnergyData] = useState(null);
     const [activityData, setActivityData] = useState(null);
@@ -42,13 +44,25 @@ function DashboardView(props)
     useEffect(() =>
     {
         // simulate getting data
-        setBlockData(getBlockData());
+        if (area && block && locationData)
+        {
+            let id = getBlockId(area, block, locationData);
+
+            getBlockData(id)
+            .then((res) => {
+                dispatch(setBlockData(res.data));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+
         setActiveLightsData(getActiveLightsData());
         setEnergyData(getEnergyData());
         setActivityData(getActivityData());
         setGatewayData(getGatewayData());
         setStatusData(getStatusData());
-    }, []);
+    }, [dispatch, area, block, locationData]);
 
     // relocation pop-up handling
     function handleRelocationClick(name, location)
@@ -83,25 +97,19 @@ function DashboardView(props)
     return(
         <div>
             {block ?
-                <div className = "view-page">
+                <div className="view-page">
                     {/* cards */}
-                    {blockData && 
-                    <BlockLights    
-                        data = {blockData}
-                        location = {location}
-                        area = {area}
-                        block = {block} 
-                    />}
+                    {blockData && <BlockLights />}
                     {activeLightsData && 
                     <ActiveLights    
-                       data = {activeLightsData}
+                       data={activeLightsData}
                        location = {location}
                        area = {area}
                        block = {block} 
                     />}
                     {energyData &&
                     <EnergyConsumption
-                        data = {energyData}
+                        data={energyData}
                         location = {location}
                         area = {area}
                         block = {block}
@@ -113,21 +121,21 @@ function DashboardView(props)
                     />
                     {activityData &&
                     <ActivityLog
-                        data = {activityData}
+                        data={activityData}
                         location = {location}
                         area = {area}
                         block = {block} 
                     />}
                     {gatewayData &&
                     <GatewayInfo
-                        data = {gatewayData}
+                        data={gatewayData}
                         location = {location}
                         area = {area}
                         block = {block} 
                     />}
                     {statusData &&
                     <LightStatus
-                        data = {statusData}
+                        data={statusData}
                         location = {location}
                         area = {area}
                         block = {block}
@@ -136,9 +144,9 @@ function DashboardView(props)
                     {/* relocation popup - placed below due to css issues */}
                     {relocation && 
                         <Relocation
-                            relocate = {relocate}
-                            name = {currName}
-                            location = {currLocation}
+                            relocate={relocate}
+                            name={currName}
+                            location={currLocation}
                         />
                     }
                     {/* export button */}

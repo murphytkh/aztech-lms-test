@@ -77,16 +77,22 @@ export function getUsers()
     return ([u0, u1]);
 }
 
-export function getBlockData()
+export function getBlockId(area, block, data)
 {
-    let data = new Map();
-    data.set("total", 800000);
-    data.set("faults", 40);
-    data.set("on", 80000);
-    data.set("off", 1000);
-    data.set("dimmed", 7000);
+    var tmp = data.find(obj => {return obj.name === area});
+    tmp = tmp.blocks.find(obj => {return obj.blockName === block});
+    return tmp.blockId;
+}
 
-    return data;
+export function getBlockData(id)
+{
+    return axios.get("http://localhost:8888/api/v1/block/" + id.toString())
+    .then(function (response) {
+        return response;
+    })
+    .catch(function (err) {
+        console.log(err);
+    })
 }
 
 export function getActiveLightsData()

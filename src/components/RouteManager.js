@@ -16,7 +16,10 @@ function RouteManager(propss)
 {
     return(
         <HashRouter>
-            <Route path="/dashboard/view" component={DashboardView} />
+            <Route 
+                path="/dashboard/view" 
+                render={(props) => <DashboardView {...props} />}
+            ></Route>
             <Route 
                 path="/dashboard/config" 
                 render={(props) => <DashboardConfig cancel={propss.cancel} {...props} />}
