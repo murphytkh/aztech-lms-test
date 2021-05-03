@@ -4,7 +4,7 @@ import React, {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 
 import {setRelocation} from "../redux/dashboardUISlice";
-import {setBlockData} from "../redux/blockDataSlice";
+import {setBlockData, setStatusData} from "../redux/blockDataSlice";
 
 import {getBlockId, getBlockData, getStatusData, getGatewayData} from "./MockAPI";
 import BlockLights from "./BlockLights";
@@ -24,6 +24,7 @@ function DashboardView(props)
     const dispatch = useDispatch();
     const locationData = useSelector((state) => state.locationData.value);
     const blockData = useSelector((state) => state.blockData.value);
+    const statusData = useSelector((state) => state.statusData.value);
     const location = useSelector((state) => state.selectedLocation.value);
     const area = useSelector((state) => state.selectedArea.value);
     const block = useSelector((state) => state.selectedBlock.value);
@@ -31,7 +32,6 @@ function DashboardView(props)
 
     // store data used in cards
     const [gatewayData, setGatewayData] = useState(null);
-    const [statusData, setStatusData] = useState(null);
 
     // current light relocation data
     const [currName, setCurrName] = useState("");
@@ -54,7 +54,7 @@ function DashboardView(props)
         }
 
         setGatewayData(getGatewayData());
-        setStatusData(getStatusData());
+        dispatch(setStatusData(getStatusData()));
     }, [dispatch, area, block, locationData]);
 
     // relocation pop-up handling
@@ -78,7 +78,7 @@ function DashboardView(props)
             });
 
         // modify data specific to status card for now
-        setStatusData(updatedArray);
+        dispatch(setStatusData(updatedArray));
     }
 
     // export button (placeholder for now)
@@ -104,14 +104,12 @@ function DashboardView(props)
                         area = {area}
                         block = {block} 
                     />}
-                    {statusData &&
-                    <LightStatus
-                        data={statusData}
-                        location = {location}
-                        area = {area}
-                        block = {block}
-                        relocation = {handleRelocationClick}
-                    />}
+                    {statusData && 
+                        <LightStatus 
+                            data={statusData}
+                            relocation={handleRelocationClick} 
+                        />
+                    }
                     {/* relocation popup - placed below due to css issues */}
                     {relocation && 
                         <Relocation

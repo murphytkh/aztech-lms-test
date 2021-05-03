@@ -11,7 +11,7 @@ import {versionReducer, darkModeReducer} from "./miscInfoSlice";
 // notifications
 
 // individual block data
-import {blockDataReducer} from "./blockDataSlice";
+import {blockDataReducer, statusDataReducer} from "./blockDataSlice";
 
 export default configureStore({
     reducer: {
@@ -40,5 +40,6 @@ export default configureStore({
 
         // individual block data
         blockData: blockDataReducer,
+        statusData: statusDataReducer,
     },
 })

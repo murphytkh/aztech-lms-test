@@ -59,9 +59,9 @@ function ActivityLog(props)
     .slice(0).reverse()
     .map((page) =>
         <div
-            key = {page.index}
-            className = {page.style}
-            id = {page.id}
+            key={page.index}
+            className={page.style}
+            id={page.id}
             onClick={page.active ? () => handlePageClick(page.index) : () => {}}
         >
             {page.value}
@@ -129,7 +129,7 @@ function ActivityLog(props)
             {/* header */}
             <div className="card-header" id="activity">
                 <h1 className="header-text">ACTIVITY LOG</h1>
-                <img alt = "" src = {HeaderIcon} className="header-icon"></img>
+                <img alt="" src={HeaderIcon} className="header-icon"></img>
                 {/* dropdown */}
                 <h1 className="show">SHOW</h1>
                 <h1 className="entries">ENTRIES</h1>

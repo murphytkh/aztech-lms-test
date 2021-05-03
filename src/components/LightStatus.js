@@ -48,25 +48,25 @@ function LightStatus(props)
         }
 
         return(
-            <div><img alt = "" src = {EditIcon} onClick = {click}></img></div>
+            <div><img alt="" src={EditIcon} onClick={click}></img></div>
         );
     }
     // display table elements
-    let lightStatusList = props.data.length &&
+    let lightStatusList = props.data.length ? (
         [].concat(props.data)
         .sort(sortTypes[sortingMode])
         .slice(currentPage * 10, (currentPage + 1) * 10)
         .map(lightStatus =>
-            <tr key = {lightStatus.name}>
-                <td className = "btn">
-                    <RelocationIcon name = {lightStatus.name} location = {lightStatus.location}/>
+            <tr key={lightStatus.name}>
+                <td className="btn">
+                    <RelocationIcon name={lightStatus.name} location={lightStatus.location}/>
                 </td>
-                <td className = "name">{lightStatus.name} - {lightStatus.location}</td>
-                <td className = "date">{lightStatus.date}</td>
-                <td className = "time">{lightStatus.time}</td>
-                <td className = "status">{lightStatus.status}</td>
+                <td className="name">{lightStatus.name} - {lightStatus.location}</td>
+                <td className="date">{lightStatus.date}</td>
+                <td className="time">{lightStatus.time}</td>
+                <td className="status">{lightStatus.status}</td>
             </tr>
-        );
+            )) : null;
 
     let pageListHelper = [];
 
@@ -86,9 +86,9 @@ function LightStatus(props)
         .slice(0).reverse()
         .map((page) =>
             <div
-                key = {page.index}
-                className = {page.style}
-                id = {page.id}
+                key={page.index}
+                className={page.style}
+                id={page.id}
                 onClick={page.active ? () => handlePageClick(page.index) : () => {}}
             >
                 {page.value}
@@ -163,77 +163,75 @@ function LightStatus(props)
     }
 
     return(
-        <div className = "card-container" id = "full">
+        <div className="card-container" id="full">
             {/* header */}
-            <div className = "card-header" id = "status">
-                <h1 className = "header-text">LIGHT STATUS</h1>
-                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
-                <h1 className = "show">SHOW</h1>
-                <h1 className = "entries">ENTRIES</h1>
-                <div className = "dd-container" style = {{zIndex: 10}}>
+            <div className="card-header" id="status">
+                <h1 className="header-text">LIGHT STATUS</h1>
+                <img alt="" src={HeaderIcon} className="header-icon"></img>
+                <h1 className="show">SHOW</h1>
+                <h1 className="entries">ENTRIES</h1>
+                <div className="dd-container" style={{zIndex: 10}}>
                     <GenericDropdown
-                        ref = {entriesRef}
-                        default = {selectedOption}
-                        options = {["10", "20", "30", "ALL"]}
-                        selectOption = {handleSelectOption}
-                        disabled = {false}
+                        ref={entriesRef}
+                        default={selectedOption}
+                        options={["10", "20", "30", "ALL"]}
+                        selectOption={handleSelectOption}
+                        disabled={false}
                     ></GenericDropdown>
                 </div>
-                <div className = "header-divider"></div>
+                <div className="header-divider"></div>
                 {/* refresh */}
                 <img
-                    alt = ""
-                    src = {RefreshIcon}
-                    className = "refresh"
-                    onClick = {handleStatusRefresh}
+                    alt=""
+                    src={RefreshIcon}
+                    className="refresh"
+                    onClick={handleStatusRefresh}
                 ></img>
             </div>
             {/* table */}
             {/* 0 - no arrows 1 - up 2 - down */}
-            <div className = "status-table-container">
+            <div className="status-table-container">
                 {/* headers and buttons */}
-                <div  className = "status-table-header" id = "name" onClick = {handleNameClick}>
+                <div  className="status-table-header" id="name" onClick={handleNameClick}>
                     <TableSortButton
-                        onClick = {handleNameClick}
-                        sort = {sortingMode === "name_descending" ? 2 : 
-                                (sortingMode === "name_ascending" ? 1 : 0)}
+                        onClick={handleNameClick}
+                        sort={sortingMode === "name_descending" ? 2 : 
+                             (sortingMode === "name_ascending" ? 1 : 0)}
                     />
                     LIGHT
                 </div>
-                <div  className = "status-table-header" id = "date" onClick = {handleDateClick}>
+                <div  className="status-table-header" id="date" onClick={handleDateClick}>
                     <TableSortButton
-                        onClick = {handleDateClick}
-                        sort = {sortingMode === "date_descending" ? 2 : 
+                        onClick={handleDateClick}
+                        sort={sortingMode === "date_descending" ? 2 : 
                                 (sortingMode === "date_ascending" ? 1 : 0)}
                     />
                     LAST RESPONSE DATE
                 </div>
-                <div  className = "status-table-header" id = "time" onClick = {handleTimeClick}>
+                <div  className="status-table-header" id="time" onClick={handleTimeClick}>
                     <TableSortButton
-                        onClick = {handleTimeClick}
-                        sort = {sortingMode === "time_descending" ? 2 : 
-                                (sortingMode === "time_ascending" ? 1 : 0)}
+                        onClick={handleTimeClick}
+                        sort={sortingMode === "time_descending" ? 2 : 
+                             (sortingMode === "time_ascending" ? 1 : 0)}
                     />
                     LAST RESPONSE TIME
                 </div>
-                <div  className = "status-table-header" id = "status" onClick = {handleStatusClick}>
+                <div  className="status-table-header" id="status" onClick={handleStatusClick}>
                     <TableSortButton
-                        onClick = {handleStatusClick}
-                        sort = {sortingMode === "status_descending" ? 2 : 
+                        onClick={handleStatusClick}
+                        sort={sortingMode === "status_descending" ? 2 : 
                                 (sortingMode === "status_ascending" ? 1 : 0)}
                     />
                     STATUS
                 </div>
-                <div className = "status-table-divider" id = "divider0"></div>
+                <div className="status-table-divider" id="divider0"></div>
                 {/* table object */}
-                <table className = "status-table">
-                    <tbody>
-                        {lightStatusList}
-                    </tbody>
+                <table className="status-table">
+                    <tbody>{lightStatusList}</tbody>
                 </table>
-                <div className = "status-table-divider" id = "divider1"></div>
+                <div className="status-table-divider" id="divider1"></div>
                 {/* pagination */}
-                <div className = "status-bottomtext">
+                <div className="status-bottomtext">
                     Showing {currentPage * 10 + 1} {" "}
                     to {" "}
                     {currentPage === lastPage ? displayLength : (currentPage + 1) * 10} {" "}
@@ -242,17 +240,17 @@ function LightStatus(props)
                 </div>
             </div>                
             {/* buttons */}
-            <div className = "pagination-container" id = "status">
+            <div className="pagination-container" id="status">
                 <div 
-                    className = "default"
-                    id = {currentPage === lastPage ? "" : "active"}
-                    onClick = {handleNextClick}>
+                    className="default"
+                    id={currentPage === lastPage ? "" : "active"}
+                    onClick={handleNextClick}>
                     NEXT
                 </div>
                 {lastPage > 1 && pageList}
                 <div 
-                    className = "left"
-                    id = {currentPage === 0 ? "" : "active"}
+                    className="left"
+                    id={currentPage === 0 ? "" : "active"}
                     onClick = {handlePrevClick}>
                     PREVIOUS
                 </div>

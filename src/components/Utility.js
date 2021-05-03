@@ -55,18 +55,6 @@ export class ActivityObject
     }
 }
 
-export class LightStatusObject
-{
-    constructor(name, location, date, time, status)
-    {
-        this.name = name;
-        this.location = location;
-        this.date = date;
-        this.time = time;
-        this.status = status;
-    }
-}
-
 export class LightData
 {
     constructor(name, pos)
