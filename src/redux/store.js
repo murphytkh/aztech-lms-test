@@ -7,7 +7,7 @@ import {locationDataReducer, locationsReducer, areasReducer, blocksReducer,
 // ui popup states
 import {editProfileReducer, relocationReducer} from "./dashboardUISlice";
 // misc info
-import {versionReducer, darkModeReducer} from "./miscInfoSlice";
+import {versionReducer, darkModeReducer, gatewayInfoReducer} from "./miscInfoSlice";
 // notifications
 
 // individual block data
@@ -35,6 +35,7 @@ export default configureStore({
         // misc info
         version: versionReducer,
         darkMode: darkModeReducer,
+        gatewayInfo: gatewayInfoReducer,
 
         // notifications
 
