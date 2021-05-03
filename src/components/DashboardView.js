@@ -6,8 +6,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {setRelocation} from "../redux/dashboardUISlice";
 import {setBlockData} from "../redux/blockDataSlice";
 
-import {getBlockId, getBlockData, getActiveLightsData, getEnergyData, getStatusData,
-        getActivityData, getGatewayData} from "./MockAPI";
+import {getBlockId, getBlockData, getStatusData, getGatewayData} from "./MockAPI";
 import BlockLights from "./BlockLights";
 import ActiveLights from "./ActiveLights";
 import EnergyConsumption from "./EnergyConsumption";
@@ -31,9 +30,6 @@ function DashboardView(props)
     const relocation = useSelector((state) => state.relocation.value);
 
     // store data used in cards
-    const [activeLightsData, setActiveLightsData] = useState(null);
-    const [energyData, setEnergyData] = useState(null);
-    const [activityData, setActivityData] = useState(null);
     const [gatewayData, setGatewayData] = useState(null);
     const [statusData, setStatusData] = useState(null);
 
@@ -57,9 +53,6 @@ function DashboardView(props)
             });
         }
 
-        setActiveLightsData(getActiveLightsData());
-        setEnergyData(getEnergyData());
-        setActivityData(getActivityData());
         setGatewayData(getGatewayData());
         setStatusData(getStatusData());
     }, [dispatch, area, block, locationData]);
@@ -100,32 +93,10 @@ function DashboardView(props)
                 <div className="view-page">
                     {/* cards */}
                     {blockData && <BlockLights />}
-                    {activeLightsData && 
-                    <ActiveLights    
-                       data={activeLightsData}
-                       location = {location}
-                       area = {area}
-                       block = {block} 
-                    />}
-                    {energyData &&
-                    <EnergyConsumption
-                        data={energyData}
-                        location = {location}
-                        area = {area}
-                        block = {block}
-                    />}
-                    <LightControl
-                        location = {location}
-                        area = {area}
-                        block = {block} 
-                    />
-                    {activityData &&
-                    <ActivityLog
-                        data={activityData}
-                        location = {location}
-                        area = {area}
-                        block = {block} 
-                    />}
+                    {blockData && <ActiveLights />}
+                    {blockData && <EnergyConsumption />}
+                    {blockData && <LightControl />}
+                    {blockData && <ActivityLog />}
                     {gatewayData &&
                     <GatewayInfo
                         data={gatewayData}
