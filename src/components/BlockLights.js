@@ -39,12 +39,10 @@ function BlockLights(props)
         let workOff = 0;
         let workDimmed = 0;
 
-        for (var i = 0; i < blockData.floors.length; ++i)
-        {
-            let floor = blockData.floors[i];
-            workTotal += floor.lights.length;
-            
-            floor.lights.forEach((obj) => {
+        blockData.floors.forEach((obj) => {
+            workTotal += obj.lights.length;
+        
+            obj.lights.forEach((obj) => {
                 if (obj.fault !== null)
                     workFaults += 1;
                 if (obj.offline === "false")
@@ -54,7 +52,7 @@ function BlockLights(props)
                 if (obj.dimmed === "true")
                     workDimmed += 1;
             });
-        }
+        });
 
         setTotal(workTotal);
         setFaults(workFaults);

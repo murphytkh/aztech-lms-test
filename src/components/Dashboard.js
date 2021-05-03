@@ -153,7 +153,7 @@ function Dashboard(props)
         dispatch(setSelectedBlock(block));
         handleBlockButton();
         
-        if (location.pathname === "/dashboard/")
+        if (location.pathname === "/dashboard")
             goToPath("/dashboard/view");
     }
 
