@@ -74,8 +74,8 @@ function Dashboard(props)
     useEffect(() =>
     {
         // initialise data into redux store
-
         dispatch(setVersion(getVersion()));
+        
         setAlerts(getNotifications());
         setCurrUser(getCurrUser());
         setUserList(getUsers());
@@ -95,12 +95,15 @@ function Dashboard(props)
         dispatch(setLocations(getLocations()));
     }, [dispatch, location]);
 
+    // set path
     function goToPath(path)
     {
+        // check if already at path
         if(location.pathname !== path)
             history.push(path);
     }
 
+    // button handlers that set subsequent options to blank
     function handleDashboardButton()
     {
         dispatch(setSelectedLocation(null));
@@ -148,6 +151,7 @@ function Dashboard(props)
     //        dispatch(setAreas(areas));
     //}
 
+    // get data for the subsequent dropdown lists
     function setSelectedAreaHelper(area)
     {
         dispatch(setSelectedArea(area));
@@ -217,6 +221,7 @@ function Dashboard(props)
         dispatch(setSelectedLights(light));
     }
 
+    // dashboard page functions
     function handleSearch(search)
     {
         console.log(search);
@@ -242,7 +247,7 @@ function Dashboard(props)
         goToPath("/dashboard/view");
     }
 
-    // path helper blocks
+    // path display helpers
     function showText(text, click = () => {})
     {
         return(
@@ -270,7 +275,7 @@ function Dashboard(props)
         }
     }
 
-    // header paths
+    // header paths for various pages
     const defaultPaths =
     (
         <div className="path-container">
@@ -316,7 +321,7 @@ function Dashboard(props)
         </div>
     );
 
-    // selector helper blocks
+    // selector dropdown helpers for various pages
     const selectorDropDown = (ref, title, options, initial, click) =>
     {
         return (

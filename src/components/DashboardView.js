@@ -76,10 +76,11 @@ function DashboardView(props)
     }
 
     return(
+        // check if block is selected before displaying panels
         <div>
             {block ?
                 <div className="view-page">
-                    {/* cards */}
+                    {/* panels */}
                     {blockData && <BlockLights />}
                     {blockData && <ActiveLights />}
                     {blockData && <EnergyConsumption />}

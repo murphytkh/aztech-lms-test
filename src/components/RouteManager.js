@@ -12,6 +12,9 @@ import ThreeJsScene from "./ThreeJsScene";
 
 // using propss instead of props is a bit of a hack, some name conflict
 // going on here
+
+// this components holds the routes to pair paths to their respective
+// components
 function RouteManager(propss)
 {
     return(
