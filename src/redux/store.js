@@ -1,8 +1,8 @@
 import {configureStore} from "@reduxjs/toolkit";
 // location data
 import {locationDataReducer, locationsReducer, areasReducer, blocksReducer,
-        selectedLocationReducer, selectedAreaReducer, selectedBlockReducer,
-        selectedLevelReducer, selectedLightsReducer} 
+        levelsReducer, lightsReducer, selectedLocationReducer, selectedAreaReducer, 
+        selectedBlockReducer, selectedLevelReducer, selectedLightsReducer} 
         from "./locationDataSlice";
 // ui popup states
 import {editProfileReducer, relocationReducer} from "./dashboardUISlice";
@@ -20,6 +20,8 @@ export default configureStore({
         locations: locationsReducer,
         areas: areasReducer,
         blocks: blocksReducer,
+        levels: levelsReducer,
+        lights: lightsReducer,
 
         // currently selected location parameters
         selectedLocation: selectedLocationReducer,

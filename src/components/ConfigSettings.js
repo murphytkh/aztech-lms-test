@@ -1,6 +1,7 @@
 import "../resources/css/config-settings.css";
 
 import React, {useState, useEffect, useRef} from "react";
+import {useSelector} from "react-redux";
 
 import GenericDropdown from "./GenericDropdown";
 
@@ -14,6 +15,8 @@ let ddTime = Array.from({length: 60}, (_, i) => i + 1);
 function ConfigSettings(props)
 {
     const ddRef = useRef();
+
+    const lights = useSelector((state) => state.selectedLights.value);
 
     const [selectedIntensity, setSelectedIntensity] = useState("Fast");
     const [selectedHoldTime, setSelectedHoldTime] = useState("15");
@@ -54,79 +57,79 @@ function ConfigSettings(props)
     }
 
     return(
-        <div className = "card-container" id = "small">
+        <div className="card-container" id="small">
             {/* header */}
-            <div className = "card-header" id = "settings">
-                <h1 className = "header-text">SETTINGS</h1>
-                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
+            <div className="card-header" id="settings">
+                <h1 className="header-text">SETTINGS</h1>
+                <img alt="" src={HeaderIcon} className="header-icon"></img>
             </div>
             {/* info icons */}
             <img 
-                title = "Sync device clock to PC clock."
-                alt = "" 
-                src = {InfoIcon}
-                className = "card-info"
-                id = "settings-info0"
+                title="Sync device clock to PC clock."
+                alt="" 
+                src={InfoIcon}
+                className="card-info"
+                id="settings-info0"
             ></img>
             <img 
-                title = "Brightness transition speed."
-                alt = "" 
-                src = {InfoIcon}
-                className = "card-info"
-                id = "settings-info1"
+                title="Brightness transition speed."
+                alt="" 
+                src={InfoIcon}
+                className="card-info"
+                id="settings-info1"
             ></img>
             <img 
-                title = "Amount of time to stay in triggered brightness."
-                alt = "" 
-                src = {InfoIcon}
-                className = "card-info"
-                id = "settings-info2"
+                title="Amount of time to stay in triggered brightness."
+                alt="" 
+                src={InfoIcon}
+                className="card-info"
+                id="settings-info2"
             ></img>
             {/* labels */}
-            <div className = "card-label" id = "label0">SYNCHRONIZE</div>
-            <div className = "card-label" id = "label1">LIGHT INTENSITY</div>
-            <div className = "card-label" id = "label2">HOLD-TIME</div>
+            <div className="card-label" id="label0">SYNCHRONIZE</div>
+            <div className="card-label" id="label1">LIGHT INTENSITY</div>
+            <div className="card-label" id="label2">HOLD-TIME</div>
             {/* radio button text */}
             <div 
-                className = "clock-radio-text" 
-                style = {props.lights ? {opacity: 1.0} : {opacity: 0.5}}
+                className="clock-radio-text" 
+                style={lights ? {opacity: 1.0} : {opacity: 0.5}}
             >
                 Clock
             </div>
             {/* radio button */}
             <img 
-                alt = "" 
-                src = {props.sync === "ON" ? RadioButtonOn : RadioButtonOff} 
-                className = "clock-radio"
-                style = {props.lights ? {opacity: 1.0, cursor: "pointer"} : {opacity: 0.5, cursor: "default"}}
-                onClick = {props.lights ? handleRadioButton : placeholder}
+                alt="" 
+                src={props.sync === "ON" ? RadioButtonOn : RadioButtonOff} 
+                className="clock-radio"
+                style={lights ? {opacity: 1.0, cursor: "pointer"} : {opacity: 0.5, cursor: "default"}}
+                onClick={lights ? handleRadioButton : placeholder}
             ></img>
             {/* dropdown lists */}
-            <div className = "card-dropdown" id = "settings-dd0" style = {{zIndex: 11}}>
+            <div className="card-dropdown" id="settings-dd0" style={{zIndex: 3}}>
                 <GenericDropdown
-                    ref = {ddRef}
-                    default = {selectedIntensity}
-                    options = {["Fast", "Medium", "Slow"]}
-                    selectOption = {setLightIntensityHelper}
-                    disabled = {props.lights ? false : true}
+                    ref={ddRef}
+                    default={selectedIntensity}
+                    options={["Fast", "Medium", "Slow"]}
+                    selectOption={setLightIntensityHelper}
+                    disabled={lights ? false : true}
                 ></GenericDropdown>
             </div>
-            <div className = "card-dropdown" id = "settings-dd1" style = {{zIndex: 10}}>
+            <div className="card-dropdown" id="settings-dd1" style={{zIndex: 2}}>
                 <GenericDropdown
-                    ref = {ddRef}
-                    default = {selectedHoldTime}
-                    options = {ddTime}
-                    selectOption = {setHoldTimeHelper}
-                    disabled = {props.lights ? false : true}
+                    ref={ddRef}
+                    default={selectedHoldTime}
+                    options={ddTime}
+                    selectOption={setHoldTimeHelper}
+                    disabled={lights ? false : true}
                 ></GenericDropdown>
             </div>
-            <div className = "card-dropdown" id = "settings-dd2" style = {{zIndex: 10}}>
+            <div className="card-dropdown" id="settings-dd2" style={{zIndex: 2}}>
                 <GenericDropdown
-                    ref = {ddRef}
-                    default = {selectedHoldTimeUnits}
-                    options = {["Seconds", "Minutes"]}
-                    selectOption = {setHoldTimeUnitsHelper}
-                    disabled = {props.lights ? false : true}
+                    ref={ddRef}
+                    default={selectedHoldTimeUnits}
+                    options={["Seconds", "Minutes"]}
+                    selectOption={setHoldTimeUnitsHelper}
+                    disabled={lights ? false : true}
                 ></GenericDropdown>
             </div>
         </div>

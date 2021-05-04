@@ -15,7 +15,7 @@ function DashboardConfig(props)
     const area = useSelector((state) => state.selectedArea.value);
     const block = useSelector((state) => state.selectedBlock.value);
     const level = useSelector((state) => state.selectedLevel.value);
-    const lights = useSelector((state) => state.selectedLights.value);
+    const selectedLights = useSelector((state) => state.selectedLights.value);
 
     const [motionDetection, setMotionDetection] = useState("ON");
     const [motionSensitivity, setMotionSensitivity] = useState("Medium-High");
@@ -41,7 +41,7 @@ function DashboardConfig(props)
     function handleSubmitButton()
     {
         console.log("selected light info: " + area + ", " + block + ", " + level +
-                    ", " + lights);
+                    ", " + selectedLights);
         console.log("motion detection: " + motionDetection);
         console.log("motion sensitivity: " + motionSensitivity);
         console.log("clock sync: " + sync);
@@ -59,30 +59,19 @@ function DashboardConfig(props)
     }
 
     return(
-        <div className = "config-page">
+        <div className="config-page">
             {/* cards */}
             <ConfigMotionSensor 
-                location = {location}
-                area = {area}
-                block = {block}
-                level = {level}
-                lights = {lights}
-                motionDetection = {motionDetection}
-                motionSensitivity = {motionSensitivity}
-                setMD = {setMotionDetection}
-                setMS = {setMotionSensitivity}    
+                MD={motionDetection}
+                setMD={setMotionDetection}
+                setMS={setMotionSensitivity}    
             />
             <ConfigSettings 
-                location = {location}
-                area = {area}
-                block = {block}
-                level = {level}
-                lights = {lights}
-                sync = {sync}
-                setSync = {setSync}
-                setIntensity = {setIntensity}
-                setHoldTime = {setHoldTime}
-                setHoldTimeUnits = {setHoldTimeUnits}  
+                sync={sync}
+                setSync={setSync}
+                setIntensity={setIntensity}
+                setHoldTime={setHoldTime}
+                setHoldTimeUnits={setHoldTimeUnits}  
             />
             <ConfigSchedule
                 schedule = {schedule}
@@ -91,10 +80,10 @@ function DashboardConfig(props)
                 area = {area}
                 block = {block}
                 level = {level}
-                lights = {lights}
+                lights = {selectedLights}
             />
             <ConfigBrightness
-                lights = {lights}
+                lights = {selectedLights}
                 dimmedBrightness = {dimmedBrightness}
                 motionBrightness = {motionBrightness}
                 maxBrightness = {maxBrightness}
@@ -110,16 +99,16 @@ function DashboardConfig(props)
                 area = {area}
                 block = {block}
                 level = {level}
-                lights = {lights}
+                lights = {selectedLights}
             />
             {/* buttons */}
-            <div className="config-page-btn" id="cancel"onClick={props.cancel}>
+            <div className="config-page-btn" id="cancel" onClick={props.cancel}>
                 CANCEL
             </div>
             <div
                 className="config-page-btn"
                 id="submit" 
-                onClick = {lights ? handleSubmitButton : placeholder}
+                onClick = {selectedLights ? handleSubmitButton : placeholder}
             >
                 SUBMIT
             </div>

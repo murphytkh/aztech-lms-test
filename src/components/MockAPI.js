@@ -43,27 +43,6 @@ export function getLocations()
     return ["SINGAPORE"];
 }
 
-export function getAreas(location, data)
-{
-    return data.map(obj => obj.name);
-}
-
-export function getBlocks(area, data)
-{
-    var result = data.find(obj => {return obj.name === area})
-    return result.blocks.map(obj => obj.blockName);
-}
-
-export function getLevel(area, block, data)
-{
-    return (["ALL SELECTED"]);
-}
-
-export function getLights(area, block, level, data)
-{
-    return (["ALL SELECTED"]);
-}
-
 export function getCurrUser()
 {
     return new UserObject("office_admin", "Project Manager", PlaceholderUser);

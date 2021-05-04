@@ -74,7 +74,7 @@ function DashboardPhotosensor(props)
                 setBrightnessDetection = {setBrightnessDetection}
             />
             {/* buttons */}
-            <div className="photosensor-page-btn" id="cancel"onClick={props.cancel}>
+            <div className="photosensor-page-btn" id="cancel" onClick={props.cancel}>
                 CANCEL
             </div>
             <div

@@ -4,12 +4,14 @@ import "../resources/css/dashboard-landing.css";
 import React, {useState, useRef, useEffect} from "react";
 import {useHistory, useLocation} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {setLocationData, setLocations, setAreas, setBlocks, setSelectedLocation, 
-        setSelectedArea, setSelectedBlock, setSelectedLevel, setSelectedLights} 
-        from "../redux/locationDataSlice";
+import {setLocationData, setLocations, setAreas, setBlocks, setLevels, setLights,
+        setSelectedLocation, setSelectedArea, setSelectedBlock, setSelectedLevel, 
+        setSelectedLights} from "../redux/locationDataSlice";
+import {setBlockData} from "../redux/blockDataSlice";
 import {setVersion} from "../redux/miscInfoSlice";
 import {getCurrUser, getUsers, getNotifications, getVersion,
-        getLocationData, getLocations, getAreas, getBlocks} from "./MockAPI";
+        getLocationData, getLocations,
+        getBlockId, getBlockData} from "./MockAPI";
 
 import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
@@ -50,11 +52,12 @@ function Dashboard(props)
 
     // lms data
     const locationData = useSelector((state) => state.locationData.value);
-    const locations = useSelector((state) => state.locations.value);
+    const blockData = useSelector((state) => state.blockData.value);
+    //const locations = useSelector((state) => state.locations.value);
     const areas = useSelector((state) => state.areas.value);
     const blocks = useSelector((state) => state.blocks.value);
-    const levels = ["ALL SELECTED"];
-    const lights = ["ALL SELECTED"];
+    const levels = useSelector((state) => state.levels.value);
+    const lights = useSelector((state) => state.lights.value);
 
     // selected parameters
     const selectedLocation = useSelector((state) => state.selectedLocation.value);
@@ -81,12 +84,16 @@ function Dashboard(props)
         getLocationData()
         .then((res) => {
             dispatch(setLocationData(res.data));
+
+            let areas = res.data.map(obj => obj.name);
+            if (areas)
+                dispatch(setAreas(areas));
         })
         .catch((err) => {
             console.log(err);
         });
         dispatch(setLocations(getLocations()));
-    }, [dispatch]);
+    }, [dispatch, location]);
 
     function goToPath(path)
     {
@@ -130,16 +137,16 @@ function Dashboard(props)
             lightDDRef.current.clearChoice();
     }
 
-    function setSelectedLocationHelper(location)
-    {
-        dispatch(setSelectedLocation(location));
-        handleLocationButton();
+    //function setSelectedLocationHelper(location)
+    //{
+    //    dispatch(setSelectedLocation(location));
+    //    handleLocationButton();
 
-        // get areas data based on location
-        let areas = getAreas(location, locationData);
-        if (areas)
-            dispatch(setAreas(areas));
-    }
+    //    // get areas data based on location
+    //    let areas = getAreas(location, locationData);
+    //    if (areas)
+    //        dispatch(setAreas(areas));
+    //}
 
     function setSelectedAreaHelper(area)
     {
@@ -147,14 +154,34 @@ function Dashboard(props)
         handleAreaButton();
 
         // get blocks data based on location
-        dispatch(setBlocks(getBlocks(area, locationData)));
+        let tmp = locationData.find(obj => {return obj.name === area});
+        tmp = tmp.blocks.map(obj => obj.blockName);
+        dispatch(setBlocks(tmp));
     }
 
     function setSelectedBlockHelper(block)
     {
         dispatch(setSelectedBlock(block));
         handleBlockButton();
-        
+
+        if (selectedArea && block && locationData)
+        {
+            let id = getBlockId(selectedArea, block, locationData);
+
+            // get individual block data from api
+            getBlockData(id)
+            .then((res) => {
+                dispatch(setBlockData(res.data));
+
+                let tmp = res.data.floors.map((obj) => obj.floorName);
+                tmp.unshift("ALL SELECTED");
+                dispatch(setLevels(tmp));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+
         if (location.pathname === "/dashboard")
             goToPath("/dashboard/view");
     }
@@ -163,6 +190,24 @@ function Dashboard(props)
     {
         dispatch(setSelectedLevel(level));
         dispatch(setSelectedLights(""));
+
+        if (level && blockData)
+        {
+            // if not individual light selected, list lights
+            // else, defualt to all selected option only
+            if (level === "ALL SELECTED")
+            {
+                dispatch(setLights(["ALL SELECTED"]));
+            }
+            else
+            {
+                let tmp = blockData.floors.find(obj => {return obj.floorName === level});
+                tmp = tmp.lights.map(obj => obj.displayName);
+                tmp.unshift("ALL SELECTED");
+                dispatch(setLights(tmp));
+            }
+        }
+
         if (lightDDRef.current)
             lightDDRef.current.clearChoice();
     }
@@ -285,8 +330,8 @@ function Dashboard(props)
         );
     }
 
-    const locationDropdown = selectorDropDown(locationDDRef, "LOCATION", locations, 
-                                              selectedLocation, setSelectedLocationHelper);
+    //const locationDropdown = selectorDropDown(locationDDRef, "LOCATION", locations, 
+    //                                          selectedLocation, setSelectedLocationHelper);
     const areaDropdown = selectorDropDown(areaDDRef, "AREA", areas, 
                                           selectedArea, setSelectedAreaHelper);
     const blockDropdown = selectorDropDown(blockDDRef, "BLOCK", blocks, 
@@ -299,10 +344,10 @@ function Dashboard(props)
     const defaultTemplate =
     (
         <div className="dropdown-container">
-            {locationDropdown}
-            {selectedLocation && areaDropdown}
-            {selectedLocation && selectedArea && blockDropdown}
-            {location.pathname === "/dashboard" && selectedLocation &&
+            {areaDropdown}
+            {selectedArea && blockDropdown}
+            {selectedBlock && levelDropdown}
+            {location.pathname === "/dashboard" && !selectedBlock &&
                 <img alt="" src={Map} className="map"></img>
             }
         </div>

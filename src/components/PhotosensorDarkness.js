@@ -87,7 +87,7 @@ function PhotosensorDarkness(props)
                 id = "darkness-info1"
             ></img>
             {/* dropdown list */}
-            <div className = "card-dropdown" id = "darkness-dd0" style = {{zIndex: 10}}>
+            <div className = "card-dropdown" id = "darkness-dd0" style = {{zIndex: 2}}>
                 <GenericDropdown
                     ref = {darknessRef}
                     default = {props.environmentalOffset}
@@ -96,7 +96,7 @@ function PhotosensorDarkness(props)
                     disabled = {props.darknessDetection === "ON" && props.lights ? false : true}
                 ></GenericDropdown>
             </div>
-            <div className = "card-dropdown" id = "darkness-dd1" style = {{zIndex: 9}}>
+            <div className = "card-dropdown" id = "darkness-dd1" style = {{zIndex: 1}}>
                 <GenericDropdown
                     ref = {darknessRef}
                     default = {props.darknessIntensity}
@@ -105,7 +105,7 @@ function PhotosensorDarkness(props)
                     disabled = {props.darknessDetection === "ON" && props.lights ? false : true}
                 ></GenericDropdown>
             </div>
-            <div className = "card-dropdown" id = "darkness-dd2" style = {{zIndex: 8}}>
+            <div className = "card-dropdown" id = "darkness-dd2" style = {{zIndex: 0}}>
                 <GenericDropdown
                     ref = {darknessRef}
                     default = {props.darkThreshold}

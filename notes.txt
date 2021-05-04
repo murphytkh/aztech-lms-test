@@ -13,7 +13,7 @@ current task:
 - api calls from backend
 
 redux
-- dashboard view
+- dashboard config
 
 docker commands (in slp-app folder)
 docker-compose -f docker-compose-no-build.yml up

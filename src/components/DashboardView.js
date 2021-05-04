@@ -4,10 +4,10 @@ import React, {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 
 import {setRelocation} from "../redux/dashboardUISlice";
-import {setBlockData, setStatusData} from "../redux/blockDataSlice";
+import {setStatusData} from "../redux/blockDataSlice";
 import {setGatewayData} from "../redux/miscInfoSlice";
 
-import {getBlockId, getBlockData, getStatusData, getGatewayData} from "./MockAPI";
+import {getStatusData, getGatewayData} from "./MockAPI";
 import BlockLights from "./BlockLights";
 import ActiveLights from "./ActiveLights";
 import EnergyConsumption from "./EnergyConsumption";
@@ -29,7 +29,7 @@ function DashboardView(props)
     const blockData = useSelector((state) => state.blockData.value);
     const statusData = useSelector((state) => state.statusData.value);
     const gatewayData = useSelector((state) => state.gatewayData.value);
-    const location = useSelector((state) => state.selectedLocation.value);
+    //const location = useSelector((state) => state.selectedLocation.value);
     const area = useSelector((state) => state.selectedArea.value);
     const block = useSelector((state) => state.selectedBlock.value);
     const relocation = useSelector((state) => state.relocation.value);
@@ -41,19 +41,6 @@ function DashboardView(props)
     useEffect(() =>
     {
         // simulate getting data
-        if (area && block && locationData)
-        {
-            let id = getBlockId(area, block, locationData);
-
-            getBlockData(id)
-            .then((res) => {
-                dispatch(setBlockData(res.data));
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        }
-
         setGatewayData(getGatewayData());
         dispatch(setStatusData(getStatusData()));
     }, [dispatch, area, block, locationData]);
@@ -121,7 +108,7 @@ function DashboardView(props)
                         onClick={handleExportClick}
                     ></img>
                 </div> :
-                <div>{location && <img alt="" src={Map} className="map"></img>}</div>
+                <div>{<img alt="" src={Map} className="map"></img>}</div>
             }
         </div>
 

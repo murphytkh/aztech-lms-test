@@ -1,6 +1,7 @@
 import "../resources/css/config-motion-sensor.css";
 
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useRef} from "react";
+import {useSelector} from "react-redux";
 
 import GenericDropdown from "./GenericDropdown";
 
@@ -11,13 +12,8 @@ function ConfigMotionSensor(props)
 {
     const msRef = useRef();
 
+    const lights = useSelector((state) => state.selectedLights.value);
     const [option, setOption] = useState("Medium-High");
-
-    useEffect(() =>
-    {
-        // simulate getting data
-
-    }, []);
 
     function handleMSButton()
     {
@@ -48,39 +44,39 @@ function ConfigMotionSensor(props)
     }
 
     return(
-        <div className = "card-container" id = "small">
+        <div className="card-container" id="small">
             {/* header */}
-            <div className = "card-header" id = "motion-sensor">
-                <h1 className = "header-text">MOTION SENSOR</h1>
-                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
+            <div className="card-header" id="motion-sensor">
+                <h1 className="header-text">MOTION SENSOR</h1>
+                <img alt="" src={HeaderIcon} className="header-icon"></img>
                 {/* header button(s) */}
                 <div
-                    className = "card-toggle-btn"
-                    id = "motion-sensor"
-                    style = {props.lights ? {opacity: 1.0} : {pointerEvents: "none", opacity: 0.3}}
-                    onClick = {handleMSButton}
+                    className="card-toggle-btn"
+                    id="motion-sensor"
+                    style={lights ? {opacity: 1.0} : {pointerEvents: "none", opacity: 0.3}}
+                    onClick={handleMSButton}
                 >
-                    <div className = "circle"></div>
+                    <div className="circle"></div>
                 </div>
             </div>
             {/* dropdown label */}
-            <div className = "card-label" id = "label0">SENSITIVITY</div>
+            <div className="card-label" id="label0">SENSITIVITY</div>
             {/* info icon */}
             <img 
-                title = "Higher sensitivity allows for easier triggering of motion sensor." 
-                alt = "" 
-                src = {InfoIcon}
-                className = "card-info"
-                id = "motion-sensor-info0"
+                title="Higher sensitivity allows for easier triggering of motion sensor." 
+                alt="" 
+                src={InfoIcon}
+                className="card-info"
+                id="motion-sensor-info0"
             ></img>
             {/* dropdown list */}
-            <div className = "card-dropdown" id = "motion-sensor-dd0" style = {{zIndex: 10}}>
+            <div className="card-dropdown" id="motion-sensor-dd0" style={{zIndex: 1}}>
                 <GenericDropdown
-                    ref = {msRef}
-                    default = {option}
-                    options = {["High", "Medium-High", "Medium", "Medium-Low", "Low"]}
-                    selectOption = {selectOptionHelper}
-                    disabled = {props.motionDetection === "ON" && props.lights ? false : true}
+                    ref={msRef}
+                    default={option}
+                    options={["High", "Medium-High", "Medium", "Medium-Low", "Low"]}
+                    selectOption={selectOptionHelper}
+                    disabled={props.MD === "ON" && lights ? false : true}
                 ></GenericDropdown>
             </div>
         </div>

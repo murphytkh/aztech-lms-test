@@ -87,7 +87,7 @@ function PhotosensorBrightness(props)
                 id = "brightness-info1"
             ></img>
             {/* dropdown lists */}
-            <div className = "card-dropdown" id = "brightness-dd0" style = {{zIndex: 10}}>
+            <div className = "card-dropdown" id = "brightness-dd0" style = {{zIndex: 2}}>
                 <GenericDropdown
                     ref = {brightnessRef}
                     default = {props.lightingOffset}
@@ -96,7 +96,7 @@ function PhotosensorBrightness(props)
                     disabled = {props.brightnessDetection === "ON" && props.lights ? false : true}
                 ></GenericDropdown>
             </div>
-            <div className = "card-dropdown" id = "brightness-dd1" style = {{zIndex: 9}}>
+            <div className = "card-dropdown" id = "brightness-dd1" style = {{zIndex: 1}}>
                 <GenericDropdown
                     ref = {brightnessRef}
                     default = {props.brightnessIntensity}
@@ -105,7 +105,7 @@ function PhotosensorBrightness(props)
                     disabled = {props.brightnessDetection === "ON" && props.lights ? false : true}
                 ></GenericDropdown>
             </div>
-            <div className = "card-dropdown" id = "brightness-dd2" style = {{zIndex: 8}}>
+            <div className = "card-dropdown" id = "brightness-dd2" style = {{zIndex: 0}}>
                 <GenericDropdown
                     ref = {brightnessRef}
                     default = {props.brightnessThreshold}
