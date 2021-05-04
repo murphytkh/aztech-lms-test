@@ -11,7 +11,6 @@ import ConfigCalendar from "./ConfigCalendar";
 
 function DashboardConfig(props)
 {
-    const location = useSelector((state) => state.selectedLocation.value);
     const area = useSelector((state) => state.selectedArea.value);
     const block = useSelector((state) => state.selectedBlock.value);
     const level = useSelector((state) => state.selectedLevel.value);
@@ -85,12 +84,7 @@ function DashboardConfig(props)
             <ConfigCalendar
                 currDate={currentSelectedDate}
                 setDate={setCurrentSelectedDate}
-                schedule = {schedule}
-                location = {location}
-                area = {area}
-                block = {block}
-                level = {level}
-                lights = {selectedLights}
+                schedule={schedule}
             />
             {/* buttons */}
             <div className="config-page-btn" id="cancel" onClick={props.cancel}>
@@ -99,7 +93,7 @@ function DashboardConfig(props)
             <div
                 className="config-page-btn"
                 id="submit" 
-                onClick = {selectedLights ? handleSubmitButton : placeholder}
+                onClick={selectedLights ? handleSubmitButton : placeholder}
             >
                 SUBMIT
             </div>

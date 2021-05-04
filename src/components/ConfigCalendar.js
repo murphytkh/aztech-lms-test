@@ -2,6 +2,7 @@ import "../resources/css/react-calendar.css";
 import "../resources/css/config-calendar.css";
 
 import React, {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import Calendar from 'react-calendar';
 
 import PrevIcon from "../resources/config/calendar-prev.svg";
@@ -46,6 +47,8 @@ function RadioButtonGroup(props)
 
 function ConfigCalendar(props)
 {
+    const lights = useSelector((state) => state.selectedLights.value);
+
     const [photoRadio, setPhotoRadio] = useState(false);
     const [fullBrightnessRadio, setFullBrightnessRadio] = useState(false);
     const [motionRadio, setMotionRadio] = useState(false);
@@ -112,12 +115,12 @@ function ConfigCalendar(props)
 
     const prevButton =
     (
-        <img alt = "" src = {PrevIcon} className = "config-calendar-prevnext"></img>
+        <img alt="" src={PrevIcon} className="config-calendar-prevnext"></img>
     );
 
     const nextButton =
     (
-        <img alt = "" src = {NextIcon} className = "config-calendar-prevnext"></img>
+        <img alt="" src={NextIcon} className="config-calendar-prevnext"></img>
     );
 
     /* custom tile display for react-calendar */
@@ -133,34 +136,28 @@ function ConfigCalendar(props)
             if (photo && fullbrightness && motion)
             {
                 return(
-                    <div className = "config-calendar-indicators">
-                        <div className = "photosensor"></div>
-                        <div className = "full-brightness"></div> 
-                        <div className = "motion"></div> 
+                    <div className="config-calendar-indicators">
+                        <div className="photosensor"></div>
+                        <div className="full-brightness"></div> 
+                        <div className="motion"></div> 
                     </div>
                 );
             }
             else if (photo && fullbrightness)
             {
                 return(
-                    <div className = "config-calendar-indicators">
-                        <div 
-                            className = "photosensor" 
-                            style = {{left: "33%"}}
-                        ></div>
-                        <div 
-                            className = "full-brightness" 
-                            style = {{left: "55%"}}
-                        ></div> 
+                    <div className="config-calendar-indicators">
+                        <div className="photosensor" style={{left: "33%"}}></div>
+                        <div className="full-brightness" style={{left: "55%"}}></div> 
                     </div>
                 );
             }
             else if (photo && motion)
             {
                 return(
-                    <div className = "config-calendar-indicators">
-                        <div className = "photosensor" style = {{left: "33%"}}></div> 
-                        <div className = "motion" style = {{left: "55%"}}></div> 
+                    <div className="config-calendar-indicators">
+                        <div className="photosensor" style={{left: "33%"}}></div> 
+                        <div className="motion" style={{left: "55%"}}></div> 
                     </div>
                 );
 
@@ -168,33 +165,33 @@ function ConfigCalendar(props)
             else if (fullbrightness && motion)
             {
                 return(
-                    <div className = "config-calendar-indicators">
-                        <div className = "full-brightness" style = {{left: "33%"}}></div> 
-                        <div className = "motion" style = {{left: "55%"}}></div> 
+                    <div className="config-calendar-indicators">
+                        <div className="full-brightness" style={{left: "33%"}}></div> 
+                        <div className="motion" style={{left: "55%"}}></div> 
                     </div>
                 );
             }
             else if (photo)
             {
                 return(
-                    <div className = "config-calendar-indicators">
-                        <div className = "photosensor" style = {{left: "44%"}}></div>
+                    <div className="config-calendar-indicators">
+                        <div className="photosensor" style={{left: "44%"}}></div>
                     </div>
                 );
             }
             else if (fullbrightness)
             {
                 return(
-                    <div className = "config-calendar-indicators">
-                        <div className = "full-brightness" style = {{left: "44%"}}></div> 
+                    <div className="config-calendar-indicators">
+                        <div className="full-brightness" style={{left: "44%"}}></div> 
                     </div>
                 );
             }
             else if (motion)
             {
                 return(
-                    <div className = "config-calendar-indicators">
-                        <div className = "motion" style = {{left: "44%"}}></div> 
+                    <div className="config-calendar-indicators">
+                        <div className="motion" style={{left: "44%"}}></div> 
                     </div>
                 );
             }
@@ -203,59 +200,59 @@ function ConfigCalendar(props)
 
     return(
         <div 
-            className = "card-container calendar"
-            id = "small"
-            style = {props.lights ? {opacity: 1.0} : {opacity: 0.5, pointerEvents: "none"}}
+            className="card-container calendar"
+            id="small"
+            style={lights ? {opacity: 1.0} : {opacity: 0.5, pointerEvents: "none"}}
         >
             {/* calendar itself */}
             <Calendar
-                onChange = {onDateSelect} 
-                value = {props.currDate}
-                calendarType = {"US"}
-                minDetail = "month"
-                maxDetail = "month"
-                defaultView = "month"
-                nextLabel = {nextButton}
-                prevLabel = {prevButton}
-                formatMonthYear = {MonthYearFormatter}
-                tileContent = {tileContent}
+                onChange={onDateSelect} 
+                value={props.currDate}
+                calendarType={"US"}
+                minDetail="month"
+                maxDetail="month"
+                defaultView="month"
+                nextLabel={nextButton}
+                prevLabel={prevButton}
+                formatMonthYear={MonthYearFormatter}
+                tileContent={tileContent}
             />
             {/* legends */}
-            <h1 className = "photosensor">Photosensor Control</h1>
-            <h1 className = "full-brightness">Full Brightness</h1>
-            <h1 className = "motion">Motion Trigger</h1>
+            <h1 className="photosensor">Photosensor Control</h1>
+            <h1 className="full-brightness">Full Brightness</h1>
+            <h1 className="motion">Motion Trigger</h1>
             {/* legend icons */}
-            <div className = "legend-icon" id = "photosensor"></div>
-            <div className = "legend-icon" id = "full-brightness"></div>
-            <div className = "legend-icon" id = "motion"></div>
+            <div className="legend-icon" id="photosensor"></div>
+            <div className="legend-icon" id="full-brightness"></div>
+            <div className="legend-icon" id="motion"></div>
             {/* divider */}
-            <div className = "divider"></div>
+            <div className="divider"></div>
             {/* bottom header */}
-            <div className = "header-date">
+            <div className="header-date">
                 {DayOfWeek(props.currDate) + ", " + props.currDate.getDate() + " " + 
                  MonthYearFormatterBottom(props.currDate)}
             </div>
             {/* radio buttons */}
             <RadioButtonGroup
-                data = {props.schedule}
-                enabled = {photoRadio}
-                icon = {PhotosensorIcon}
-                containerOrder = {"0"}
-                onClick = {handlePhotosensorRadioButton}
+                data={props.schedule}
+                enabled={photoRadio}
+                icon={PhotosensorIcon}
+                containerOrder={"0"}
+                onClick={handlePhotosensorRadioButton}
             />
             <RadioButtonGroup
-                data = {props.schedule}
-                enabled = {fullBrightnessRadio}
-                icon = {FullBrightnessIcon}
-                containerOrder = {"1"}
-                onClick = {handleFullBrightnessRadioButton}
+                data={props.schedule}
+                enabled={fullBrightnessRadio}
+                icon={FullBrightnessIcon}
+                containerOrder={"1"}
+                onClick={handleFullBrightnessRadioButton}
             />
             <RadioButtonGroup
-                data = {props.schedule}
-                enabled = {motionRadio}
-                icon = {MotionIcon}
-                containerOrder = {"2"}
-                onClick = {handleMotionRadioButton}
+                data={props.schedule}
+                enabled={motionRadio}
+                icon={MotionIcon}
+                containerOrder={"2"}
+                onClick={handleMotionRadioButton}
             />
         </div>
     );
