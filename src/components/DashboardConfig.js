@@ -75,17 +75,16 @@ function DashboardConfig(props)
             />
             <ConfigSchedule schedule={schedule} setSchedule={setSchedule} />
             <ConfigBrightness
-                lights = {selectedLights}
-                dimmedBrightness = {dimmedBrightness}
-                motionBrightness = {motionBrightness}
-                maxBrightness = {maxBrightness}
-                setDimmed = {setDimmedBrightness}
-                setMotion = {setMotionBrightness}
-                setMax = {setMaxBrightness}
+                dimmedBrightness={dimmedBrightness}
+                motionBrightness={motionBrightness}
+                maxBrightness={maxBrightness}
+                setDimmed={setDimmedBrightness}
+                setMotion={setMotionBrightness}
+                setMax={setMaxBrightness}
             />
             <ConfigCalendar
-                currDate = {currentSelectedDate}
-                setDate = {setCurrentSelectedDate}
+                currDate={currentSelectedDate}
+                setDate={setCurrentSelectedDate}
                 schedule = {schedule}
                 location = {location}
                 area = {area}
