@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from "react-redux";
 
 import {setRelocation} from "../redux/dashboardUISlice";
 import {setBlockData, setStatusData} from "../redux/blockDataSlice";
+import {setGatewayData} from "../redux/miscInfoSlice";
 
 import {getBlockId, getBlockData, getStatusData, getGatewayData} from "./MockAPI";
 import BlockLights from "./BlockLights";
@@ -22,16 +23,16 @@ import Map from "../resources/dashboard/map-sg.png";
 function DashboardView(props)
 {
     const dispatch = useDispatch();
+
+    // redux store data
     const locationData = useSelector((state) => state.locationData.value);
     const blockData = useSelector((state) => state.blockData.value);
     const statusData = useSelector((state) => state.statusData.value);
+    const gatewayData = useSelector((state) => state.gatewayData.value);
     const location = useSelector((state) => state.selectedLocation.value);
     const area = useSelector((state) => state.selectedArea.value);
     const block = useSelector((state) => state.selectedBlock.value);
     const relocation = useSelector((state) => state.relocation.value);
-
-    // store data used in cards
-    const [gatewayData, setGatewayData] = useState(null);
 
     // current light relocation data
     const [currName, setCurrName] = useState("");
@@ -97,13 +98,7 @@ function DashboardView(props)
                     {blockData && <EnergyConsumption />}
                     {blockData && <LightControl />}
                     {blockData && <ActivityLog />}
-                    {gatewayData &&
-                    <GatewayInfo
-                        data={gatewayData}
-                        location = {location}
-                        area = {area}
-                        block = {block} 
-                    />}
+                    {gatewayData && <GatewayInfo data={gatewayData} />}
                     {statusData && 
                         <LightStatus 
                             data={statusData}

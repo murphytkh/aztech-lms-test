@@ -8,6 +8,6 @@ export const darkModeSlice = create("darkMode", "setDarkMode");
 export const {setDarkMode} = darkModeSlice.actions;
 export const darkModeReducer = darkModeSlice.reducer;
 
-export const gatewayInfoSlice = create("gatewayInfo", "setGatewayInfo");
-export const {setGatewayInfo} = gatewayInfoSlice.actions;
-export const gatewayInfoReducer = gatewayInfoSlice.reducer;
+export const gatewayDataSlice = create("gatewayData", "setGatewayData");
+export const {setGatewayData} = gatewayDataSlice.actions;
+export const gatewayDataReducer = gatewayDataSlice.reducer;

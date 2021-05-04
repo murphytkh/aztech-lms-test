@@ -136,7 +136,9 @@ function Dashboard(props)
         handleLocationButton();
 
         // get areas data based on location
-        dispatch(setAreas(getAreas(location, locationData)));
+        let areas = getAreas(location, locationData);
+        if (areas)
+            dispatch(setAreas(areas));
     }
 
     function setSelectedAreaHelper(area)
