@@ -1,6 +1,7 @@
 import "../resources/css/config-schedule.css";
 
 import React, {useState, useEffect, useRef} from "react";
+import {useSelector} from "react-redux";
 
 import GenericDropdown from "./GenericDropdown";
 import DaySelectorButton from "./DaySelectorButton";
@@ -35,6 +36,8 @@ ddTime.push("23:59:00");
 function ConfigSchedule(props)
 {
     const ddRef = useRef();
+
+    const lights = useSelector((state) => state.selectedLights.value);
 
     const [activity, setActivity] = useState("");
     const [start, setStart] = useState("");
@@ -148,53 +151,53 @@ function ConfigSchedule(props)
     }
 
     return(
-        <div className = "card-container" id = "small">
+        <div className="card-container" id="small">
             {/* header */}
-            <div className = "card-header" id = "schedule">
-                <h1 className = "header-text">PRE-SET SCHEDULE</h1>
-                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
+            <div className="card-header" id="schedule">
+                <h1 className="header-text">PRE-SET SCHEDULE</h1>
+                <img alt="" src={HeaderIcon} className="header-icon"></img>
                 {/* header button */}
                 <div 
-			    	className = "schedule-add"
-                    id = {props.lights ? "" : "disabled"}
-			    	onClick = {props.lights ? handleAddSchedule : placeholder}
+			    	className="schedule-add"
+                    id={lights ? "" : "disabled"}
+			    	onClick={lights ? handleAddSchedule : placeholder}
 			    >
                     Add Schedule
                 </div>
             </div>
             {/* labels */}
-            <div className = "card-label" id = "label0">ACTIVITIES</div>
-            <div className = "card-label" id = "label1">START TIME</div>
-            <div className = "card-label" id = "label1-right">END TIME</div>
-            <div className = "card-label" id = "label2">REPEAT</div>
+            <div className="card-label" id="label0">ACTIVITIES</div>
+            <div className="card-label" id="label1">START TIME</div>
+            <div className="card-label" id="label1-right">END TIME</div>
+            <div className="card-label" id="label2">REPEAT</div>
             {/* dropdown lists */}
             {dayActive &&
                 <div>
-                    <div className = "card-dropdown" id = "schedule-dd0" style = {{zIndex: 2}}>
+                    <div className="card-dropdown" id="schedule-dd0" style={{zIndex: 2}}>
                         <GenericDropdown
-                            ref = {ddRef}
-                            default = {activity}
-                            options = {["Photosensor Control", "Full Brightness", "Motion Trigger"]}
-                            selectOption = {setActivityHelper}
-                            disabled = {props.lights ? false : true}
+                            ref={ddRef}
+                            default={activity}
+                            options={["Photosensor Control", "Full Brightness", "Motion Trigger"]}
+                            selectOption={setActivityHelper}
+                            disabled={lights ? false : true}
                         ></GenericDropdown>
                     </div>
-                    <div className = "card-dropdown" id = "schedule-dd1" style = {{zIndex: 1}}>
+                    <div className="card-dropdown" id="schedule-dd1" style={{zIndex: 1}}>
                         <GenericDropdown
-                            ref = {ddRef}
-                            default = {start}
-                            options = {ddTime}
-                            selectOption = {setStart}
-                            disabled = {props.lights ? false : true}
+                            ref={ddRef}
+                            default={start}
+                            options={ddTime}
+                            selectOption={setStart}
+                            disabled={lights ? false : true}
                         ></GenericDropdown>
                     </div>
-                    <div className = "card-dropdown" id = "schedule-dd2" style = {{zIndex: 1}}>
+                    <div className="card-dropdown" id="schedule-dd2" style={{zIndex: 1}}>
                         <GenericDropdown
-                            ref = {ddRef}
-                            default = {end}
-                            options = {ddTime}
-                            selectOption = {setEnd}
-                            disabled = {props.lights ? false : true}
+                            ref={ddRef}
+                            default={end}
+                            options={ddTime}
+                            selectOption={setEnd}
+                            disable={lights ? false : true}
                         ></GenericDropdown>
                     </div>
                 </div>
@@ -202,13 +205,13 @@ function ConfigSchedule(props)
             {/* day selector */}
             {dayActive &&
                 <div className = "day-selector">
-                    <DaySelectorButton disabled = {props.lights} day = {"SUN"} onClick = {toggleDay} active = {dayActive[0]}></DaySelectorButton>
-                    <DaySelectorButton disabled = {props.lights} day = {"MON"} onClick = {toggleDay} active = {dayActive[1]}></DaySelectorButton>
-                    <DaySelectorButton disabled = {props.lights} day = {"TUE"} onClick = {toggleDay} active = {dayActive[2]}></DaySelectorButton>
-                    <DaySelectorButton disabled = {props.lights} day = {"WED"} onClick = {toggleDay} active = {dayActive[3]}></DaySelectorButton>
-                    <DaySelectorButton disabled = {props.lights} day = {"THU"} onClick = {toggleDay} active = {dayActive[4]}></DaySelectorButton>
-                    <DaySelectorButton disabled = {props.lights} day = {"FRI"} onClick = {toggleDay} active = {dayActive[5]}></DaySelectorButton>
-                    <DaySelectorButton disabled = {props.lights} day = {"SAT"} onClick = {toggleDay} active = {dayActive[6]}></DaySelectorButton>
+                    <DaySelectorButton disabled={lights} day={"SUN"} onClick={toggleDay} active={dayActive[0]}></DaySelectorButton>
+                    <DaySelectorButton disabled={lights} day={"MON"} onClick={toggleDay} active={dayActive[1]}></DaySelectorButton>
+                    <DaySelectorButton disabled={lights} day={"TUE"} onClick={toggleDay} active={dayActive[2]}></DaySelectorButton>
+                    <DaySelectorButton disabled={lights} day={"WED"} onClick={toggleDay} active={dayActive[3]}></DaySelectorButton>
+                    <DaySelectorButton disabled={lights} day={"THU"} onClick={toggleDay} active={dayActive[4]}></DaySelectorButton>
+                    <DaySelectorButton disabled={lights} day={"FRI"} onClick={toggleDay} active={dayActive[5]}></DaySelectorButton>
+                    <DaySelectorButton disabled={lights} day={"SAT"} onClick={toggleDay} active={dayActive[6]}></DaySelectorButton>
                 </div>
             }
         </div>

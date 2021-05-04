@@ -64,7 +64,7 @@ function DashboardConfig(props)
             <ConfigMotionSensor 
                 MD={motionDetection}
                 setMD={setMotionDetection}
-                setMS={setMotionSensitivity}    
+                setMS={setMotionSensitivity}
             />
             <ConfigSettings 
                 sync={sync}
@@ -73,15 +73,7 @@ function DashboardConfig(props)
                 setHoldTime={setHoldTime}
                 setHoldTimeUnits={setHoldTimeUnits}  
             />
-            <ConfigSchedule
-                schedule = {schedule}
-                setSchedule = {setSchedule}
-                location = {location}
-                area = {area}
-                block = {block}
-                level = {level}
-                lights = {selectedLights}
-            />
+            <ConfigSchedule schedule={schedule} setSchedule={setSchedule} />
             <ConfigBrightness
                 lights = {selectedLights}
                 dimmedBrightness = {dimmedBrightness}
