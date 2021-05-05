@@ -68,6 +68,7 @@ function ThreeJsScene(props)
     // light selection
     const [currPoint, setCurrPoint] = useState([]);
     const [currLightName, setCurrLightName] = useState("");
+    const selected = useSelector((state) => state.selected.value);
     const [selectedLights, setSelectedLights] = useRefState([]);
     const [lightHover, setLightHover] = useRefState(null);
     const [currGroup, setCurrGroup] = useState("");

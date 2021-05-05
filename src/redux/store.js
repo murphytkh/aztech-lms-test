@@ -12,6 +12,8 @@ import {versionReducer, darkModeReducer, gatewayDataReducer} from "./miscInfoSli
 
 // individual block data
 import {blockDataReducer, statusDataReducer} from "./blockDataSlice";
+// threejs scene data
+import {selectedReducer} from "./threeDataSlice";
 
 export default configureStore({
     reducer: {
@@ -40,9 +42,15 @@ export default configureStore({
         gatewayData: gatewayDataReducer,
 
         // notifications
+        // not done yet
 
         // individual block data
         blockData: blockDataReducer,
         statusData: statusDataReducer,
+
+        // threejs data
+
+        // current selected objects
+        selected: selectedReducer,
     },
 })
