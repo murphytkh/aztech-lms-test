@@ -15,6 +15,7 @@ function BlockLights(props)
 {
     const blockData = useSelector((state) => state.blockData.value);
 
+    // local state to display overall data from main data
     const [total, setTotal] = useState(800000);
     const [faults, setFaults] = useState(40);
     const [on, setOn] = useState(80000);

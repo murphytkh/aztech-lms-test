@@ -35,7 +35,7 @@ function Sidebar(props)
     const version = useSelector((state) => state.version.value);
     const darkMode = useSelector((state) => state.darkMode.valuie);
 
-    // sliding animations
+    // sliding animation
     function sidebarToggle()
     {
         var sb = document.getElementsByClassName("sidebar");

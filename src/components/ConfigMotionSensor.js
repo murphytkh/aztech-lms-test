@@ -15,6 +15,7 @@ function ConfigMotionSensor(props)
     const lights = useSelector((state) => state.selectedLights.value);
     const [option, setOption] = useState("Medium-High");
 
+    // sliding animation
     function handleMSButton()
     {
         var circle = document.querySelector(".card-toggle-btn#motion-sensor .circle");

@@ -28,6 +28,7 @@ function ConfigSettings(props)
 
     }, []);
 
+    // toggle
     function handleRadioButton()
     {
         if (props.sync === "ON")
@@ -38,6 +39,7 @@ function ConfigSettings(props)
 
     function placeholder() {}
 
+    // config functions
     function setLightIntensityHelper(light)
     {
         props.setIntensity(light);

@@ -5,9 +5,7 @@ import React from "react";
 function DashboardAdd(props)
 {
     return(
-        <div className = "dashboard-page-add">
-            PLACEHOLDER
-        </div>
+        <div className="dashboard-page-add">PLACEHOLDER</div>
     );
 }
 

@@ -10,11 +10,9 @@ import HeaderIcon from "../resources/view/status-header-icon.svg";
 import RefreshIcon from "../resources/dashboard/icon-refresh-black.svg";
 import EditIcon from "../resources/view/status-edit-icon.svg";
 
-
-
 function LightStatus(props)
 {
-    // comparison for sorting table
+    // comparison functions for sorting table
     const sortTypes =
     {
         name_descending: (a, b) => a.name.localeCompare(b.name),
@@ -35,6 +33,7 @@ function LightStatus(props)
     const [lastPage, setLastPage] = useState(0);
     const [displayLength, setDisplayLength] = useState([]);
 
+    // relocation functions
     function RelocationHelper(name, location)
     {
         props.relocation(name, location);
@@ -51,7 +50,8 @@ function LightStatus(props)
             <div><img alt="" src={EditIcon} onClick={click}></img></div>
         );
     }
-    // display table elements
+
+    // currently displayed entries
     let lightStatusList = props.data.length ? (
         [].concat(props.data)
         .sort(sortTypes[sortingMode])
@@ -70,7 +70,7 @@ function LightStatus(props)
 
     let pageListHelper = [];
 
-    // update pagination
+    // update display of pagination controls
     for (var i = 0; i < lastPage + 1; ++i)
     {
         if (i === currentPage)
@@ -81,6 +81,7 @@ function LightStatus(props)
             pageListHelper.push(new PageObject(i, false, "...", "default", ""));
     }
 
+    // render pagination controls
     let pageList = pageListHelper.length &&
         pageListHelper
         .slice(0).reverse()
@@ -101,6 +102,7 @@ function LightStatus(props)
         setLastPage(0);
     }, [props.data.length]);
 
+    // button functions
     function handleStatusRefresh()
     {
         console.log("status refresh");
@@ -121,6 +123,7 @@ function LightStatus(props)
         setSelectedOption(option);
     }
 
+    // sorting toggles
     function handleNameClick()
     {
         sortingMode === "name_descending" ? setSortingMode("name_ascending") : 
@@ -145,6 +148,7 @@ function LightStatus(props)
                             setSortingMode("status_descending");
     }
 
+    // pagination controls functions
     function handlePrevClick()
     {
         if (currentPage !== 0)

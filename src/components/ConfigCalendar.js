@@ -18,24 +18,24 @@ import MotionIcon from "../resources/dashboard/icon-motion-black.svg";
 function RadioButtonGroup(props)
 {
     return(
-        <div className = "config-calendar-radio" id = {"c" + props.containerOrder}>
+        <div className="config-calendar-radio" id={"c" + props.containerOrder}>
             {/* radio button */}
             <img 
-                alt = "" 
-                src = {props.enabled ? RadioButtonOn : RadioButtonOff} 
-                className = "btn"
-                onClick = {props.onClick}
+                alt="" 
+                src={props.enabled ? RadioButtonOn : RadioButtonOff} 
+                className="btn"
+                onClick={props.onClick}
             ></img>
             {/* divider */}
-            <div className = "divider"></div>
+            <div className="divider"></div>
             {/* icon */}
-            <img alt = "" src = {props.icon} className = {"radio-icon"}></img>
+            <img alt="" src={props.icon} className={"radio-icon"}></img>
             {/* text */}
-            <div className = "text" id = "label">
+            <div className="text" id="label">
                 {props.containerOrder === "0" ? "Photosensor Control" :
                     props.containerOrder === "1" ? "Full Brightness" : "Motion Trigger"}
             </div>
-            <div className = "text" id = "time">
+            <div className="text" id="time">
                 {props.data && 
                 (props.containerOrder === "0" ? props.data[0] + " - " + props.data[1] :
                     props.containerOrder === "1" ? props.data[4] + " - " + props.data[5] :
@@ -45,6 +45,7 @@ function RadioButtonGroup(props)
     );
 }
 
+// 
 function ConfigCalendar(props)
 {
     const lights = useSelector((state) => state.selectedLights.value);
@@ -66,6 +67,7 @@ function ConfigCalendar(props)
     let months = ["Jan", "Feb", "Mar", "Apr", "May" , "Jun" ,"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+    // custom calendar formatting functions
     function DayOfWeek(d)
     {
         return days[d.getDay()];
@@ -123,7 +125,7 @@ function ConfigCalendar(props)
         <img alt="" src={NextIcon} className="config-calendar-prevnext"></img>
     );
 
-    /* custom tile display for react-calendar */
+    // custom tile display for react-calendar
     function tileContent({date, view})
     {
         if (view === "month")

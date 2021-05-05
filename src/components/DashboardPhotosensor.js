@@ -1,6 +1,6 @@
 import "../resources/css/dashboard-photosensor.css";
 
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {useSelector} from "react-redux";
 
 import PhotosensorDarkness from "./PhotosensorDarkness";
@@ -14,6 +14,7 @@ function DashboardPhotosensor(props)
     const level = useSelector((state) => state.selectedLevel.value);
     const lights = useSelector((state) => state.selectedLights.value);
 
+    // config state
     const [darknessDetection, setDarknessDetection] = useState("ON");
     const [brightnessDetection, setBrightnessDetection] = useState("ON");
     const [environmentalOffset, setEnvironmentalOffset] = useState(25);
@@ -23,12 +24,7 @@ function DashboardPhotosensor(props)
     const [brightnessIntensity, setBrightnessIntensity] = useState(100);
     const [brightnessThreshold, setBrightnessThreshold] = useState(150);
 
-    useEffect(() =>
-    {
-        // simulate getting data
-
-    }, []);
-
+    // submit button placeholder
     function handleSubmitButton()
     {
         console.log("selected light info: " + area + ", " + block + ", " + level +
@@ -49,29 +45,29 @@ function DashboardPhotosensor(props)
     }
 
     return(
-        <div className = "photosensor-page">
+        <div className="photosensor-page">
             {/* cards */}
             <PhotosensorDarkness
-                lights = {lights}
-                darknessDetection = {darknessDetection}
-                environmentalOffset = {environmentalOffset}
-                darknessIntensity = {darknessIntensity}
-                darkThreshold = {darkThreshold}
-                setEnvironmentalOffset = {setEnvironmentalOffset}
-                setDarknessIntensity = {setDarknessIntensity}
-                setDarkThreshold = {setDarkThreshold}
-                setDarknessDetection = {setDarknessDetection}
+                lights={lights}
+                darknessDetection={darknessDetection}
+                environmentalOffset={environmentalOffset}
+                darknessIntensity={darknessIntensity}
+                darkThreshold={darkThreshold}
+                setEnvironmentalOffset={setEnvironmentalOffset}
+                setDarknessIntensity={setDarknessIntensity}
+                setDarkThreshold={setDarkThreshold}
+                setDarknessDetection={setDarknessDetection}
             />
             <PhotosensorBrightness
-                lights = {lights}
-                brightnessDetection = {brightnessDetection}
-                lightingOffset = {lightingOffset}
-                brightnessIntensity = {brightnessIntensity}
-                brightnessThreshold = {brightnessThreshold}
-                setLightingOffset = {setLightingOffset}
-                setBrightnessIntensity = {setBrightnessIntensity}
-                setBrightnessThreshold = {setBrightnessThreshold}
-                setBrightnessDetection = {setBrightnessDetection}
+                lights={lights}
+                brightnessDetection={brightnessDetection}
+                lightingOffset={lightingOffset}
+                brightnessIntensity={brightnessIntensity}
+                brightnessThreshold={brightnessThreshold}
+                setLightingOffset={setLightingOffset}
+                setBrightnessIntensity={setBrightnessIntensity}
+                setBrightnessThreshold={setBrightnessThreshold}
+                setBrightnessDetection={setBrightnessDetection}
             />
             {/* buttons */}
             <div className="photosensor-page-btn" id="cancel" onClick={props.cancel}>

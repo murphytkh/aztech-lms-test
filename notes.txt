@@ -13,7 +13,9 @@ current task:
 - api calls from backend
 
 redux
-- dashboard config
+- dashboard photosensor
+
+4 - 1 from cny - 1 from exam -1 from hackathon
 
 docker commands (in slp-app folder)
 docker-compose -f docker-compose-no-build.yml up

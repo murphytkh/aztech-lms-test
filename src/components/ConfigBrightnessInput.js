@@ -30,38 +30,38 @@ function ConfigBrightnessInput(props)
 
     return(
         <div 
-            className = "brightness-input" 
-            style = {props.disabled ? {opacity: 0.5} : {opacity: 1.0}}
+            className="brightness-input" 
+            style={props.disabled ? {opacity: 0.5} : {opacity: 1.0}}
         >
             {/* icon */}
             <img 
-                title = {props.info} 
-                alt = "" 
-                src = {InfoIcon} 
-                className = "card-info"
-                id = "brightness-input-info0"
+                title={props.info} 
+                alt="" 
+                src={InfoIcon} 
+                className="card-info"
+                id="brightness-input-info0"
             ></img>
             { /* circlular input */}
             <CircularInput 
-                className = "brightness-input-circle"
-                value = {stepValue(props.level)} 
-                onChange = {props.disabled ? placeholder :setValueHelper} 
-                radius = {windowWidth > 1900 ? 80 : 65}
+                className="brightness-input-circle"
+                value={stepValue(props.level)} 
+                onChange={props.disabled ? placeholder :setValueHelper} 
+                radius={windowWidth > 1900 ? 80 : 65}
             >
-		        <CircularTrack strokeWidth = {15} stroke = {"#F5FBFF"} fill = {"#F5FBFF"}/>
-		        <CircularProgress strokeWidth = {15} strokeLinecap = "butt" stroke = {"#00C2FF"}/>
+		        <CircularTrack strokeWidth={15} stroke={"#F5FBFF"} fill={"#F5FBFF"}/>
+		        <CircularProgress strokeWidth={15} strokeLinecap="butt" stroke={"#00C2FF"}/>
 		        <CircularThumb 
-                    cursor = {props.disabled ? "default" : "pointer"} 
-                    r = {10} 
-                    fill = {"#00C2FF"}
+                    cursor={props.disabled ? "default" : "pointer"} 
+                    r={10} 
+                    fill={"#00C2FF"}
                 />
                 <InputHandleShadow />
 	        </CircularInput>
             { /* label and value display */}
-            <div className = "brightness-input-text" id = "value">
+            <div className="brightness-input-text" id="value">
                 {Math.round(props.level * 100) + "%"}
             </div>
-            <div className = "brightness-input-text" id = "label">
+            <div className="brightness-input-text" id="label">
                 {props.label}
             </div>
         </div>
@@ -76,20 +76,20 @@ function InputHandleShadow()
     if (!point) return null;
 
     return(
-        <svg {...point} style = {{overflow: "visible"}} pointerEvents = {"none"}>
+        <svg {...point} style={{overflow: "visible"}} pointerEvents={"none"}>
             <defs>
-                <filter id = "shadow">
+                <filter id="shadow">
                     <feDropShadow 
-                        dx = "0" 
-                        dy = "1" 
-                        stdDeviation = "1.0" 
-                        floodColor = "#00000029"
+                        dx="0" 
+                        dy="1" 
+                        stdDeviation="1.0" 
+                        floodColor="#00000029"
                     />
                 </filter>
             </defs>
             <circle 
-                cx = "0" cy= "0 " r = "7.8%"
-                style = {{fill: "#00C2FF", filter: "url(#shadow)"}}
+                cx="0" cy="0 " r="7.8%"
+                style={{fill: "#00C2FF", filter: "url(#shadow)"}}
             >
             </circle>
         </svg>

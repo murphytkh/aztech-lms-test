@@ -1,12 +1,14 @@
 import "../resources/css/photosensor-darkness.css";
 
-import React, {useEffect, useRef} from "react";
+import React, {useRef} from "react";
+import {useSelector} from "react-redux";
 
 import GenericDropdown from "./GenericDropdown";
 
 import HeaderIcon from "../resources/photosensor/darkness-icon.svg";
 import InfoIcon from "../resources/dashboard/icon-question-mark.svg";
 
+// dropdown list options
 var options = [];
 var intensityOptions = [];
 
@@ -24,12 +26,9 @@ function PhotosensorDarkness(props)
 {
     const darknessRef = useRef();
 
-    useEffect(() =>
-    {
-        // simulate getting data
+    const lights = useSelector((state) => state.selectedLights.value);
 
-    }, []);
-
+    // sliding animation
     function handleDarknessButton()
     {
         var circle = document.querySelector(".card-toggle-btn#darkness .circle");
@@ -52,66 +51,66 @@ function PhotosensorDarkness(props)
     }
 
     return(
-        <div className = "card-container" id = "small">
+        <div className="card-container" id="small">
             {/* header */}
-            <div className = "card-header" id = "darkness">
-                <h1 className = "header-text">DARKNESS DETECTION</h1>
-                <img alt = "" src = {HeaderIcon} className = "header-icon"></img>
+            <div className="card-header" id="darkness">
+                <h1 className="header-text">DARKNESS DETECTION</h1>
+                <img alt="" src={HeaderIcon} className="header-icon"></img>
                 {/* header button(s) */}
                 <div
-                    className = "card-toggle-btn"
-                    id = "darkness"
-                    style = {props.lights ? {opacity: 1.0} : {pointerEvents: "none", opacity: 0.3}}
-                    onClick = {handleDarknessButton}
+                    className="card-toggle-btn"
+                    id="darkness"
+                    style={lights ? {opacity: 1.0} : {pointerEvents: "none", opacity: 0.3}}
+                    onClick={handleDarknessButton}
                 >
-                    <div className = "circle"></div>
+                    <div className="circle"></div>
                 </div>
             </div>
             {/* dropdown label */}
-            <div className = "card-label" id = "label0">ENVIRONMENTAL OFFSET</div>
-            <div className = "card-label" id = "label1">DESIRED INTENSITY</div>
-            <div className = "card-label" id = "label2">DARK THRESHOLD</div>
+            <div className="card-label" id="label0">ENVIRONMENTAL OFFSET</div>
+            <div className="card-label" id="label1">DESIRED INTENSITY</div>
+            <div className="card-label" id="label2">DARK THRESHOLD</div>
             {/* info icon */}
             <img 
-                title = "Lux of the environment the lighting is at."
-                alt = "" 
-                src = {InfoIcon}
-                className = "card-info"
-                id = "darkness-info0"
+                title="Lux of the environment the lighting is at."
+                alt="" 
+                src={InfoIcon}
+                className="card-info"
+                id="darkness-info0"
             ></img>
             <img 
-                title = "Sensor reading below threshold value turns 'ON' lighting." 
-                alt = "" 
-                src = {InfoIcon}
-                className = "card-info"
-                id = "darkness-info1"
+                title="Sensor reading below threshold value turns 'ON' lighting." 
+                alt="" 
+                src={InfoIcon}
+                className="card-info"
+                id="darkness-info1"
             ></img>
             {/* dropdown list */}
-            <div className = "card-dropdown" id = "darkness-dd0" style = {{zIndex: 2}}>
+            <div className="card-dropdown" id="darkness-dd0" style={{zIndex: 2}}>
                 <GenericDropdown
-                    ref = {darknessRef}
-                    default = {props.environmentalOffset}
-                    options = {options}
-                    selectOption = {props.setEnvironmentalOffset}
-                    disabled = {props.darknessDetection === "ON" && props.lights ? false : true}
+                    ref={darknessRef}
+                    default={props.environmentalOffset}
+                    options={options}
+                    selectOption={props.setEnvironmentalOffset}
+                    disabled={props.darknessDetection === "ON" && lights ? false : true}
                 ></GenericDropdown>
             </div>
-            <div className = "card-dropdown" id = "darkness-dd1" style = {{zIndex: 1}}>
+            <div className="card-dropdown" id="darkness-dd1" style={{zIndex: 1}}>
                 <GenericDropdown
-                    ref = {darknessRef}
-                    default = {props.darknessIntensity}
-                    options = {intensityOptions}
-                    selectOption = {props.setDarknessIntensity}
-                    disabled = {props.darknessDetection === "ON" && props.lights ? false : true}
+                    ref={darknessRef}
+                    default={props.darknessIntensity}
+                    options={intensityOptions}
+                    selectOption={props.setDarknessIntensity}
+                    disabled={props.darknessDetection === "ON" && lights ? false : true}
                 ></GenericDropdown>
             </div>
-            <div className = "card-dropdown" id = "darkness-dd2" style = {{zIndex: 0}}>
+            <div className="card-dropdown" id="darkness-dd2" style={{zIndex: 0}}>
                 <GenericDropdown
-                    ref = {darknessRef}
-                    default = {props.darkThreshold}
-                    options = {options}
-                    selectOption = {props.setDarkThreshold}
-                    disabled = {props.darknessDetection === "ON" && props.lights ? false : true}
+                    ref={darknessRef}
+                    default={props.darkThreshold}
+                    options={options}
+                    selectOption={props.setDarkThreshold}
+                    disabled={props.darknessDetection === "ON" && lights ? false : true}
                 ></GenericDropdown>
             </div>
         </div>

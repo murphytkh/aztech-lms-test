@@ -8,10 +8,11 @@ import {setRelocation} from "../redux/dashboardUISlice";
 function Relocation(props)
 {
     const dispatch = useDispatch();
-    const relocation = useSelector((state) => state.relocation.value);
 
+    const relocation = useSelector((state) => state.relocation.value);
     const [location, setLocation] = useState("");
 
+    // relocation button functions
     function handleChangeLocation(e)
     {
         setLocation(e.target.value);

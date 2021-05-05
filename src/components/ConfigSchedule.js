@@ -71,6 +71,7 @@ function ConfigSchedule(props)
 
     }, [props.schedule, activity]);
 
+    // config functions
     function setActivityHelper(activity)
     {
         setActivity(activity);
@@ -204,7 +205,7 @@ function ConfigSchedule(props)
             }
             {/* day selector */}
             {dayActive &&
-                <div className = "day-selector">
+                <div className="day-selector">
                     <DaySelectorButton disabled={lights} day={"SUN"} onClick={toggleDay} active={dayActive[0]}></DaySelectorButton>
                     <DaySelectorButton disabled={lights} day={"MON"} onClick={toggleDay} active={dayActive[1]}></DaySelectorButton>
                     <DaySelectorButton disabled={lights} day={"TUE"} onClick={toggleDay} active={dayActive[2]}></DaySelectorButton>

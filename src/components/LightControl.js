@@ -26,6 +26,7 @@ function EnergyConsumption(props)
         setLightOptions(["All Lights"]);
     }, []);
 
+    // button placeholders
     function handleOnButtonClick()
     {
         if (selectedFloor && selectedLights)

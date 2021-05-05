@@ -23,6 +23,7 @@ function ActiveLights(props)
         </tr>
     );
 
+    // button placeholders
     function handleActiveRefresh()
     {
         console.log("active refresh");

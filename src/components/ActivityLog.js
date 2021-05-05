@@ -14,6 +14,7 @@ import RefreshIcon from "../resources/dashboard/icon-refresh-black.svg";
 
 function ActivityLog(props)
 {
+    // comparison functions for sorting table
     const sortTypes = 
     {
         user_descending: (a, b) => a.user.localeCompare(b.user),
@@ -22,15 +23,16 @@ function ActivityLog(props)
         action_ascending: (a, b) => b.action.localeCompare(a.action)
     };
 
-    const [data, setData] = useState([]);
-
     const entriesRef = useRef();
+
+    const [data, setData] = useState([]);
     const [selectedOption, setSelectedOption] = useState("10");
     const [sortingMode, setSortingMode] = useState("user_descending");
     const [currentPage, setCurrentPage] = useState(0);
     const [lastPage, setLastPage] = useState(0);
     const [displayLength, setDisplayLength] = useState([]);
 
+    // currently displayed entries
     let activityList = data.length ? (
         [].concat(data)
         .sort(sortTypes[sortingMode])
@@ -44,6 +46,7 @@ function ActivityLog(props)
 
     let pageListHelper = [];
 
+    // update display of pagination controls
     for (var i = 0; i < lastPage + 1; ++i)
     {
         if (i === currentPage)
@@ -54,6 +57,7 @@ function ActivityLog(props)
             pageListHelper.push(new PageObject(i, false, "...", "default", ""));
     }
 
+    // render pagination controls
     let pageList = pageListHelper.length &&
     pageListHelper
     .slice(0).reverse()
@@ -77,6 +81,7 @@ function ActivityLog(props)
         setLastPage(0);
     }, []);
 
+    // button functions
     function handleActivityLogRefresh()
     {
         console.log("activity log refresh");
@@ -97,16 +102,20 @@ function ActivityLog(props)
         setSelectedOption(option);
     }
 
+    // sorting toggles
     function handleUserClick()
     {
-        sortingMode === "user_descending" ? setSortingMode("user_ascending") : setSortingMode("user_descending");
+        sortingMode === "user_descending" ? setSortingMode("user_ascending") : 
+                            setSortingMode("user_descending");
     }
 
     function handleActionClick()
     {
-        sortingMode === "action_descending" ? setSortingMode("action_ascending") : setSortingMode("action_descending");
+        sortingMode === "action_descending" ? setSortingMode("action_ascending") : 
+                            setSortingMode("action_descending");
     }
 
+    // pagination controls functions
     function handlePrevClick()
     {
         if (currentPage !== 0)

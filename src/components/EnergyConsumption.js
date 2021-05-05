@@ -20,12 +20,13 @@ function EnergyConsumption(props)
     // 1D, 5D, 1M, 1Y, 3Y
     const [currDisplayOption, setCurrDisplayOption] = useState("1D");
 
+    // options for viewing graph
     const optionMap = optionText.map(option =>
         <EnergyConsumptionOption
-            key = {option}
-            text = {option}
-            curr = {currDisplayOption}
-            set = {setCurrDisplayOption}
+            key={option}
+            text={option}
+            curr={currDisplayOption}
+            set={setCurrDisplayOption}
         />
     );
 
