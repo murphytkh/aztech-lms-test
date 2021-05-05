@@ -48,7 +48,6 @@ function DashboardPhotosensor(props)
         <div className="photosensor-page">
             {/* cards */}
             <PhotosensorDarkness
-                lights={lights}
                 darknessDetection={darknessDetection}
                 environmentalOffset={environmentalOffset}
                 darknessIntensity={darknessIntensity}
@@ -59,7 +58,6 @@ function DashboardPhotosensor(props)
                 setDarknessDetection={setDarknessDetection}
             />
             <PhotosensorBrightness
-                lights={lights}
                 brightnessDetection={brightnessDetection}
                 lightingOffset={lightingOffset}
                 brightnessIntensity={brightnessIntensity}
