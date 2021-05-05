@@ -13,7 +13,10 @@ current task:
 - api calls from backend
 
 redux
-- dashboard photosensor
+- threejs scene
+    - utility functions are only used in the main
+      component, use redux to store stuff for the
+      top level sub components
 
 4 - 1 from cny - 1 from exam -1 from hackathon
 

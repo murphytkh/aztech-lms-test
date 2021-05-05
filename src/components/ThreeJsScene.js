@@ -42,9 +42,9 @@ const Outline = ({children}) =>
     const [selected, set] = useState([]);
 
     return(
-        <context.Provider value = {set}>
+        <context.Provider value={set}>
             {children}
-            <Effects ref = {composer} selected = {selected} />
+            <Effects ref={composer} selected={selected} />
         </context.Provider>
     );
 };

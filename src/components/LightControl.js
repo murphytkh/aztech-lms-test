@@ -1,6 +1,7 @@
 import "../resources/css/view-light-control.css";
 
 import React, {useState, useEffect, useRef} from "react";
+import {useSelector} from "react-redux";
 
 import GenericDropdown from "./GenericDropdown";
 
@@ -13,8 +14,8 @@ function EnergyConsumption(props)
 {
     const ddRef = useRef();
 
-    const [floorOptions, setFloorOptions] = useState([]);
-    const [lightOptions, setLightOptions] = useState([]);
+    const levels = useSelector((state) => state.levels.value);
+    const lights = useSelector((state) => state.lights.value);
 
     const [selectedFloor, setSelectedFloor] = useState("");
     const [selectedLights, setSelectedLights] = useState("");
@@ -22,8 +23,7 @@ function EnergyConsumption(props)
     useEffect(() =>
     {
         // simulate getting data  
-        setFloorOptions(["Level 1-1", "Level 2-1", "Level 3-1"]);
-        setLightOptions(["All Lights"]);
+
     }, []);
 
     // button placeholders
@@ -72,13 +72,13 @@ function EnergyConsumption(props)
             <h1 className="light-control-header" id="header2">LIGHTING CONTROL</h1>
             <h1 className="light-control-header" id="header3">ADMIN CONTROL</h1>
             {/* dropdown lists */}
-            {floorOptions && lightOptions &&
+            {levels && lights &&
                 <div className="light-control-dd">
                     <div className="light-control-dd0" style={{zIndex: 10}}>
                         <GenericDropdown
                             ref={ddRef}
                             default={selectedFloor}
-                            options={floorOptions}
+                            options={levels}
                             selectOption={setSelectedFloor}
                             disabled={false}
                         ></GenericDropdown>
@@ -87,7 +87,7 @@ function EnergyConsumption(props)
                         <GenericDropdown
                             ref={ddRef}
                             default={selectedLights}
-                            options={lightOptions}
+                            options={lights}
                             selectOption={setSelectedLights}
                             disabled={selectedFloor === ""}
                         ></GenericDropdown>
