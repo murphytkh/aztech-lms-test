@@ -15,7 +15,7 @@ function ConfigBrightnessInput(props)
 
     useEffect(() => 
     {    
-        // really dirty
+        // really dirty (hack to get size to work on resize)
         window.addEventListener("resize", handleResize);
     
         return () => {window.removeEventListener("resize", handleResize);};

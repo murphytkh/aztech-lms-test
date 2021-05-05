@@ -9,19 +9,20 @@ import React from "react";
 
 function TableSortButton(props)
 {
+    // toggles up or down
     return(
-        <div className = "tablesort-btn" onClick = {props.onClick}>
+        <div className="tablesort-btn" onClick={props.onClick}>
             <img
-                alt = ""
-                src = {UpArrow}
-                className = "tablesort-up"
-                id = {props.sort === 1 ? "tablesort-on" : "tablesort-off"}
+                alt=""
+                src={UpArrow}
+                className="tablesort-up"
+                id={props.sort === 1 ? "tablesort-on" : "tablesort-off"}
             ></img>
             <img
-                alt = ""
-                src = {DownArrow}
-                className = "tablesort-down"
-                id = {props.sort === 2 ? "tablesort-on" : "tablesort-off"}
+                alt=""
+                src={DownArrow}
+                className="tablesort-down"
+                id={props.sort === 2 ? "tablesort-on" : "tablesort-off"}
             ></img>
         </div>
     );

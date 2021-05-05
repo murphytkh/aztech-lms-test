@@ -13,8 +13,8 @@ const GenericDropdown = forwardRef((props, ref) =>
     
     const optionsList = props.options.map(option =>
         <li 
-             key = {option}
-             onClick = {() => {
+             key={option}
+             onClick={() => {
                                 props.selectOption(option);
                                 setChoice(option);
                                 setIsOpen(false);
@@ -24,6 +24,7 @@ const GenericDropdown = forwardRef((props, ref) =>
         </li>
     );
 
+    // expose function to set choice to blank
     useImperativeHandle(ref, () => ({
         clearChoice()
         {
@@ -54,15 +55,15 @@ const GenericDropdown = forwardRef((props, ref) =>
 
     return(
         <div 
-            ref = {node} 
-            className = "dropdown" 
-            id = {props.disabled ? "disabled" : ""}
-            onClick = {handleDropdownClick}
+            ref={node} 
+            className="dropdown" 
+            id={props.disabled ? "disabled" : ""}
+            onClick={handleDropdownClick}
         >
             {/* current choice */}
-            <h1 id = {props.disabled ? "disabled" : ""}>{choice}</h1>
+            <h1 id={props.disabled ? "disabled" : ""}>{choice}</h1>
             {/* up/down arrow */}
-            <img alt = "" src = {isOpen ? UpArrow : DownArrow}></img>
+            <img alt="" src={isOpen ? UpArrow : DownArrow}></img>
             {/* dropdown list */}
             {isOpen && <ul>{optionsList}</ul>}
         </div>

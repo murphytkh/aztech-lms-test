@@ -11,11 +11,13 @@ import ConfigCalendar from "./ConfigCalendar";
 
 function DashboardConfig(props)
 {
+    // redux store
     const area = useSelector((state) => state.selectedArea.value);
     const block = useSelector((state) => state.selectedBlock.value);
     const level = useSelector((state) => state.selectedLevel.value);
     const selectedLights = useSelector((state) => state.selectedLights.value);
 
+    // config state
     const [motionDetection, setMotionDetection] = useState("ON");
     const [motionSensitivity, setMotionSensitivity] = useState("Medium-High");
     const [sync, setSync] = useState("ON");

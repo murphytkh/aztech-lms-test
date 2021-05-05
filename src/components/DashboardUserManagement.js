@@ -12,6 +12,7 @@ import UserManagementGroup from "./UserManagementGroup";
 
 const colours = ["#65B4C1", "#6A59E6"];
 
+// classes for easier data handling
 class User
 {
     constructor(name, type, lastLoginDate, lastLoginTime, active, userIcon)
@@ -40,7 +41,7 @@ class Group
 
 function DashboardUserManagement(props)
 {
-    const location = useSelector((state) => state.selectedLocation.value);
+    //const location = useSelector((state) => state.selectedLocation.value);
     const block = useSelector((state) => state.selectedBlock.value);
 
     const [addGroupOpen, setAddGroupOpen] = useState(false);
@@ -49,16 +50,17 @@ function DashboardUserManagement(props)
     //const [userArray, setUserArray] = useState([]);
     const [groupArray, setGroupArray] = useState([]);
 
+    // render groups
     const groupList = groupArray.map(group =>
         <UserManagementGroup
-            key = {group.name}
-            name = {group.name}
-            description = {group.description}
-            blocks = {group.blocks}
-            users = {group.users}
-            headerIcon = {group.headerIcon}
-            headerColour = {group.headerColour}
-            delete = {deleteGroup}
+            key={group.name}
+            name={group.name}
+            description={group.description}
+            blocks={group.blocks}
+            users={group.users}
+            headerIcon={group.headerIcon}
+            headerColour={group.headerColour}
+            delete={deleteGroup}
         />
     );
 
@@ -86,6 +88,7 @@ function DashboardUserManagement(props)
         setGroupArray([group0, group1]);
     }, []);
 
+    // button functions
     function toggleAddGroupOpen(open)
     {
         setAddGroupOpen(open);
@@ -103,12 +106,7 @@ function DashboardUserManagement(props)
     function createGroup(name)
     {
         let groups = [...groupArray];
-        var tmp = new Group(name, 
-                            "AZ Test", 
-                            [],
-                            [],
-                            HDBIcon,
-                            colours[1]);
+        var tmp = new Group(name, "AZ Test", [], [], HDBIcon,colours[1]);
         groups.push(tmp);
         setGroupArray(groups);
     }
@@ -139,25 +137,25 @@ function DashboardUserManagement(props)
     function placeholder() {}
 
     return(
-        <div className = "user-management-page">
+        <div className="user-management-page">
             {/* add group and add user cards */}
-            <div className = "add-container">
+            <div className="add-container">
                 <UserManagementAddGroup
-                    enabled = {block}
-                    open = {addGroupOpen}
-                    setOpen = {toggleAddGroupOpen}
-                    add = {createGroup}
+                    enabled={block}
+                    open={addGroupOpen}
+                    setOpen={toggleAddGroupOpen}
+                    add={createGroup}
                 />
                 <UserManagementAddUser
-                    enabled = {block}
-                    open = {addUserOpen}
-                    setOpen = {toggleAddUserOpen}
-                    userTypes = {["Operator", "Area Admin"]}
+                    enabled={block}
+                    open={addUserOpen}
+                    setOpen={toggleAddUserOpen}
+                    userTypes={["Operator", "Area Admin"]}
                     add={addUser}
                 />
             </div>
             {/* group cards */}
-            {location && groupList}
+            {groupList}
             {/* buttons */}
             <div 
                 className="user-management-btn"

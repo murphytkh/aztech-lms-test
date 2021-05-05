@@ -41,6 +41,7 @@ function EditProfile(props)
         setLastTypeIndex(props.userTypes.length - 1);
     }, [props.userTypes]);
 
+    // input field update functions
     function handleImageChange()
     {
         console.log("image select clicked");
@@ -91,6 +92,7 @@ function EditProfile(props)
         setShowConfirmPassword(!showConfirmPassword);
     }
 
+    // role selection
     function handleUpArrow()
     {
         if (position === "" || currTypeIndex === lastTypeIndex)

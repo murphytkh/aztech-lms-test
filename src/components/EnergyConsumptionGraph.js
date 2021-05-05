@@ -8,6 +8,7 @@ var axisStyle = {
     fontWeight: "400",
 };
 
+// indicator ranges
 function domainPicker(option)
 {
     switch(option)
@@ -94,6 +95,7 @@ function EnergyConsumptionGraph(props)
     (
         <ResponsiveContainer>
             <AreaChart>
+                {/* colours for graphs */}
                 <defs>
                     <linearGradient id="presentColour" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="25%" stopColor="#2CD9C5" stopOpacity={0.15}/>
@@ -104,68 +106,69 @@ function EnergyConsumptionGraph(props)
                         <stop offset="100%" stopColor="#8C54FF" stopOpacity={0}/>
                     </linearGradient>
                 </defs>
-                <CartesianGrid stroke = "#ccc" strokeDasharray = "5 5"/>
+                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                {/* axes */}
                 <XAxis
-                    dataKey = "t"
-                    style = {axisStyle}
-                    axisLine = {false}
-                    tickLine = {false}
-                    type = "number"
-                    domain = {domainPicker(props.option)}
-                    ticks = {tickPicker(props.option)}
-                    tickFormatter = {formatterPicker(props.option)}
+                    dataKey="t"
+                    style={axisStyle}
+                    axisLine={false}
+                    tickLine={false}
+                    type="number"
+                    domain={domainPicker(props.option)}
+                    ticks={tickPicker(props.option)}
+                    tickFormatter={formatterPicker(props.option)}
                 >
                     <Label
-                        value = {xLabelPicker(props.option)}
-                        offset = {-5}
-                        position = "bottom"
-                        fontSize = "max(0.7vw, 10.08px)"
-                        fill = "#6D6E71"
+                        value={xLabelPicker(props.option)}
+                        offset={-5}
+                        position="bottom"
+                        fontSize="max(0.7vw, 10.08px)"
+                        fill="#6D6E71"
                     />
                 </XAxis>
                 <YAxis 
-                    style = {axisStyle}
-                    stroke = "#E0E0E0"
-                    tick = {{fill: "#6D6E71"}}
+                    style={axisStyle}
+                    stroke="#E0E0E0"
+                    tick={{fill: "#6D6E71"}}
                 >
                     <Label
-                        value = "(KwH)"
-                        offset = {-25}
-                        position = "left"
-                        fontSize = "max(0.7vw, 10.08px)"
-                        fill = "#6D6E71"
+                        value="(KwH)"
+                        offset={-25}
+                        position="left"
+                        fontSize="max(0.7vw, 10.08px)"
+                        fill="#6D6E71"
                     />
                 </YAxis>
+                {/* custom rollover tooltip */}
                 <Tooltip 
-                    wrapperStyle = {{
+                    wrapperStyle={{
                         color: "#6D6E71",
                         fontSize: "max(0.572vw, 8.247px)",
                         fontWeight: "400",
                     }}
                     labelFormatter={index => ""}
                 />
+                {/* custom graph fill */}
                 <Area 
-                    data = {dataPicker(props.data, props.option)[0]} 
-                    type = "line" dataKey = "Present" 
-                    stroke = "#2CD9C5" fillOpacity = {1} 
-                    fill = "url(#presentColour)" 
-                    dot = {{stroke: "#2CD9C5", strokeWidth: 2, fill: "#FFFFFF"}} 
+                    data={dataPicker(props.data, props.option)[0]} 
+                    type="line" dataKey="Present" 
+                    stroke="#2CD9C5" fillOpacity={1} 
+                    fill="url(#presentColour)" 
+                    dot={{stroke: "#2CD9C5", strokeWidth: 2, fill: "#FFFFFF"}} 
                 />
                 <Area 
-                    data = {dataPicker(props.data, props.option)[1]} 
-                    type = "line" dataKey = "Past" 
-                    stroke = "#8C54FF" fillOpacity = {1} 
-                    fill = "url(#pastColour)" 
-                    dot = {{stroke: "#8C54FF", strokeWidth: 2, fill: "#FFFFFF"}} 
+                    data={dataPicker(props.data, props.option)[1]} 
+                    type="line" dataKey="Past" 
+                    stroke="#8C54FF" fillOpacity={1} 
+                    fill="url(#pastColour)" 
+                    dot={{stroke: "#8C54FF", strokeWidth: 2, fill: "#FFFFFF"}} 
                 />
             </AreaChart>
         </ResponsiveContainer>
     )
 
     return(
-        <div className = {props.class}>
-            {props.data && props.option && graph}
-        </div>
+        <div className={props.class}>{props.data && props.option && graph}</div>
     );
 }
 

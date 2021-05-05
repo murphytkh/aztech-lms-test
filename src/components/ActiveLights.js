@@ -15,7 +15,7 @@ function ActiveLights(props)
     const [data, setData] = useState([]);
 
     const activeLightsList = data.map(light =>
-        <tr key = {light.id}>
+        <tr key={light.id}>
             <td className="id"> {light.id} - {light.detections}</td>
             <td className="date"> {light.date} </td>
             <td className="time"> {light.time} </td>

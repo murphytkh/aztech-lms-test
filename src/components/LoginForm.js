@@ -46,7 +46,7 @@ function LoginForm(props)
     return (
         <div>
             {/* backgorund image */}
-            <img alt="" src = {BG} className="main-bg"></img>
+            <img alt="" src={BG} className="main-bg"></img>
             {/* footer */}
             <div className="footer">
                 <h1 className="footer-center">{copyright}</h1>

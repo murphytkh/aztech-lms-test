@@ -38,7 +38,7 @@ function EnergyConsumption(props)
         <div className="card-container" id="medium">
             {/* header */}
             <div className="card-header" id="energy-consumption">
-                <h1 className = "header-text">ENERGY CONSUMPTION</h1>
+                <h1 className="header-text">ENERGY CONSUMPTION</h1>
                 <img alt="" src={EnergyIcon} className="header-icon"></img>
             </div>
             {/* present, past labels */}

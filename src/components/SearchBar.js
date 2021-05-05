@@ -14,17 +14,17 @@ function SearchBar(props)
     }
 
     return(
-        <div className = "searchbar">
+        <div className="searchbar">
             {/* icon */}
-            <img alt = "" src = {SearchIcon}></img>
+            <img alt="" src={SearchIcon}></img>
             {/* input */}
             <input
-                type = "text"
-                id = "searchbar"
-                name = "search"
-                defaultValue = {search}
-                placeholder = "SEARCH"
-                onChange = {handleChangeSearch}
+                type="text"
+                id="searchbar"
+                name="search"
+                defaultValue={search}
+                placeholder="SEARCH"
+                onChange={handleChangeSearch}
              ></input>
         </div>
     );

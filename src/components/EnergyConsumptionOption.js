@@ -9,9 +9,9 @@ function EnergyConsumptionOption(props)
 
     return(
         <div 
-            className = "btn"
-            id = {props.text === props.curr ? "selected" : ""}
-            onClick = {handleClick}
+            className="btn"
+            id={props.text === props.curr ? "selected" : ""}
+            onClick={handleClick}
         >
             {props.text}
         </div>

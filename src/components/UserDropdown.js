@@ -20,8 +20,9 @@ function UserDropdown(props)
     const [isOpen, setIsOpen] = useState(false);
     const [lastLogin, setLastLogin] = useState(null);
 
+    // list of users
     const userList = props.userList.map(user =>
-        <li key = {user.name} onClick = {handleClick.bind(this, user.name)}>
+        <li key={user.name} onClick={handleClick.bind(this, user.name)}>
             <h1 className="name">{user.name}</h1>
             <h2 className="role">{user.role}</h2>
             <img alt="" src={user.image}></img>
@@ -61,6 +62,7 @@ function UserDropdown(props)
         dispatch(setEditProfile(!editProfile));
     }
 
+    // persistent optons other than list of users
     const openTemplate =
     (
         <ul>

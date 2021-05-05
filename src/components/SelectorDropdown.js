@@ -10,10 +10,11 @@ const SelectorDropdown = forwardRef((props, ref) =>
     const [choice, setChoice] = useState(props.initial);
     const [isOpen, setIsOpen] = useState(false);
 
+    // dynamically generated list of elements
     const optionsList = props.options && props.options.map((option, i) =>
         <li 
-             key = {i}
-             onClick = {() => {
+             key={i}
+             onClick={() => {
                                 props.selectOption(option);
                                 setChoice(option);
                                 setIsOpen(false);
@@ -23,6 +24,7 @@ const SelectorDropdown = forwardRef((props, ref) =>
         </li>
     );
 
+    // expose function to set choice to blank
     useImperativeHandle(ref, () => ({
         clearChoice()
         {
@@ -30,6 +32,7 @@ const SelectorDropdown = forwardRef((props, ref) =>
         }
     }));
 
+    // events
     const handleClickOutside = e => 
     {
         if (node.current.contains(e.target))
@@ -50,10 +53,10 @@ const SelectorDropdown = forwardRef((props, ref) =>
     }, []);
 
     return(
-        <div ref = {node} className = "selector-container" onClick = {handleDropdownClick}>
-            <h1 className = "title">{props.title}</h1>
-            <h1 className = "choice">{choice}</h1>
-            <img  alt = ""src = {isOpen ? UpArrow : DownArrow} className = "arrow"></img>
+        <div ref={node} className="selector-container" onClick={handleDropdownClick}>
+            <h1 className="title">{props.title}</h1>
+            <h1 className="choice">{choice}</h1>
+            <img  alt=""src={isOpen ? UpArrow : DownArrow} className="arrow"></img>
             {isOpen && props.options && <ul>{optionsList}</ul>}
         </div>
     );

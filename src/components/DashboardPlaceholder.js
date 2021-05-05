@@ -5,7 +5,7 @@ import React from "react";
 function DashboardLightCycle(props)
 {
     return(
-        <div className = "dashboard-page-placeholder">
+        <div className="dashboard-page-placeholder">
             PLACEHOLDER
         </div>
     );

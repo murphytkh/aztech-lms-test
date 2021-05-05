@@ -1,6 +1,6 @@
 import "../resources/css/dashboard-notification.css";
 
-import React, {useState, useEffect, useRef, useImperativeHandle, forwardRef} from "react";
+import React, {useState, useEffect, useRef, forwardRef} from "react";
 import DefaultIcon from "../resources/notifications/notification-icon.png";
 import AlertIcon from "../resources/notifications/notification-alert-icon.png";
 import NotificationPoylgon from "../resources/notifications/notification-polygon.png";
@@ -15,27 +15,22 @@ const Notification = forwardRef((props, ref) =>
 
     function placeholder() {}
     
+    // list of notifications
     const notificationsList = notifications.map(notif =>
-        <li key = {notif.title} className = {notif.rectify === "true" ? "default" : "clear"}>
+        <li key={notif.title} className={notif.rectify === "true" ? "default" : "clear"}>
             {/* icon */}
-            <img alt = "" src = {notif.rectify === "true" ? RectifyIcon : ClearIcon}></img>
+            <img alt="" src={notif.rectify === "true" ? RectifyIcon : ClearIcon}></img>
             {/* text */}
             <h1>{notif.title}</h1>
             <h2>{notif.description}</h2>
             {/* button */}
-            <div className = "btn" onClick = {notif.rectify === "true" ? handleCheckButton : placeholder}>
+            <div className="btn" onClick={notif.rectify === "true" ? handleCheckButton : placeholder}>
                 {notif.rectify === "true" ? "CHECK" : "RECTIFIED"}
             </div>
         </li>
     );
 
-    useImperativeHandle(ref, () => ({
-        placeholderFunc()
-        {
-            console.log("why are you here");
-        }
-    }));
-
+    // check for clicking outside of dropdown
     useEffect(() => 
     {    
         document.addEventListener("mousedown", handleClickOutside);
@@ -69,12 +64,12 @@ const Notification = forwardRef((props, ref) =>
 
     const openTemplate =
     (
-        <div className = "dashboard-notification-dd">
-            <img alt = "" src = {NotificationPoylgon} className = "polygon" ></img>
+        <div className="dashboard-notification-dd">
+            <img alt="" src={NotificationPoylgon} className="polygon" ></img>
             {/* top of dropdown list (notification text) */}
-            <div className = "top">
+            <div className="top">
                 <h1>NOTIFICATIONS</h1>
-                <div className = "btn" onClick = {handleClearButton}>CLEAR</div>
+                <div className="btn" onClick={handleClearButton}>CLEAR</div>
             </div>
             {/* list of items */}
             <ul>{notificationsList}</ul>
@@ -82,16 +77,16 @@ const Notification = forwardRef((props, ref) =>
     );
 
     return(
-        <div ref = {node}>
+        <div ref={node}>
             {/* main button */}
-            <div className = "dashboard-notification">
+            <div className="dashboard-notification">
                 <img
-                    alt = ""
-                    src = {notifications.length ? AlertIcon : DefaultIcon}
-                    onClick = {handleNotificationClick}
+                    alt=""
+                    src={notifications.length ? AlertIcon : DefaultIcon}
+                    onClick={handleNotificationClick}
                 ></img>
                 {/* number of pending notifications */}
-                {notifications.length > 0 && <div className = "number">{notifications.length}</div>}
+                {notifications.length > 0 && <div className="number">{notifications.length}</div>}
             </div>
             {/* dropdown */}
             {isOpen && openTemplate}

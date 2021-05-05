@@ -14,14 +14,14 @@ function SidebarIcon(props)
 
     return(
         <div
-            title = {props.tooltip} className = "icon" onClick = {handleClick}>
+            title={props.tooltip} className="icon" onClick={handleClick}>
             <img 
-                alt = "" 
-                src = {location.pathname === props.path ? props.active : props.default} 
-                className = "base"
+                alt="" 
+                src={location.pathname === props.path ? props.active : props.default} 
+                className="base"
             ></img>
             {location.pathname === props.path &&
-            <img alt = "" src = {IconBG} className = "bg"></img>}
+            <img alt="" src={IconBG} className="bg"></img>}
         </div>
     );
 }

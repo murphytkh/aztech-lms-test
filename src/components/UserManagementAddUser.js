@@ -31,6 +31,7 @@ function UserManagementAddUser(props)
         setLastTypeIndex(props.userTypes.length - 1);
     }, [props.userTypes]);
 
+    // events
     function handleOpenMenu()
     {
         props.setOpen(!props.open);
@@ -61,6 +62,7 @@ function UserManagementAddUser(props)
         setConfirmPassword(e.target.value);
     }
 
+    // selection for role
     function handleUpArrow()
     {
         if (usertype === "" || currTypeIndex === lastTypeIndex)
@@ -108,120 +110,120 @@ function UserManagementAddUser(props)
     }
 
     return(
-        <div className = "user-management-add-user">
+        <div className="user-management-add-user">
             {/* main card */}
-            <div className = "user-management-add"  id = {props.open ? "open" : ""}>
+            <div className="user-management-add"  id={props.open ? "open" : ""}>
                 {/* icon */}
-                <img alt = "" src = {AddUserIcon} className = "icon"></img>
+                <img alt="" src={AddUserIcon} className="icon"></img>
                 {/* title */}
-                <h1 className = "big">Register New User</h1>
+                <h1 className="big">Register New User</h1>
                 {/* text */}
-                <h1 className = "small">
+                <h1 className="small">
                     Register new user to control the smart system light for your estate.
                 </h1>
                 {/* button */}
-                <div className = "btn" id = {props.enabled ? "" : "disabled"} onClick = {handleOpenMenu}>
-                    <img alt = "" src = {ButtonIcon}></img>
+                <div className="btn" id={props.enabled ? "" : "disabled"} onClick={handleOpenMenu}>
+                    <img alt="" src={ButtonIcon}></img>
                     <h1>Register New User</h1>
                 </div>
             </div>
             {/* dropdown menu */}
             {props.open &&
-                <div className = "user-management-input">
-                    <form onSubmit = {handleSubmit}>
+                <div className="user-management-input">
+                    <form onSubmit={handleSubmit}>
                         <input
-                            type = "text"
-                            id = "user-management-username"
-                            className = "field"
-                            name = "username"
-                            value = {username}
-                            placeholder = "USER NAME"
-                            onChange = {handleChangeUsername}
+                            type="text"
+                            id="user-management-username"
+                            className="field"
+                            name="username"
+                            value={username}
+                            placeholder="USER NAME"
+                            onChange={handleChangeUsername}
                         ></input>
-                        <div style = {{position: "relative"}}>
+                        <div style={{position: "relative"}}>
                             <input
-                                style = {{pointerEvents: "none"}}
-                                type = "text"
-                                id = "user-management-user-type"
-                                className = "field"
-                                name = "user-type"
-                                value = {usertype}
-                                placeholder = "USER TYPE"
-                                onChange = {placeholder}
+                                style={{pointerEvents: "none"}}
+                                type="text"
+                                id="user-management-user-type"
+                                className="field"
+                                name="user-type"
+                                value={usertype}
+                                placeholder="USER TYPE"
+                                onChange={placeholder}
                             ></input>
                             {/* user type select buttons */}
                             <img
-                                alt = ""
-                                src = {UpArrowIcon}
-                                className = "arrow"
-                                id = "up"
-                                onClick = {handleUpArrow}
+                                alt=""
+                                src={UpArrowIcon}
+                                className="arrow"
+                                id="up"
+                                onClick={handleUpArrow}
                             ></img>
                             <img
-                                alt = ""
-                                src = {DownArrowIcon}
-                                className = "arrow"
-                                id = "down"
-                                onClick = {handleDownArrow}
+                                alt=""
+                                src={DownArrowIcon}
+                                className="arrow"
+                                id="down"
+                                onClick={handleDownArrow}
                             ></img>
                         </div>
                         <input
-                            type = "text"
-                            id = "user-management-email"
-                            className = "field"
-                            name = "email"
-                            value = {email}
-                            placeholder = "EMAIL"
-                            onChange = {handleChangeEmail}
+                            type="text"
+                            id="user-management-email"
+                            className="field"
+                            name="email"
+                            value={email}
+                            placeholder="EMAIL"
+                            onChange={handleChangeEmail}
                         ></input>
                         <input
-                            type = "text"
-                            id = "user-management-contact-number"
-                            className = "field"
-                            name = "contact-number"
-                            value = {contactNumber}
-                            placeholder = "CONTACT NUMBER"
-                            onChange = {handleChangeContactNumber}
+                            type="text"
+                            id="user-management-contact-number"
+                            className="field"
+                            name="contact-number"
+                            value={contactNumber}
+                            placeholder="CONTACT NUMBER"
+                            onChange={handleChangeContactNumber}
                         ></input>
-                        <div style = {{position: "relative"}}>
+                        <div style={{position: "relative"}}>
                             <input
-                                type = {showPassword ? "text" : "password"}
-                                id = "user-management-password"
-                                className = "field"
-                                name = "password"
-                                value = {password}
-                                placeholder = "PASSWORD"
-                                onChange = {handleChangePassword}
+                                type={showPassword ? "text" : "password"}
+                                id="user-management-password"
+                                className="field"
+                                name="password"
+                                value={password}
+                                placeholder="PASSWORD"
+                                onChange={handleChangePassword}
                             ></input>
                             {/* show/hide password button */}
                             <img 
-                                alt = "" 
-                                src = {showPassword ? EyeIcon : EyeOffIcon} 
-                                className = "hide"
-                                onClick = {handleTogglePasswordHide}
+                                alt="" 
+                                src={showPassword ? EyeIcon : EyeOffIcon} 
+                                className="hide"
+                                onClick={handleTogglePasswordHide}
                             ></img>
                         </div>
-                        <div style = {{position: "relative"}}>
+                        <div style={{position: "relative"}}>
                             <input
-                                type = {showConfirmPassword ? "text" : "password"}
-                                id = "user-management-confirm-password"
-                                className = "field"
-                                name = "confirm-password"
-                                value = {confirmPassword}
-                                placeholder = "CONFIRM PASSWORD"
-                                onChange = {handleChangeConfirmPassword}
+                                type={showConfirmPassword ? "text" : "password"}
+                                id="user-management-confirm-password"
+                                className="field"
+                                name="confirm-password"
+                                value={confirmPassword}
+                                placeholder="CONFIRM PASSWORD"
+                                onChange={handleChangeConfirmPassword}
                             >
                             </input>
                             {/* show/hide password button */}
                             <img 
-                                alt = "" 
-                                src = {showConfirmPassword ? EyeIcon : EyeOffIcon} 
-                                className = "hide"
-                                onClick = {handleToggleConfirmPasswordHide}
+                                alt="" 
+                                src={showConfirmPassword ? EyeIcon : EyeOffIcon} 
+                                className="hide"
+                                onClick={handleToggleConfirmPasswordHide}
                             ></img>
                         </div>
                         {/* register button */}
-                        <button className = "submit" type = "submit">REGISTER</button>
+                        <button className="submit" type="submit">REGISTER</button>
                     </form>
                 </div>
             }

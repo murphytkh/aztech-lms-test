@@ -8,6 +8,7 @@ import PhotosensorBrightness from "./PhotosensorBrightness";
 
 function DashboardPhotosensor(props)
 {
+    // redux store
     //const location = useSelector((state) => state.selectedLocation.value);
     const area = useSelector((state) => state.selectedArea.value);
     const block = useSelector((state) => state.selectedBlock.value);
