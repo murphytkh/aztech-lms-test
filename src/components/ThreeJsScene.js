@@ -6,7 +6,7 @@ import {Canvas} from "@react-three/fiber";
 
 // redux store
 import store from "../redux/store";
-import {setAdd, setAllLights} from "../redux/threeDataSlice";
+import {setAdd, setDisableHotkeys, setAllLights} from "../redux/threeDataSlice";
 
 // data
 import {useRefState, saveObj, initLight, removeLight, findLightByName, selectLight, 
@@ -60,23 +60,17 @@ function ThreeJsScene(props)
 
     // ui states in redux store
     const add = useSelector((state) => state.add.value);
-
+    
     // overall light data
     const allLights = useSelector((state) => state.allLights.value);
 
-    // wrappers for set functions
+    // wrappers for set functions (if needed)
     function setLights(lights)
     {
         dispatch(setAllLights(lights));
     }
 
-    function setAddMode(mode)
-    {
-        dispatch(setAdd(mode));
-    }
-
     // ui states
-    const [disableHotkeys, setDisableHotkeys] = useRefState(false);
     const [cameraEnabled, setCameraEnabled] = useRefState(true);
     const [editTriggerMode, setEditTriggerMode] = useRefState(false);
     const [phMode, setPhMode] = useState(false);
@@ -136,7 +130,7 @@ function ThreeJsScene(props)
     useEffect(() =>
     {
         setUrl("http://10.1.11.181:8080/resources/");
-        setDisableHotkeys(false);
+        dispatch(setDisableHotkeys(false));
         loadData("default");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -168,7 +162,7 @@ function ThreeJsScene(props)
         clearTriggers(arr, name);
         // update array after removing light and reset hover name
         removeLight(arr, name);
-        deselectLight(name, setLights);
+        deselectLight(name);
         setLights(arr);
         showMsg(name + " removed", 3000, COLOUR.BLACK);
         setLightHover(null);
@@ -228,7 +222,7 @@ function ThreeJsScene(props)
     {
         // set current light name and update highlight status
         setLightHover(name);
-        setLightsProperty([name], "highlight", true, setLights);
+        setLightsProperty([name], "highlight", true);
     }
 
     function lightExit(name)
@@ -241,7 +235,7 @@ function ThreeJsScene(props)
         {
             // if unselected, remove highlight on exit
             if (light.selected !== true)
-                setLightsProperty([name], "highlight", false, setLights);
+                setLightsProperty([name], "highlight", false);
             setLightHover(null);
         }
     }
@@ -280,7 +274,7 @@ function ThreeJsScene(props)
     function selectInBox(selection)
     {
         for (var i = 0; i < selection.length; ++i)
-            selectLight(selection[i].userData.name, setLights);
+            selectLight(selection[i].userData.name);
 
         if (selection.length > 1)
             setEditTriggerMode(false);
@@ -289,7 +283,7 @@ function ThreeJsScene(props)
     // set highlight on given lights
     function setHighlight(selection)
     {
-        selectionBoxHighlight(selection, setLights);
+        selectionBoxHighlight(selection);
     }
 
     // update mode and trigger relevant triggerees
@@ -309,10 +303,10 @@ function ThreeJsScene(props)
             }
     
             triggerees = [...new Set(triggerees)];
-            setLightsProperty(triggerees, "mode", mode, setLights);
+            setLightsProperty(triggerees, "mode", mode);
         }
 
-        setLightsProperty(names, "mode", mode, setLights);
+        setLightsProperty(names, "mode", mode);
         showMsg(mode, 3000, COLOUR.BLACK);
     }
 
@@ -321,7 +315,7 @@ function ThreeJsScene(props)
         var arr = deepCopy(store.getState().allLights.value);
         var names = arr.filter(obj => obj.selected).map(obj => obj.name);
 
-        setLightsProperty(names, "group", group, setLights);
+        setLightsProperty(names, "group", group);
         showMsg("Assigned to " + group, 3000, COLOUR.SUCCESS_GREEN);
     }
 
@@ -329,7 +323,7 @@ function ThreeJsScene(props)
     {
         deselectLights(setLights);
         setCurrGroup(group);
-        selectLightsByProperty("group", group, setLights);
+        selectLightsByProperty("group", group);
     }
 
     // file loading
@@ -376,7 +370,7 @@ function ThreeJsScene(props)
     function toggleAdd()
     {
         let curr = store.getState().add.value;
-        setAddMode(!curr);
+        store.dispatch(setAdd(!curr));
         // set focus on input on switching to add mode
         if (!curr)
         {
@@ -445,7 +439,7 @@ function ThreeJsScene(props)
             cameraEnabled.current &&
             !mouseMoved.current)
         {
-            deselectLights(setLights);
+            deselectLights();
             setEditTriggerMode(false);
         }
 
@@ -463,64 +457,64 @@ function ThreeJsScene(props)
 
     function handleFocus()
     {
-        setDisableHotkeys(true);
+        dispatch(setDisableHotkeys(true));
     }
 
     function handleBlur()
     {
-        setDisableHotkeys(false);
+        dispatch(setDisableHotkeys(false));
     }
 
     useKeyUp(" ", () => {
-        if (!disableHotkeys.current) toggleAdd();
+        if (!store.getState().disableHotkeys.value) toggleAdd();
     });
 
     useKeyUp("1", () => {
-        if (!disableHotkeys.current)
+        if (!store.getState().disableHotkeys.value)
         {
-            deselectLights(setLights);
-            selectLightsByProperty("group", "0", setLights);
+            deselectLights();
+            selectLightsByProperty("group", "0");
         }
     });
 
     useKeyUp("2", () => {
-        if (!disableHotkeys.current)
+        if (!store.getState().disableHotkeys.value)
         {
-            deselectLights(setLights);
-            selectLightsByProperty("group", "1", setLights);
+            deselectLights();
+            selectLightsByProperty("group", "1");
         }
     });
 
     useKeyUp("3", () => {
-        if (!disableHotkeys.current)
+        if (!store.getState().disableHotkeys.value)
         {
-            deselectLights(setLights);
-            selectLightsByProperty("group", "2", setLights);
+            deselectLights();
+            selectLightsByProperty("group", "2");
         }
     });
 
     useKeyUp("q", () => {
-        if (!disableHotkeys.current) loadData("c1basement1");
+        if (!store.getState().disableHotkeys.value) loadData("c1basement1");
     });
 
     useKeyUp("w", () => {
-        if (!disableHotkeys.current) loadData("c1basement2");
+        if (!store.getState().disableHotkeys.value) loadData("c1basement2");
     });
 
     useKeyUp("g", () => {
-        if (!disableHotkeys.current) setShowGroups(!showGroups.current);
+        if (!store.getState().disableHotkeys.value) setShowGroups(!showGroups.current);
     });
 
     useKeyUp("t", () => {
-        if (!disableHotkeys.current) setShowTriggers(!showTriggers.current);
+        if (!store.getState().disableHotkeys.value) setShowTriggers(!showTriggers.current);
     });
 
     useKeyUp("s", () => {
-        if (!disableHotkeys.current) saveScene(sceneName.current);
+        if (!store.getState().disableHotkeys.value) saveScene(sceneName.current);
     });
 
     useKeyUp("n", () => {
-        if (!disableHotkeys.current) setShowNames(!showNames.current);
+        if (!store.getState().disableHotkeys.value) setShowNames(!showNames.current);
     });
 
     useKeyDown("Control", () => {
@@ -546,8 +540,8 @@ function ThreeJsScene(props)
         {
             if (!editTriggerMode.current)
             {
-                deselectLights(setLights);
-                selectLight(light, setLights);
+                deselectLights();
+                selectLight(light);
                 moveToLight(light);
             }
             else
@@ -612,10 +606,10 @@ function ThreeJsScene(props)
             if (light)
             {
                 if (light.selected)
-                    deselectLight(light.name, setLights);
+                    deselectLight(light.name);
                 else if (!add)
                 {
-                    selectLight(light.name, setLights);
+                    selectLight(light.name);
                     setEditTriggerMode(false);
                 }
             }
@@ -628,7 +622,6 @@ function ThreeJsScene(props)
             {/* ui */}
             <UIManager 
                 // ui state tracking
-                add={add}
                 ph={phMode}
                 group={showGroups.current}
                 // buttons
@@ -669,7 +662,6 @@ function ThreeJsScene(props)
             <Canvas onCreated={state => state.gl.setClearColor(0xC0C0C0)}>
                 <Camera 
                     ref={cameraRef}
-                    disableHotkeys={disableHotkeys} 
                     controlsEnabled={!add && cameraEnabled.current} 
                 />
                 <RaycastManager plane={planeRef} setPoint={setPoint} />

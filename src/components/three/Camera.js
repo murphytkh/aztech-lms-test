@@ -5,6 +5,7 @@ import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
 import {useKeyUp} from "./Input";
 import {Rad} from "../Utility";
+import store from "../../redux/store";
 
 let controls;
 
@@ -28,7 +29,7 @@ const Camera = React.forwardRef((props, ref) =>
 
     // key input
     useKeyUp("r", () => {
-        if (!props.disableHotkeys.current) moveCamera(0.0, 30.4, 0.0);
+        if (!store.getState().disableHotkeys.value) moveCamera(0.0, 30.4, 0.0);
     });
 
     // initialise camera

@@ -25,7 +25,6 @@ function UIManager(props)
             */}
             {/* light name input box */}
             <UILightName
-                add = {props.add}
                 value = {props.currLightName}
                 onChange = {props.setCurrLightName}
                 onFocus = {props.focus}

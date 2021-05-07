@@ -129,7 +129,7 @@ export function findLightByName(arr, val)
     return arr.find(obj => obj.name === val);
 }
 
-export function selectLight(name, set)
+export function selectLight(name,)
 {
     var arr = deepCopy(store.getState().allLights.value);
     var light = findLightByName(arr, name);
@@ -157,7 +157,7 @@ export function clearTriggers(arr, name)
     });
 }
 
-export function deselectLights(set)
+export function deselectLights()
 {
     var arr = deepCopy(store.getState().allLights.value);
 
@@ -169,7 +169,7 @@ export function deselectLights(set)
     store.dispatch(setAllLights(arr));
 }
 
-export function deselectLight(name, set)
+export function deselectLight(name)
 {
     var arr = deepCopy(store.getState().allLights.value);
     var light = findLightByName(arr, name);
@@ -184,7 +184,7 @@ export function deselectLight(name, set)
 
 // generic function to modify light properties
 // takes in array of names
-export function setLightsProperty(names, prop, val, set)
+export function setLightsProperty(names, prop, val)
 {
     var arr = deepCopy(store.getState().allLights.value);
 
@@ -208,7 +208,7 @@ export function setLightsProperty(names, prop, val, set)
 }
 
 // generic function to select all lights by property
-export function selectLightsByProperty(prop, val, set)
+export function selectLightsByProperty(prop, val)
 {
     var arr = deepCopy(store.getState().allLights.value);
     var selArr = arr.filter(obj => obj[prop] === val);
@@ -224,7 +224,7 @@ export function selectLightsByProperty(prop, val, set)
 }
 
 // more specific and efficient function to help with highlighting
-export function selectionBoxHighlight(selection, set)
+export function selectionBoxHighlight(selection)
 {
     var names = selection.map(obj => obj.userData.name);
     var arr = deepCopy(store.getState().allLights.value);
