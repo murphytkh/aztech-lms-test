@@ -14,16 +14,16 @@ function UILightName(props)
 
     return(
         <input
-            className = "light-name"
-            id = {add ? "" : "hide"}
-            type = "text"
-            name = "three-light-name"
-            value = {props.value}
-            placeholder = "Enter light name"
-            onChange = {handleChange}
-            onFocus = {props.onFocus}
-            onBlur = {props.onBlur}
-            disabled = {!add}
+            className="light-name"
+            id={add ? "" : "hide"}
+            type="text"
+            name="three-light-name"
+            value={props.value}
+            placeholder="Enter light name"
+            onChange={handleChange}
+            onFocus={props.onFocus}
+            onBlur={props.onBlur}
+            disabled={!add}
         />
     );
 }

@@ -13,6 +13,8 @@ current task:
 - redux
     - threejs scene
         - convert more variables to redux store
+        - use useSelector, move callbacks downwards
+          (use dispatch for these)
 
 docker commands (in slp-app folder)
 docker-compose -f docker-compose-no-build.yml up

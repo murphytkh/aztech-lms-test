@@ -13,7 +13,7 @@ import UIMsgDisplay from "./UIMsgDisplay";
 function UIManager(props)
 {
     return(
-        <div className = "three-ui-container">
+        <div className="three-ui-container">
             {/* out of canvas elements */}
             {/*
             <UIExternal 
@@ -27,8 +27,8 @@ function UIManager(props)
             <UILightName
                 value = {props.currLightName}
                 onChange = {props.setCurrLightName}
-                onFocus = {props.focus}
-                onBlur = {props.blur}
+                onFocus={props.focus}
+                onBlur={props.blur}
             />
             {/* readme */}
             <UIReadMe />
