@@ -59,8 +59,7 @@ function ThreeJsScene(props)
     const dispatch = useDispatch();
 
     // ui states in redux store
-    const add = useSelector((state) => state.add.value);
-    
+
     // overall light data
     const allLights = useSelector((state) => state.allLights.value);
 
@@ -415,7 +414,7 @@ function ThreeJsScene(props)
     function setPoint(x, y)
     {
         // update current clicked point
-        if (add)
+        if (store.getState().add.value)
             setCurrPoint([x, 0, y]);
     }
 
@@ -444,7 +443,7 @@ function ThreeJsScene(props)
         }
 
         // add light
-        if (add)
+        if (store.getState().add.value)
         {
             if (currLightName !== "")
                 addLight();
@@ -607,7 +606,7 @@ function ThreeJsScene(props)
             {
                 if (light.selected)
                     deselectLight(light.name);
-                else if (!add)
+                else if (!store.getState().add.value)
                 {
                     selectLight(light.name);
                     setEditTriggerMode(false);
@@ -662,7 +661,7 @@ function ThreeJsScene(props)
             <Canvas onCreated={state => state.gl.setClearColor(0xC0C0C0)}>
                 <Camera 
                     ref={cameraRef}
-                    controlsEnabled={!add && cameraEnabled.current} 
+                    controlsEnabled={!store.getState().add.value && cameraEnabled.current} 
                 />
                 <RaycastManager plane={planeRef} setPoint={setPoint} />
                 {/* multiselect selection box */}
@@ -695,7 +694,7 @@ function ThreeJsScene(props)
                     />
                 </Suspense>
                 {/* placement indicator */}
-                {add && 
+                {store.getState().add.value && 
                 <IndicatorSphere radius={0.5} position={currPoint} colour={0x000000} />}
                 <Outline>{lights}</Outline>
             </Canvas>
