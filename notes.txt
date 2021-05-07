@@ -10,23 +10,13 @@ mosquitto -d -v -c mosquittows.conf
                      FRONT END
 ====================================================
 current task:
-- api calls from backend
-
-redux
-- threejs scene
-    - utility functions are only used in the main
-      component, use redux to store stuff for the
-      top level sub components
-    - wtf is this shit
-    - fix error help la
-    - change data handling of react scene
-        - only store all light data
-        - query for selected ones every time in
-          helper functions
-        - more efficient than maintaining 2
-          arrays
-
-4 - 1 from cny - 1 from exam -1 from hackathon
+- redux
+    - threejs scene
+        - utility functions are only used in the main
+          component, use redux to store stuff for the
+          top level sub components
+        - fix outline and ui issues, then optimise
+          data access and processing
 
 docker commands (in slp-app folder)
 docker-compose -f docker-compose-no-build.yml up

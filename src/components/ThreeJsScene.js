@@ -6,11 +6,11 @@ import {Canvas} from "@react-three/fiber";
 
 // redux store
 import store from "../redux/store";
-import {setAdd, setSelected, setAllLights} from "../redux/threeDataSlice";
+import {setAdd, setAllLights} from "../redux/threeDataSlice";
 
 // data
-import {LightData, useRefState, saveObj, removeLight, findLightByName, 
-        selectLight, deselectLight, deselectLights, setLightsProperty, selectLightsByProperty, 
+import {useRefState, saveObj, removeLight, findLightByName, selectLight, 
+        deselectLight, deselectLights, setLightsProperty, selectLightsByProperty, 
         selectionBoxHighlight, deepCopy} from "./Utility";
 import {getSceneData} from "./MockAPI";
 

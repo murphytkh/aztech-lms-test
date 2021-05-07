@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, {useEffect, useRef, useContext} from "react";
+import store from "../../redux/store";
 import {Html} from "@react-three/drei";
 import {Vector3} from "three";
 import {findLightByName} from "../Utility";
@@ -86,7 +87,7 @@ function Light(props)
         let offset = props.radius * 0.6;
         let pos = props.userData.pos;
         let origin = new Vector3(pos[0], pos[1] + offset, pos[2]);
-        let destpos = findLightByName(props.lightData, obj).pos;
+        let destpos = findLightByName(store.getState().allLights.value, obj).pos;
         let dest = new Vector3(destpos[0], destpos[1] + offset, destpos[2]);
         let dir = new Vector3();
         dir.subVectors(dest, origin).normalize();
