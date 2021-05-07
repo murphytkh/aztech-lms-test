@@ -1,6 +1,6 @@
 import "../../resources/css/three-js-ui-config.css";
 
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {useSelector} from "react-redux";
 
 import UIConfigName from "./UIConfigName";
@@ -12,7 +12,9 @@ import UIConfigTriggerData from "./UIConfigTriggerData";
 function UIConfig(props)
 {
     const [showTriggerData, setShowTriggerData] = useState(false);
-    const selectedLights = useSelector((state) => state.allLights.value.filter(obj => obj.selected));
+    const selectedLights = useSelector((state) => state.allLights.value.filter(
+                                                    obj => obj.selected)
+                                                );
 
     function toggleEditTrigger()
     {

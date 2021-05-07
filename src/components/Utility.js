@@ -132,6 +132,7 @@ export function selectLight(name, set)
     var arr = deepCopy(store.getState().allLights.value);
     var light = findLightByName(arr, name);
     light.selected = true;
+    light.highlight = true;
     set(arr);
 }
 
