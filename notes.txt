@@ -12,11 +12,8 @@ mosquitto -d -v -c mosquittows.conf
 current task:
 - redux
     - threejs scene
-        - utility functions are only used in the main
-          component, use redux to store stuff for the
-          top level sub components
-        - fix outline and ui issues, then optimise
-          data access and processing
+        - convert more variables to redux store
+        - optimise data access
 
 docker commands (in slp-app folder)
 docker-compose -f docker-compose-no-build.yml up

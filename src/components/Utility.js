@@ -56,23 +56,6 @@ export class ActivityObject
     }
 }
 
-export class LightData
-{
-    constructor(name, pos)
-    {
-        // initialised by user
-        this.name = name;
-        this.pos = pos;
-        // default values
-        this.selected = false;
-        this.highlight = false;
-        this.mode = "OFF";
-        this.group = "0";
-        this.triggerers = [];
-        this.triggerees = [];
-    }
-}
-
 // utility functions
 export function Rad(deg)
 {
@@ -108,6 +91,7 @@ export function saveObj(obj, name)
     URL.revokeObjectURL(url);
 }
 
+// only for json-serialisable objects
 export function deepCopy(obj)
 {
     return JSON.parse(JSON.stringify(obj));

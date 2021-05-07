@@ -174,7 +174,6 @@ function ThreeJsScene(props)
     function deleteLight(name)
     {
         var arr = deepCopy(store.getState().allLights.value);
-        
         // remove this light from all trigger groups
         var light = findLightByName(arr, name);
         light.triggerers.map((obj) => {
@@ -580,7 +579,7 @@ function ThreeJsScene(props)
 
     useRMBUp(() => {
         // removing lights while in add mode
-        if (add)
+        if (store.getState().add.value)
         {
             if (lightHover.current !== null)
                 deleteLight(lightHover.current);
