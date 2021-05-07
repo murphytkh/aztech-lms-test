@@ -79,6 +79,7 @@ export function useRefState(initial)
     return [ref, setRefState];
 }
 
+// save scene
 export function saveObj(obj, name)
 {
     const json = JSON.stringify(obj);
@@ -99,6 +100,22 @@ export function deepCopy(obj)
 
 // three.js scene utility functions
 
+// initialise light object
+export function initLight(name, pos)
+{
+    return {
+        name: name,
+        pos: pos,
+        selected: false,
+        highlight: false,
+        mode: "OFF",
+        group: "0",
+        triggerers: [],
+        triggerees: [],
+    };
+}
+
+// this function removes light from given array
 export function removeLight(arr, val)
 {
     var i = arr.findIndex(obj => obj.name === val);
@@ -118,6 +135,25 @@ export function selectLight(name, set)
     light.selected = true;
     light.highlight = true;
     set(arr);
+}
+
+// clear triggers in given light inside given array
+export function clearTriggers(arr, name)
+{
+    var light = findLightByName(arr, name);
+
+    light.triggerers.map((obj) => {
+        var tmp = findLightByName(arr, obj);
+        var i = tmp.triggerees.findIndex(obj => obj === name);
+        tmp.triggerees.splice(i, 1);
+        return tmp;
+    });
+    light.triggerees.map((obj) => {
+        var tmp = findLightByName(arr, obj);
+        var i = tmp.triggerers.findIndex(obj => obj === name);
+        tmp.triggerers.splice(i, 1);
+        return tmp;
+    });
 }
 
 export function deselectLights(set)
@@ -177,11 +213,13 @@ export function selectLightsByProperty(prop, val, set)
     var selArr = arr.filter(obj => obj[prop] === val);
 
     selArr.forEach((obj, i) => {
-        selArr[i].highlight = true;
-        selArr[i].selected = true;
+        if (!selArr[i].highlight)
+            selArr[i].highlight = true;
+        if (!selArr[i].selected)
+            selArr[i].selected = true;
     });
     
-    set(selArr);
+    set(arr);
 }
 
 // more specific and efficient function to help with highlighting

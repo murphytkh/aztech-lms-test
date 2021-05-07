@@ -63,7 +63,8 @@ function UIConfigGroup(props)
 
         setInitial(tmp);
         setEditGroupID(tmp);
-    }, [props.selectedLights])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return(
         <div className = "block" id = "edit-group">

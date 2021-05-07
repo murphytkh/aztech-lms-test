@@ -65,7 +65,7 @@ function LightSphere(props)
             onPointerOut = {handleOut}
         >
             {/* radius, width segments, height segments */}
-            <sphereBufferGeometry args = {[props.radius, 32, 32]} />
+            <sphereBufferGeometry args = {[0.5, 32, 32]} />
             {/* colour */}
             <meshStandardMaterial color = {colour()} />
             {/* name overlay */}
@@ -84,7 +84,7 @@ function Light(props)
 {
     let arrows = props.userData.triggerees.length && props.userData.triggerees.map((obj, i) =>
     {
-        let offset = props.radius * 0.6;
+        let offset = 0.3;
         let pos = props.userData.pos;
         let origin = new Vector3(pos[0], pos[1] + offset, pos[2]);
         let destpos = findLightByName(store.getState().allLights.value, obj).pos;

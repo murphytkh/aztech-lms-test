@@ -9,9 +9,9 @@ import store from "../redux/store";
 import {setAdd, setAllLights} from "../redux/threeDataSlice";
 
 // data
-import {useRefState, saveObj, removeLight, findLightByName, selectLight, 
+import {useRefState, saveObj, initLight, removeLight, findLightByName, selectLight, 
         deselectLight, deselectLights, setLightsProperty, selectLightsByProperty, 
-        selectionBoxHighlight, deepCopy} from "./Utility";
+        selectionBoxHighlight, deepCopy, clearTriggers} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -117,18 +117,16 @@ function ThreeJsScene(props)
         {
             return (
                 <Light 
-                    lightData = {allLights}
-                    groupColours = {groupColours.current}
-                    userData = {obj}
-                    key = {i} 
-                    radius = {0.5}
-                    showNames = {showNames.current}
-                    showGroups = {showGroups.current}
-                    showTriggers = {showTriggers.current}
+                    groupColours={groupColours.current}
+                    userData={obj}
+                    key={i} 
+                    showNames={showNames.current}
+                    showGroups={showGroups.current}
+                    showTriggers={showTriggers.current}
                     // callbacks
-                    enter = {lightEnter}
-                    exit = {lightExit}
-                    context = {context}
+                    enter={lightEnter}
+                    exit={lightExit}
+                    context={context}
                 />
             );
         }
@@ -146,21 +144,13 @@ function ThreeJsScene(props)
     // operations on light data
     function addLight()
     {
+        // initial data
         var arr = deepCopy(store.getState().allLights.value);
-        //var data = new LightData(currLightName, currPoint);
-        var data = {
-            name: currLightName,
-            pos: currPoint,
-            selected: false,
-            highlight: false,
-            mode: "OFF",
-            group: "0",
-            triggerers: [],
-            triggerees: [],
-        };
+        var data = initLight(currLightName, currPoint);
 
         if (!findLightByName(arr, data.name))
         {
+            // update array with new light
             arr.push(data);
             setLights(arr);
             showMsg("Added " + data.name, 3000, COLOUR.SUCCESS_GREEN);
@@ -175,38 +165,29 @@ function ThreeJsScene(props)
     {
         var arr = deepCopy(store.getState().allLights.value);
         // remove this light from all trigger groups
-        var light = findLightByName(arr, name);
-        light.triggerers.map((obj) => {
-            var tmp = findLightByName(arr, obj);
-            var i = tmp.triggerees.findIndex(obj => obj === name);
-            tmp.triggerees.splice(i, 1);
-            return tmp;
-        });
-        light.triggerees.map((obj) => {
-            var tmp = findLightByName(arr, obj);
-            var i = tmp.triggerers.findIndex(obj => obj === name);
-            tmp.triggerers.splice(i, 1);
-            return tmp;
-        });
-
+        clearTriggers(arr, name);
+        // update array after removing light and reset hover name
         removeLight(arr, name);
         deselectLight(name, setLights);
         setLights(arr);
         showMsg(name + " removed", 3000, COLOUR.BLACK);
-
         setLightHover(null);
     }
 
     function editTrigger(triggerer, triggeree, add)
     {
+        // skip if trying to add trigger to itself
         if (triggerer === triggeree)
             return;
         
+        // get references to triggerer (source) and triggeree (target)
         var arr = deepCopy(store.getState().allLights.value);
         var triggererLight = findLightByName(arr, triggerer);
         var triggereeLight = findLightByName(arr, triggeree);
+        // check if trigger already exists
         var exists = triggererLight.triggerees.includes(triggeree);
 
+        // add trigger
         if (add)
         {
             if (exists)
@@ -215,15 +196,18 @@ function ThreeJsScene(props)
             }
             else
             {
+                // update trigger tables of both triggerer and triggeree
                 triggererLight.triggerees.push(triggeree);
                 triggereeLight.triggerers.push(triggerer);
                 showMsg(triggeree + " added as triggeree of " + triggerer, 3000, COLOUR.GREEN);
             }
         }
+        // remove trigger
         else
         {
             if (exists)
             {
+                // update trigger tables of both triggerer and triggeree
                 var i = triggererLight.triggerees.findIndex(obj => obj === triggeree);
                 var j = triggereeLight.triggerers.findIndex(obj => obj === triggerer);
                 triggererLight.triggerees.splice(i, 1);
@@ -236,39 +220,43 @@ function ThreeJsScene(props)
             }
         }
 
+        // update array
         setLights(arr);
     }
 
     function lightEnter(name)
     {
+        // set current light name and update highlight status
         setLightHover(name);
         setLightsProperty([name], "highlight", true, setLights);
     }
 
     function lightExit(name)
     {
+        // check if light exists
         var arr = deepCopy(store.getState().allLights.value);
         var light = findLightByName(arr, name);
+
         if (light)
         {
+            // if unselected, remove highlight on exit
             if (light.selected !== true)
-            {
                 setLightsProperty([name], "highlight", false, setLights);
-            }
             setLightHover(null);
         }
     }
 
     function moveToLight(name)
     {
-        var arr = deepCopy(store.getState().allLights.value);
-        var light = findLightByName(arr, name);
+        // get position of light to move to
+        var light = findLightByName(store.getState().allLights.value, name);
         if (light)
             cameraRef.current.setMoveCamera(light.pos[0], light.pos[1], light.pos[2]);
     }
 
     function setLightName(name, newName)
     {
+        // check if light exists
         var arr = deepCopy(store.getState().allLights.value);
         var light = findLightByName(arr, name);
 
@@ -280,6 +268,7 @@ function ThreeJsScene(props)
             }
             else
             {
+                // update light name and array
                 light.name = newName;
                 setLights(arr);
                 showMsg("Updated successfully", 3000, COLOUR.SUCCESS_GREEN);
@@ -287,6 +276,7 @@ function ThreeJsScene(props)
         }
     }
 
+    // mouse drag box multi select
     function selectInBox(selection)
     {
         for (var i = 0; i < selection.length; ++i)
@@ -296,11 +286,13 @@ function ThreeJsScene(props)
             setEditTriggerMode(false);
     }
 
+    // set highlight on given lights
     function setHighlight(selection)
     {
         selectionBoxHighlight(selection, setLights);
     }
 
+    // update mode and trigger relevant triggerees
     function setMode(mode)
     {
         var arr = deepCopy(store.getState().allLights.value);
@@ -628,7 +620,7 @@ function ThreeJsScene(props)
 
     return(
         // prevent right click context menu
-        <div className = "three-scene-page" onContextMenu = {(e) => e.preventDefault()}>
+        <div className="three-scene-page" onContextMenu={(e) => e.preventDefault()}>
             {/* ui */}
             <UIManager 
                 // ui state tracking
