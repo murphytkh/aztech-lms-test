@@ -444,7 +444,10 @@ function ThreeJsScene(props)
             lightHover.current === null && 
             cameraEnabled.current &&
             !mouseMoved.current)
+        {
             deselectLights(setLights);
+            setEditTriggerMode(false);
+        }
 
         // add light
         if (add)
@@ -551,6 +554,7 @@ function ThreeJsScene(props)
             {
                 var arr = store.getState().allLights.value;
                 var name = "";
+
                 for (var i = 0; i < arr.length; ++i)
                 {
                     if (arr[i].selected)

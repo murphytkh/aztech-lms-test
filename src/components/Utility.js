@@ -1,5 +1,6 @@
 import {useState, useRef} from "react";
 import store from "../redux/store";
+import {setAllLights} from "../redux/threeDataSlice";
 
 // objects for storing data
 
@@ -134,7 +135,7 @@ export function selectLight(name, set)
     var light = findLightByName(arr, name);
     light.selected = true;
     light.highlight = true;
-    set(arr);
+    store.dispatch(setAllLights(arr));
 }
 
 // clear triggers in given light inside given array
@@ -165,7 +166,7 @@ export function deselectLights(set)
         arr[i].highlight = false;
     });
 
-    set(arr);
+    store.dispatch(setAllLights(arr));
 }
 
 export function deselectLight(name, set)
@@ -177,7 +178,7 @@ export function deselectLight(name, set)
     {
         light.selected = false;
         light.highlight = false;
-        set(arr);
+        store.dispatch(setAllLights(arr));
     }
 }
 
@@ -203,7 +204,7 @@ export function setLightsProperty(names, prop, val, set)
             arr[j][prop] = val;
     }
 
-    set(arr);
+    store.dispatch(setAllLights(arr));
 }
 
 // generic function to select all lights by property
@@ -219,7 +220,7 @@ export function selectLightsByProperty(prop, val, set)
             selArr[i].selected = true;
     });
     
-    set(arr);
+    store.dispatch(setAllLights(arr));
 }
 
 // more specific and efficient function to help with highlighting
@@ -235,7 +236,7 @@ export function selectionBoxHighlight(selection, set)
             arr[i].highlgiht = false;
     });
 
-    set(arr);
+    store.dispatch(setAllLights(arr));
 }
 
 export function allEqual(prop, val, array)
