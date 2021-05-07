@@ -1,6 +1,7 @@
 import "../../resources/css/three-js-ui.css";
 
 import React from "react";
+import store from "../../redux/store";
 
 //import UIExternal from "./UIExternal";
 import UILightName from "./UILightName";
@@ -45,11 +46,12 @@ function UIManager(props)
                 />
             }
             {/* config */}
-            {props.selectedLights.length > 0 &&
+            {(store.getState().allLights.value).filter(obj => 
+                obj.selected
+            ).length > 0 &&
                 <UIConfig 
                     focus = {props.focus}
                     blur = {props.blur}
-                    selectedLights = {props.selectedLights}
                     setLightName = {props.setLightName}
                     setMode = {props.setMode}
                     setGroup = {props.setGroup}

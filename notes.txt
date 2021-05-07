@@ -17,6 +17,14 @@ redux
     - utility functions are only used in the main
       component, use redux to store stuff for the
       top level sub components
+    - wtf is this shit
+    - fix error help la
+    - change data handling of react scene
+        - only store all light data
+        - query for selected ones every time in
+          helper functions
+        - more efficient than maintaining 2
+          arrays
 
 4 - 1 from cny - 1 from exam -1 from hackathon
 

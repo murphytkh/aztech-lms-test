@@ -13,7 +13,7 @@ import {versionReducer, darkModeReducer, gatewayDataReducer} from "./miscInfoSli
 // individual block data
 import {blockDataReducer, statusDataReducer} from "./blockDataSlice";
 // threejs scene data
-import {selectedReducer} from "./threeDataSlice";
+import {addReducer, selectedReducer, allLightsReducer} from "./threeDataSlice";
 
 export default configureStore({
     reducer: {
@@ -50,7 +50,13 @@ export default configureStore({
 
         // threejs data
 
-        // current selected objects
+        // ui states
+        add: addReducer,
+
+        // selection
         selected: selectedReducer,
+
+        // light data
+        allLights: allLightsReducer,
     },
 })

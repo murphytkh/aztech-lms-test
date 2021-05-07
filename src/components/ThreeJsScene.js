@@ -1,12 +1,17 @@
 import "../resources/css/three-js-scene.css";
 
 import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
+import {useSelector, useDispatch} from "react-redux";
 import {Canvas} from "@react-three/fiber";
+
+// redux store
+import store from "../redux/store";
+import {setAdd, setSelected, setAllLights} from "../redux/threeDataSlice";
 
 // data
 import {LightData, useRefState, saveObj, removeLight, findLightByName, 
-        selectLight, deselectLight, setLightsProperty, selectLightsByProperty, 
-        selectionBoxHighlight} from "./Utility";
+        selectLight, deselectLight, deselectLights, setLightsProperty, selectLightsByProperty, 
+        selectionBoxHighlight, deepCopy} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -51,10 +56,28 @@ const Outline = ({children}) =>
 
 function ThreeJsScene(props)
 {
+    const dispatch = useDispatch();
+
+    // ui states in redux store
+    const add = useSelector((state) => state.add.value);
+
+    // overall light data
+    const allLights = useSelector((state) => state.allLights.value);
+
+    // wrappers for set functions
+    function setLights(lights)
+    {
+        dispatch(setAllLights(lights));
+    }
+
+    function setAddMode(mode)
+    {
+        dispatch(setAdd(mode));
+    }
+
     // ui states
     const [disableHotkeys, setDisableHotkeys] = useRefState(false);
     const [cameraEnabled, setCameraEnabled] = useRefState(true);
-    const [addMode, setAddMode] = useRefState(false);
     const [editTriggerMode, setEditTriggerMode] = useRefState(false);
     const [phMode, setPhMode] = useState(false);
     const [displayedMsg, setDisplayedMsg] = useState(false);
@@ -68,8 +91,7 @@ function ThreeJsScene(props)
     // light selection
     const [currPoint, setCurrPoint] = useState([]);
     const [currLightName, setCurrLightName] = useState("");
-    const selected = useSelector((state) => state.selected.value);
-    const [selectedLights, setSelectedLights] = useRefState([]);
+
     const [lightHover, setLightHover] = useRefState(null);
     const [currGroup, setCurrGroup] = useState("");
 
@@ -88,15 +110,14 @@ function ThreeJsScene(props)
     const [url, setUrl] = useRefState("");
     const [sceneName, setSceneName] = useRefState("");
     const [floorPlan, setFloorPlan] = useRefState("");
-    const [lightData, setLightData] = useRefState([]);
     const [groupColours, setGroupColours] = useRefState({});
 
     // array of light objects
-    let lights = lightData.current.length && lightData.current.map((obj, i) =>
+    let lights = allLights.length && allLights.map((obj, i) =>
         {
             return (
                 <Light 
-                    lightData = {lightData.current}
+                    lightData = {allLights}
                     groupColours = {groupColours.current}
                     userData = {obj}
                     key = {i} 
@@ -125,13 +146,23 @@ function ThreeJsScene(props)
     // operations on light data
     function addLight()
     {
-        var arr = [...lightData.current];
-        var data = new LightData(currLightName, currPoint);
+        var arr = deepCopy(store.getState().allLights.value);
+        //var data = new LightData(currLightName, currPoint);
+        var data = {
+            name: currLightName,
+            pos: currPoint,
+            selected: false,
+            highlight: false,
+            mode: "OFF",
+            group: "0",
+            triggerers: [],
+            triggerees: [],
+        };
 
         if (!findLightByName(arr, data.name))
         {
             arr.push(data);
-            setLightData(arr);
+            setLights(arr);
             showMsg("Added " + data.name, 3000, COLOUR.SUCCESS_GREEN);
         }
         else
@@ -142,7 +173,7 @@ function ThreeJsScene(props)
 
     function deleteLight(name)
     {
-        var arr = [...lightData.current];
+        var arr = deepCopy(store.getState().allLights.value);
         
         // remove this light from all trigger groups
         var light = findLightByName(arr, name);
@@ -160,8 +191,8 @@ function ThreeJsScene(props)
         });
 
         removeLight(arr, name);
-        deselectLight(name, selectedLights.current, setSelectedLights);
-        setLightData(arr);
+        deselectLight(name, setLights);
+        setLights(arr);
         showMsg(name + " removed", 3000, COLOUR.BLACK);
 
         setLightHover(null);
@@ -172,7 +203,7 @@ function ThreeJsScene(props)
         if (triggerer === triggeree)
             return;
         
-        var arr = [...lightData.current];
+        var arr = deepCopy(store.getState().allLights.value);
         var triggererLight = findLightByName(arr, triggerer);
         var triggereeLight = findLightByName(arr, triggeree);
         var exists = triggererLight.triggerees.includes(triggeree);
@@ -206,48 +237,40 @@ function ThreeJsScene(props)
             }
         }
 
-        setLightData(arr);
+        setLights(arr);
     }
 
     function lightEnter(name)
     {
         setLightHover(name);
-        setLightsProperty([name], "highlight", true, lightData.current, setLightData);
+        setLightsProperty([name], "highlight", true, setLights);
     }
 
     function lightExit(name)
     {
-        var light = findLightByName(lightData.current, name);
+        var arr = deepCopy(store.getState().allLights.value);
+        var light = findLightByName(arr, name);
         if (light)
         {
             if (light.selected !== true)
             {
-                setLightsProperty([name], "highlight", false, lightData.current, setLightData);
+                setLightsProperty([name], "highlight", false, setLights);
             }
             setLightHover(null);
         }
     }
 
-    function deselectLights()
-    {
-        // cancel trigger editing if started
-        setEditTriggerMode(false);
-
-        var arr = [...selectedLights.current];
-        for (var i = 0; i < arr.length; ++i)
-            deselectLight(arr[i].name, selectedLights.current, setSelectedLights);
-    }
-
     function moveToLight(name)
     {
-        var light = findLightByName(lightData.current, name);
+        var arr = deepCopy(store.getState().allLights.value);
+        var light = findLightByName(arr, name);
         if (light)
             cameraRef.current.setMoveCamera(light.pos[0], light.pos[1], light.pos[2]);
     }
 
     function setLightName(name, newName)
     {
-        var arr = [...lightData.current];
+        var arr = deepCopy(store.getState().allLights.value);
         var light = findLightByName(arr, name);
 
         if (light)
@@ -259,7 +282,7 @@ function ThreeJsScene(props)
             else
             {
                 light.name = newName;
-                setLightData(arr);
+                setLights(arr);
                 showMsg("Updated successfully", 3000, COLOUR.SUCCESS_GREEN);
             }
         }
@@ -268,10 +291,7 @@ function ThreeJsScene(props)
     function selectInBox(selection)
     {
         for (var i = 0; i < selection.length; ++i)
-        {
-            selectLight(selection[i].userData.name, lightData.current, 
-                        selectedLights.current, setSelectedLights);
-        }
+            selectLight(selection[i].userData.name, setLights);
 
         if (selection.length > 1)
             setEditTriggerMode(false);
@@ -279,12 +299,13 @@ function ThreeJsScene(props)
 
     function setHighlight(selection)
     {
-        selectionBoxHighlight(selection, lightData.current, setLightData);
+        selectionBoxHighlight(selection, setLights);
     }
 
     function setMode(mode)
     {
-        var names = selectedLights.current.map(obj => obj.name);
+        var arr = deepCopy(store.getState().allLights.value);
+        var names = arr.filter(obj => obj.selected).map(obj => obj.name);
 
         if (mode === "ON")
         {
@@ -292,30 +313,32 @@ function ThreeJsScene(props)
 
             for (var i = 0; i < names.length; ++i)
             {
-                var tmp = findLightByName(lightData.current, names[i]);
+                var tmp = findLightByName(arr, names[i]);
                 triggerees.push(...tmp.triggerees);
             }
     
             triggerees = [...new Set(triggerees)];
-            setLightsProperty(triggerees, "mode", mode, lightData.current, setLightData);
+            setLightsProperty(triggerees, "mode", mode, setLights);
         }
 
-        setLightsProperty(names, "mode", mode, selectedLights.current, setSelectedLights);
+        setLightsProperty(names, "mode", mode, setLights);
         showMsg(mode, 3000, COLOUR.BLACK);
     }
 
     function setGroup(group)
     {
-        var names = selectedLights.current.map(obj => obj.name);
-        setLightsProperty(names, "group", group, selectedLights.current, setSelectedLights);
+        var arr = deepCopy(store.getState().allLights.value);
+        var names = arr.filter(obj => obj.selected).map(obj => obj.name);
+
+        setLightsProperty(names, "group", group, setLights);
         showMsg("Assigned to " + group, 3000, COLOUR.SUCCESS_GREEN);
     }
 
     function selectGroup(group)
     {
-        deselectLights();
+        deselectLights(setLights);
         setCurrGroup(group);
-        selectLightsByProperty("group", group, lightData.current, setSelectedLights);
+        selectLightsByProperty("group", group, setLights);
     }
 
     // file loading
@@ -326,7 +349,7 @@ function ThreeJsScene(props)
         if (name === "default")
         {
             setFloorPlan("default");
-            setLightData([]);
+            setLights([]);
             setGroupColours({});
         }
         else
@@ -336,7 +359,7 @@ function ThreeJsScene(props)
             // api call successful
             .then((res) => {
                 setFloorPlan(res.data.img);
-                setLightData(res.data.lights);
+                setLights(res.data.lights);
                 setGroupColours(res.data.groupColours);
                 showMsg("Loaded " + res.data.img, 3000, COLOUR.GREEN);
             })
@@ -350,8 +373,10 @@ function ThreeJsScene(props)
     
     function saveScene(name)
     {
+        var arr = deepCopy(store.getState().allLights.value);
+
         saveObj({img: floorPlan.current, 
-                lights: lightData.current, 
+                lights: arr, 
                 groupColours: groupColours.current}, 
                 name);
     }
@@ -359,11 +384,13 @@ function ThreeJsScene(props)
     // ui state handling
     function toggleAdd()
     {
-        setAddMode(!addMode.current);
+        let curr = store.getState().add.value;
+        setAddMode(!curr);
         // set focus on input on switching to add mode
-        if (addMode.current)
+        if (!curr)
         {
             var tmp = document.getElementsByTagName("INPUT");
+
             if (tmp[1])
                 tmp[1].focus();
         }
@@ -403,21 +430,33 @@ function ThreeJsScene(props)
     function setPoint(x, y)
     {
         // update current clicked point
-        if (addMode.current)
+        if (add)
             setCurrPoint([x, 0, y]);
     }
 
     function handlePlaneClick()
     {
+        var arr = deepCopy(store.getState().allLights.value);
+        var haveSelected = false;
+
+        for (var i = 0; i < arr.length; ++i)
+        {
+            if (arr[i].selected)
+            {
+                haveSelected = true;
+                break;
+            }
+        }
+
         // deselect lights if clicked on empty space
-        if (selectedLights.current.length && 
+        if (haveSelected && 
             lightHover.current === null && 
             cameraEnabled.current &&
             !mouseMoved.current)
-            deselectLights();
+            deselectLights(setLights);
 
         // add light
-        if (addMode.current)
+        if (add)
         {
             if (currLightName !== "")
                 addLight();
@@ -445,24 +484,24 @@ function ThreeJsScene(props)
     useKeyUp("1", () => {
         if (!disableHotkeys.current)
         {
-            deselectLights();
-            selectLightsByProperty("group", "0", lightData.current, setSelectedLights);
+            deselectLights(setLights);
+            selectLightsByProperty("group", "0", setLights);
         }
     });
 
     useKeyUp("2", () => {
         if (!disableHotkeys.current)
         {
-            deselectLights();
-            selectLightsByProperty("group", "1", lightData.current, setSelectedLights);
+            deselectLights(setLights);
+            selectLightsByProperty("group", "1", setLights);
         }
     });
 
     useKeyUp("3", () => {
         if (!disableHotkeys.current)
         {
-            deselectLights();
-            selectLightsByProperty("group", "2", lightData.current, setSelectedLights);
+            deselectLights(setLights);
+            selectLightsByProperty("group", "2", setLights);
         }
     });
 
@@ -513,16 +552,24 @@ function ThreeJsScene(props)
         {
             if (!editTriggerMode.current)
             {
-                deselectLights();
-                selectLight(light, 
-                            lightData.current, 
-                            selectedLights.current, 
-                            setSelectedLights);
+                deselectLights(setLights);
+                selectLight(light, setLights);
                 moveToLight(light);
             }
             else
             {
-                editTrigger(selectedLights.current[0].name, lightHover.current, true);
+                var arr = store.getState().allLights.value;
+                var name = "";
+                for (var i = 0; i < arr.length; ++i)
+                {
+                    if (arr[i].selected)
+                    {
+                        name = arr[i].name;
+                        break;
+                    }
+                }
+
+                editTrigger(name, lightHover.current, true);
             }
         }
 
@@ -533,7 +580,7 @@ function ThreeJsScene(props)
 
     useRMBUp(() => {
         // removing lights while in add mode
-        if (addMode.current)
+        if (add)
         {
             if (lightHover.current !== null)
                 deleteLight(lightHover.current);
@@ -543,7 +590,20 @@ function ThreeJsScene(props)
         if (editTriggerMode.current)
         {
             if (lightHover.current !== null)
-                editTrigger(selectedLights.current[0].name, lightHover.current, false);
+            {
+                var arr = allLights;
+                var name = "";
+                for (var i = 0; i < arr.length; ++i)
+                {
+                    if (arr[i].selected)
+                    {
+                        name = arr[i].name;
+                        break;
+                    }
+                }
+
+                editTrigger(name, lightHover.current, false);
+            }
         }
     });
 
@@ -551,18 +611,18 @@ function ThreeJsScene(props)
         // single ctrl + click multiselect
         if (lightHover.current !== null)
         {
-            var light = findLightByName(lightData.current, lightHover.current);
+            var arr = deepCopy(store.getState().allLights.value);
+
+            var light = findLightByName(arr, lightHover.current);
             if (light)
             {
                 if (light.selected)
-                    deselectLight(light.name, selectedLights.current, setSelectedLights);
-                else if (!addMode.current)
+                    deselectLight(light.name, setLights);
+                else if (!add)
                 {
-                    selectLight(light.name, lightData.current, 
-                        selectedLights.current, setSelectedLights);
+                    selectLight(light.name, setLights);
                     setEditTriggerMode(false);
                 }
-
             }
         }
     });
@@ -573,38 +633,36 @@ function ThreeJsScene(props)
             {/* ui */}
             <UIManager 
                 // ui state tracking
-                add = {addMode.current}
-                ph = {phMode}
-                group = {showGroups.current}
-                // data
-                selectedLights = {selectedLights.current}
+                add={add}
+                ph={phMode}
+                group={showGroups.current}
                 // buttons
-                toggleAdd = {toggleAdd} 
-                togglePh = {togglePlaceholder}
+                toggleAdd={toggleAdd} 
+                togglePh={togglePlaceholder}
                 // input fields
-                currLightName = {currLightName}
-                setCurrLightName = {setCurrLightName}
-                currGroup = {currGroup}
-                setCurrGroup = {selectGroup}
-                groupColours = {groupColours.current}
-                setGroupColours = {setGroupColours}
-                setLightName = {setLightName}
-                setMode = {setMode}
-                setGroup = {setGroup}
-                editTriggerMode = {editTriggerMode.current}
-                setEditTriggerMode = {toggleEditTriggerMode}
+                currLightName={currLightName}
+                setCurrLightName={setCurrLightName}
+                currGroup={currGroup}
+                setCurrGroup={selectGroup}
+                groupColours={groupColours.current}
+                setGroupColours={setGroupColours}
+                setLightName={setLightName}
+                setMode={setMode}
+                setGroup={setGroup}
+                editTriggerMode={editTriggerMode.current}
+                setEditTriggerMode={toggleEditTriggerMode}
                 // focus setting
-                focus = {handleFocus}
-                blur = {handleBlur}
-                groupSearchRef = {groupSearchRef}
+                focus={handleFocus}
+                blur={handleBlur}
+                groupSearchRef={groupSearchRef}
                 // display messages
-                displayText = {displayedMsg}
-                displayColour = {displayedMsgColour}
+                displayText={displayedMsg}
+                displayColour={displayedMsgColour}
             />
             {/* selection box for mouse drag */}
             <div 
-                className = "selection-box"
-                style = {{
+                className="selection-box"
+                style={{
                             display: (width === 0 || height === 0) ? "none" : "block",
                             top: top + "%",
                             left: left + "%",
@@ -613,53 +671,46 @@ function ThreeJsScene(props)
                         }}
             />
             {/* set bg colour on canvas */}
-            <Canvas onCreated = {state => state.gl.setClearColor(0xC0C0C0)}>
+            <Canvas onCreated={state => state.gl.setClearColor(0xC0C0C0)}>
                 <Camera 
-                    ref = {cameraRef}
-                    disableHotkeys = {disableHotkeys} 
-                    controlsEnabled = {!addMode.current && cameraEnabled.current} 
+                    ref={cameraRef}
+                    disableHotkeys={disableHotkeys} 
+                    controlsEnabled={!add && cameraEnabled.current} 
                 />
-                <RaycastManager plane = {planeRef} setPoint = {setPoint} />
+                <RaycastManager plane={planeRef} setPoint={setPoint} />
                 {/* multiselect selection box */}
                 <SelectionBoxHelper 
-                    setSelection = {selectInBox}
-                    setHighlight = {setHighlight}
-                    selected = {selectedLights.current}
-                    setTop = {setTop}
-                    setLeft = {setLeft}
-                    setWidth = {setWidth}
-                    setHeight = {setHeight}
+                    setSelection={selectInBox}
+                    setHighlight={setHighlight}
+                    setTop={setTop}
+                    setLeft={setLeft}
+                    setWidth={setWidth}
+                    setHeight={setHeight}
                 />
                 {/* default scene lighting */}
-                <directionalLight color = {0xFFFFFF} intensity = {2} />
+                <directionalLight color={0xFFFFFF} intensity={2} />
                 <ambientLight />
                 {/* elements */}
-                <Suspense fallback = {null}>
+                <Suspense fallback={null}>
                     <Plane 
-                        ref = {planeRef} 
-                        width = {100} 
-                        height = {71}
+                        ref={planeRef} 
+                        width={100} 
+                        height={71}
                         /* 
                         img = {floorPlan.current === "default" ? 
                                 defaultImg : 
                                 url.current + floorPlan.current + ".png"}
                         */
-                       img = {floorPlan.current === "default" ?
-                                demoDefaultImg :
+                       img={floorPlan.current === "default" ?
+                            demoDefaultImg :
                                 url.current + floorPlan.current + ".png"}
-                        onClick = {handlePlaneClick}
+                        onClick={handlePlaneClick}
                     />
                 </Suspense>
                 {/* placement indicator */}
-                {addMode.current && 
-                <IndicatorSphere 
-                    radius = {0.5} 
-                    position = {currPoint} 
-                    colour = {0x000000} 
-                />}
-                <Outline>
-                    {lights}
-                </Outline>
+                {add && 
+                <IndicatorSphere radius={0.5} position={currPoint} colour={0x000000} />}
+                <Outline>{lights}</Outline>
             </Canvas>
         </div>
     );

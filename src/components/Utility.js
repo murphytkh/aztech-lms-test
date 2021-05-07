@@ -1,4 +1,5 @@
 import {useState, useRef} from "react";
+import store from "../redux/store";
 
 // objects for storing data
 
@@ -69,7 +70,6 @@ export class LightData
         this.group = "0";
         this.triggerers = [];
         this.triggerees = [];
-
     }
 }
 
@@ -108,6 +108,11 @@ export function saveObj(obj, name)
     URL.revokeObjectURL(url);
 }
 
+export function deepCopy(obj)
+{
+    return JSON.parse(JSON.stringify(obj));
+}
+
 // three.js scene utility functions
 
 export function removeLight(arr, val)
@@ -122,53 +127,44 @@ export function findLightByName(arr, val)
     return arr.find(obj => obj.name === val);
 }
 
-export function selectLight(name, array, selected, set)
+export function selectLight(name, set)
 {
-    // toggle light selected state
-    var arr = [...array];
+    var arr = deepCopy(store.getState().allLights.value);
     var light = findLightByName(arr, name);
-
-    if (light)
-    {
-        // add to array of selected lights
-        // check if already selected first
-        var selectedArr = [...selected];
-        if (!findLightByName(selectedArr, name))
-        {
-            light.selected = true;
-            selectedArr.push(light);
-            set(selectedArr);
-        }
-    }
+    light.selected = true;
+    set(arr);
 }
 
-export function deselectLight(name, selected, set)
+export function deselectLights(set)
 {
-    // toggle light selected state
-    var arr = [...selected];
-    var light = findLightByName(arr, name); 
+    var arr = deepCopy(store.getState().allLights.value);
+
+    arr.forEach((obj, i) => {
+        arr[i].selected = false;
+        arr[i].highlight = false;
+    });
+
+    set(arr);
+}
+
+export function deselectLight(name, set)
+{
+    var arr = deepCopy(store.getState().allLights.value);
+    var light = findLightByName(arr, name);
 
     if (light)
     {
         light.selected = false;
         light.highlight = false;
-
-        // remove from aray of selected lights
-        // check if exists in array first
-        var selectedArr = [...selected];
-        if (findLightByName(selectedArr, name))
-        {
-            removeLight(selectedArr, name);
-            set(selectedArr);
-        }
+        set(arr);
     }
 }
 
 // generic function to modify light properties
 // takes in array of names
-export function setLightsProperty(names, prop, val, array, set)
+export function setLightsProperty(names, prop, val, set)
 {
-    var arr = [...array];
+    var arr = deepCopy(store.getState().allLights.value);
 
     // modify properties of all lights whose names are in input
     for (var j = 0; j < arr.length; ++j)
@@ -190,30 +186,32 @@ export function setLightsProperty(names, prop, val, array, set)
 }
 
 // generic function to select all lights by property
-export function selectLightsByProperty(prop, val, array, set)
+export function selectLightsByProperty(prop, val, set)
 {
-    var arr = [...array];
-    var selArr = arr.filter(obj => {return obj[prop] === val;})
-    selArr.map((obj) => {
-        obj.highlight = true;
-        obj.selected = true;
-        return null;
+    var arr = deepCopy(store.getState().allLights.value);
+    var selArr = arr.filter(obj => obj[prop] === val);
+
+    selArr.forEach((obj, i) => {
+        selArr[i].highlight = true;
+        selArr[i].selected = true;
     });
+    
     set(selArr);
 }
 
 // more specific and efficient function to help with highlighting
-export function selectionBoxHighlight(selection, array, set)
+export function selectionBoxHighlight(selection, set)
 {
     var names = selection.map(obj => obj.userData.name);
-    var arr = [...array];
-    for (var i = 0; i < arr.length; ++i)
-    {
-        if (names.includes(arr[i].name))
+    var arr = deepCopy(store.getState().allLights.value);
+
+    arr.forEach((obj, i) => {
+        if (names.includes(obj.name))
             arr[i].highlight = true;
         else
-            arr[i].highlight = false;
-    }
+            arr[i].highlgiht = false;
+    });
+
     set(arr);
 }
 
