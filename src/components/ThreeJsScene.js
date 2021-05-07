@@ -167,7 +167,7 @@ function ThreeJsScene(props)
         setLightHover(null);
     }
 
-    function editTrigger(triggerer, triggeree, add)
+    function updateTrigger(triggerer, triggeree, add)
     {
         // skip if trying to add trigger to itself
         if (triggerer === triggeree)
@@ -370,6 +370,7 @@ function ThreeJsScene(props)
     {
         let curr = store.getState().add.value;
         store.dispatch(setAdd(!curr));
+        console.log(curr);
         // set focus on input on switching to add mode
         if (!curr)
         {
@@ -557,7 +558,7 @@ function ThreeJsScene(props)
                     }
                 }
 
-                editTrigger(name, lightHover.current, true);
+                store.getState().add.value(name, lightHover.current, true);
             }
         }
 
@@ -590,7 +591,7 @@ function ThreeJsScene(props)
                     }
                 }
 
-                editTrigger(name, lightHover.current, false);
+                updateTrigger(name, lightHover.current, false);
             }
         }
     });

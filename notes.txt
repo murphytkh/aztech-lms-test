@@ -13,7 +13,6 @@ current task:
 - redux
     - threejs scene
         - convert more variables to redux store
-        - optimise data access
 
 docker commands (in slp-app folder)
 docker-compose -f docker-compose-no-build.yml up
