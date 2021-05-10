@@ -1,10 +1,16 @@
 import "../../resources/css/three-js-ui-group.css";
 
 import React, {useState, forwardRef} from "react";
+import {useDispatch} from "react-redux";
+
+import {setDisableHotkeys} from "../../redux/threeDataSlice";
+
 import UIColourPicker from "./UIColourPicker";
 
 const UIGroup = forwardRef((props, ref) =>
 {
+    const dispatch = useDispatch();
+
     const [group, setGroup] = useState("");
     const [colour, setColour] = useState("#FFFFFF");
     const [showPicker, setShowPicker] = useState(false);
@@ -47,52 +53,62 @@ const UIGroup = forwardRef((props, ref) =>
         props.setGroupColours(obj);
     }
 
+    function focus()
+    {
+        dispatch(setDisableHotkeys(true));
+    }
+
+    function blur()
+    {
+        dispatch(setDisableHotkeys(false));
+    }
+
     return(
-        <div className = "three-ui-box" id = "group">
-            <div className = "block" id = "group-select">
-                <div className = "label">Group ID:</div>
+        <div className="three-ui-box" id="group">
+            <div className="block" id="group-select">
+                <div className="label">Group ID:</div>
                 {/* text input */}
                 <input
                     ref = {ref}
-                    className = "group-select"
-                    type = "text"
-                    name = "group-select"
-                    value = {group}
-                    placeholder = "Enter group ID"
-                    onChange = {handleChange}
-                    onFocus = {props.focus}
-                    onBlur = {props.blur}
+                    className="group-select"
+                    type="text"
+                    name="group-select"
+                    value={group}
+                    placeholder="Enter group ID"
+                    onChange={handleChange}
+                    onFocus={focus}
+                    onBlur={blur}
                 /> 
                 <div
-                    className = "colour-display"
-                    style = {{backgroundColor: colour, 
-                              visibility: showColour ? "visible" : "hidden"}}
+                    className="colour-display"
+                    style={{backgroundColor: colour, 
+                            visibility: showColour ? "visible" : "hidden"}}
                 >
                     &nbsp;
                 </div>
                 {/* colour picker */}
                 {showPicker && 
                     <UIColourPicker
-                        colour = {colour}
-                        setColour = {setColour}
-                        cancel = {handleCancel}
-                        confirm = {handleConfirm}
+                        colour={colour}
+                        setColour={setColour}
+                        cancel={handleCancel}
+                        confirm={handleConfirm}
                     />
                 }
                 {/* buttons */}
                 <div 
-                    className = "three-btn colour"
-                    id = {showColour ? "" : "disabled"}
-                    onClick = {handleColour}
-                    style = {{backgroundColor: "#7F849F"}}
+                    className="three-btn colour"
+                    id={showColour ? "" : "disabled"}
+                    onClick={handleColour}
+                    style={{backgroundColor: "#7F849F"}}
                 >
                     COLOUR
                 </div>
                 <div 
-                    className = "three-btn select" 
-                    id = {group !== "" ? "" : "disabled"}
-                    onClick = {handleSelect}
-                    style = {{backgroundColor: "#7F849F"}}
+                    className="three-btn select" 
+                    id={group !== "" ? "" : "disabled"}
+                    onClick={handleSelect}
+                    style={{backgroundColor: "#7F849F"}}
                 >
                     SELECT
                 </div>

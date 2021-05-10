@@ -13,8 +13,7 @@ function UIConfigTrigger(props)
                 onClick={props.toggleEditTrigger}
                 style={{backgroundColor: "#7F849F", 
                         boxShadow: store.getState().editTrigger.value ? 
-                                        "0 0 0 4px #FFFFC1" : 
-                                        ""}}
+                                        "0 0 0 4px #FFFFC1" : ""}}
             >
                 EDIT
             </div>

@@ -24,7 +24,7 @@ const Camera = React.forwardRef((props, ref) =>
     useFrame(() =>
     {
         if (controls)
-            controls.enabled = props.controlsEnabled;
+            controls.enabled = !store.getState().add.value && store.getState().enableCamera.value;
     });
 
     // key input

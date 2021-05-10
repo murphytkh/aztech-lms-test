@@ -3,7 +3,7 @@ import "../../resources/css/three-js-ui-config.css";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-import {setEditTrigger} from "../../redux/threeDataSlice";
+import {setEditTrigger, setDisableHotkeys} from "../../redux/threeDataSlice";
 
 import UIConfigName from "./UIConfigName";
 import UIConfigMode from "./UIConfigMode";
@@ -30,35 +30,43 @@ function UIConfig(props)
         setShowTriggerData(showData => !showData);
     }
 
+    function focus()
+    {
+        dispatch(setDisableHotkeys(true));
+    }
+
+    function blur()
+    {
+        dispatch(setDisableHotkeys(false));
+    }
+
     return(
-        <div className = "three-ui-box" id = "config">
+        <div className="three-ui-box" id="config">
             <UIConfigName 
-                focus = {props.focus}
-                blur = {props.blur}
-                selectedLights = {selectedLights}
-                setLightName = {props.setLightName}
+                focus={focus}
+                blur={blur}
+                selectedLights={selectedLights}
+                setLightName={props.setLightName}
             />
             <UIConfigMode 
-                click = {props.setMode} 
-                selectedLights = {selectedLights}
+                click={props.setMode} 
+                selectedLights={selectedLights}
             />
             <UIConfigGroup 
-                focus = {props.focus}
-                blur = {props.blur}
-                selectedLights = {selectedLights}
-                setGroup = {props.setGroup}
+                focus={focus}
+                blur={blur}
+                selectedLights={selectedLights}
+                setGroup={props.setGroup}
             />
             <UIConfigTrigger
-                selectedLights = {selectedLights}
-                toggleEditTrigger = {toggleEditTrigger}
-                toggleShowData = {toggleShowData}
-                showData = {showTriggerData}
+                selectedLights={selectedLights}
+                toggleEditTrigger={toggleEditTrigger}
+                toggleShowData={toggleShowData}
+                showData={showTriggerData}
             />
             {/* add separate panel here */}
             {showTriggerData && selectedLights.length === 1 &&
-                <UIConfigTriggerData
-                    selectedLights = {selectedLights}
-                />
+                <UIConfigTriggerData selectedLights={selectedLights} />
             }
     </div>
     );

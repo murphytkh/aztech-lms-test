@@ -6,7 +6,7 @@ import {Canvas} from "@react-three/fiber";
 
 // redux store
 import store from "../redux/store";
-import {setAdd, setDisableHotkeys, setEditTrigger, 
+import {setAdd, setDisableHotkeys, setEditTrigger, setEnableCamera,
         setAllLights} from "../redux/threeDataSlice";
 
 // data
@@ -71,7 +71,6 @@ function ThreeJsScene(props)
     }
 
     // ui states
-    const [cameraEnabled, setCameraEnabled] = useRefState(true);
     const [phMode, setPhMode] = useState(false);
     const [displayedMsg, setDisplayedMsg] = useState(false);
     const [displayTimeID, setDisplayTimeID] = useRefState(null);
@@ -381,19 +380,6 @@ function ThreeJsScene(props)
         }
     }
 
-    //function toggleEditTriggerMode(state)
-    //{
-    //    var result;
-
-    //    if(state === undefined)
-    //        result = !editTriggerMode.current;
-    //    else
-    //        result = state;
-
-    //    setEditTriggerMode(result);
-    //    showMsg("Edit triggers " + (result ? "ON" : "OFF"), 3000, COLOUR.BLACK);
-    //}
-
     function togglePlaceholder()
     {
         setPhMode(phMode => !phMode);
@@ -436,7 +422,7 @@ function ThreeJsScene(props)
         // deselect lights if clicked on empty space
         if (haveSelected && 
             lightHover.current === null && 
-            cameraEnabled.current &&
+            store.getState().enableCamera.value &&
             !mouseMoved.current)
         {
             deselectLights();
@@ -453,16 +439,6 @@ function ThreeJsScene(props)
         }
 
         setMouseMoved(false);
-    }
-
-    function handleFocus()
-    {
-        dispatch(setDisableHotkeys(true));
-    }
-
-    function handleBlur()
-    {
-        dispatch(setDisableHotkeys(false));
     }
 
     useKeyUp(" ", () => {
@@ -518,11 +494,11 @@ function ThreeJsScene(props)
     });
 
     useKeyDown("Control", () => {
-        setCameraEnabled(false);
+        dispatch(setEnableCamera(false));
     });
 
     useKeyUp("Control", () => {
-        setCameraEnabled(true);
+        dispatch(setEnableCamera(true));
     });
 
     useMouseMove(() => {
@@ -637,9 +613,6 @@ function ThreeJsScene(props)
                 setLightName={setLightName}
                 setMode={setMode}
                 setGroup={setGroup}
-                // focus setting
-                focus={handleFocus}
-                blur={handleBlur}
                 groupSearchRef={groupSearchRef}
                 // display messages
                 displayText={displayedMsg}
@@ -658,10 +631,7 @@ function ThreeJsScene(props)
             />
             {/* set bg colour on canvas */}
             <Canvas onCreated={state => state.gl.setClearColor(0xC0C0C0)}>
-                <Camera 
-                    ref={cameraRef}
-                    controlsEnabled={!store.getState().add.value && cameraEnabled.current} 
-                />
+                <Camera ref={cameraRef} />
                 <RaycastManager plane={planeRef} setPoint={setPoint} />
                 {/* multiselect selection box */}
                 <SelectionBoxHelper 

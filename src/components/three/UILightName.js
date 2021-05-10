@@ -1,15 +1,28 @@
 import "../../resources/css/three-js-ui-lightname.css";
 
 import React from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+
+import {setDisableHotkeys} from "../../redux/threeDataSlice";
 
 function UILightName(props)
 {
+    const dispatch = useDispatch();
     const add = useSelector((state) => state.add.value);
 
     function handleChange(e)
     {
         props.onChange(e.target.value);
+    }
+
+    function focus()
+    {
+        dispatch(setDisableHotkeys(true));
+    }
+
+    function blur()
+    {
+        dispatch(setDisableHotkeys(false));
     }
 
     return(
@@ -21,8 +34,8 @@ function UILightName(props)
             value={props.value}
             placeholder="Enter light name"
             onChange={handleChange}
-            onFocus={props.onFocus}
-            onBlur={props.onBlur}
+            onFocus={focus}
+            onBlur={blur}
             disabled={!add}
         />
     );

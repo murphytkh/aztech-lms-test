@@ -27,16 +27,12 @@ function UIManager(props)
             <UILightName
                 value={props.currLightName}
                 onChange={props.setCurrLightName}
-                onFocus={props.focus}
-                onBlur={props.blur}
             />
             {/* readme */}
             <UIReadMe />
             {/* group config panel */}
             {props.group &&
                 <UIGroup 
-                    focus={props.focus}
-                    blur={props.blur}
                     ref={props.groupSearchRef}
                     currGroup={props.currGroup}
                     setCurrGroup={props.setCurrGroup}
@@ -49,8 +45,6 @@ function UIManager(props)
                 obj.selected
             ).length > 0 &&
                 <UIConfig 
-                    focus={props.focus}
-                    blur={props.blur}
                     setLightName={props.setLightName}
                     setMode={props.setMode}
                     setGroup={props.setGroup}
