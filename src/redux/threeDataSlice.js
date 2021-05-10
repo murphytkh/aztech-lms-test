@@ -45,6 +45,10 @@ export const currLightSlice = create("currLight", "setCurrLight", "");
 export const {setCurrLight} = currLightSlice.actions;
 export const currLightReducer = currLightSlice.reducer;
 
+export const currPointSlice = create("currPoint", "setCurrPoint", []);
+export const {setCurrPoint} = currPointSlice.actions;
+export const currPointReducer = currPointSlice.reducer;
+
 export const displayMsgSlice = create("displayMsg", "setDisplayMsg", false);
 export const {setDisplayMsg} = displayMsgSlice.actions;
 export const displayMsgReducer = displayMsgSlice.reducer;

@@ -7,7 +7,7 @@ import {Canvas} from "@react-three/fiber";
 // redux store
 import store from "../redux/store";
 import {setAdd, setDisableHotkeys, setEditTrigger, setEnableCamera,
-        setShowNames, setShowGroups, setShowTriggers, setCurrLight,
+        setShowNames, setShowGroups, setShowTriggers, setCurrPoint,
         setDisplayMsg, setDisplayTimeID, setDisplayColour, setMouseMoved,
         setAllLights} from "../redux/threeDataSlice";
 
@@ -66,9 +66,6 @@ function ThreeJsScene(props)
     // overall light data
     const allLights = useSelector((state) => state.allLights.value);
 
-    // light selection
-    const [currPoint, setCurrPoint] = useState([]);
-
     const [lightHover, setLightHover] = useRefState(null);
     const [currGroup, setCurrGroup] = useState("");
 
@@ -120,7 +117,8 @@ function ThreeJsScene(props)
     {
         // initial data
         var arr = deepCopy(store.getState().allLights.value);
-        var data = initLight(store.getState().currLight.value, currPoint);
+        var data = initLight(store.getState().currLight.value, 
+                             store.getState().currPoint.value);
 
         if (!findLightByName(arr, data.name))
         {
@@ -380,7 +378,7 @@ function ThreeJsScene(props)
     {
         // update current clicked point
         if (store.getState().add.value)
-            setCurrPoint([x, 0, y]);
+            dispatch(setCurrPoint([x, 0, y]));
     }
 
     function handlePlaneClick()
@@ -634,9 +632,7 @@ function ThreeJsScene(props)
                         />
                     </Suspense>
                     {/* placement indicator */}
-                    {store.getState().add.value && 
-                    <IndicatorSphere radius={0.5} position={currPoint} 
-                                        colour={0x000000} />}
+                    <IndicatorSphere radius={0.5} colour={0xFBFF7A} />
                     <Outline>{lights}</Outline>
                 </Provider>
             </Canvas>
