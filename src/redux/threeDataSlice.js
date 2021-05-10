@@ -9,6 +9,10 @@ export const disableHotkeysSlice = create("disableHotkeys", "setDisableHotkeys",
 export const {setDisableHotkeys} = disableHotkeysSlice.actions;
 export const disableHotkeysReducer = disableHotkeysSlice.reducer;
 
+export const editTriggerSlice = create("editTrigger", "setEditTrigger", false);
+export const {setEditTrigger} = editTriggerSlice.actions;
+export const editTriggerReducer = editTriggerSlice.reducer;
+
 // light data
 export const allLightsSlice = create("allLights", "setAllLights", []);
 export const {setAllLights} = allLightsSlice.actions;

@@ -13,7 +13,8 @@ import {versionReducer, darkModeReducer, gatewayDataReducer} from "./miscInfoSli
 // individual block data
 import {blockDataReducer, statusDataReducer} from "./blockDataSlice";
 // threejs scene data
-import {addReducer, disableHotkeysReducer, allLightsReducer} from "./threeDataSlice";
+import {addReducer, disableHotkeysReducer, editTriggerReducer, 
+        allLightsReducer} from "./threeDataSlice";
 
 export default configureStore({
     reducer: {
@@ -55,5 +56,6 @@ export default configureStore({
         // ui states
         add: addReducer,
         disableHotkeys: disableHotkeysReducer,
+        editTrigger: editTriggerReducer,
     },
 })

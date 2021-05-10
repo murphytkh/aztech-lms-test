@@ -1,16 +1,20 @@
 import "../../resources/css/three-js-ui-config.css";
 
 import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+
+import {setEditTrigger} from "../../redux/threeDataSlice";
 
 import UIConfigName from "./UIConfigName";
 import UIConfigMode from "./UIConfigMode";
 import UIConfigGroup from "./UIConfigGroup";
 import UIConfigTrigger from "./UIConfigTrigger";
 import UIConfigTriggerData from "./UIConfigTriggerData";
+import store from "../../redux/store";
 
 function UIConfig(props)
 {
+    const dispatch = useDispatch();
     const [showTriggerData, setShowTriggerData] = useState(false);
     const selectedLights = useSelector((state) => state.allLights.value.filter(
                                                     obj => obj.selected)
@@ -18,7 +22,7 @@ function UIConfig(props)
 
     function toggleEditTrigger()
     {
-        props.setEditTriggerMode(!props.editTriggerMode);
+        dispatch(setEditTrigger(!store.getState().editTrigger.value));
     }
 
     function toggleShowData()
@@ -48,6 +52,7 @@ function UIConfig(props)
                 selectedLights = {selectedLights}
                 toggleEditTrigger = {toggleEditTrigger}
                 toggleShowData = {toggleShowData}
+                showData = {showTriggerData}
             />
             {/* add separate panel here */}
             {showTriggerData && selectedLights.length === 1 &&

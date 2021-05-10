@@ -6,7 +6,8 @@ import {Canvas} from "@react-three/fiber";
 
 // redux store
 import store from "../redux/store";
-import {setAdd, setDisableHotkeys, setAllLights} from "../redux/threeDataSlice";
+import {setAdd, setDisableHotkeys, setEditTrigger, 
+        setAllLights} from "../redux/threeDataSlice";
 
 // data
 import {useRefState, saveObj, initLight, removeLight, findLightByName, selectLight, 
@@ -71,7 +72,6 @@ function ThreeJsScene(props)
 
     // ui states
     const [cameraEnabled, setCameraEnabled] = useRefState(true);
-    const [editTriggerMode, setEditTriggerMode] = useRefState(false);
     const [phMode, setPhMode] = useState(false);
     const [displayedMsg, setDisplayedMsg] = useState(false);
     const [displayTimeID, setDisplayTimeID] = useRefState(null);
@@ -276,7 +276,7 @@ function ThreeJsScene(props)
             selectLight(selection[i].userData.name);
 
         if (selection.length > 1)
-            setEditTriggerMode(false);
+            dispatch(setEditTrigger(false));
     }
 
     // set highlight on given lights
@@ -381,18 +381,18 @@ function ThreeJsScene(props)
         }
     }
 
-    function toggleEditTriggerMode(state)
-    {
-        var result;
+    //function toggleEditTriggerMode(state)
+    //{
+    //    var result;
 
-        if(state === undefined)
-            result = !editTriggerMode.current;
-        else
-            result = state;
+    //    if(state === undefined)
+    //        result = !editTriggerMode.current;
+    //    else
+    //        result = state;
 
-        setEditTriggerMode(result);
-        showMsg("Edit triggers " + (result ? "ON" : "OFF"), 3000, COLOUR.BLACK);
-    }
+    //    setEditTriggerMode(result);
+    //    showMsg("Edit triggers " + (result ? "ON" : "OFF"), 3000, COLOUR.BLACK);
+    //}
 
     function togglePlaceholder()
     {
@@ -440,7 +440,7 @@ function ThreeJsScene(props)
             !mouseMoved.current)
         {
             deselectLights();
-            setEditTriggerMode(false);
+            dispatch(setEditTrigger(false));
         }
 
         // add light
@@ -538,7 +538,7 @@ function ThreeJsScene(props)
         // select light if rollover-ed any
         if (light !== null)
         {
-            if (!editTriggerMode.current)
+            if (!store.getState().editTrigger.value)
             {
                 deselectLights();
                 selectLight(light);
@@ -557,8 +557,8 @@ function ThreeJsScene(props)
                         break;
                     }
                 }
-
-                store.getState().add.value(name, lightHover.current, true);
+                
+                updateTrigger(name, lightHover.current, true);
             }
         }
 
@@ -576,7 +576,7 @@ function ThreeJsScene(props)
         }
 
         // remove triggers while in edit trigger mode
-        if (editTriggerMode.current)
+        if (store.getState().editTrigger.value)
         {
             if (lightHover.current !== null)
             {
@@ -610,7 +610,7 @@ function ThreeJsScene(props)
                 else if (!store.getState().add.value)
                 {
                     selectLight(light.name);
-                    setEditTriggerMode(false);
+                    dispatch(setEditTrigger(false));
                 }
             }
         }
@@ -637,8 +637,6 @@ function ThreeJsScene(props)
                 setLightName={setLightName}
                 setMode={setMode}
                 setGroup={setGroup}
-                editTriggerMode={editTriggerMode.current}
-                setEditTriggerMode={toggleEditTriggerMode}
                 // focus setting
                 focus={handleFocus}
                 blur={handleBlur}

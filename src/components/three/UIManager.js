@@ -25,8 +25,8 @@ function UIManager(props)
             */}
             {/* light name input box */}
             <UILightName
-                value = {props.currLightName}
-                onChange = {props.setCurrLightName}
+                value={props.currLightName}
+                onChange={props.setCurrLightName}
                 onFocus={props.focus}
                 onBlur={props.blur}
             />
@@ -35,13 +35,13 @@ function UIManager(props)
             {/* group config panel */}
             {props.group &&
                 <UIGroup 
-                    focus = {props.focus}
-                    blur = {props.blur}
-                    ref = {props.groupSearchRef}
-                    currGroup = {props.currGroup}
-                    setCurrGroup = {props.setCurrGroup}
-                    groupColours = {props.groupColours}
-                    setGroupColours = {props.setGroupColours}
+                    focus={props.focus}
+                    blur={props.blur}
+                    ref={props.groupSearchRef}
+                    currGroup={props.currGroup}
+                    setCurrGroup={props.setCurrGroup}
+                    groupColours={props.groupColours}
+                    setGroupColours={props.setGroupColours}
                 />
             }
             {/* config */}
@@ -49,19 +49,17 @@ function UIManager(props)
                 obj.selected
             ).length > 0 &&
                 <UIConfig 
-                    focus = {props.focus}
-                    blur = {props.blur}
-                    setLightName = {props.setLightName}
-                    setMode = {props.setMode}
-                    setGroup = {props.setGroup}
-                    editTriggerMode = {props.editTriggerMode}
-                    setEditTriggerMode = {props.setEditTriggerMode}
+                    focus={props.focus}
+                    blur={props.blur}
+                    setLightName={props.setLightName}
+                    setMode={props.setMode}
+                    setGroup={props.setGroup}
                 />
             }
             {/* message display */}
             <UIMsgDisplay
-                colour = {props.displayColour}
-                text = {props.displayText} 
+                colour={props.displayColour}
+                text={props.displayText} 
             />
         </div>
     );
