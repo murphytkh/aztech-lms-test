@@ -14,6 +14,7 @@ import {versionReducer, darkModeReducer, gatewayDataReducer} from "./miscInfoSli
 import {blockDataReducer, statusDataReducer} from "./blockDataSlice";
 // threejs scene data
 import {addReducer, disableHotkeysReducer, editTriggerReducer, enableCameraReducer,
+        displayMsgReducer, displayTimeIDReducer, displayColourReducer,
         allLightsReducer} from "./threeDataSlice";
 
 export default configureStore({
@@ -58,5 +59,9 @@ export default configureStore({
         disableHotkeys: disableHotkeysReducer,
         editTrigger: editTriggerReducer,
         enableCamera: enableCameraReducer,
+        // message display
+        displayMsg: displayMsgReducer,
+        displayTimeID: displayTimeIDReducer,
+        displayColour: displayColourReducer,
     },
 })

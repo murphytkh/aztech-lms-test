@@ -14,15 +14,6 @@ function UIManager(props)
 {
     return(
         <div className="three-ui-container">
-            {/* out of canvas elements */}
-            {/*
-            <UIExternal 
-                add = {props.add}
-                toggleAdd = {props.toggleAdd} 
-                ph = {props.ph} 
-                togglePh = {props.togglePh}
-            />
-            */}
             {/* light name input box */}
             <UILightName
                 value={props.currLightName}
@@ -51,10 +42,7 @@ function UIManager(props)
                 />
             }
             {/* message display */}
-            <UIMsgDisplay
-                colour={props.displayColour}
-                text={props.displayText} 
-            />
+            <UIMsgDisplay />
         </div>
     );
 }

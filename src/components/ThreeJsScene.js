@@ -7,6 +7,7 @@ import {Canvas} from "@react-three/fiber";
 // redux store
 import store from "../redux/store";
 import {setAdd, setDisableHotkeys, setEditTrigger, setEnableCamera,
+        setDisplayMsg, setDisplayTimeID, setDisplayColour, 
         setAllLights} from "../redux/threeDataSlice";
 
 // data
@@ -71,10 +72,6 @@ function ThreeJsScene(props)
     }
 
     // ui states
-    const [phMode, setPhMode] = useState(false);
-    const [displayedMsg, setDisplayedMsg] = useState(false);
-    const [displayTimeID, setDisplayTimeID] = useRefState(null);
-    const [displayedMsgColour, setDisplayedMsgColour] = useState(COLOUR.BLACK);
     const [showNames, setShowNames] = useRefState(true);
     const [showGroups, setShowGroups] = useRefState(false);
     const [showTriggers, setShowTriggers] = useRefState(true);
@@ -369,7 +366,7 @@ function ThreeJsScene(props)
     {
         let curr = store.getState().add.value;
         store.dispatch(setAdd(!curr));
-        console.log(curr);
+
         // set focus on input on switching to add mode
         if (!curr)
         {
@@ -380,19 +377,15 @@ function ThreeJsScene(props)
         }
     }
 
-    function togglePlaceholder()
-    {
-        setPhMode(phMode => !phMode);
-    }
-
     function showMsg(msg, time = 3000, colour = COLOUR.RED)
     {
-        setDisplayedMsg(msg);
-        if (displayTimeID.current)
-            clearTimeout(displayTimeID.current);
-        var id = setTimeout(() => {setDisplayedMsg(""); setDisplayTimeID(null);}, time);
-        setDisplayTimeID(id);
-        setDisplayedMsgColour(colour);
+        dispatch(setDisplayMsg(msg));
+        if (store.getState().displayTimeID.value)
+            clearTimeout(store.getState().displayTimeID.value);
+        var id = setTimeout(() => {dispatch(setDisplayMsg("")); 
+                                   dispatch(setDisplayTimeID(null));}, time);
+        dispatch(setDisplayTimeID(id));
+        dispatch(setDisplayColour(colour));
     }
 
     // input
@@ -598,11 +591,9 @@ function ThreeJsScene(props)
             {/* ui */}
             <UIManager 
                 // ui state tracking
-                ph={phMode}
                 group={showGroups.current}
                 // buttons
                 toggleAdd={toggleAdd} 
-                togglePh={togglePlaceholder}
                 // input fields
                 currLightName={currLightName}
                 setCurrLightName={setCurrLightName}
@@ -614,9 +605,6 @@ function ThreeJsScene(props)
                 setMode={setMode}
                 setGroup={setGroup}
                 groupSearchRef={groupSearchRef}
-                // display messages
-                displayText={displayedMsg}
-                displayColour={displayedMsgColour}
             />
             {/* selection box for mouse drag */}
             <div 

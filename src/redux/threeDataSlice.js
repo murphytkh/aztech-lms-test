@@ -17,6 +17,18 @@ export const enableCameraSlice = create("enableCamera", "setEnableCamera", false
 export const {setEnableCamera} = enableCameraSlice.actions;
 export const enableCameraReducer = enableCameraSlice.reducer;
 
+export const displayMsgSlice = create("displayMsg", "setDisplayMsg", false);
+export const {setDisplayMsg} = displayMsgSlice.actions;
+export const displayMsgReducer = displayMsgSlice.reducer;
+
+export const displayTimeIDSlice = create("displayTimeID", "setDisplayTimeID");
+export const {setDisplayTimeID} = displayTimeIDSlice.actions;
+export const displayTimeIDReducer = displayTimeIDSlice.reducer;
+
+export const displayColourSlice = create("displayColour", "setDisplayColour", "#000000");
+export const {setDisplayColour} = displayColourSlice.actions;
+export const displayColourReducer = displayColourSlice.reducer;
+
 // light data
 export const allLightsSlice = create("allLights", "setAllLights", []);
 export const {setAllLights} = allLightsSlice.actions;
