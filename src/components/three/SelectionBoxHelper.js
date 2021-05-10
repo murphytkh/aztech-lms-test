@@ -32,7 +32,7 @@ function SelectionBoxHelper(props)
             selectionBox.endPoint.set(mouse.x, mouse.y, 0.5);
             curr = curr.filter((obj) => obj.userData.hasOwnProperty("selected"));
             props.setHighlight(curr);
-
+            
             var s = selectionBox.startPoint;
             var e = new Vector3(mouse.x, mouse.y, 0.5);
 

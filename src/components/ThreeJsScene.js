@@ -7,7 +7,7 @@ import {Canvas} from "@react-three/fiber";
 // redux store
 import store from "../redux/store";
 import {setAdd, setDisableHotkeys, setEditTrigger, setEnableCamera,
-        setShowNames, setShowGroups, setShowTriggers,
+        setShowNames, setShowGroups, setShowTriggers, setCurrLight,
         setDisplayMsg, setDisplayTimeID, setDisplayColour, setMouseMoved,
         setAllLights} from "../redux/threeDataSlice";
 
@@ -66,15 +66,8 @@ function ThreeJsScene(props)
     // overall light data
     const allLights = useSelector((state) => state.allLights.value);
 
-    // wrappers for set functions (if needed)
-    function setLights(lights)
-    {
-        dispatch(setAllLights(lights));
-    }
-
     // light selection
     const [currPoint, setCurrPoint] = useState([]);
-    const [currLightName, setCurrLightName] = useState("");
 
     const [lightHover, setLightHover] = useRefState(null);
     const [currGroup, setCurrGroup] = useState("");
@@ -127,13 +120,13 @@ function ThreeJsScene(props)
     {
         // initial data
         var arr = deepCopy(store.getState().allLights.value);
-        var data = initLight(currLightName, currPoint);
+        var data = initLight(store.getState().currLight.value, currPoint);
 
         if (!findLightByName(arr, data.name))
         {
             // update array with new light
             arr.push(data);
-            setLights(arr);
+            dispatch(setAllLights(arr));
             showMsg("Added " + data.name, 3000, COLOUR.SUCCESS_GREEN);
         }
         else
@@ -150,7 +143,7 @@ function ThreeJsScene(props)
         // update array after removing light and reset hover name
         removeLight(arr, name);
         deselectLight(name);
-        setLights(arr);
+        dispatch(setAllLights(arr));
         showMsg(name + " removed", 3000, COLOUR.BLACK);
         setLightHover(null);
     }
@@ -202,7 +195,7 @@ function ThreeJsScene(props)
         }
 
         // update array
-        setLights(arr);
+        dispatch(setAllLights(arr));
     }
 
     function lightEnter(name)
@@ -251,7 +244,7 @@ function ThreeJsScene(props)
             {
                 // update light name and array
                 light.name = newName;
-                setLights(arr);
+                dispatch(setAllLights(arr));
                 showMsg("Updated successfully", 3000, COLOUR.SUCCESS_GREEN);
             }
         }
@@ -308,7 +301,7 @@ function ThreeJsScene(props)
 
     function selectGroup(group)
     {
-        deselectLights(setLights);
+        deselectLights();
         setCurrGroup(group);
         selectLightsByProperty("group", group);
     }
@@ -321,7 +314,7 @@ function ThreeJsScene(props)
         if (name === "default")
         {
             setFloorPlan("default");
-            setLights([]);
+            dispatch(setAllLights([]));
             setGroupColours({});
         }
         else
@@ -331,7 +324,7 @@ function ThreeJsScene(props)
             // api call successful
             .then((res) => {
                 setFloorPlan(res.data.img);
-                setLights(res.data.lights);
+                dispatch(setAllLights(res.data.lights));
                 setGroupColours(res.data.groupColours);
                 showMsg("Loaded " + res.data.img, 3000, COLOUR.GREEN);
             })
@@ -417,7 +410,7 @@ function ThreeJsScene(props)
         // add light
         if (store.getState().add.value)
         {
-            if (currLightName !== "")
+            if (store.getState().currLight.value !== "")
                 addLight();
             else
                 showMsg("Error: Please enter light name", 3000, COLOUR.RED);
@@ -544,7 +537,7 @@ function ThreeJsScene(props)
         {
             if (lightHover.current !== null)
             {
-                var arr = allLights;
+                var arr = store.getState().allLights.value;
                 var name = "";
                 for (var i = 0; i < arr.length; ++i)
                 {
@@ -586,8 +579,6 @@ function ThreeJsScene(props)
             {/* ui */}
             <UIManager 
                 // input fields
-                currLightName={currLightName}
-                setCurrLightName={setCurrLightName}
                 currGroup={currGroup}
                 setCurrGroup={selectGroup}
                 groupColours={groupColours.current}

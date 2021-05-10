@@ -233,7 +233,7 @@ export function selectionBoxHighlight(selection)
         if (names.includes(obj.name))
             arr[i].highlight = true;
         else
-            arr[i].highlgiht = false;
+            arr[i].highlight = false;
     });
 
     store.dispatch(setAllLights(arr));

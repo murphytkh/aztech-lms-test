@@ -41,6 +41,10 @@ export const mouseMovedSlice = create("mouseMoved", "setMouseMoved", false);
 export const {setMouseMoved} = mouseMovedSlice.actions;
 export const mouseMovedReducer = mouseMovedSlice.reducer;
 
+export const currLightSlice = create("currLight", "setCurrLight", "");
+export const {setCurrLight} = currLightSlice.actions;
+export const currLightReducer = currLightSlice.reducer;
+
 export const displayMsgSlice = create("displayMsg", "setDisplayMsg", false);
 export const {setDisplayMsg} = displayMsgSlice.actions;
 export const displayMsgReducer = displayMsgSlice.reducer;

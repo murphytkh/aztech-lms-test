@@ -19,10 +19,7 @@ function UIManager(props)
     return(
         <div className="three-ui-container">
             {/* light name input box */}
-            <UILightName
-                value={props.currLightName}
-                onChange={props.setCurrLightName}
-            />
+            <UILightName />
             {/* readme */}
             <UIReadMe />
             {/* group config panel */}
