@@ -1,6 +1,8 @@
 import "../../resources/css/three-js-ui.css";
 
 import React from "react";
+import {useSelector} from "react-redux";
+
 import store from "../../redux/store";
 
 //import UIExternal from "./UIExternal";
@@ -12,6 +14,8 @@ import UIMsgDisplay from "./UIMsgDisplay";
 
 function UIManager(props)
 {
+    const showGroups = useSelector((state) => state.showGroups.value);
+
     return(
         <div className="three-ui-container">
             {/* light name input box */}
@@ -22,7 +26,7 @@ function UIManager(props)
             {/* readme */}
             <UIReadMe />
             {/* group config panel */}
-            {props.group &&
+            {showGroups &&
                 <UIGroup 
                     ref={props.groupSearchRef}
                     currGroup={props.currGroup}

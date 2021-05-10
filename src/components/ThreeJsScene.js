@@ -1,12 +1,13 @@
 import "../resources/css/three-js-scene.css";
 
 import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
-import {useSelector, useDispatch} from "react-redux";
+import {Provider, useSelector, useDispatch} from "react-redux";
 import {Canvas} from "@react-three/fiber";
 
 // redux store
 import store from "../redux/store";
 import {setAdd, setDisableHotkeys, setEditTrigger, setEnableCamera,
+        setShowNames, setShowGroups, setShowTriggers,
         setDisplayMsg, setDisplayTimeID, setDisplayColour, 
         setAllLights} from "../redux/threeDataSlice";
 
@@ -72,9 +73,6 @@ function ThreeJsScene(props)
     }
 
     // ui states
-    const [showNames, setShowNames] = useRefState(true);
-    const [showGroups, setShowGroups] = useRefState(false);
-    const [showTriggers, setShowTriggers] = useRefState(true);
     const [mouseMoved, setMouseMoved] = useRefState(false);
 
     // light selection
@@ -109,9 +107,6 @@ function ThreeJsScene(props)
                     groupColours={groupColours.current}
                     userData={obj}
                     key={i} 
-                    showNames={showNames.current}
-                    showGroups={showGroups.current}
-                    showTriggers={showTriggers.current}
                     // callbacks
                     enter={lightEnter}
                     exit={lightExit}
@@ -471,11 +466,13 @@ function ThreeJsScene(props)
     });
 
     useKeyUp("g", () => {
-        if (!store.getState().disableHotkeys.value) setShowGroups(!showGroups.current);
+        if (!store.getState().disableHotkeys.value) 
+            dispatch(setShowGroups(!store.getState().showGroups.value));
     });
 
     useKeyUp("t", () => {
-        if (!store.getState().disableHotkeys.value) setShowTriggers(!showTriggers.current);
+        if (!store.getState().disableHotkeys.value) 
+            dispatch(setShowTriggers(!store.getState().showTriggers.value));
     });
 
     useKeyUp("s", () => {
@@ -483,7 +480,8 @@ function ThreeJsScene(props)
     });
 
     useKeyUp("n", () => {
-        if (!store.getState().disableHotkeys.value) setShowNames(!showNames.current);
+        if (!store.getState().disableHotkeys.value)
+            dispatch(setShowNames(!store.getState().showNames.value));
     });
 
     useKeyDown("Control", () => {
@@ -590,10 +588,6 @@ function ThreeJsScene(props)
         <div className="three-scene-page" onContextMenu={(e) => e.preventDefault()}>
             {/* ui */}
             <UIManager 
-                // ui state tracking
-                group={showGroups.current}
-                // buttons
-                toggleAdd={toggleAdd} 
                 // input fields
                 currLightName={currLightName}
                 setCurrLightName={setCurrLightName}
@@ -619,41 +613,44 @@ function ThreeJsScene(props)
             />
             {/* set bg colour on canvas */}
             <Canvas onCreated={state => state.gl.setClearColor(0xC0C0C0)}>
-                <Camera ref={cameraRef} />
-                <RaycastManager plane={planeRef} setPoint={setPoint} />
-                {/* multiselect selection box */}
-                <SelectionBoxHelper 
-                    setSelection={selectInBox}
-                    setHighlight={setHighlight}
-                    setTop={setTop}
-                    setLeft={setLeft}
-                    setWidth={setWidth}
-                    setHeight={setHeight}
-                />
-                {/* default scene lighting */}
-                <directionalLight color={0xFFFFFF} intensity={2} />
-                <ambientLight />
-                {/* elements */}
-                <Suspense fallback={null}>
-                    <Plane 
-                        ref={planeRef} 
-                        width={100} 
-                        height={71}
-                        /* 
-                        img = {floorPlan.current === "default" ? 
-                                defaultImg : 
-                                url.current + floorPlan.current + ".png"}
-                        */
-                       img={floorPlan.current === "default" ?
-                            demoDefaultImg :
-                                url.current + floorPlan.current + ".png"}
-                        onClick={handlePlaneClick}
+                <Provider store={store}>
+                    <Camera ref={cameraRef} />
+                    <RaycastManager plane={planeRef} setPoint={setPoint} />
+                    {/* multiselect selection box */}
+                    <SelectionBoxHelper 
+                        setSelection={selectInBox}
+                        setHighlight={setHighlight}
+                        setTop={setTop}
+                        setLeft={setLeft}
+                        setWidth={setWidth}
+                        setHeight={setHeight}
                     />
-                </Suspense>
-                {/* placement indicator */}
-                {store.getState().add.value && 
-                <IndicatorSphere radius={0.5} position={currPoint} colour={0x000000} />}
-                <Outline>{lights}</Outline>
+                    {/* default scene lighting */}
+                    <directionalLight color={0xFFFFFF} intensity={2} />
+                    <ambientLight />
+                    {/* elements */}
+                    <Suspense fallback={null}>
+                        <Plane 
+                            ref={planeRef} 
+                            width={100} 
+                            height={71}
+                            /* 
+                            img = {floorPlan.current === "default" ? 
+                                    defaultImg : 
+                                    url.current + floorPlan.current + ".png"}
+                            */
+                           img={floorPlan.current === "default" ?
+                                demoDefaultImg :
+                                    url.current + floorPlan.current + ".png"}
+                            onClick={handlePlaneClick}
+                        />
+                    </Suspense>
+                    {/* placement indicator */}
+                    {store.getState().add.value && 
+                    <IndicatorSphere radius={0.5} position={currPoint} 
+                                        colour={0x000000} />}
+                    <Outline>{lights}</Outline>
+                </Provider>
             </Canvas>
         </div>
     );

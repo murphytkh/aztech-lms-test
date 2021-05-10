@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, {useEffect, useRef, useContext} from "react";
+import {useSelector} from "react-redux";
 import store from "../../redux/store";
 import {Html} from "@react-three/drei";
 import {Vector3} from "three";
@@ -10,6 +11,8 @@ function LightSphere(props)
 {
     const ref = useRef();
     const setOutline = useContext(props.context);
+    const showNames = useSelector((state) => state.showNames.value);
+    const showGroups = useSelector((state) => state.showGroups.value);
 
     function handleOver()
     {
@@ -32,7 +35,7 @@ function LightSphere(props)
     // colour selection
     function colour()
     {
-        if (props.showGroups)
+        if (showGroups)
         {
             if (props.userData.group in props.groupColours)
                 return props.groupColours[props.userData.group];
@@ -54,26 +57,24 @@ function LightSphere(props)
         <mesh
             {...props}
             
-            ref = {ref}
+            ref={ref}
             // properties
-            userData = {props.userData}
-            position = {props.userData.pos}
+            userData={props.userData}
+            position={props.userData.pos}
             // default scale 1
-            scale = {1}
+            scale={1}
 
-            onPointerOver = {handleOver}
-            onPointerOut = {handleOut}
+            onPointerOver={handleOver}
+            onPointerOut={handleOut}
         >
             {/* radius, width segments, height segments */}
-            <sphereBufferGeometry args = {[0.5, 32, 32]} />
+            <sphereBufferGeometry args={[0.5, 32, 32]} />
             {/* colour */}
-            <meshStandardMaterial color = {colour()} />
+            <meshStandardMaterial color={colour()} />
             {/* name overlay */}
-            {props.showNames &&
-                <Html style = {{pointerEvents: "none"}}>
-                    <div className = "three-light-overlay">
-                        {props.userData.name}
-                    </div>
+            {showNames &&
+                <Html style={{pointerEvents: "none"}}>
+                    <div className="three-light-overlay">{props.userData.name}</div>
                 </Html>
             }
         </mesh>
@@ -82,6 +83,8 @@ function LightSphere(props)
 
 function Light(props)
 {
+    const showTriggers = useSelector((state) => state.showTriggers.value);
+
     let arrows = props.userData.triggerees.length && props.userData.triggerees.map((obj, i) =>
     {
         let offset = 0.3;
@@ -95,8 +98,8 @@ function Light(props)
 
         return (
             <arrowHelper
-                key = {i}
-                args = {[dir, origin, dist - offset, 0xFF0000, 0.5, 0.3]}
+                key={i}
+                args={[dir, origin, dist - offset, 0xFF0000, 0.5, 0.3]}
             />
         );
     });
@@ -106,9 +109,7 @@ function Light(props)
             {/* light object itself */}
             <LightSphere {...props} />
             {/* trigger arrows */}
-            {props.showTriggers &&
-                arrows
-            }
+            {showTriggers && arrows}
         </group>
     );
 }

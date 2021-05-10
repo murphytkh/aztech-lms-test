@@ -15,6 +15,7 @@ import {blockDataReducer, statusDataReducer} from "./blockDataSlice";
 // threejs scene data
 import {addReducer, disableHotkeysReducer, editTriggerReducer, enableCameraReducer,
         displayMsgReducer, displayTimeIDReducer, displayColourReducer,
+        showNamesReducer, showGroupsReducer, showTriggersReducer,
         allLightsReducer} from "./threeDataSlice";
 
 export default configureStore({
@@ -54,11 +55,15 @@ export default configureStore({
 
         // light data
         allLights: allLightsReducer,
+
         // ui states
         add: addReducer,
         disableHotkeys: disableHotkeysReducer,
         editTrigger: editTriggerReducer,
         enableCamera: enableCameraReducer,
+        showNames: showNamesReducer,
+        showGroups: showGroupsReducer,
+        showTriggers: showTriggersReducer,
         // message display
         displayMsg: displayMsgReducer,
         displayTimeID: displayTimeIDReducer,
