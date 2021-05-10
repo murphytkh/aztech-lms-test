@@ -8,7 +8,7 @@ import {Canvas} from "@react-three/fiber";
 import store from "../redux/store";
 import {setAdd, setDisableHotkeys, setEditTrigger, setEnableCamera,
         setShowNames, setShowGroups, setShowTriggers,
-        setDisplayMsg, setDisplayTimeID, setDisplayColour, 
+        setDisplayMsg, setDisplayTimeID, setDisplayColour, setMouseMoved,
         setAllLights} from "../redux/threeDataSlice";
 
 // data
@@ -71,9 +71,6 @@ function ThreeJsScene(props)
     {
         dispatch(setAllLights(lights));
     }
-
-    // ui states
-    const [mouseMoved, setMouseMoved] = useRefState(false);
 
     // light selection
     const [currPoint, setCurrPoint] = useState([]);
@@ -411,7 +408,7 @@ function ThreeJsScene(props)
         if (haveSelected && 
             lightHover.current === null && 
             store.getState().enableCamera.value &&
-            !mouseMoved.current)
+            !store.getState().mouseMoved.value)
         {
             deselectLights();
             dispatch(setEditTrigger(false));
@@ -426,7 +423,7 @@ function ThreeJsScene(props)
                 showMsg("Error: Please enter light name", 3000, COLOUR.RED);
         }
 
-        setMouseMoved(false);
+        dispatch(setMouseMoved(false));
     }
 
     useKeyUp(" ", () => {
@@ -493,11 +490,11 @@ function ThreeJsScene(props)
     });
 
     useMouseMove(() => {
-        setMouseMoved(true);
+        dispatch(setMouseMoved(true));
     });
 
     useLMBDown(() => {
-        setMouseMoved(false);
+        dispatch(setMouseMoved(false));
     });
 
     useLMBUp((e) => {

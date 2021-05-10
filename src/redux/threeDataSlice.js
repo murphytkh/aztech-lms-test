@@ -37,6 +37,10 @@ export const showTriggersSlice = create("showTriggers", "setShowTriggers", true)
 export const {setShowTriggers} = showTriggersSlice.actions;
 export const showTriggersReducer = showTriggersSlice.reducer;
 
+export const mouseMovedSlice = create("mouseMoved", "setMouseMoved", false);
+export const {setMouseMoved} = mouseMovedSlice.actions;
+export const mouseMovedReducer = mouseMovedSlice.reducer;
+
 export const displayMsgSlice = create("displayMsg", "setDisplayMsg", false);
 export const {setDisplayMsg} = displayMsgSlice.actions;
 export const displayMsgReducer = displayMsgSlice.reducer;
