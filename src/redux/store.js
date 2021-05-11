@@ -16,7 +16,8 @@ import {blockDataReducer, statusDataReducer} from "./blockDataSlice";
 import {addReducer, disableHotkeysReducer, editTriggerReducer, enableCameraReducer,
         displayMsgReducer, displayTimeIDReducer, displayColourReducer,
         showNamesReducer, showGroupsReducer, showTriggersReducer, mouseMovedReducer,
-        currLightReducer, currPointReducer, hoveredLightReducer,
+        currLightReducer, currPointReducer, hoveredLightReducer, sbTopReducer,
+        sbLeftReducer, sbWidthReducer, sbHeightReducer,
         allLightsReducer} from "./threeDataSlice";
 
 export default configureStore({
@@ -56,6 +57,7 @@ export default configureStore({
 
         // light data
         allLights: allLightsReducer,
+        // scene data
 
         // ui states
         add: addReducer,
@@ -70,6 +72,10 @@ export default configureStore({
         currLight: currLightReducer,
         currPoint: currPointReducer,
         hoveredLight: hoveredLightReducer,
+        sbTop: sbTopReducer,
+        sbLeft: sbLeftReducer,
+        sbWidth: sbWidthReducer,
+        sbHeight: sbHeightReducer,
         // message display
         displayMsg: displayMsgReducer,
         displayTimeID: displayTimeIDReducer,

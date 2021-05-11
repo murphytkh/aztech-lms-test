@@ -15,8 +15,8 @@ current task:
         - convert more variables to redux store
         - use useSelector, move callbacks downwards
           (use dispatch for these)
-        - move lighthover, currgroup and scene data
-          to redux store
+        - uimanager
+        - selectionboxhelper
 
 docker commands (in slp-app folder)
 docker-compose -f docker-compose-no-build.yml up

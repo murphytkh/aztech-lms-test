@@ -21,8 +21,8 @@ import {getSceneData} from "./MockAPI";
 import Effects from "./three/Effects";
 import UIManager from "./three/UIManager";
 import Camera from "./three/Camera";
-import {useKeyDown, useKeyUp, useLMBDown, useMouseMove,
-        useLMBUp, useRMBUp, useCtrlMouseUp} from "./three/Input";
+import {useKeyDown, useKeyUp, useLMBDown, useMouseMove, useLMBUp, useRMBUp, useCtrlMouseUp} 
+        from "./three/Input";
 import RaycastManager from "./three/RaycastManager";
 import SelectionBoxHelper from "./three/SelectionBoxHelper";
 import Light from "./three/Light";
@@ -66,13 +66,9 @@ function ThreeJsScene(props)
     // overall light data
     const allLights = useSelector((state) => state.allLights.value);
 
-    const [currGroup, setCurrGroup] = useState("");
-
     // selection box (mouse drag)
-    const [top, setTop] = useState(0);
-    const [left, setLeft] = useState(0);
-    const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);
+    const width = useSelector((state) => state.sbWidth.value);
+    const height = useSelector((state) => state.sbHeight.value);
 
     // refs
     const cameraRef = useRef();
@@ -170,7 +166,8 @@ function ThreeJsScene(props)
                 // update trigger tables of both triggerer and triggeree
                 triggererLight.triggerees.push(triggeree);
                 triggereeLight.triggerers.push(triggerer);
-                showMsg(triggeree + " added as triggeree of " + triggerer, 3000, COLOUR.GREEN);
+                showMsg(triggeree + " added as triggeree of " + triggerer, 3000, 
+                        COLOUR.GREEN);
             }
         }
         // remove trigger
@@ -183,7 +180,8 @@ function ThreeJsScene(props)
                 var j = triggereeLight.triggerers.findIndex(obj => obj === triggerer);
                 triggererLight.triggerees.splice(i, 1);
                 triggereeLight.triggerers.splice(j, 1);
-                showMsg(triggeree + " removed as triggeree of " + triggerer, 3000, COLOUR.GREEN);
+                showMsg(triggeree + " removed as triggeree of " + triggerer, 3000, 
+                        COLOUR.GREEN);
             }
             else
             {
@@ -294,13 +292,6 @@ function ThreeJsScene(props)
 
         setLightsProperty(names, "group", group);
         showMsg("Assigned to " + group, 3000, COLOUR.SUCCESS_GREEN);
-    }
-
-    function selectGroup(group)
-    {
-        deselectLights();
-        setCurrGroup(group);
-        selectLightsByProperty("group", group);
     }
 
     // file loading
@@ -577,8 +568,6 @@ function ThreeJsScene(props)
             {/* ui */}
             <UIManager 
                 // input fields
-                currGroup={currGroup}
-                setCurrGroup={selectGroup}
                 groupColours={groupColours.current}
                 setGroupColours={setGroupColours}
                 setLightName={setLightName}
@@ -591,8 +580,8 @@ function ThreeJsScene(props)
                 className="selection-box"
                 style={{
                             display: (width === 0 || height === 0) ? "none" : "block",
-                            top: top + "%",
-                            left: left + "%",
+                            top: store.getState().sbTop.value + "%",
+                            left: store.getState().sbLeft.value + "%",
                             width: width + "%", 
                             height: height + "%"
                         }}
@@ -606,10 +595,6 @@ function ThreeJsScene(props)
                     <SelectionBoxHelper 
                         setSelection={selectInBox}
                         setHighlight={setHighlight}
-                        setTop={setTop}
-                        setLeft={setLeft}
-                        setWidth={setWidth}
-                        setHeight={setHeight}
                     />
                     {/* default scene lighting */}
                     <directionalLight color={0xFFFFFF} intensity={2} />

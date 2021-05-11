@@ -7,6 +7,8 @@ import create from "./create";
 export const allLightsSlice = create("allLights", "setAllLights", []);
 export const {setAllLights} = allLightsSlice.actions;
 export const allLightsReducer = allLightsSlice.reducer;
+// scene data
+
 
 // ui states
 export const addSlice = create("add", "setAdd", false);
@@ -53,6 +55,22 @@ export const currPointReducer = currPointSlice.reducer;
 export const hoveredLightSlice = create("hoveredLight", "setHoveredLight");
 export const {setHoveredLight} = hoveredLightSlice.actions;
 export const hoveredLightReducer = hoveredLightSlice.reducer;
+
+export const sbTopSlice = create("sbTop", "setSbTop", 0);
+export const {setSbTop} = sbTopSlice.actions;
+export const sbTopReducer = sbTopSlice.reducer;
+
+export const sbLeftSlice = create("sbLeft", "setSbLeft", 0);
+export const {setSbLeft} = sbLeftSlice.actions;
+export const sbLeftReducer = sbLeftSlice.reducer;
+
+export const sbWidthSlice = create("sbWidth", "setSbWidth", 0);
+export const {setSbWidth} = sbWidthSlice.actions;
+export const sbWidthReducer = sbWidthSlice.reducer;
+
+export const sbHeightSlice = create("sbHeight", "setSbHeight", 0);
+export const {setSbHeight} = sbHeightSlice.actions;
+export const sbHeightReducer = sbHeightSlice.reducer;
 
 // display msg
 export const displayMsgSlice = create("displayMsg", "setDisplayMsg", false);

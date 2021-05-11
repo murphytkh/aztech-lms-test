@@ -5,6 +5,8 @@ import {useDispatch} from "react-redux";
 
 import {setDisableHotkeys} from "../../redux/threeDataSlice";
 
+import {deselectLights, selectLightsByProperty} from "../Utility";
+
 import UIColourPicker from "./UIColourPicker";
 
 const UIGroup = forwardRef((props, ref) =>
@@ -12,6 +14,7 @@ const UIGroup = forwardRef((props, ref) =>
     const dispatch = useDispatch();
 
     const [group, setGroup] = useState("");
+    const [currGroup, setCurrGroup] = useState("");
     const [colour, setColour] = useState("#FFFFFF");
     const [showPicker, setShowPicker] = useState(false);
     const [showColour, setShowColour] = useState(false);
@@ -23,7 +26,9 @@ const UIGroup = forwardRef((props, ref) =>
 
     function handleSelect()
     {
-        props.setCurrGroup(group);
+        deselectLights();
+        setCurrGroup(group);
+        selectLightsByProperty("group", group);
 
         if (group in props.groupColours)
             setColour(props.groupColours[group]);
@@ -49,7 +54,7 @@ const UIGroup = forwardRef((props, ref) =>
         setShowPicker(false);
         setColour(colour);
         var obj = {...props.groupColours};
-        obj[props.currGroup] = colour;
+        obj[currGroup] = colour;
         props.setGroupColours(obj);
     }
 

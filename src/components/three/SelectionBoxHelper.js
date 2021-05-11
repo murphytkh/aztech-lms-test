@@ -1,10 +1,14 @@
 import {useEffect, useRef} from "react";
 import {useThree} from "@react-three/fiber";
+import {useDispatch} from "react-redux";
 import {SelectionBox} from "three/examples/jsm/interactive/SelectionBox";
 import {Vector2, Vector3} from "three";
+import {setSbTop, setSbLeft, setSbWidth, setSbHeight} from "../../redux/threeDataSlice";
 
 function SelectionBoxHelper(props)
 {
+    const dispatch = useDispatch();
+
     // selection box
     const {mouse, camera, scene, gl} = useThree();
     let selecting = useRef(false);
@@ -26,6 +30,7 @@ function SelectionBoxHelper(props)
 
     let pointerMove = (event) =>
     {
+        // update selection box size and currently selcted lights
         if (selecting.current)
         {
             let curr = selectionBox.select();
@@ -47,28 +52,27 @@ function SelectionBoxHelper(props)
             left = (topLeft.x + 1) * 50;
             width = t.x * 50;
             height = t.y * 50;
-
-            props.setTop(top);
-            props.setLeft(left);
-            props.setWidth(width);
-            props.setHeight(height);
+            dispatch(setSbTop(top));
+            dispatch(setSbLeft(left));
+            dispatch(setSbWidth(width));
+            dispatch(setSbHeight(height));
         }
     }
 
     let pointerUp = (event) =>
     {
+        // select lights within box
         if (event.button !== 2 && selecting.current)
         {
-            // here
             selecting.current = false;
             selectionBox.endPoint.set(mouse.x, mouse.y, 0.5);
             let curr = selectionBox.select();
             curr = curr.filter((obj) => obj.userData.hasOwnProperty("selected"));
             props.setSelection(curr);
-            props.setTop(0);
-            props.setLeft(0);
-            props.setWidth(0);
-            props.setHeight(0);
+            dispatch(setSbTop(0));
+            dispatch(setSbLeft(0));
+            dispatch(setSbWidth(0));
+            dispatch(setSbHeight(0));
         }
     }
 

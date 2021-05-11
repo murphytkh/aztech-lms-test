@@ -26,8 +26,6 @@ function UIManager(props)
             {showGroups &&
                 <UIGroup 
                     ref={props.groupSearchRef}
-                    currGroup={props.currGroup}
-                    setCurrGroup={props.setCurrGroup}
                     groupColours={props.groupColours}
                     setGroupColours={props.setGroupColours}
                 />
