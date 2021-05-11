@@ -24,11 +24,7 @@ function UIManager(props)
             <UIReadMe />
             {/* group config panel */}
             {showGroups &&
-                <UIGroup 
-                    ref={props.groupSearchRef}
-                    groupColours={props.groupColours}
-                    setGroupColours={props.setGroupColours}
-                />
+                <UIGroup ref={props.groupSearchRef} />
             }
             {/* config */}
             {(store.getState().allLights.value).filter(obj => 

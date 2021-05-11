@@ -7,8 +7,11 @@ import create from "./create";
 export const allLightsSlice = create("allLights", "setAllLights", []);
 export const {setAllLights} = allLightsSlice.actions;
 export const allLightsReducer = allLightsSlice.reducer;
-// scene data
 
+// scene data
+export const groupColoursSlice = create("allLights", "setGroupColours", {});
+export const {setGroupColours} = groupColoursSlice.actions;
+export const groupColoursReducer = groupColoursSlice.reducer;
 
 // ui states
 export const addSlice = create("add", "setAdd", false);

@@ -13,12 +13,12 @@ import {versionReducer, darkModeReducer, gatewayDataReducer} from "./miscInfoSli
 // individual block data
 import {blockDataReducer, statusDataReducer} from "./blockDataSlice";
 // threejs scene data
-import {addReducer, disableHotkeysReducer, editTriggerReducer, enableCameraReducer,
-        displayMsgReducer, displayTimeIDReducer, displayColourReducer,
-        showNamesReducer, showGroupsReducer, showTriggersReducer, mouseMovedReducer,
-        currLightReducer, currPointReducer, hoveredLightReducer, sbTopReducer,
-        sbLeftReducer, sbWidthReducer, sbHeightReducer,
-        allLightsReducer} from "./threeDataSlice";
+import {allLightsReducer, groupColoursReducer, addReducer, disableHotkeysReducer, 
+        editTriggerReducer, enableCameraReducer, displayMsgReducer, displayTimeIDReducer, 
+        displayColourReducer, showNamesReducer, showGroupsReducer, showTriggersReducer, 
+        mouseMovedReducer, currLightReducer, currPointReducer, hoveredLightReducer, 
+        sbTopReducer, sbLeftReducer, sbWidthReducer, sbHeightReducer} 
+        from "./threeDataSlice";
 
 export default configureStore({
     reducer: {
@@ -58,7 +58,7 @@ export default configureStore({
         // light data
         allLights: allLightsReducer,
         // scene data
-
+        groupColours: groupColoursReducer,
         // ui states
         add: addReducer,
         disableHotkeys: disableHotkeysReducer,

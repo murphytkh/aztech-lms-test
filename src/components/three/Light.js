@@ -13,6 +13,7 @@ function LightSphere(props)
     const setOutline = useContext(props.context);
     const showNames = useSelector((state) => state.showNames.value);
     const showGroups = useSelector((state) => state.showGroups.value);
+    const groupColours = useSelector((state) => state.groupColours.value);
 
     function handleOver()
     {
@@ -37,8 +38,8 @@ function LightSphere(props)
     {
         if (showGroups)
         {
-            if (props.userData.group in props.groupColours)
-                return props.groupColours[props.userData.group];
+            if (props.userData.group in groupColours)
+                return groupColours[props.userData.group];
             else
                 return "#808080";
         }

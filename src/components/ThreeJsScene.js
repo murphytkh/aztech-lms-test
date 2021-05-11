@@ -6,10 +6,10 @@ import {Canvas} from "@react-three/fiber";
 
 // redux store
 import store from "../redux/store";
-import {setAllLights, setAdd, setDisableHotkeys, setEditTrigger, setEnableCamera,
-        setShowNames, setShowGroups, setShowTriggers, setMouseMoved, setCurrPoint,
-        setHoveredLight,
-        setDisplayMsg, setDisplayTimeID, setDisplayColour, } from "../redux/threeDataSlice";
+import {setAllLights, setGroupColours, setAdd, setDisableHotkeys, setEditTrigger, 
+        setEnableCamera, setShowNames, setShowGroups, setShowTriggers, setMouseMoved,
+        setCurrPoint, setHoveredLight, setDisplayMsg, setDisplayTimeID, setDisplayColour} 
+        from "../redux/threeDataSlice";
 
 // data
 import {useRefState, saveObj, initLight, removeLight, findLightByName, selectLight, 
@@ -21,8 +21,8 @@ import {getSceneData} from "./MockAPI";
 import Effects from "./three/Effects";
 import UIManager from "./three/UIManager";
 import Camera from "./three/Camera";
-import {useKeyDown, useKeyUp, useLMBDown, useMouseMove, useLMBUp, useRMBUp, useCtrlMouseUp} 
-        from "./three/Input";
+import {useKeyDown, useKeyUp, useLMBDown, useMouseMove, useLMBUp, useRMBUp, 
+        useCtrlMouseUp} from "./three/Input";
 import RaycastManager from "./three/RaycastManager";
 import SelectionBoxHelper from "./three/SelectionBoxHelper";
 import Light from "./three/Light";
@@ -79,14 +79,12 @@ function ThreeJsScene(props)
     const [url, setUrl] = useRefState("");
     const [sceneName, setSceneName] = useRefState("");
     const [floorPlan, setFloorPlan] = useRefState("");
-    const [groupColours, setGroupColours] = useRefState({});
 
     // array of light objects
     let lights = allLights.length && allLights.map((obj, i) =>
         {
             return (
                 <Light 
-                    groupColours={groupColours.current}
                     userData={obj}
                     key={i} 
                     // callbacks
@@ -303,7 +301,7 @@ function ThreeJsScene(props)
         {
             setFloorPlan("default");
             dispatch(setAllLights([]));
-            setGroupColours({});
+            dispatch(setGroupColours({}));
         }
         else
         {
@@ -313,7 +311,7 @@ function ThreeJsScene(props)
             .then((res) => {
                 setFloorPlan(res.data.img);
                 dispatch(setAllLights(res.data.lights));
-                setGroupColours(res.data.groupColours);
+                dispatch(setGroupColours(res.data.groupColours));
                 showMsg("Loaded " + res.data.img, 3000, COLOUR.GREEN);
             })
             // error
@@ -330,7 +328,7 @@ function ThreeJsScene(props)
 
         saveObj({img: floorPlan.current, 
                 lights: arr, 
-                groupColours: groupColours.current}, 
+                groupColours: store.getState().groupColours.value}, 
                 name);
     }
 
@@ -568,8 +566,6 @@ function ThreeJsScene(props)
             {/* ui */}
             <UIManager 
                 // input fields
-                groupColours={groupColours.current}
-                setGroupColours={setGroupColours}
                 setLightName={setLightName}
                 setMode={setMode}
                 setGroup={setGroup}

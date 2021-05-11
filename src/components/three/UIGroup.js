@@ -1,9 +1,9 @@
 import "../../resources/css/three-js-ui-group.css";
 
 import React, {useState, forwardRef} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
-import {setDisableHotkeys} from "../../redux/threeDataSlice";
+import {setDisableHotkeys, setGroupColours} from "../../redux/threeDataSlice";
 
 import {deselectLights, selectLightsByProperty} from "../Utility";
 
@@ -15,6 +15,7 @@ const UIGroup = forwardRef((props, ref) =>
 
     const [group, setGroup] = useState("");
     const [currGroup, setCurrGroup] = useState("");
+    const groupColours = useSelector((state) => state.groupColours.value);
     const [colour, setColour] = useState("#FFFFFF");
     const [showPicker, setShowPicker] = useState(false);
     const [showColour, setShowColour] = useState(false);
@@ -30,8 +31,8 @@ const UIGroup = forwardRef((props, ref) =>
         setCurrGroup(group);
         selectLightsByProperty("group", group);
 
-        if (group in props.groupColours)
-            setColour(props.groupColours[group]);
+        if (group in groupColours)
+            setColour(groupColours[group]);
         else
             setColour("#808080");
 
@@ -53,9 +54,9 @@ const UIGroup = forwardRef((props, ref) =>
     {
         setShowPicker(false);
         setColour(colour);
-        var obj = {...props.groupColours};
+        var obj = {...groupColours};
         obj[currGroup] = colour;
-        props.setGroupColours(obj);
+        dispatch(setGroupColours(obj));
     }
 
     function focus()
