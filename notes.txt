@@ -21,6 +21,8 @@ api calls
 http://localhost:8888/api/v1/areas
 http://localhost:8888/api/v1/block/(id)
 
+ec2-54-255-73-81.ap-southeast-1.compute.amazonaws.com:8888
+
 - document for handover
     - many many things
 

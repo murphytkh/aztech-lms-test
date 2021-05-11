@@ -9,10 +9,8 @@ import {setLocationData, setLocations, setAreas, setBlocks, setLevels, setLights
         setSelectedLights} from "../redux/locationDataSlice";
 import {setBlockData} from "../redux/blockDataSlice";
 import {setVersion} from "../redux/miscInfoSlice";
-import {getCurrUser, getUsers, getNotifications, getVersion,
-        getLocationData, getLocations,
-        getBlockId, getBlockData} from "./MockAPI";
-
+import {getCurrUser, getUsers, getNotifications, getVersion, getLocationData, 
+        getLocations, getBlockId, getBlockData} from "./MockAPI";
 import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
