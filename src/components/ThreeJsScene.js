@@ -14,7 +14,7 @@ import {setAllLights, setGroupColours, setAdd, setDisableHotkeys, setEditTrigger
 // data
 import {useRefState, saveObj, initLight, removeLight, findLightByName, selectLight, 
         deselectLight, deselectLights, setLightsProperty, selectLightsByProperty, 
-        selectionBoxHighlight, deepCopy, clearTriggers} from "./Utility";
+        deepCopy, clearTriggers} from "./Utility";
 import {getSceneData} from "./MockAPI";
 
 // three components
@@ -241,22 +241,6 @@ function ThreeJsScene(props)
                 showMsg("Updated successfully", 3000, COLOUR.SUCCESS_GREEN);
             }
         }
-    }
-
-    // mouse drag box multi select
-    function selectInBox(selection)
-    {
-        for (var i = 0; i < selection.length; ++i)
-            selectLight(selection[i].userData.name);
-
-        if (selection.length > 1)
-            dispatch(setEditTrigger(false));
-    }
-
-    // set highlight on given lights
-    function setHighlight(selection)
-    {
-        selectionBoxHighlight(selection);
     }
 
     // update mode and trigger relevant triggerees
@@ -588,10 +572,7 @@ function ThreeJsScene(props)
                     <Camera ref={cameraRef} />
                     <RaycastManager plane={planeRef} setPoint={setPoint} />
                     {/* multiselect selection box */}
-                    <SelectionBoxHelper 
-                        setSelection={selectInBox}
-                        setHighlight={setHighlight}
-                    />
+                    <SelectionBoxHelper />
                     {/* default scene lighting */}
                     <directionalLight color={0xFFFFFF} intensity={2} />
                     <ambientLight />
@@ -602,12 +583,10 @@ function ThreeJsScene(props)
                             width={100} 
                             height={71}
                             /* 
-                            img = {floorPlan.current === "default" ? 
-                                    defaultImg : 
+                            img = {floorPlan.current === "default" ? defaultImg : 
                                     url.current + floorPlan.current + ".png"}
                             */
-                           img={floorPlan.current === "default" ?
-                                demoDefaultImg :
+                           img={floorPlan.current === "default" ? demoDefaultImg :
                                     url.current + floorPlan.current + ".png"}
                             onClick={handlePlaneClick}
                         />

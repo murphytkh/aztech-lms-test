@@ -3,7 +3,9 @@ import {useThree} from "@react-three/fiber";
 import {useDispatch} from "react-redux";
 import {SelectionBox} from "three/examples/jsm/interactive/SelectionBox";
 import {Vector2, Vector3} from "three";
-import {setSbTop, setSbLeft, setSbWidth, setSbHeight} from "../../redux/threeDataSlice";
+import {setSbTop, setSbLeft, setSbWidth, setSbHeight, setEditTrigger} 
+        from "../../redux/threeDataSlice";
+import {selectionBoxHighlight, selectLight} from "../Utility";
 
 function SelectionBoxHelper(props)
 {
@@ -36,8 +38,7 @@ function SelectionBoxHelper(props)
             let curr = selectionBox.select();
             selectionBox.endPoint.set(mouse.x, mouse.y, 0.5);
             curr = curr.filter((obj) => obj.userData.hasOwnProperty("selected"));
-            props.setHighlight(curr);
-            
+            selectionBoxHighlight(curr);
             var s = selectionBox.startPoint;
             var e = new Vector3(mouse.x, mouse.y, 0.5);
 
@@ -68,7 +69,13 @@ function SelectionBoxHelper(props)
             selectionBox.endPoint.set(mouse.x, mouse.y, 0.5);
             let curr = selectionBox.select();
             curr = curr.filter((obj) => obj.userData.hasOwnProperty("selected"));
-            props.setSelection(curr);
+
+            for (var i = 0; i < curr.length; ++i)
+                selectLight(curr[i].userData.name);
+
+            if (curr.length > 1)
+                dispatch(setEditTrigger(false));
+
             dispatch(setSbTop(0));
             dispatch(setSbLeft(0));
             dispatch(setSbWidth(0));
