@@ -7,7 +7,8 @@ import {NotificationObject, UserObject, ActiveLightObject,
 import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png";
 import DefaultUser from "../resources/dashboard/user-profile-default.svg";
 
-// dashboard persistent elements
+// api url
+let apiURL = "ec2-54-255-73-81.ap-southeast-1.compute.amazonaws.com:8888/api/v1";
 
 export function getNotifications()
 {
@@ -29,7 +30,7 @@ export function getVersion()
 
 export function getLocationData()
 {
-    return axios.get("http://localhost:8888/api/v1/areas")
+    return axios.get(apiURL + "/areas")
     .then(function (response) {
         return response;
     })
@@ -65,7 +66,7 @@ export function getBlockId(area, block, data)
 
 export function getBlockData(id)
 {
-    return axios.get("http://localhost:8888/api/v1/block/" + id.toString())
+    return axios.get(apiURL + "/block/" + id.toString())
     .then(function (response) {
         return response;
     })
