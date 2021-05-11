@@ -1,22 +1,18 @@
 import "../resources/css/three-js-scene.css";
-
 import React, {useState, useEffect, useRef, createRef, Suspense} from "react";
 import {Provider, useSelector, useDispatch} from "react-redux";
 import {Canvas} from "@react-three/fiber";
-
 // redux store
 import store from "../redux/store";
 import {setAllLights, setGroupColours, setAdd, setDisableHotkeys, setEditTrigger, 
         setEnableCamera, setShowNames, setShowGroups, setShowTriggers, setMouseMoved,
         setCurrPoint, setHoveredLight, setDisplayMsg, setDisplayTimeID, setDisplayColour} 
         from "../redux/threeDataSlice";
-
-// data
+// helper functions
 import {useRefState, saveObj, initLight, removeLight, findLightByName, selectLight, 
         deselectLight, deselectLights, setLightsProperty, selectLightsByProperty, 
         deepCopy, clearTriggers} from "./Utility";
 import {getSceneData} from "./MockAPI";
-
 // three components
 import Effects from "./three/Effects";
 import UIManager from "./three/UIManager";
@@ -29,7 +25,7 @@ import Light from "./three/Light";
 import IndicatorSphere from "./three/IndicatorSphere";
 import Plane from "./three/Plane";
 
-//import defaultImg from "../resources/three/default.png";
+// import defaultImg from "../resources/three/default.png";
 import demoDefaultImg from "../resources/three/c1basement1.png";
 
 // colours
@@ -582,10 +578,8 @@ function ThreeJsScene(props)
                             ref={planeRef} 
                             width={100} 
                             height={71}
-                            /* 
-                            img={floorPlan.current === "default" ? defaultImg : 
-                                    url.current + floorPlan.current + ".png"}
-                            */
+                            /* img={floorPlan.current === "default" ? defaultImg : 
+                                    url.current + floorPlan.current + ".png"} */
                            img={floorPlan.current === "default" ? demoDefaultImg :
                                     url.current + floorPlan.current + ".png"}
                             onClick={handlePlaneClick}
