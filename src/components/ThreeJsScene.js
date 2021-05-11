@@ -6,10 +6,10 @@ import {Canvas} from "@react-three/fiber";
 
 // redux store
 import store from "../redux/store";
-import {setAdd, setDisableHotkeys, setEditTrigger, setEnableCamera,
-        setShowNames, setShowGroups, setShowTriggers, setCurrPoint,
-        setDisplayMsg, setDisplayTimeID, setDisplayColour, setMouseMoved,
-        setAllLights} from "../redux/threeDataSlice";
+import {setAllLights, setAdd, setDisableHotkeys, setEditTrigger, setEnableCamera,
+        setShowNames, setShowGroups, setShowTriggers, setMouseMoved, setCurrPoint,
+        setHoveredLight,
+        setDisplayMsg, setDisplayTimeID, setDisplayColour, } from "../redux/threeDataSlice";
 
 // data
 import {useRefState, saveObj, initLight, removeLight, findLightByName, selectLight, 
@@ -66,7 +66,6 @@ function ThreeJsScene(props)
     // overall light data
     const allLights = useSelector((state) => state.allLights.value);
 
-    const [lightHover, setLightHover] = useRefState(null);
     const [currGroup, setCurrGroup] = useState("");
 
     // selection box (mouse drag)
@@ -80,7 +79,7 @@ function ThreeJsScene(props)
     const planeRef = createRef();
     const groupSearchRef = useRef();
 
-    // data
+    // scene data
     const [url, setUrl] = useRefState("");
     const [sceneName, setSceneName] = useRefState("");
     const [floorPlan, setFloorPlan] = useRefState("");
@@ -143,7 +142,7 @@ function ThreeJsScene(props)
         deselectLight(name);
         dispatch(setAllLights(arr));
         showMsg(name + " removed", 3000, COLOUR.BLACK);
-        setLightHover(null);
+        dispatch(setHoveredLight(null));
     }
 
     function updateTrigger(triggerer, triggeree, add)
@@ -199,7 +198,7 @@ function ThreeJsScene(props)
     function lightEnter(name)
     {
         // set current light name and update highlight status
-        setLightHover(name);
+        dispatch(setHoveredLight(name));
         setLightsProperty([name], "highlight", true);
     }
 
@@ -214,7 +213,7 @@ function ThreeJsScene(props)
             // if unselected, remove highlight on exit
             if (light.selected !== true)
                 setLightsProperty([name], "highlight", false);
-            setLightHover(null);
+                dispatch(setHoveredLight(null));
         }
     }
 
@@ -397,7 +396,7 @@ function ThreeJsScene(props)
 
         // deselect lights if clicked on empty space
         if (haveSelected && 
-            lightHover.current === null && 
+            store.getState().hoveredLight.value === null && 
             store.getState().enableCamera.value &&
             !store.getState().mouseMoved.value)
         {
@@ -489,7 +488,7 @@ function ThreeJsScene(props)
     });
 
     useLMBUp((e) => {
-        var light = lightHover.current;
+        var light = store.getState().hoveredLight.value;
         // select light if rollover-ed any
         if (light !== null)
         {
@@ -513,7 +512,7 @@ function ThreeJsScene(props)
                     }
                 }
                 
-                updateTrigger(name, lightHover.current, true);
+                updateTrigger(name, store.getState().hoveredLight.value, true);
             }
         }
 
@@ -523,17 +522,18 @@ function ThreeJsScene(props)
     });
 
     useRMBUp(() => {
+        var curr = store.getState().hoveredLight.value;
         // removing lights while in add mode
         if (store.getState().add.value)
         {
-            if (lightHover.current !== null)
-                deleteLight(lightHover.current);
+            if (curr !== null)
+                deleteLight(curr);
         }
 
         // remove triggers while in edit trigger mode
         if (store.getState().editTrigger.value)
         {
-            if (lightHover.current !== null)
+            if (curr !== null)
             {
                 var arr = store.getState().allLights.value;
                 var name = "";
@@ -546,18 +546,18 @@ function ThreeJsScene(props)
                     }
                 }
 
-                updateTrigger(name, lightHover.current, false);
+                updateTrigger(name, curr, false);
             }
         }
     });
 
     useCtrlMouseUp(() => {
         // single ctrl + click multiselect
-        if (lightHover.current !== null)
+        if (store.getState().hoveredLight.value !== null)
         {
             var arr = deepCopy(store.getState().allLights.value);
 
-            var light = findLightByName(arr, lightHover.current);
+            var light = findLightByName(arr, store.getState().hoveredLight.value);
             if (light)
             {
                 if (light.selected)
