@@ -17,21 +17,22 @@ const Effects = forwardRef((props, ref) =>
     useEffect(() => ref.current.setSize(size.width, size.height), [ref, size]);
     useFrame(() => ref.current.render(), 1);
 
+    // add outlinepass to post processing composer
     return (
-        <effectComposer ref = {ref} args = {[gl]}>
-            <renderPass attachArray = "passes" args = {[scene, camera]} />
+        <effectComposer ref={ref} args={[gl]}>
+            <renderPass attachArray="passes" args={[scene, camera]} />
             <outlinePass
-              attachArray = "passes"
-              args = {[aspect, scene, camera]}
-              selectedObjects = {props.selected}
-              visibleEdgeColor = "yellow"
-              edgeStrength = {10}
-              edgeThickness = {1}
+              attachArray="passes"
+              args={[aspect, scene, camera]}
+              selectedObjects={props.selected}
+              visibleEdgeColor="yellow"
+              edgeStrength={10}
+              edgeThickness={1}
             />
             <shaderPass 
-                attachArray = "passes" 
-                args = {[FXAAShader]} uniforms-resolution-value = 
-                       {[1 / size.width, 1 / size.height]} 
+                attachArray="passes" 
+                args={[FXAAShader]} 
+                uniforms-resolution-value={[1 / size.width, 1 / size.height]} 
             />
         </effectComposer>
     );

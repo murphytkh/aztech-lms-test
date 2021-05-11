@@ -75,7 +75,7 @@ const UIGroup = forwardRef((props, ref) =>
                 <div className="label">Group ID:</div>
                 {/* text input */}
                 <input
-                    ref = {ref}
+                    ref={ref}
                     className="group-select"
                     type="text"
                     name="group-select"

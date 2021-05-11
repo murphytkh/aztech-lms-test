@@ -151,7 +151,7 @@ function ActivityLog(props)
                         disabled={false}
                     ></GenericDropdown>
                 </div>
-                <div className = "header-divider"></div>
+                <div className="header-divider"></div>
                 {/* refresh */}
                 <img 
                     alt="" 

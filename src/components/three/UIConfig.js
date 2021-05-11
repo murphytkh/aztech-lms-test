@@ -40,6 +40,7 @@ function UIConfig(props)
         dispatch(setDisableHotkeys(false));
     }
 
+    // elements in config panel
     return(
         <div className="three-ui-box" id="config">
             <UIConfigName 
@@ -64,7 +65,7 @@ function UIConfig(props)
                 toggleShowData={toggleShowData}
                 showData={showTriggerData}
             />
-            {/* add separate panel here */}
+            {/* popup panel for viewing trigger data */}
             {showTriggerData && selectedLights.length === 1 &&
                 <UIConfigTriggerData selectedLights={selectedLights} />
             }

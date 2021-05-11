@@ -45,6 +45,7 @@ function BlockDisplay(props)
     );
 }
 
+// group panel
 function UserManagementGroup(props)
 {
     const blockList=props.blocks.map(block => 

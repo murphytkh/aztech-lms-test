@@ -67,33 +67,33 @@ function UIConfigGroup(props)
     }, [])
 
     return(
-        <div className = "block" id = "edit-group">
-            <div className = "label">Group ID:</div>
+        <div className="block" id="edit-group">
+            <div className="label">Group ID:</div>
             {/* text input */}
             <input
-                className = "edit-group"
-                type = "text"
-                name = "edit-group-name"
-                value = {editGroupID}
-                placeholder = "Enter group ID (default 0)"
-                onChange = {handleChange}
-                onFocus = {props.focus}
-                onBlur = {props.blur}
+                className="edit-group"
+                type="text"
+                name="edit-group-name"
+                value={editGroupID}
+                placeholder="Enter group ID (default 0)"
+                onChange={handleChange}
+                onFocus={props.focus}
+                onBlur={props.blur}
             />
             {/* buttons */}
             <div 
-                className = "three-btn update" 
-                id = {disabledUpdateCheck()}
-                onClick = {handleUpdate}
-                style = {{backgroundColor: "#7F849F"}}
+                className="three-btn update" 
+                id={disabledUpdateCheck()}
+                onClick={handleUpdate}
+                style={{backgroundColor: "#7F849F"}}
             >
                 UPDATE
             </div>
             <div 
-                className = "three-btn reset"
-                id = {disabledResetCheck()}
-                onClick = {handleReset}
-                style = {{backgroundColor: "#E65B65"}}
+                className="three-btn reset"
+                id={disabledResetCheck()}
+                onClick={handleReset}
+                style={{backgroundColor: "#E65B65"}}
             >
                 RESET
             </div>

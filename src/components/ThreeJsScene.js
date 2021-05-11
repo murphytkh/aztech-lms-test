@@ -209,7 +209,7 @@ function ThreeJsScene(props)
             // if unselected, remove highlight on exit
             if (light.selected !== true)
                 setLightsProperty([name], "highlight", false);
-                dispatch(setHoveredLight(null));
+            dispatch(setHoveredLight(null));
         }
     }
 
@@ -583,7 +583,7 @@ function ThreeJsScene(props)
                             width={100} 
                             height={71}
                             /* 
-                            img = {floorPlan.current === "default" ? defaultImg : 
+                            img={floorPlan.current === "default" ? defaultImg : 
                                     url.current + floorPlan.current + ".png"}
                             */
                            img={floorPlan.current === "default" ? demoDefaultImg :
