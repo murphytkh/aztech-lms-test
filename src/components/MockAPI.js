@@ -8,7 +8,7 @@ import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png
 import DefaultUser from "../resources/dashboard/user-profile-default.svg";
 
 // api url
-let apiURL = "ec2-54-255-73-81.ap-southeast-1.compute.amazonaws.com:8888/api/v1";
+let apiURL = "http://ec2-54-255-73-81.ap-southeast-1.compute.amazonaws.com:8888/api/v1";
 
 export function getNotifications()
 {
