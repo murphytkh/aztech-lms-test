@@ -72,7 +72,7 @@ function EnergyConsumption(props)
             <h1 className="light-control-header" id="header2">LIGHTING CONTROL</h1>
             <h1 className="light-control-header" id="header3">ADMIN CONTROL</h1>
             {/* dropdown lists */}
-            {levels && lights &&
+            {true &&
                 <div className="light-control-dd">
                     <div className="light-control-dd0" style={{zIndex: 10}}>
                         <GenericDropdown

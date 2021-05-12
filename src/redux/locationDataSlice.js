@@ -18,11 +18,11 @@ export const blocksSlice = create("blocks", "setBlocks");
 export const {setBlocks} = blocksSlice.actions;
 export const blocksReducer = blocksSlice.reducer;
 
-export const levelsSlice = create("levels", "setLevels");
+export const levelsSlice = create("levels", "setLevels", []);
 export const {setLevels} = levelsSlice.actions;
 export const levelsReducer = levelsSlice.reducer;
 
-export const lightsSlice = create("lights", "setLights");
+export const lightsSlice = create("lights", "setLights", []);
 export const {setLights} = lightsSlice.actions;
 export const lightsReducer = lightsSlice.reducer;
 
