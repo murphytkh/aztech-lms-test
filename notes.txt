@@ -11,19 +11,16 @@ mosquitto -d -v -c mosquittows.conf
 ====================================================
 current task:
 - redux
-    - get block energy consumption data in
-        - change hardcode in graph component
-        - decide where to call the api
-            - in dashboard? (along with other block
-                             data)
-            - in energy consumption component?
-              (call api every time option is selected)
+    - 
+feature document:
+- page 18 onwards
 
 api calls
 https://sls.aztech.com:8888/api/v1
 /areas
 /block/(id)
 /energy/block/(id)/from/(yyyymmdd)/to/(yyyymmdd)
+/energy/block/(id)/from/(yyyymm)/to/(yyyymm)
 
 - document for handover
     - many many things
