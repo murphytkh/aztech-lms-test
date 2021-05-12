@@ -10,12 +10,12 @@ mosquitto -d -v -c mosquittows.conf
                      FRONT END
 ====================================================
 current task:
-- redux
-    - 
-feature document:
-- page 18 onwards
+    - energy consumption graph api integration
 
-api calls
+old sls:
+https://sls.aztech.com:8443
+
+api calls:
 https://sls.aztech.com:8888/api/v1
 /areas
 /block/(id)
