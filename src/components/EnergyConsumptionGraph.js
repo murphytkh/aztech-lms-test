@@ -82,18 +82,38 @@ function dataPicker(data, option)
     //{t: 131400, Present: 0.07},
     //{t: 145800, Present: 0.06},
 
+    //year: new Date().getFullYear().toString(),
+    //month: "0" + (new Date().getMonth() + 1).toString(),
+    //day: "0" + new Date().getDate().toString(),
+    //hour: "0" + new Date().getHours().toString(),
+    //minute: "0" + new Date().getMinutes().toString(),
+    //second: "0" + new Date().getSeconds().toString()
+
+    var currHour = new Date().getHours().toString();
+    var hour = Math.trunc(currHour / 4);
+
     // daily data comes in the form of 24 length array (per hour)
     // for 1D, process data into an array of length 6
     // add 0 at the front
     var arr = data["energy-consumption"][0][0]["hourly-data"];
     var result = [];
-    result.push({t: 59400, Present: 0.0});
-    result.push({t: 73800, Present: arr[0] + arr[1] + arr[2] + arr[3]});
-    result.push({t: 88200, Present: arr[4] + arr[5] + arr[6] + arr[7]});
-    result.push({t: 102600, Present: arr[8] + arr[9] + arr[10] + arr[11]});
-    result.push({t: 117000, Present: arr[12] + arr[13] + arr[14] + arr[15]});
-    result.push({t: 131400, Present: arr[16] + arr[17] + arr[18] + arr[19]});
-    result.push({t: 145800, Present: arr[20] + arr[21] + arr[22] + arr[23]});
+    var base = 73800;
+    var inc = 14400;
+
+    result.push({t: 59400, Present: arr[0] + arr[1] + arr[2] + arr[3]});
+    for (var i = 0; i < hour; ++i)
+    {
+        var slice = arr.slice(i * 4, i * 4 + 4);
+        result.push({t: base + i * inc, Present: slice[0] + slice[1] + slice[2] + slice[3]});
+    }
+
+    //result.push({t: 59400, Present: 0.0});
+    //result.push({t: 73800, Present: arr[0] + arr[1] + arr[2] + arr[3]});
+    //result.push({t: 88200, Present: arr[4] + arr[5] + arr[6] + arr[7]});
+    //result.push({t: 102600, Present: arr[8] + arr[9] + arr[10] + arr[11]});
+    //result.push({t: 117000, Present: arr[12] + arr[13] + arr[14] + arr[15]});
+    //result.push({t: 131400, Present: arr[16] + arr[17] + arr[18] + arr[19]});
+    //result.push({t: 145800, Present: arr[20] + arr[21] + arr[22] + arr[23]});
 
     return result;
 }
