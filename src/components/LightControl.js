@@ -72,28 +72,26 @@ function EnergyConsumption(props)
             <h1 className="light-control-header" id="header2">LIGHTING CONTROL</h1>
             <h1 className="light-control-header" id="header3">ADMIN CONTROL</h1>
             {/* dropdown lists */}
-            {true &&
-                <div className="light-control-dd">
-                    <div className="light-control-dd0" style={{zIndex: 10}}>
-                        <GenericDropdown
-                            ref={ddRef}
-                            default={selectedFloor}
-                            options={levels}
-                            selectOption={setSelectedFloor}
-                            disabled={false}
-                        ></GenericDropdown>
-                    </div>
-                    <div className="light-control-dd1"  style={{zIndex: 9}}>
-                        <GenericDropdown
-                            ref={ddRef}
-                            default={selectedLights}
-                            options={lights}
-                            selectOption={setSelectedLights}
-                            disabled={selectedFloor === ""}
-                        ></GenericDropdown>
-                    </div>
+            <div className="light-control-dd">
+                <div className="light-control-dd0" style={{zIndex: 10}}>
+                    <GenericDropdown
+                        ref={ddRef}
+                        default={selectedFloor}
+                        options={levels}
+                        selectOption={setSelectedFloor}
+                        disabled={false}
+                    ></GenericDropdown>
                 </div>
-            }
+                <div className="light-control-dd1"  style={{zIndex: 9}}>
+                    <GenericDropdown
+                        ref={ddRef}
+                        default={selectedLights}
+                        options={lights}
+                        selectOption={setSelectedLights}
+                        disabled={selectedFloor === ""}
+                    ></GenericDropdown>
+                </div>
+            </div>
             {/* buttons */}
             <div className="light-control-btn" id="btn0" onClick={handleOnButtonClick}>
                 <img alt="" src={BulbIcon}></img>

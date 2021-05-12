@@ -7,10 +7,10 @@ import {useSelector, useDispatch} from "react-redux";
 import {setLocationData, setLocations, setAreas, setBlocks, setLevels, setLights,
         setSelectedLocation, setSelectedArea, setSelectedBlock, setSelectedLevel, 
         setSelectedLights} from "../redux/locationDataSlice";
-import {setBlockData, setEnergyData} from "../redux/blockDataSlice";
+import {setBlockData} from "../redux/blockDataSlice";
 import {setVersion} from "../redux/miscInfoSlice";
 import {getCurrUser, getUsers, getNotifications, getVersion, getLocationData, 
-        getLocations, getBlockId, getBlockData, getEnergyData} from "./MockAPI";
+        getLocations, getBlockId, getBlockData} from "./MockAPI";
 import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
@@ -179,14 +179,6 @@ function Dashboard(props)
                 let tmp = res.data.floors.map((obj) => obj.floorName);
                 tmp.unshift("ALL SELECTED");
                 dispatch(setLevels(tmp));
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
-            getEnergyData(id)
-            .then((res) => {
-                dispatch(setEnergyData(res.data));
             })
             .catch((err) => {
                 console.log(err);
