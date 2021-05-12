@@ -11,17 +11,19 @@ mosquitto -d -v -c mosquittows.conf
 ====================================================
 current task:
 - redux
-    - threejs scene
-
-docker commands (in slp-app folder)
-docker-compose -f docker-compose-no-build.yml up
-docker-compose -f docker-compose-no-build.yml down
+    - get block energy consumption data in
+        - change hardcode in graph component
+        - decide where to call the api
+            - in dashboard? (along with other block
+                             data)
+            - in energy consumption component?
+              (call api every time option is selected)
 
 api calls
-http://localhost:8888/api/v1/areas
-http://localhost:8888/api/v1/block/(id)
-
-ec2-54-255-73-81.ap-southeast-1.compute.amazonaws.com:8888
+https://sls.aztech.com:8888/api/v1
+/areas
+/block/(id)
+/energy/block/(id)/from/(yyyymmdd)/to/(yyyymmdd)
 
 - document for handover
     - many many things

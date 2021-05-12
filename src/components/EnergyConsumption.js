@@ -1,9 +1,7 @@
 import "../resources/css/view-energy-consumption.css";
 
-import React, {useEffect, useState} from "react";
-//import {useSelector} from "react-redux";
-
-import {getEnergyData} from "./MockAPI";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
 
 import EnergyIcon from "../resources/dashboard/icon-chart.svg";
 
@@ -14,8 +12,7 @@ const optionText = ["1D", "5D", "1M", "1Y", "3Y"];
 
 function EnergyConsumption(props)
 {
-    //const activeLightsData = useSelector((state) => state.blockData.value);
-    const [data, setData] = useState([]);
+    const data = useSelector((state) => state.energyData.value);
 
     // 1D, 5D, 1M, 1Y, 3Y
     const [currDisplayOption, setCurrDisplayOption] = useState("1D");
@@ -29,10 +26,6 @@ function EnergyConsumption(props)
             set={setCurrDisplayOption}
         />
     );
-
-    useEffect(() => {
-        setData(getEnergyData());
-    }, []);
 
     return(
         <div className="card-container" id="medium">
@@ -48,11 +41,13 @@ function EnergyConsumption(props)
             <div className="energy-consumption-img" id="img1"></div>
             {/* graph */}
             <div className="energy-options-container">{optionMap}</div>
-            <EnergyConsumptionGraph 
-                data={data} 
-                option={currDisplayOption}
-                class="graph-container"
-            />
+            {data &&
+                <EnergyConsumptionGraph 
+                    data={data} 
+                    option={currDisplayOption}
+                    class="graph-container"
+                />
+            }
         </div>
     );
 }

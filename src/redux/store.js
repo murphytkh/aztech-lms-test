@@ -9,9 +9,9 @@ import {editProfileReducer, relocationReducer} from "./dashboardUISlice";
 // misc info
 import {versionReducer, darkModeReducer, gatewayDataReducer} from "./miscInfoSlice";
 // notifications
-
+// not done
 // individual block data
-import {blockDataReducer, statusDataReducer} from "./blockDataSlice";
+import {blockDataReducer, statusDataReducer, energyDataReducer} from "./blockDataSlice";
 // threejs scene data
 import {allLightsReducer, groupColoursReducer, addReducer, disableHotkeysReducer, 
         editTriggerReducer, enableCameraReducer, displayMsgReducer, displayTimeIDReducer, 
@@ -52,6 +52,7 @@ export default configureStore({
         // individual block data
         blockData: blockDataReducer,
         statusData: statusDataReducer,
+        energyData: energyDataReducer,
 
         // threejs data
 

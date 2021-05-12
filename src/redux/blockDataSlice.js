@@ -7,3 +7,7 @@ export const blockDataReducer = blockDataSlice.reducer;
 export const statusDataSlice = create("statusData", "setStatusData");
 export const {setStatusData} = statusDataSlice.actions;
 export const statusDataReducer = statusDataSlice.reducer;
+
+export const energyDataSlice = create("energyData", "setEnergyData");
+export const {setEnergyData} = energyDataSlice.actions;
+export const energyDataReducer = energyDataSlice.reducer;
