@@ -1,22 +1,19 @@
 import "../resources/css/view-energy-consumption.css";
 
-import React, {useState, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-
-import {getBlockId, getEnergyData} from "./MockAPI";
-import {setEnergyData} from "../redux/blockDataSlice";
+import React, {useState} from "react";
+import {useSelector, useDispatch} from "react-redux";
 
 import EnergyIcon from "../resources/dashboard/icon-chart.svg";
 
 import EnergyConsumptionOption from "./EnergyConsumptionOption";
 import EnergyConsumptionGraph from "./EnergyConsumptionGraph";
+import {setEnergyData} from "../redux/blockDataSlice";
 
 const optionText = ["1D", "5D", "1M", "1Y", "3Y"];
 
 function EnergyConsumption(props)
 {
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.energyData.value);
     const locationData = useSelector((state) => state.locationData.value);
     const selectedArea = useSelector((state) => state.selectedArea.value);
     const selectedBlock = useSelector((state) => state.selectedBlock.value);
@@ -35,25 +32,12 @@ function EnergyConsumption(props)
 
     function setOption(option)
     {
+        if (option === currDisplayOption)
+            return;
+
+        dispatch(setEnergyData(null));
         setCurrDisplayOption(option);
-
     }
-
-    useEffect(() => {
-        if (selectedArea && selectedBlock && locationData)
-        {
-            let id = getBlockId(selectedArea, selectedBlock, locationData);
-
-            getEnergyData(id)
-            .then((res) => {
-                dispatch(setEnergyData(res.data));
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        }
-
-    }, [dispatch, locationData, selectedArea, selectedBlock]);
 
     return(
         <div className="card-container" id="medium">
@@ -69,9 +53,8 @@ function EnergyConsumption(props)
             <div className="energy-consumption-img" id="img1"></div>
             {/* graph */}
             <div className="energy-options-container">{optionMap}</div>
-            {data &&
+            {selectedArea && selectedBlock && locationData &&
                 <EnergyConsumptionGraph 
-                    data={data} 
                     option={currDisplayOption}
                     class="graph-container"
                 />

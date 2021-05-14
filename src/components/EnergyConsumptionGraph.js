@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {Label, Area, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, 
         ResponsiveContainer} from 'recharts';
 import moment from "moment";
+import {getBlockId, getEnergyData} from "./MockAPI";
+import {setEnergyData} from "../redux/blockDataSlice";
 
 var axisStyle = {
     color: "#6D6E71",
@@ -10,137 +13,167 @@ var axisStyle = {
 };
 
 // indicator ranges
-function domainPicker(option)
+function domainPicker(data, option)
 {
-    //switch(option)
-    //{
-    //    case "1D":
-    //        return [59400, 145800];
-    //    case "5D":
-    //        return [1, 5];
-    //    case "1M":
-    //        return [1, 4];
-    //    case "1Y":
-    //        return [1, 12];
-    //    case "3Y":
-    //        return [1, 3];
-    //    default: break;
-    //}
-    return [59400, 145800];
+    switch(option)
+    {
+        case "1D":
+            return [59400, 145800];
+        case "5D":
+            //return [1, 5];
+            return [59400, 145800];
+        case "1M":
+            return [1, data["energy-consumption"][0][0]["daily-data"].length];
+        case "1Y":
+            return [1, 12];
+        case "3Y":
+            return [1, 3];
+        default: 
+            return [59400, 145800];
+    }
 }
 
-function tickPicker(option)
+function tickPicker(data, option)
 {
-    //switch(option)
-    //{
-    //    case "1D":
-    //        return [59400, 73800, 88200, 102600, 117000, 131400, 145800];
-    //    case "5D":
-    //        return [1, 2, 3, 4, 5];
-    //    case "1M":
-    //        return [1, 2, 3, 4];
-    //    case "1Y":
-    //        return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    //    case "3Y":
-    //        return [1, 2, 3];
-    //    default: break;
-    //}
-    return [59400, 73800, 88200, 102600, 117000, 131400, 145800];
+    switch(option)
+    {
+        case "1D":
+            return [59400, 73800, 88200, 102600, 117000, 131400, 145800];
+        case "5D":
+            //return [1, 2, 3, 4, 5];
+            return [59400, 73800, 88200, 102600, 117000, 131400, 145800];
+        case "1M":
+            var arr = [];
+            for (var i = 0; i < data["energy-consumption"][0][0]["daily-data"].length; ++i)
+                arr.push(i+1);
+            return arr;
+        case "1Y":
+            return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        case "3Y":
+            return [1, 2, 3];
+        default:
+            return;
+    }
 }
 
 function formatterPicker(option)
 {
-    //if (option === "1D")
-    //    return (tick) => moment(tick * 1000).format('HH:mm');
-    //else
-    //    return (tick) => tick;
-    return (tick) => moment(tick * 1000).format("HH:mm");
+    if (option === "1D" || option === "5D")
+        return (tick) => moment(tick * 1000).format('HH:mm');
+    else
+        return (tick) => tick;
 }
 
 function dataPicker(data, option)
 {
-    //switch(option)
-    //{
-    //    case "1D":
-    //        return [data[0], data[1]];
-    //    case "5D":
-    //        return [data[2], data[3]];
-    //    case "1M":
-    //        return [data[4], data[5]];
-    //    case "1Y":
-    //        return [data[6], data[7]];
-    //    case "3Y":
-    //        return [data[8], data[9]];
-    //    default: break;
-    //}
-
-    //{t: 59400, Present: 0.02},
-    //{t: 73800, Present: 0.035},
-    //{t: 88200, Present: 0.025},
-    //{t: 102600, Present: 0.042},
-    //{t: 117000, Present: 0.078},
-    //{t: 131400, Present: 0.07},
-    //{t: 145800, Present: 0.06},
-
-    //year: new Date().getFullYear().toString(),
-    //month: "0" + (new Date().getMonth() + 1).toString(),
-    //day: "0" + new Date().getDate().toString(),
-    //hour: "0" + new Date().getHours().toString(),
-    //minute: "0" + new Date().getMinutes().toString(),
-    //second: "0" + new Date().getSeconds().toString()
-
-    var currHour = new Date().getHours().toString();
-    var hour = Math.trunc(currHour / 4);
-
-    // daily data comes in the form of 24 length array (per hour)
-    // for 1D, process data into an array of length 6
-    // add 0 at the front
-    var arr = data["energy-consumption"][0][0]["hourly-data"];
-    var result = [];
-    var base = 73800;
-    var inc = 14400;
-
-    result.push({t: 59400, Present: arr[0] + arr[1] + arr[2] + arr[3]});
-    for (var i = 0; i < hour; ++i)
+    switch(option)
     {
-        var slice = arr.slice(i * 4, i * 4 + 4);
-        result.push({t: base + i * inc, Present: slice[0] + slice[1] + slice[2] + slice[3]});
+        case "1D":
+        {
+            let currHour = new Date().getHours().toString();
+            let hour = Math.trunc(currHour / 4);
+        
+            // daily data comes in the form of 24 length array (per hour)
+            // for 1D, process data into an array of length 6
+            // add 0 at the front
+            let arr = data["energy-consumption"][0][0]["hourly-data"];
+            let result = [];
+            let base = 73800;
+            let inc = 14400;
+        
+            result.push({t: 59400, Present: arr[0] + arr[1] + arr[2] + arr[3]});
+            for (let i = 0; i < hour; ++i)
+            {
+                let slice = arr.slice(i * 4, i * 4 + 4);
+                result.push({t: base + i * inc, Present: slice[0] + slice[1] + slice[2] + slice[3]});
+            }
+            
+            return result;
+        }
+        case "5D":
+        {
+            let currHour = new Date().getHours().toString();
+            let hour = Math.trunc(currHour / 4);
+        
+            // daily data comes in the form of 24 length array (per hour)
+            // for 1D, process data into an array of length 6
+            // add 0 at the front
+            let arr = data["energy-consumption"][0][0]["hourly-data"];
+            let result = [];
+            let base = 73800;
+            let inc = 14400;
+        
+            result.push({t: 59400, Present: arr[0] + arr[1] + arr[2] + arr[3]});
+            for (let i = 0; i < hour; ++i)
+            {
+                let slice = arr.slice(i * 4, i * 4 + 4);
+                result.push({t: base + i * inc, Present: slice[0] + slice[1] + slice[2] + slice[3]});
+            }
+            
+            return result;
+        }
+        case "1M":
+        {
+            let currDay = new Date().getDate();
+            let arr = data["energy-consumption"][0][0]["daily-data"];
+            let result = [];
+            
+            result.push({t: 0, Present: arr[0]});
+            for (let i = 0; i < currDay; ++i)
+                result.push({t: i + 1, Present: arr[i]});
+
+            return result;
+        }
+        case "1Y":
+        {
+            let currMonth = new Date().getMonth();
+            let arr = data["energy-consumption"][0][0]["monthly-data"];
+            let result = [];
+
+            result.push({t: 0, Present: arr[0]});
+            for (let i = 0; i < currMonth; ++i)
+                result.push({t: i + 1, Present: arr[i]});
+
+            return result;
+        }
+        case "3Y":
+        {
+            let arr = data["energy-consumption"][0][0]["monthly-data"];
+            let result = [];
+
+            result.push({t: 0, Present: arr[0]});
+            for (let i = 0; i < arr.length; ++i)
+                result.push({t: i + 1, Present: arr[i]});
+
+            return result;
+        }
+        default: break;
     }
-
-    //result.push({t: 59400, Present: 0.0});
-    //result.push({t: 73800, Present: arr[0] + arr[1] + arr[2] + arr[3]});
-    //result.push({t: 88200, Present: arr[4] + arr[5] + arr[6] + arr[7]});
-    //result.push({t: 102600, Present: arr[8] + arr[9] + arr[10] + arr[11]});
-    //result.push({t: 117000, Present: arr[12] + arr[13] + arr[14] + arr[15]});
-    //result.push({t: 131400, Present: arr[16] + arr[17] + arr[18] + arr[19]});
-    //result.push({t: 145800, Present: arr[20] + arr[21] + arr[22] + arr[23]});
-
-    return result;
 }
 
 function xLabelPicker(option)
 {
-    //switch(option)
-    //{
-    //    case "1D":
-    //        return "(Hours)";
-    //    case "5D":
-    //        return "(Days)";
-    //    case "1M":
-    //        return "(Weeks)";
-    //    case "1Y":
-    //        return "(Months)";
-    //    case "3Y":
-    //        return "(Years)";
-    //    default: break;
-    //}
-    return "(Hours)";
+    switch(option)
+    {
+        case "1D":
+            return "(Hours)";
+        case "5D":
+            //return "(Days)";
+            return "(Hours)";
+        case "1M":
+            return "(Days)";
+        case "1Y":
+            return "(Months)";
+        case "3Y":
+            //return "(Years)";
+            return "(Months)";
+        default: break;
+    }
 }
 
-function EnergyConsumptionGraph(props)
+function GraphHelper(props)
 {
-    const graph =
-    (
+    return(
         <ResponsiveContainer>
             <AreaChart>
                 {/* colours for graphs */}
@@ -162,8 +195,8 @@ function EnergyConsumptionGraph(props)
                     axisLine={false}
                     tickLine={false}
                     type="number"
-                    domain={domainPicker(props.option)}
-                    ticks={tickPicker(props.option)}
+                    domain={domainPicker(props.data, props.option)}
+                    ticks={tickPicker(props.data, props.option)}
                     tickFormatter={formatterPicker(props.option)}
                 >
                     <Label
@@ -206,10 +239,105 @@ function EnergyConsumptionGraph(props)
                 />
             </AreaChart>
         </ResponsiveContainer>
-    )
+    );
+}
+
+function EnergyConsumptionGraph(props)
+{
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state.energyData.value);
+    const locationData = useSelector((state) => state.locationData.value);
+    const selectedArea = useSelector((state) => state.selectedArea.value);
+    const selectedBlock = useSelector((state) => state.selectedBlock.value);
+
+    useEffect(() => {
+        var currDateObj = new Date();
+        var startDate, endDate;
+        var endYear = currDateObj.getFullYear().toString();
+        var endMonth = (currDateObj.getMonth() + 1).toString();
+        if (endMonth.length < 2)
+            endMonth = "0" + endMonth;
+        var endDay = currDateObj.getDate().toString();
+
+        switch(props.option)
+        {
+            case "1D":
+            {
+                endDate = endYear + endMonth + endDay;
+                startDate = endDate;
+
+                break;
+            }
+            case "5D":
+            {
+                endDate = endYear + endMonth + endDay;
+                startDate = endDate;
+
+                break;
+                //endDate = endYear + endMonth + endDay;
+
+                //currDateObj.setDate(currDateObj.getDate() - 4);
+                //
+                //let startYear = currDateObj.getFullYear().toString();
+                //let startMonth = (currDateObj.getMonth() + 1).toString();
+                //if (startMonth.length < 2)
+                //    startMonth = "0" + startMonth;
+                //let startDay = currDateObj.getDate().toString();
+
+                //startDate = startYear + startMonth + startDay;
+                //break;
+            }
+            case "1M":
+            {
+                endDate = endYear + endMonth;
+                startDate = endDate;
+
+                break;
+            }
+            case "1Y":
+            {
+                endDate = endYear;
+                startDate = endDate;
+
+                break;
+            }
+            case "3Y":
+            {
+                //endDate = endYear;
+
+                //currDateObj.setDate(currDateObj.getFullYear() - 2);
+
+                //let startYear = currDateObj.getFullYear().toString();
+                //startDate = startYear;
+
+                //break;
+                endDate = endYear;
+                startDate = endDate;
+
+                break;
+            }
+            default: 
+            {
+                startDate = endYear + endMonth + endDay;
+                endDate = endYear + endMonth + endDay;
+            }
+        }
+
+        let id = getBlockId(selectedArea, selectedBlock, locationData);
+
+        getEnergyData(id, startDate, endDate)
+        .then((res) => {
+            dispatch(setEnergyData(res.data));
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }, [props.option, dispatch, selectedArea, selectedBlock, locationData]);
 
     return(
-        <div className={props.class}>{props.data && props.option && graph}</div>
+        <div className={props.class}>{props.option && data && 
+                        <GraphHelper data={data} option={props.option} />}
+        </div>
     );
 }
 

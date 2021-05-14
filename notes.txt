@@ -21,6 +21,7 @@ https://sls.aztech.com:8888/api/v1
 /block/(id)
 /energy/block/(id)/from/(yyyymmdd)/to/(yyyymmdd)
 /energy/block/(id)/from/(yyyymm)/to/(yyyymm)
+/energy/block/(id)/from/(yyyy)/to/(yyyy)
 
 - document for handover
     - many many things
