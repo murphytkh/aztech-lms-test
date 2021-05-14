@@ -50,7 +50,8 @@ function tickPicker(data, option)
         case "1Y":
             return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         case "3Y":
-            return [1, 2, 3];
+            //return [1, 2, 3];
+            return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         default:
             return;
     }
@@ -138,11 +139,12 @@ function dataPicker(data, option)
         }
         case "3Y":
         {
+            let currMonth = new Date().getMonth();
             let arr = data["energy-consumption"][0][0]["monthly-data"];
             let result = [];
 
             result.push({t: 0, Present: arr[0]});
-            for (let i = 0; i < arr.length; ++i)
+            for (let i = 0; i < currMonth; ++i)
                 result.push({t: i + 1, Present: arr[i]});
 
             return result;
