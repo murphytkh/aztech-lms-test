@@ -11,7 +11,8 @@ import {versionReducer, darkModeReducer, gatewayDataReducer} from "./miscInfoSli
 // notifications
 // not done
 // individual block data
-import {blockDataReducer, statusDataReducer, energyDataReducer} from "./blockDataSlice";
+import {blockDataReducer, statusDataReducer, energyDataReducer,
+        currGraphOptionReducer} from "./blockDataSlice";
 // threejs scene data
 import {allLightsReducer, groupColoursReducer, addReducer, disableHotkeysReducer, 
         editTriggerReducer, enableCameraReducer, displayMsgReducer, displayTimeIDReducer, 
@@ -53,6 +54,7 @@ export default configureStore({
         blockData: blockDataReducer,
         statusData: statusDataReducer,
         energyData: energyDataReducer,
+        currGraphOption: currGraphOptionReducer,
 
         // threejs data
 

@@ -10,10 +10,9 @@ import CalendarIcon from "../resources/datacharts/datacharts-calendar-icon.svg";
 function DashboardDatacharts(props)
 {
     const node = useRef();
-    //const location = useSelector((state) => state.selectedLocation.value);
-    //const area = useSelector((state) => state.selectedArea.value);
-    //const block = useSelector((state) => state.selectedBlock.value);
-    //const level = useSelector((state) => state.selectedLevel.value);
+    const locationData = useSelector((state) => state.locationData.value);
+    const selectedArea = useSelector((state) => state.selectedArea.value);
+    const selectedBlock = useSelector((state) => state.selectedBlock.value);
     const lights = useSelector((state) => state.selectedLights.value);
 
     function handleCalendarDropdown()
@@ -37,7 +36,9 @@ function DashboardDatacharts(props)
             {/* calendar dropdown box */}
             {lights && CalendarDropdown}
             {/* cards (this is hard-coded for now) */}
-            <DatachartsEnergyConsumption />
+            {selectedArea && selectedBlock && locationData &&
+                <DatachartsEnergyConsumption />
+            }
             {/* buttons */}
             <div className="datacharts-page-btn" id="cancel" onClick={props.cancel}>
                 CANCEL

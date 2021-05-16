@@ -1,13 +1,13 @@
 import "../resources/css/view-energy-consumption.css";
 
-import React, {useState} from "react";
+import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 
 import EnergyIcon from "../resources/dashboard/icon-chart.svg";
 
 import EnergyConsumptionOption from "./EnergyConsumptionOption";
 import EnergyConsumptionGraph from "./EnergyConsumptionGraph";
-import {setEnergyData} from "../redux/blockDataSlice";
+import {setCurrGraphOption, setEnergyData} from "../redux/blockDataSlice";
 
 const optionText = ["1D", "5D", "1M", "1Y", "3Y"];
 
@@ -17,8 +17,7 @@ function EnergyConsumption(props)
     const locationData = useSelector((state) => state.locationData.value);
     const selectedArea = useSelector((state) => state.selectedArea.value);
     const selectedBlock = useSelector((state) => state.selectedBlock.value);
-    // 1D, 5D, 1M, 1Y, 3Y
-    const [currDisplayOption, setCurrDisplayOption] = useState("1D");
+    const currDisplayOption = useSelector((state) => state.currGraphOption.value);
 
     // options for viewing graph
     const optionMap = optionText.map((option, i) =>
@@ -36,7 +35,7 @@ function EnergyConsumption(props)
             return;
 
         dispatch(setEnergyData(null));
-        setCurrDisplayOption(option);
+        dispatch(setCurrGraphOption(option));
     }
 
     return(

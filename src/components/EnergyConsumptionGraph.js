@@ -66,7 +66,7 @@ function formatterPicker(option)
 }
 
 function dataPicker(data, option)
-{
+{;
     switch(option)
     {
         case "1D":
@@ -326,7 +326,6 @@ function EnergyConsumptionGraph(props)
         }
 
         let id = getBlockId(selectedArea, selectedBlock, locationData);
-
         getEnergyData(id, startDate, endDate)
         .then((res) => {
             dispatch(setEnergyData(res.data));
@@ -337,8 +336,10 @@ function EnergyConsumptionGraph(props)
     }, [props.option, dispatch, selectedArea, selectedBlock, locationData]);
 
     return(
-        <div className={props.class}>{props.option && data && 
-                        <GraphHelper data={data} option={props.option} />}
+        <div className={props.class}>
+            {props.option && data && 
+                <GraphHelper data={data} option={props.option} />
+            }
         </div>
     );
 }
