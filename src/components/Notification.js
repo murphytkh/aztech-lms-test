@@ -32,13 +32,13 @@ const Notification = forwardRef((props, ref) =>
         </li>
     );
 
-    // check for clicking outside of dropdown
+    // check for clicking outside of dropdown and get data
     useEffect(() => 
     {    
         document.addEventListener("mousedown", handleClickOutside);
 
         var n = [];
-        console.log(blockData);
+        
         for (var i = 0; i < blockData["floors"].length; ++i)
         {
             var lights = blockData["floors"][i]["lights"];

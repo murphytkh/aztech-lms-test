@@ -92,7 +92,7 @@ function DashboardView(props)
                     {blockData && <EnergyConsumption />}
                     {blockData && <LightControl />}
                     {blockData && <ActivityLog />}
-                    {gatewayData && <GatewayInfo data={gatewayData} />}
+                    {blockData && gatewayData && <GatewayInfo data={gatewayData} />}
                     {blockData && statusData && 
                         <LightStatus 
                             data={statusData}
