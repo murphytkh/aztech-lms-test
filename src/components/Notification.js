@@ -18,8 +18,8 @@ const Notification = forwardRef((props, ref) =>
     function placeholder() {}
     
     // list of notifications
-    const notificationsList = notifications && notifications.map(notif =>
-        <li key={notif.title} className={notif.rectify === "0" ? "default" : "clear"}>
+    const notificationsList = notifications && notifications.map((notif, i) =>
+        <li key={i} className={notif.rectify === "0" ? "default" : "clear"}>
             {/* icon */}
             <img alt="" src={notif.rectify === "0" ? RectifyIcon : ClearIcon}></img>
             {/* text */}

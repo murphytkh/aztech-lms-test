@@ -1,6 +1,9 @@
 import "../resources/css/view-status.css";
 
 import React, {useState, useEffect, useRef} from "react";
+import {useSelector, useDispatch} from "react-redux";
+
+import {setStatusData} from "../redux/blockDataSlice";
 
 import {PageObject} from "./Utility";
 import GenericDropdown from "./GenericDropdown";
@@ -27,6 +30,10 @@ function LightStatus(props)
 
     const entriesRef = useRef();
 
+    const dispatch = useDispatch();
+    const blockData = useSelector((state) => state.blockData.value);
+    const statusData = useSelector((state) => state.statusData.value);
+
     const [selectedOption, setSelectedOption] = useState("10");
     const [sortingMode, setSortingMode] = useState("name_descending");
     const [currentPage, setCurrentPage] = useState(0);
@@ -52,12 +59,12 @@ function LightStatus(props)
     }
 
     // currently displayed entries
-    let lightStatusList = props.data.length ? (
-        [].concat(props.data)
+    let lightStatusList = statusData.length ? (
+        [].concat(statusData)
         .sort(sortTypes[sortingMode])
         .slice(currentPage * 10, (currentPage + 1) * 10)
-        .map(lightStatus =>
-            <tr key={lightStatus.name}>
+        .map((lightStatus, i) =>
+            <tr key={i}>
                 <td className="btn">
                     <RelocationIcon name={lightStatus.name} location={lightStatus.location}/>
                 </td>
@@ -98,9 +105,27 @@ function LightStatus(props)
 
     useEffect(() =>
     {
-        setDisplayLength(props.data.length < 10 ? props.data.length : 10);
+        console.log(blockData);
+        var arr = [];
+
+        for (var i = 0; i < blockData["floors"].length; ++i)
+        {
+            var lights = blockData["floors"][i]["lights"];
+
+            for (var j = 0; j < lights.length; ++j)
+            {
+                arr.push({name: lights[j].displayName,
+                          location: "Location undefined",
+                          date: lights[j].lastHeard.slice(0, 10),
+                          time: lights[j].lastHeard.slice(11, 19),
+                          status: lights[j].offline === "true" ? "OFF" : "ON"});
+            }
+        }
+
+        dispatch(setStatusData(arr));
+        setDisplayLength(arr.length < 10 ? arr.length : 10);
         setLastPage(0);
-    }, [props.data.length]);
+    }, [blockData, dispatch]);
 
     // button functions
     function handleStatusRefresh()
@@ -111,8 +136,8 @@ function LightStatus(props)
     function handleSelectOption(option)
     {
         var len;
-        if (option === "ALL" || parseInt(option) > props.data.length)
-            len = props.data.length;
+        if (option === "ALL" || parseInt(option) > statusData.length)
+            len = statusData.length;
         else
             len = option;
         setDisplayLength(len);

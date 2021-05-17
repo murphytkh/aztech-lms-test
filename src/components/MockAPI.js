@@ -80,58 +80,6 @@ export function getGatewayData()
     return "{“lpAddress”:{“wlp2s0”:”192.168.1.188”,”lo”:”127.0.0.1”}}";
 }
 
-function createStatus(name, location, date, time, status)
-{
-    var obj = {};
-    obj.name = name;
-    obj.location = location;
-    obj.date = date;
-    obj.time = time;
-    obj.status = status;
-
-    return obj;
-}
-
-export function getStatusData()
-{
-    var a = [];
-
-    // name location date time status
-
-    a.push(createStatus("1.1.1", "Front row, nearest to HR", "2020-09-01", "17:44:00", "ON"));
-    a.push(createStatus("1.1.2", "Location undefined", "2020-09-02", "17:44:01", "OFF"));
-    a.push(createStatus("1.1.3", "Location undefined", "2020-09-03", "17:44:03", "ON"));
-    a.push(createStatus("1.1.4", "Location undefined", "2020-09-04", "17:44:04", "ON"));
-    a.push(createStatus("1.1.5", "Location undefined", "2020-09-05", "17:44:05", "OFF"));
-    a.push(createStatus("1.1.6", "Location undefined", "2020-09-06", "17:44:06", "ON"));
-    a.push(createStatus("1.1.7", "Location undefined", "2020-09-07", "17:44:07", "OFF"));
-    a.push(createStatus("1.1.8", "Location undefined", "2020-09-08", "17:44:08", "ON"));
-    a.push(createStatus("1.1.9", "Location undefined", "2020-09-09", "17:44:09", "OFF"));
-    a.push(createStatus("1.2.1", "Location undefined", "2020-09-10", "17:44:10", "ON"));
-    a.push(createStatus("1.2.2", "Location undefined", "2020-09-11", "17:44:11", "OFF"));
-    a.push(createStatus("1.2.3", "Location undefined", "2020-09-12", "17:44:12", "ON"));
-    a.push(createStatus("1.2.4", "Location undefined", "2020-09-13", "17:44:13", "OFF"));
-    a.push(createStatus("1.2.5", "Location undefined", "2020-09-14", "17:44:14", "ON"));
-    a.push(createStatus("1.2.6", "Location undefined", "2020-09-15", "17:44:15", "OFF"));
-    a.push(createStatus("1.2.7", "Location undefined", "2020-09-16", "17:44:16", "ON"));
-    a.push(createStatus("1.2.8", "Location undefined", "2020-09-17", "17:44:17", "OFF"));
-    a.push(createStatus("1.2.9", "Location undefined", "2020-09-18", "17:44:18", "ON"));
-    a.push(createStatus("1.3.1", "Location undefined", "2020-09-19", "17:44:19", "OFF"));
-    a.push(createStatus("1.3.2", "Location undefined", "2020-09-20", "17:44:20", "ON"));
-    a.push(createStatus("1.3.3", "Location undefined", "2020-09-21", "17:44:21", "OFF"));
-    a.push(createStatus("1.3.4", "Location undefined", "2020-09-22", "17:44:22", "ON"));
-    a.push(createStatus("1.3.5", "Location undefined", "2020-09-23", "17:44:23", "OFF"));
-    a.push(createStatus("1.3.6", "Location undefined", "2020-09-24", "17:44:24", "ON"));
-    // 24
-
-    // + 40
-    for (var i = 0; i < 40; ++i)
-        a.push(createStatus("1.4." + i.toString(), "Location undefined", 
-                            "2020-09-25", "17:44:25", (i % 2) ? "ON" : "OFF"));
-    
-    return a;
-}
-
 export function getSceneData(url, name)
 {
     return axios.get(url + name + ".json")

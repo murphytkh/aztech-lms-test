@@ -7,7 +7,7 @@ import {setRelocation} from "../redux/dashboardUISlice";
 import {setStatusData} from "../redux/blockDataSlice";
 import {setGatewayData} from "../redux/miscInfoSlice";
 
-import {getStatusData, getGatewayData} from "./MockAPI";
+import {getGatewayData} from "./MockAPI";
 import BlockLights from "./BlockLights";
 import ActiveLights from "./ActiveLights";
 import EnergyConsumption from "./EnergyConsumption";
@@ -42,7 +42,6 @@ function DashboardView(props)
     {
         // simulate getting data
         dispatch(setGatewayData(getGatewayData()));
-        dispatch(setStatusData(getStatusData()));
     }, [dispatch, area, block, locationData]);
 
     // relocation pop-up handling
@@ -93,12 +92,7 @@ function DashboardView(props)
                     {blockData && <LightControl />}
                     {blockData && <ActivityLog />}
                     {blockData && gatewayData && <GatewayInfo data={gatewayData} />}
-                    {blockData && statusData && 
-                        <LightStatus 
-                            data={statusData}
-                            relocation={handleRelocationClick} 
-                        />
-                    }
+                    {blockData && <LightStatus relocation={handleRelocationClick} />}
                     {/* relocation popup - placed below due to css issues */}
                     {relocation && 
                         <Relocation
