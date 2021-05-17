@@ -82,7 +82,7 @@ function DashboardView(props)
                 <div className="view-page">
                     {/* panels */}
                     {/* placeholder loading ui */}
-                    {!blockData && 
+                    {!blockData && area && block &&
                         <div style={{fontSize: "20px"}}>
                             Please wait, loading data...
                         </div>

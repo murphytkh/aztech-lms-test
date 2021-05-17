@@ -35,7 +35,7 @@ function DashboardDatacharts(props)
     return(
         <div className="datacharts-page">
             {/* placeholder loading ui */}
-            {!blockData && 
+            {!blockData && selectedArea && selectedBlock &&
                 <div style={{fontSize: "20px"}}>
                     Please wait, loading data...
                 </div>
@@ -43,7 +43,7 @@ function DashboardDatacharts(props)
             {/* calendar dropdown box */}
             {lights && CalendarDropdown}
             {/* cards (this is hard-coded for now) */}
-            {selectedArea && selectedBlock && locationData &&
+            {selectedArea && selectedBlock && locationData && blockData &&
                 <DatachartsEnergyConsumption />
             }
             {/* buttons */}
