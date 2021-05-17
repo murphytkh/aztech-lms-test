@@ -105,6 +105,7 @@ function LightStatus(props)
 
     useEffect(() =>
     {
+        console.log(blockData);
         var arr = [];
 
         for (var i = 0; i < blockData["floors"].length; ++i)
