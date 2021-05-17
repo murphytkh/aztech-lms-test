@@ -12,6 +12,7 @@ function ActiveLights(props)
     const blockData = useSelector((state) => state.blockData.value);
     const [activeLights, setActiveLights] = useState([]);
 
+    // sort data and get 10 most active lights
     const activeLightsList = [].concat(activeLights)
                              .sort((a, b) => b.detections - a.detections)
                              .slice(0, 10)
