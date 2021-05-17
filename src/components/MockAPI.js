@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {UserObject, ActiveLightObject, ActivityObject} from "./Utility";
+import {UserObject} from "./Utility";
 
 // hard coded images
 import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png";
@@ -63,23 +63,6 @@ export function getBlockData(id)
     })
 }
 
-export function getActiveLightsData()
-{
-    var data = [];
-
-    data.push(new ActiveLightObject("1.1.2", 1234, "2020-09-01", "12:55:55", "IN PROGRESS"));
-    data.push(new ActiveLightObject("1.1.3", 1234, "2020-09-01", "13:55:55", "IN PROGRESS"));
-    data.push(new ActiveLightObject("1.1.4", 1234, "2020-09-01", "14:55:55", "IN PROGRESS"));
-    data.push(new ActiveLightObject("1.1.5", 1234, "2020-09-01", "15:55:55", "IN PROGRESS"));
-    data.push(new ActiveLightObject("1.1.6", 1234, "2020-09-01", "16:55:55", "IN PROGRESS"));
-    data.push(new ActiveLightObject("1.2.7", 1234, "2020-09-01", "17:55:55", "IN PROGRESS"));
-    data.push(new ActiveLightObject("1.1.8", 1234, "2020-09-01", "18:55:55", "IN PROGRESS"));
-    data.push(new ActiveLightObject("1.1.9", 1234, "2020-09-01", "19:55:55", "IN PROGRESS"));
-    data.push(new ActiveLightObject("1.2.1", 1234, "2020-09-01", "20:55:55", "IN PROGRESS"));
-
-    return data;
-}
-
 export function getEnergyData(id, start, end)
 {
     return axios.get(apiURL + "/energy/block/" + id.toString() + "/from/"
@@ -90,43 +73,6 @@ export function getEnergyData(id, start, end)
     .catch(function (err) {
         console.log(err);
     })
-}
-
-export function getActivityData()
-{
-    var a = [];
-
-    a.push(new ActivityObject("1.2.1 - 9463", "2020-09-01"));
-    a.push(new ActivityObject("1.1.1 - 4120", "2020-09-02"));
-    a.push(new ActivityObject("1.1.5 - 4098", "2020-09-03"));
-    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-04"));
-    a.push(new ActivityObject("1.1.2 - 3697", "2020-09-05"));
-    a.push(new ActivityObject("1.2.1 - 9463", "2020-09-06"));
-    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-07"));
-    a.push(new ActivityObject("1.1.2 - 9463", "2020-09-08"));
-    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-09"));
-    a.push(new ActivityObject("1.1.2 - 3697", "2020-09-10"));
-    a.push(new ActivityObject("1.1.3 - 3697", "2020-09-11"));
-    a.push(new ActivityObject("1.1.7 - 3697", "2020-09-12"));
-    a.push(new ActivityObject("1.2.1 - 9463", "2020-09-13"));
-    a.push(new ActivityObject("1.1.1 - 4120", "2020-09-14"));
-    a.push(new ActivityObject("1.1.5 - 4098", "2020-09-15"));
-    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-16"));
-    a.push(new ActivityObject("1.1.2 - 3697", "2020-09-17"));
-    a.push(new ActivityObject("1.2.1 - 9463", "2020-09-18"));
-    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-19"));
-    a.push(new ActivityObject("1.1.2 - 9463", "2020-09-20"));
-    a.push(new ActivityObject("1.1.8 - 3955", "2020-09-21"));
-    a.push(new ActivityObject("1.1.2 - 3697", "2020-09-22"));
-    a.push(new ActivityObject("1.1.3 - 3697", "2020-09-23"));
-    a.push(new ActivityObject("1.1.7 - 3697", "2020-09-24"));
-    // 24
-
-    // + 40
-    for (var i = 0; i < 40; ++i)
-        a.push(new ActivityObject("1.3." + i.toString() + " - 9999", "2020-09-25"));
-
-    return a;
 }
 
 export function getGatewayData()

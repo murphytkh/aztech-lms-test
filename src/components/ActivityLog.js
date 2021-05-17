@@ -1,9 +1,7 @@
 import "../resources/css/view-activity.css";
 
 import React, {useState, useEffect, useRef} from "react";
-//import {useSelector} from "react-redux";
-
-import {getActivityData} from "./MockAPI";
+import {useSelector} from "react-redux";
 
 import {PageObject} from "./Utility";
 import GenericDropdown from "./GenericDropdown";
@@ -25,7 +23,9 @@ function ActivityLog(props)
 
     const entriesRef = useRef();
 
-    const [data, setData] = useState([]);
+    const blockData = useSelector((state) => state.blockData.value);
+    const [activityLog, setActivityLog] = useState([]);
+
     const [selectedOption, setSelectedOption] = useState("10");
     const [sortingMode, setSortingMode] = useState("user_descending");
     const [currentPage, setCurrentPage] = useState(0);
@@ -33,16 +33,15 @@ function ActivityLog(props)
     const [displayLength, setDisplayLength] = useState([]);
 
     // currently displayed entries
-    let activityList = data.length ? (
-        [].concat(data)
-        .sort(sortTypes[sortingMode])
-        .slice(currentPage * 10, (currentPage + 1) * 10)
-        .map(activity =>
-        <tr key={activity.user + activity.action}>
-            <td className="user">{activity.user}</td>
-            <td className="action">{activity.action}</td>
-        </tr>
-        )) : null;
+    let activityList = [].concat(activityLog)
+                       .sort(sortTypes[sortingMode])
+                       .slice(currentPage * 10, (currentPage + 1) * 10)
+                       .map((activity, i) =>
+                        <tr key={i}>
+                            <td className="user">{activity.user}</td>
+                            <td className="action">{activity.action}</td>
+                        </tr>
+                       );
 
     let pageListHelper = [];
 
@@ -72,14 +71,26 @@ function ActivityLog(props)
         </div>
     );
 
+    // get data from blockData
     useEffect(() =>
     {
-        // simulate getting data
-        let tmp = getActivityData();
-        setData(tmp);
-        setDisplayLength(tmp.length < 10 ? tmp.length : 10);
+        var arr = [];
+
+        for (var i = 0; i < blockData["floors"].length; ++i)
+        {
+            var lights = blockData["floors"][i]["lights"];
+
+            for (var j = 0; j < lights.length; ++j)
+            {
+                arr.push({user: lights[j].displayName + " - " + lights[j].motionCount,
+                          action: lights[j].lastActive.slice(0, 10)});
+            }
+        }
+
+        setActivityLog(arr);
+        setDisplayLength(arr.length < 10 ? arr.length : 10);
         setLastPage(0);
-    }, []);
+    }, [blockData]);
 
     // button functions
     function handleActivityLogRefresh()
@@ -90,8 +101,8 @@ function ActivityLog(props)
     function handleSelectOption(option)
     {
         var len;
-        if (option === "ALL" || parseInt(option) > data.length)
-            len = data.length;
+        if (option === "ALL" || parseInt(option) > activityLog.length)
+            len = activityLog.length;
         else
             len = option;
         setDisplayLength(len);

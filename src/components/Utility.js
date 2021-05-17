@@ -26,27 +26,6 @@ export class UserObject
     }
 }
 
-export class ActiveLightObject
-{
-    constructor(id, detections, date, time, stats)
-    {
-        this.id = id;
-        this.detections = detections;
-        this.date = date;
-        this.time = time;
-        this.stats = stats;
-    }
-}
-
-export class ActivityObject
-{
-    constructor(user, action)
-    {
-        this.user = user;
-        this.action = action;
-    }
-}
-
 // utility functions
 export function Rad(deg)
 {
