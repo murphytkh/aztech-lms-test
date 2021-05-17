@@ -4,16 +4,6 @@ import {setAllLights} from "../redux/threeDataSlice";
 
 // objects for storing data
 
-export class NotificationObject
-{
-    constructor(title, description, rectify)
-    {
-        this.title = title;
-        this.description = description;
-        this.rectify = rectify;
-    }
-}
-
 export class PageObject
 {
     constructor(index, active, value, style, id)

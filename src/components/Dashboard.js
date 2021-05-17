@@ -9,7 +9,7 @@ import {setLocationData, setLocations, setAreas, setBlocks, setLevels, setLights
         setSelectedLights} from "../redux/locationDataSlice";
 import {setBlockData} from "../redux/blockDataSlice";
 import {setVersion} from "../redux/miscInfoSlice";
-import {getCurrUser, getUsers, getNotifications, getVersion, getLocationData, 
+import {getCurrUser, getUsers, getVersion, getLocationData, 
         getLocations, getBlockId, getBlockData} from "./MockAPI";
 import SelectorDropdown from "./SelectorDropdown";
 import SearchBar from "./SearchBar";
@@ -45,7 +45,6 @@ function Dashboard(props)
 
     // sidebar display and user data
     const [currUser, setCurrUser] = useState(null);
-    const [alerts, setAlerts] = useState(null);
     const [userList, setUserList] = useState(null);
 
     // lms data
@@ -74,7 +73,6 @@ function Dashboard(props)
         // initialise data into redux store
         dispatch(setVersion(getVersion()));
         
-        setAlerts(getNotifications());
         setCurrUser(getCurrUser());
         setUserList(getUsers());
 
@@ -82,7 +80,7 @@ function Dashboard(props)
         getLocationData()
         .then((res) => {
             dispatch(setLocationData(res.data));
-
+            
             let areas = res.data.map(obj => obj.name);
             if (areas)
                 dispatch(setAreas(areas));
@@ -169,7 +167,7 @@ function Dashboard(props)
         if (selectedArea && block && locationData)
         {
             let id = getBlockId(selectedArea, block, locationData);
-
+            dispatch(setBlockData(null));
             // get individual block data from api
             getBlockData(id)
             .then((res) => {
@@ -400,7 +398,7 @@ function Dashboard(props)
                 {/* search bar */}
                 <SearchBar handleSearch={handleSearch}/>
                 {/* notification dropdown button */}
-                {alerts !== null && <Notification ref={notificationRef} notifications={alerts}/>}
+                {blockData && <Notification ref={notificationRef} />}
                 {/* header divider */}
                 <div className="divider"></div>
                 {/* user dropdown button */}

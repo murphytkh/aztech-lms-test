@@ -1,7 +1,6 @@
 import axios from "axios";
 
-import {NotificationObject, UserObject, ActiveLightObject,
-        ActivityObject} from "./Utility";
+import {UserObject, ActiveLightObject, ActivityObject} from "./Utility";
 
 // hard coded images
 import PlaceholderUser from "../resources/dashboard/user-profile-placeholder.png";
@@ -9,17 +8,6 @@ import DefaultUser from "../resources/dashboard/user-profile-default.svg";
 
 // api url
 let apiURL = "https://sls.aztech.com:8888/api/v1";
-
-export function getNotifications()
-{
-    let n0 = new NotificationObject("Alert For Light Offline", 
-                                    "Light 1.2.8 AC Failure", "true");
-    let n1 = new NotificationObject("Alert For Light 1.2.7", 
-                                    "Light 1.2.7 AC Failure", "false");
-    let n2 = new NotificationObject("Alert For Light 1.2.11", 
-                                    "Light 1.2.11 AC Failure", "false");
-    return ([n0, n1, n2]);
-}
 
 export function getVersion()
 {
