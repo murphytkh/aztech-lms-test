@@ -13,6 +13,7 @@ function DashboardDatacharts(props)
     const locationData = useSelector((state) => state.locationData.value);
     const selectedArea = useSelector((state) => state.selectedArea.value);
     const selectedBlock = useSelector((state) => state.selectedBlock.value);
+    const blockData = useSelector((state) => state.blockData.value);
     const lights = useSelector((state) => state.selectedLights.value);
 
     function handleCalendarDropdown()
@@ -33,6 +34,12 @@ function DashboardDatacharts(props)
 
     return(
         <div className="datacharts-page">
+            {/* placeholder loading ui */}
+            {!blockData && 
+                <div style={{fontSize: "20px"}}>
+                    Please wait, loading data...
+                </div>
+            }
             {/* calendar dropdown box */}
             {lights && CalendarDropdown}
             {/* cards (this is hard-coded for now) */}

@@ -81,13 +81,19 @@ function DashboardView(props)
             {block ?
                 <div className="view-page">
                     {/* panels */}
+                    {/* placeholder loading ui */}
+                    {!blockData && 
+                        <div style={{fontSize: "20px"}}>
+                            Please wait, loading data...
+                        </div>
+                    }
                     {blockData && <BlockLights />}
                     {blockData && <ActiveLights />}
                     {blockData && <EnergyConsumption />}
                     {blockData && <LightControl />}
                     {blockData && <ActivityLog />}
                     {gatewayData && <GatewayInfo data={gatewayData} />}
-                    {statusData && 
+                    {blockData && statusData && 
                         <LightStatus 
                             data={statusData}
                             relocation={handleRelocationClick} 
