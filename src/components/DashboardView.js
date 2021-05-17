@@ -41,7 +41,7 @@ function DashboardView(props)
     useEffect(() =>
     {
         // simulate getting data
-        setGatewayData(getGatewayData());
+        dispatch(setGatewayData(getGatewayData()));
         dispatch(setStatusData(getStatusData()));
     }, [dispatch, area, block, locationData]);
 

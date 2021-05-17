@@ -10,7 +10,8 @@ mosquitto -d -v -c mosquittows.conf
                      FRONT END
 ====================================================
 current task:
-    - 
+    - most active lights
+    - light status
 
 old sls:
 https://sls.aztech.com:8443
