@@ -38,7 +38,7 @@ const Notification = forwardRef((props, ref) =>
         document.addEventListener("mousedown", handleClickOutside);
 
         var n = [];
-
+        console.log(blockData);
         for (var i = 0; i < blockData["floors"].length; ++i)
         {
             var lights = blockData["floors"][i]["lights"];

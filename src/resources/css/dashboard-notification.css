@@ -112,8 +112,9 @@
     top: 177%;
     left: 81.5%;
     width: 17.18%;
-    height: 56%;
     list-style: none;
+    max-height: 1000%;
+    overflow-y: auto;
 }
 
 .dashboard-notification-dd ul li 

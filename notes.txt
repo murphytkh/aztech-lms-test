@@ -10,7 +10,7 @@ mosquitto -d -v -c mosquittows.conf
                      FRONT END
 ====================================================
 current task:
-    - notifications api integration
+    - 
 
 old sls:
 https://sls.aztech.com:8443

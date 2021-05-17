@@ -42,7 +42,7 @@ function DashboardDatacharts(props)
             }
             {/* calendar dropdown box */}
             {lights && CalendarDropdown}
-            {/* cards (this is hard-coded for now) */}
+            {/* cards */}
             {selectedArea && selectedBlock && locationData && blockData &&
                 <DatachartsEnergyConsumption />
             }
