@@ -47,6 +47,13 @@ const Notification = forwardRef((props, ref) =>
                 let fault = lights[j]["fault"];
                 if (fault)
                 {
+                    //for (var k = 0; k < fault.length; ++k)
+                    //{
+                    //    n.push({title: "Alert For Light " + lights[j].displayName,
+                    //            description: fault[k].description,
+                    //            rectify: fault[k].faultCleared})
+                    //}
+
                     n.push({title: "Alert For Light " + lights[j].displayName,
                             description: fault.description,
                             rectify: fault.faultCleared})

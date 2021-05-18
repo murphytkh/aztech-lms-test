@@ -1,17 +1,8 @@
-aws login:
-sanjay.das@aztech.com
-P@ss2020
-
-putty:
-cd ../..etc/mosquitto
-mosquitto -d -v -c mosquittows.conf
-
 ====================================================
                      FRONT END
 ====================================================
 current task:
-    - api: activity log
-    - api: light status
+    - documentation
 
 old sls:
 https://sls.aztech.com:8443
@@ -105,10 +96,6 @@ setLightData(x => {
     return x;
 })
 
-use onBlur for tracking onfinishchange?
-
-missing assets:
-user dropdown hover icons
 ====================================================
 
 running steps:

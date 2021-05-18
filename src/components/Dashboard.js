@@ -121,6 +121,7 @@ function Dashboard(props)
     function handleAreaButton()
     {
         dispatch(setSelectedBlock(null));
+        dispatch(setBlockData(null));
         if (blockDDRef.current)
             blockDDRef.current.clearChoice();
         handleBlockButton();
