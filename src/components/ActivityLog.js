@@ -82,8 +82,9 @@ function ActivityLog(props)
 
             for (var j = 0; j < lights.length; ++j)
             {
-                arr.push({user: lights[j].displayName + " - " + lights[j].motionCount,
-                          action: lights[j].lastActive.slice(0, 10)});
+                if(lights[j].lastActive)
+                    arr.push({user: lights[j].displayName,
+                              action: lights[j].lastActive.slice(0, 10)});
             }
         }
 

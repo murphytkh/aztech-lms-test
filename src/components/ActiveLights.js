@@ -48,12 +48,13 @@ function ActiveLights(props)
 
             for (var j = 0; j < lights.length; ++j)
             {
-                arr.push({id: lights[j].displayName,
-                          detections: lights[j].motionCount,
-                          date: lights[j].lastActive.slice(0, 10),
-                          time: lights[j].lastActive.slice(11, 19),
-                          stats: "IN PROGRESS"
-                        });
+                if(lights[j].lastActive && lights[j].motionCount)
+                    arr.push({id: lights[j].displayName,
+                              detections: lights[j].motionCount,
+                              date: lights[j].lastActive.slice(0, 10),
+                              time: lights[j].lastActive.slice(11, 19),
+                              stats: "IN PROGRESS"
+                            });
             }
         }
 

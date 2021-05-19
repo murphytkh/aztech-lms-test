@@ -44,10 +44,10 @@ function BlockLights(props)
             workTotal += obj.lights.length;
         
             obj.lights.forEach((obj) => {
+                if (obj.faults !== null)
+                    workFaults += obj.faults.length;
                 //if (obj.fault !== null)
-                //    workFaults += obj.fault.length;
-                if (obj.fault !== null)
-                    workFaults += 1;
+                //    workFaults += 1;
                 if (obj.offline === "false")
                     workOn += 1;
                 else

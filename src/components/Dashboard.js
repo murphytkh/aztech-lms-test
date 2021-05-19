@@ -79,9 +79,8 @@ function Dashboard(props)
         // get overall data and initialise list of locations
         getLocationData()
         .then((res) => {
-            dispatch(setLocationData(res.data));
-            
-            let areas = res.data.map(obj => obj.name);
+            dispatch(setLocationData(res.data.data));
+            let areas = res.data.data.map(obj => obj.name);
             if (areas)
                 dispatch(setAreas(areas));
         })
@@ -173,6 +172,7 @@ function Dashboard(props)
             getBlockData(id)
             .then((res) => {
                 // get block data
+                console.log(res.data);
                 dispatch(setBlockData(res.data));
 
                 let tmp = res.data.floors.map((obj) => obj.floorName);

@@ -44,19 +44,19 @@ const Notification = forwardRef((props, ref) =>
             var lights = blockData["floors"][i]["lights"];
             for (var j = 0; j < lights.length; ++j)
             {
-                let fault = lights[j]["fault"];
+                let fault = lights[j]["faults"];
                 if (fault)
                 {
-                    //for (var k = 0; k < fault.length; ++k)
-                    //{
-                    //    n.push({title: "Alert For Light " + lights[j].displayName,
-                    //            description: fault[k].description,
-                    //            rectify: fault[k].faultCleared})
-                    //}
+                    for (var k = 0; k < fault.length; ++k)
+                    {
+                        n.push({title: "Alert For Light " + lights[j].displayName,
+                                description: fault[k].description,
+                                rectify: fault[k].faultCleared})
+                    }
 
-                    n.push({title: "Alert For Light " + lights[j].displayName,
-                            description: fault.description,
-                            rectify: fault.faultCleared})
+                    //n.push({title: "Alert For Light " + lights[j].displayName,
+                    //        description: fault.description,
+                    //        rectify: fault.faultCleared})
                 }
             }
         }
